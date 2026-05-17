@@ -937,9 +937,130 @@
       letter-spacing: 0.02em;
     }
 
+    /* ══════════════════════════════════════════
+       PASSWORD GATE
+    ══════════════════════════════════════════ */
+    #password-gate {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+    }
+
+    #password-gate .gate-name {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 48px;
+    }
+
+    #password-gate .gate-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 300;
+      color: var(--text);
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    #password-gate .gate-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    #password-gate .gate-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    #password-gate input[type="password"] {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      outline: none;
+      transition: border-color var(--transition-base);
+      text-align: center;
+    }
+
+    #password-gate input[type="password"]:focus {
+      border-color: var(--accent);
+    }
+
+    #password-gate input[type="password"]::placeholder {
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+    }
+
+    #password-gate .gate-btn {
+      width: 100%;
+      padding: 14px 18px;
+      background: var(--text);
+      color: var(--bg);
+      border: none;
+      border-radius: 2px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity var(--transition-base);
+    }
+
+    #password-gate .gate-btn:hover { opacity: 0.82; }
+
+    #password-gate .gate-error {
+      font-size: 12px;
+      color: #B85C5C;
+      letter-spacing: 0.04em;
+      min-height: 18px;
+      text-align: center;
+    }
+
+    @keyframes gateShake {
+      0%,100% { transform: translateX(0); }
+      20%,60%  { transform: translateX(-6px); }
+      40%,80%  { transform: translateX(6px); }
+    }
+
+    #password-gate .gate-form.shake {
+      animation: gateShake 0.35s ease;
+    }
+
   </style>
 </head>
 <body class="lang-pt">
+
+<div id="password-gate">
+  <p class="gate-name">Ana Clara Bianchi — Portfolio</p>
+  <h1 class="gate-title">Acesso restrito</h1>
+  <p class="gate-desc">Este portfólio contém trabalho confidencial.<br>Insira a senha para continuar.</p>
+  <div class="gate-form" id="gate-form">
+    <input type="password" id="gate-input" placeholder="senha" autocomplete="off" />
+    <button class="gate-btn" id="gate-btn">Entrar</button>
+    <p class="gate-error" id="gate-error"></p>
+  </div>
+</div>
 
 <a href="#main-content" class="skip-link">
   <span data-lang="pt">Ir para o conteúdo</span>
@@ -1744,6 +1865,43 @@
     if (enEl) measureAndSetWidth(enEl.parentElement, words.en);
 
     setInterval(cycleWord, 2800);
+
+    // ── Password gate ──
+    const GATE_PASSWORD = 'portfolio2025';
+    const gate = document.getElementById('password-gate');
+    const gateInput = document.getElementById('gate-input');
+    const gateBtn = document.getElementById('gate-btn');
+    const gateForm = document.getElementById('gate-form');
+    const gateError = document.getElementById('gate-error');
+
+    function unlockPortfolio() {
+      gate.style.opacity = '0';
+      gate.style.transition = 'opacity 0.4s ease';
+      setTimeout(() => gate.remove(), 400);
+      sessionStorage.setItem('portfolio_auth', '1');
+    }
+
+    if (sessionStorage.getItem('portfolio_auth') === '1') {
+      gate.remove();
+    } else {
+      setTimeout(() => gateInput.focus(), 100);
+    }
+
+    function tryPassword() {
+      if (gateInput.value === GATE_PASSWORD) {
+        unlockPortfolio();
+      } else {
+        gateError.textContent = 'Senha incorreta.';
+        gateForm.classList.remove('shake');
+        void gateForm.offsetWidth;
+        gateForm.classList.add('shake');
+        gateInput.value = '';
+        gateInput.focus();
+      }
+    }
+
+    gateBtn.addEventListener('click', tryPassword);
+    gateInput.addEventListener('keydown', e => { if (e.key === 'Enter') tryPassword(); });
 
     // ── Lightbox ──
     const lightbox = document.getElementById('lightbox');
