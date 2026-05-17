@@ -1,0 +1,1786 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ana Bianchi — Content Designer</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F5F4F0'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-size='20' fill='%23C8A96E'%3EA%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+
+    /* ══════════════════════════════════════════
+       CUSTOM PROPERTIES
+    ══════════════════════════════════════════ */
+    :root {
+      --bg: #F5F4F0;
+      --bg-card: #FFFFFF;
+      --text: #1A1A1A;
+      --text-muted: #6A6A62;
+      --accent: #C8A96E;
+      --accent-light: #EDE4D3;
+      --border: #E2E0D8;
+      --tag-bg: #EEEAE3;
+      --shadow-card: 0 2px 12px rgba(26,26,26,0.06), 0 1px 3px rgba(26,26,26,0.04);
+      --shadow-card-hover: 0 8px 32px rgba(26,26,26,0.10), 0 2px 8px rgba(26,26,26,0.06);
+      --transition-base: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ══════════════════════════════════════════
+       BASE RESET
+    ══════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+
+    /* ══════════════════════════════════════════
+       ACCESSIBILITY
+    ══════════════════════════════════════════ */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 16px;
+      background: var(--text);
+      color: var(--bg);
+      padding: 12px 20px;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      z-index: 9999;
+      border-radius: 0 0 4px 4px;
+      transition: top 0.2s ease;
+    }
+    .skip-link:focus { top: 0; }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    .card:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: -2px;
+      z-index: 2;
+    }
+
+    .back-btn:focus-visible,
+    .lang-btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* ══════════════════════════════════════════
+       ANIMATIONS & KEYFRAMES
+    ══════════════════════════════════════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pageIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes wordExit {
+      from { opacity: 1; transform: translateY(0); }
+      to   { opacity: 0; transform: translateY(-10px); }
+    }
+
+    @keyframes wordEnter {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 0; }
+    }
+
+    .fade-up { animation: fadeUp 0.5s ease both; }
+
+    .page-entering {
+      animation: pageIn 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-up { animation: none !important; }
+      .card { opacity: 1 !important; transform: none !important; transition: none !important; }
+      html { scroll-behavior: auto; }
+      .hero-word.exiting,
+      .hero-word.entering { animation: none !important; opacity: 1; transform: none; }
+      .hero-word::after { animation: none; }
+      .page-entering { animation: none !important; }
+    }
+
+    /* ══════════════════════════════════════════
+       NAV
+    ══════════════════════════════════════════ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 48px;
+      background: rgba(245, 244, 240, 0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow var(--transition-base), border-color var(--transition-base);
+    }
+
+    nav.scrolled {
+      box-shadow: 0 2px 20px rgba(26,26,26,0.06);
+      border-bottom-color: rgba(226,224,216,0.9);
+    }
+
+    .nav-logo { text-decoration: none; color: var(--text); }
+    .nav-logo .first { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 18px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .nav-logo .last  { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 18px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .nav-logo .role  { display: block; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-top: 2px; }
+
+    .nav-right { display: flex; align-items: center; gap: 32px; }
+
+    .lang-toggle {
+      display: flex;
+      gap: 2px;
+      background: var(--tag-bg);
+      border-radius: 20px;
+      padding: 3px;
+    }
+
+    .lang-btn {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 16px;
+      color: var(--text-muted);
+      transition: background var(--transition-base), color var(--transition-base);
+      min-height: 32px;
+    }
+
+    .lang-btn.active {
+      background: var(--bg-card);
+      color: var(--text);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+
+    .nav-link {
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color var(--transition-base);
+      padding: 8px 0;
+    }
+    .nav-link:hover { color: var(--text); }
+
+    /* ══════════════════════════════════════════
+       HERO
+    ══════════════════════════════════════════ */
+    .hero {
+      padding: 160px 48px 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero-label {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      animation: fadeUp 0.5s ease 0.1s both;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: clamp(48px, 6vw, 80px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 28px;
+      animation: fadeUp 0.5s ease 0.2s both;
+    }
+
+    .hero h1 em { font-style: italic; color: var(--text-muted); }
+
+    .hero-desc {
+      max-width: 520px;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text);
+      opacity: 0.7;
+      animation: fadeUp 0.5s ease 0.35s both;
+    }
+
+    /* ══════════════════════════════════════════
+       WORD CYCLING
+    ══════════════════════════════════════════ */
+    .hero-word-wrap {
+      display: inline-block;
+      position: relative;
+      min-width: 4ch;
+    }
+
+    .hero-word {
+      display: inline-block;
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    .hero-word::after {
+      content: '|';
+      display: inline-block;
+      margin-left: 1px;
+      color: var(--accent);
+      animation: blink 1s step-end infinite;
+      opacity: 0.6;
+    }
+
+    .hero-word.exiting {
+      animation: wordExit 0.25s ease-in forwards;
+    }
+
+    .hero-word.entering {
+      animation: wordEnter 0.35s ease-out forwards;
+    }
+
+    /* ══════════════════════════════════════════
+       PORTFOLIO GRID
+    ══════════════════════════════════════════ */
+    .grid-section {
+      padding: 0 48px 120px;
+      max-width: 1100px;
+      margin: 0 auto;
+      animation: fadeUp 0.5s ease 0.5s both;
+    }
+
+    .grid-label {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    /* ══════════════════════════════════════════
+       CARDS
+    ══════════════════════════════════════════ */
+    .card {
+      background: var(--bg-card);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      border: none;
+      text-align: left;
+      font-family: inherit;
+      width: 100%;
+      border-radius: 2px;
+      opacity: 0;
+      transform: translateY(16px);
+      transition:
+        background var(--transition-base),
+        box-shadow var(--transition-base),
+        transform var(--transition-base),
+        opacity var(--transition-slow);
+    }
+
+    .card.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card:hover {
+      background: var(--accent-light);
+      box-shadow: var(--shadow-card-hover);
+      transform: translateY(-2px);
+      z-index: 1;
+    }
+
+    .card-arrow {
+      position: absolute;
+      bottom: 28px;
+      right: 28px;
+      color: var(--accent);
+      opacity: 0;
+      transform: translateX(-6px);
+      transition: opacity var(--transition-base), transform var(--transition-base);
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+    }
+    .card:hover .card-arrow { opacity: 1; transform: translateX(0); }
+
+    .card-visual {
+      aspect-ratio: 4/3;
+      background: var(--tag-bg);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card-visual-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .card:nth-child(1) .card-visual { background: #EAE6DF; }
+    .card:nth-child(2) .card-visual { background: #E8EAE6; }
+    .card:nth-child(3) .card-visual { background: #E6E8EA; }
+    .card:nth-child(4) .card-visual { background: #EDE6EA; }
+    .card:nth-child(5) .card-visual { background: #E6EAED; }
+    .card:nth-child(6) .card-visual { background: #EAEAE6; }
+
+    .card-ordinal {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 56px;
+      line-height: 1;
+      color: var(--text);
+      opacity: 0.10;
+      letter-spacing: -0.02em;
+      user-select: none;
+      position: absolute;
+      top: 16px;
+      left: 20px;
+    }
+
+    .card-metric-bg {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 48px;
+      line-height: 1;
+      color: var(--text);
+      opacity: 0.07;
+      position: absolute;
+      bottom: 12px;
+      right: 16px;
+      letter-spacing: -0.03em;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .card-body {
+      padding: 24px 28px 40px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+    }
+
+    .card-company {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 22px;
+      line-height: 1.25;
+      color: var(--text);
+    }
+
+    .card-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .card-metric {
+      margin-top: auto;
+      padding-top: 16px;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-metric strong {
+      font-weight: 500;
+      color: var(--text);
+      font-size: 13px;
+    }
+
+    .card-placeholder {
+      opacity: 1;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .card-placeholder .card-visual {
+      background-image: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 6px,
+        rgba(26,26,26,0.03) 6px,
+        rgba(26,26,26,0.03) 7px
+      );
+    }
+
+    .card-placeholder .card-title,
+    .card-placeholder .card-subtitle,
+    .card-placeholder .card-company { opacity: 0.45; }
+
+    .coming-soon-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    /* ══════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════ */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 48px;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-name { font-family: 'Cormorant Garamond', serif; font-size: 15px; color: var(--text-muted); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-link {
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color var(--transition-base);
+      padding: 8px 0;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+    }
+    .footer-link:hover { color: var(--text); }
+
+    /* ══════════════════════════════════════════
+       SCROLL PROGRESS
+    ══════════════════════════════════════════ */
+    .scroll-progress {
+      position: fixed;
+      top: 65px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--accent);
+      z-index: 99;
+      transition: width 0.1s linear;
+      display: none;
+      pointer-events: none;
+    }
+
+    /* ══════════════════════════════════════════
+       BACK TO TOP
+    ══════════════════════════════════════════ */
+    .back-to-top {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--shadow-card);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity var(--transition-base), transform var(--transition-base), background var(--transition-base), border-color var(--transition-base), color var(--transition-base);
+      z-index: 90;
+      pointer-events: none;
+      font-family: inherit;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .back-to-top:hover {
+      background: var(--accent-light);
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
+    /* ══════════════════════════════════════════
+       CASE PAGE — SHELL
+    ══════════════════════════════════════════ */
+    .case-page { display: none; }
+
+    .case-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 48px;
+      background: rgba(245, 244, 240, 0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow var(--transition-base), border-color var(--transition-base);
+    }
+
+    .case-nav.scrolled {
+      box-shadow: 0 2px 20px rgba(26,26,26,0.06);
+      border-bottom-color: rgba(226,224,216,0.9);
+    }
+
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color var(--transition-base);
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-family: 'DM Sans', sans-serif;
+      padding: 8px 0;
+      min-height: 44px;
+    }
+    .back-btn:hover { color: var(--text); }
+
+    .case-content {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 140px 48px 120px;
+    }
+
+    /* ══════════════════════════════════════════
+       CASE PAGE — TYPOGRAPHY & BLOCKS
+    ══════════════════════════════════════════ */
+    .case-header { margin-bottom: 64px; }
+
+    .case-company {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .case-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(40px, 5.5vw, 68px);
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      margin-bottom: 24px;
+    }
+
+    .case-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .tag {
+      background: var(--tag-bg);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 20px;
+      color: var(--text-muted);
+      cursor: default;
+    }
+
+    .case-section { margin-bottom: 48px; }
+
+    .case-section-label {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .case-section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .case-section p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--text-muted);
+    }
+
+    .case-section p strong { color: var(--text); font-weight: 500; }
+
+    .case-section ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .case-section ul li {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text-muted);
+      padding-left: 24px;
+      position: relative;
+    }
+
+    .case-section ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 11px;
+      width: 12px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .result-block {
+      background: var(--text);
+      color: var(--bg);
+      padding: 56px 48px;
+      margin: 64px 0;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: start;
+      gap: 0 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .result-block::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--accent);
+    }
+
+    .result-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(56px, 7vw, 80px);
+      line-height: 1;
+      color: var(--accent);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .result-text {
+      font-size: 16px;
+      line-height: 1.75;
+      color: rgba(245, 244, 240, 0.75);
+      padding-top: 10px;
+    }
+
+    .divider { display: none; }
+
+    /* ══════════════════════════════════════════
+       CASE PAGE — IMAGES
+    ══════════════════════════════════════════ */
+    .case-images {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin: 48px 0;
+    }
+
+    .case-figures-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .case-figure {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .case-figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid var(--border);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .case-figure img.loaded { opacity: 1; }
+
+    .case-figure figcaption {
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--text-muted);
+      letter-spacing: 0.01em;
+    }
+
+    /* ══════════════════════════════════════════
+       LANGUAGE VISIBILITY
+    ══════════════════════════════════════════ */
+    [data-lang] { display: none; }
+    .lang-pt [data-lang="pt"] { display: block; }
+    .lang-pt [data-lang="pt"].inline { display: inline; }
+    .lang-en [data-lang="en"] { display: block; }
+    .lang-en [data-lang="en"].inline { display: inline; }
+
+    /* Restore flex layout for elements that need it */
+    .lang-pt .case-section-label[data-lang="pt"],
+    .lang-en .case-section-label[data-lang="en"] { display: flex; }
+
+    .lang-pt .case-section ul[data-lang="pt"],
+    .lang-en .case-section ul[data-lang="en"] { display: flex; }
+
+    /* Explicitly hide wrong language — overrides any component-level display */
+    .lang-pt [data-lang="en"],
+    .lang-en [data-lang="pt"] { display: none !important; }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE — TABLET (≤900px)
+    ══════════════════════════════════════════ */
+    @media (max-width: 900px) {
+      nav, .case-nav { padding: 20px 24px; }
+      .hero, .grid-section, footer { padding-left: 24px; padding-right: 24px; }
+      .case-content { padding: 120px 24px 80px; }
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      .result-block { grid-template-columns: 1fr; gap: 16px; padding: 44px 36px; }
+      .result-number { font-size: 56px; }
+      footer { flex-direction: column; gap: 20px; align-items: flex-start; }
+    }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE — FIGURES (≤640px)
+    ══════════════════════════════════════════ */
+    @media (max-width: 640px) {
+      .case-figures-row { grid-template-columns: 1fr; }
+    }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE — MOBILE (≤600px)
+    ══════════════════════════════════════════ */
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+
+      .hero { padding: 120px 20px 60px; }
+      .hero h1 { font-size: 36px; letter-spacing: -0.01em; line-height: 1.15; }
+      .hero-desc { font-size: 15px; max-width: 100%; }
+
+      .grid-section { padding: 0 20px 80px; }
+
+      nav, .case-nav { padding: 16px 20px; }
+      .nav-logo .role { display: none; }
+
+      .lang-btn { min-height: 44px; padding: 8px 14px; }
+      .nav-link { min-height: 44px; display: flex; align-items: center; }
+
+      footer { padding: 32px 20px; }
+
+      .case-content { padding: 100px 20px 64px; }
+
+      .result-block { padding: 36px 24px; }
+      .result-number { font-size: 48px; }
+
+      .case-title { font-size: clamp(30px, 8vw, 42px); }
+
+      .back-to-top { bottom: 20px; right: 20px; }
+
+      .card-visual { aspect-ratio: 3/2; }
+      .card-body { padding: 20px 20px 32px; }
+    }
+
+    /* ══════════════════════════════════════════
+       LIGHTBOX
+    ══════════════════════════════════════════ */
+    .case-figure img { cursor: zoom-in; }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9000;
+      background: rgba(26, 26, 26, 0.88);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .lightbox.open { display: flex; }
+
+    .lightbox-img {
+      max-width: min(92vw, 1400px);
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 3px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+      animation: lightboxIn 0.22s cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
+
+    @keyframes lightboxIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .lightbox-close {
+      position: fixed;
+      top: 20px;
+      right: 24px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(245,244,240,0.25);
+      background: rgba(245,244,240,0.1);
+      color: #F5F4F0;
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--transition-base);
+    }
+    .lightbox-close:hover { background: rgba(245,244,240,0.2); }
+    .lightbox-close:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .lightbox-img { animation: none; }
+    }
+
+    /* ══════════════════════════════════════════
+       CASE VIDEO
+    ══════════════════════════════════════════ */
+    .case-video-wrap {
+      margin: 48px 0;
+    }
+
+    .case-video-wrap video {
+      width: 100%;
+      border-radius: 4px;
+      display: block;
+      box-shadow: var(--shadow-card);
+    }
+
+    .case-video-wrap figcaption {
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+
+  </style>
+</head>
+<body class="lang-pt">
+
+<a href="#main-content" class="skip-link">
+  <span data-lang="pt">Ir para o conteúdo</span>
+  <span data-lang="en">Skip to content</span>
+</a>
+
+<div id="scroll-progress" class="scroll-progress"></div>
+
+<!-- ══════════════ HOME ══════════════ -->
+<div id="home-page">
+
+  <nav aria-label="Navegação principal">
+    <a href="#" class="nav-logo" onclick="showHome(); return false;" aria-label="Ana Bianchi — página inicial">
+      <span class="first">Ana Clara&nbsp;</span><span class="last">Bianchi</span>
+      <span class="role">Senior Content Designer</span>
+    </a>
+    <div class="nav-right">
+      <div class="lang-toggle" role="group" aria-label="Selecionar idioma">
+        <button class="lang-btn active" onclick="setLang('pt')" aria-pressed="true" lang="pt">PT</button>
+        <button class="lang-btn" onclick="setLang('en')" aria-pressed="false" lang="en">EN</button>
+      </div>
+      <a href="https://linkedin.com/in/ana-bianchi" class="nav-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <section class="hero" aria-labelledby="hero-heading">
+      <p class="hero-label" aria-hidden="true">Portfolio</p>
+      <!-- PT: word cycling inline -->
+      <h1 id="hero-heading" data-lang="pt" aria-label="Conteúdo que move negócios, experiências e pessoas.">
+        Conteúdo que<br>move <span class="hero-word-wrap" aria-hidden="true"><span class="hero-word" id="cycling-word-pt">negócios.</span></span>
+      </h1>
+      <!-- EN: word cycling inline -->
+      <h1 data-lang="en" aria-label="Content that moves business, experiences and people.">
+        Content that<br>moves <span class="hero-word-wrap" aria-hidden="true"><span class="hero-word" id="cycling-word-en">business.</span></span>
+      </h1>
+      <p class="hero-desc" data-lang="pt">7+ anos conectando estratégia de conteúdo a resultados mensuráveis em fintechs brasileiras. Nubank e PicPay.</p>
+      <p class="hero-desc" data-lang="en">7+ years connecting content strategy to measurable outcomes at Brazilian fintechs. Nubank and PicPay.</p>
+    </section>
+
+    <section class="grid-section" aria-label="Cases selecionados">
+      <p class="grid-label" data-lang="pt" aria-hidden="true">Cases selecionados</p>
+      <p class="grid-label" data-lang="en" aria-hidden="true">Selected work</p>
+
+      <div class="grid" role="list">
+
+        <button class="card" onclick="showCase('chargeback')" role="listitem" aria-label="Ver case: Chargeback Revamp — Nubank PJ">
+          <div class="card-visual" aria-hidden="true" style="background:#DEB8B2;">
+            <img src="chargeback-banner.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block;" />
+          </div>
+          <div class="card-body">
+            <span class="card-company">Nubank PJ</span>
+            <h2 class="card-title">Chargeback Revamp</h2>
+            <p class="card-subtitle" data-lang="pt">Estratégia de conteúdo para comunicações de alta fricção</p>
+            <p class="card-subtitle" data-lang="en">Content strategy for high-friction communications</p>
+            <div class="card-metric"><strong>+92%</strong><span data-lang="pt">engajamento nas comms</span><span data-lang="en">comms engagement</span></div>
+          </div>
+          <span class="card-arrow" aria-hidden="true">
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true">
+              <path d="M0 6h14M9 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </button>
+
+        <button class="card" onclick="showCase('metrics')" role="listitem" aria-label="Ver case: Content Metrics — Nubank Seguros e CoE">
+          <div class="card-visual" aria-hidden="true" style="background:#C8D5D5;">
+            <img src="ux-metrics-banner.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block;" />
+          </div>
+          <div class="card-body">
+            <span class="card-company">Nubank Seguros + CoE</span>
+            <h2 class="card-title">Content Metrics</h2>
+            <p class="card-subtitle" data-lang="pt">Framework de mensuração liderado por CD, com impacto cross-empresa</p>
+            <p class="card-subtitle" data-lang="en">CD-led measurement framework with company-wide impact</p>
+            <div class="card-metric"><strong>+16%</strong><span data-lang="pt">conversão na variante testada</span><span data-lang="en">conversion on tested variant</span></div>
+          </div>
+          <span class="card-arrow" aria-hidden="true">
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true">
+              <path d="M0 6h14M9 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </button>
+
+        <button class="card" onclick="showCase('ttp')" role="listitem" aria-label="Ver case: Tap to Pay Error Flow — Nubank PJ">
+          <div class="card-visual" aria-hidden="true" style="background:#EBEAEA;">
+            <img src="TTP-Banner.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center center;transform:scale(1.35);transform-origin:center center;display:block;" />
+          </div>
+          <div class="card-body">
+            <span class="card-company">Nubank PJ</span>
+            <h2 class="card-title">Tap to Pay: Error Flow</h2>
+            <p class="card-subtitle" data-lang="pt">UX copy orientada a dados para reduzir abandono</p>
+            <p class="card-subtitle" data-lang="en">Data-driven UX copy to reduce drop-off</p>
+            <div class="card-metric"><strong>+53%</strong><span data-lang="pt">taxa de sucesso</span><span data-lang="en">success rate</span></div>
+          </div>
+          <span class="card-arrow" aria-hidden="true">
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true">
+              <path d="M0 6h14M9 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </button>
+
+        <button class="card" onclick="showCase('ia')" role="listitem" aria-label="Ver case: Content Guide com IA — Nubank PJ">
+          <div class="card-visual" aria-hidden="true" style="background:#EDE4F5; display:flex; align-items:center; justify-content:center;">
+            <img src="arara.png" alt="" style="width:65%;height:90%;object-fit:contain;display:block;" />
+          </div>
+          <div class="card-body">
+            <span class="card-company">Nubank PJ</span>
+            <h2 class="card-title" data-lang="pt">Content Guide com IA</h2>
+            <h2 class="card-title" data-lang="en">AI-Powered Content Guide</h2>
+            <p class="card-subtitle" data-lang="pt">Escalando excelência de CD com IA generativa</p>
+            <p class="card-subtitle" data-lang="en">Scaling CD excellence with generative AI</p>
+            <div class="card-metric"><strong>−90%</strong><span data-lang="pt">tempo de validação de copy</span><span data-lang="en">copy validation time</span></div>
+          </div>
+          <span class="card-arrow" aria-hidden="true">
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true">
+              <path d="M0 6h14M9 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </button>
+
+        <button class="card" onclick="showCase('merenda')" role="listitem" aria-label="Ver case: Merenda em Casa — PicPay">
+          <div class="card-visual" aria-hidden="true" style="background:#E6EAED;">
+            <img src="manual-merenda-picpay.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;" />
+          </div>
+          <div class="card-body">
+            <span class="card-company">PicPay</span>
+            <h2 class="card-title">Merenda em Casa</h2>
+            <p class="card-subtitle" data-lang="pt">Comunicação de crise em contexto de impacto social</p>
+            <p class="card-subtitle" data-lang="en">Crisis communication with social impact</p>
+            <div class="card-metric"><strong>−86%</strong><span data-lang="pt">contatos de suporte</span><span data-lang="en">support contacts</span></div>
+          </div>
+          <span class="card-arrow" aria-hidden="true">
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true">
+              <path d="M0 6h14M9 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </button>
+
+        <div class="card card-placeholder" aria-hidden="true">
+          <div class="card-visual">
+            <div class="card-visual-inner">
+              <span class="card-ordinal">06</span>
+            </div>
+            <span class="coming-soon-badge" data-lang="pt">Em breve</span>
+            <span class="coming-soon-badge" data-lang="en">Soon</span>
+          </div>
+          <div class="card-body">
+            <span class="card-company">POV</span>
+            <h2 class="card-title" data-lang="pt">Processos com IA</h2>
+            <h2 class="card-title" data-lang="en">Working with AI</h2>
+            <p class="card-subtitle" data-lang="pt">Como integro IA generativa no meu processo de trabalho</p>
+            <p class="card-subtitle" data-lang="en">How I integrate generative AI into my workflow</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span class="footer-name">Ana Clara Bianchi</span>
+    <div class="footer-links">
+      <a href="https://linkedin.com/in/ana-bianchi" class="footer-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </div>
+  </footer>
+
+</div>
+
+
+<!-- ══════════════ CASE: CHARGEBACK ══════════════ -->
+<div id="case-chargeback" class="case-page">
+  <nav class="case-nav" aria-label="Navegação do case">
+    <button class="back-btn" onclick="showHome()" aria-label="Voltar para a página inicial"><span aria-hidden="true">←</span> <span data-lang="pt">Voltar</span><span data-lang="en">Back</span></button>
+    <div class="lang-toggle" role="group" aria-label="Selecionar idioma">
+      <button class="lang-btn active" onclick="setLang('pt')" aria-pressed="true" lang="pt">PT</button>
+      <button class="lang-btn" onclick="setLang('en')" aria-pressed="false" lang="en">EN</button>
+    </div>
+  </nav>
+  <main class="case-content fade-up">
+    <div class="case-header">
+      <p class="case-company">Nubank PJ · 2025</p>
+      <h1 class="case-title">Chargeback Revamp</h1>
+      <div class="case-tags">
+        <span class="tag" data-lang="pt">Estratégia de conteúdo</span><span class="tag" data-lang="en">Content strategy</span>
+        <span class="tag" data-lang="pt">Tom de voz</span><span class="tag" data-lang="en">Voice &amp; tone</span>
+        <span class="tag" data-lang="pt">Dados</span><span class="tag" data-lang="en">Data</span>
+        <span class="tag">Cross-squad</span>
+      </div>
+    </div>
+    <div class="case-section">
+      <p class="case-section-label" data-lang="pt">Contexto</p><p class="case-section-label" data-lang="en">Context</p>
+      <p data-lang="pt">O volume de contestações de vendas no Nubank PJ crescia na mesma proporção que o negócio — chegando a <strong>2,3 mil casos por mês</strong>. O processo era manual (85% dos casos exigiam acompanhamento humano), fragmentado entre múltiplas equipes, e deixava o cliente no escuro sobre o que estava acontecendo com seu dinheiro.</p>
+      <p data-lang="en">The volume of sales disputes at Nubank PJ was growing at the same pace as the business — reaching <strong>2,300 cases per month</strong>. The process was manual (85% of cases required human follow-up), fragmented across multiple teams, and left customers in the dark about what was happening to their money.</p>
+    </div>
+    <hr class="divider" />
+    <div class="case-section">
+      <p class="case-section-label" data-lang="pt">Problema</p><p class="case-section-label" data-lang="en">Problem</p>
+      <p data-lang="pt">O tNPS das contestações estava em <strong>-2,17%</strong> — muito abaixo da meta de 70 para PJ — e cerca de 40% dos vendedores afetados entravam em contato com o suporte com uma mesma dúvida: "Cadê meu dinheiro?". A causa raiz era um apagão de dados no meio do processo: a informação existia, mas não estava integrada nem acessível onde era necessária.</p>
+      <p data-lang="en">The chargeback tNPS stood at <strong>-2.17%</strong> — well below PJ's target of 70 — and around 40% of affected merchants contacted support with the same question: "Where's my money?" The root cause was a data blackout in the middle of the process: the information existed, but wasn't integrated or accessible where needed.</p>
+    </div>
+    <hr class="divider" />
+    <div class="case-section">
+      <p class="case-section-label" data-lang="pt">O que fiz</p><p class="case-section-label" data-lang="en">What I did</p>
+      <ul data-lang="pt">
+        <li>Mapeei a jornada completa da contestação e identifiquei os pontos críticos de atrito por meio de análise de dados de atendimento e desk research</li>
+        <li>Defini a content strategy do fluxo, unificando terminologias e criando diretrizes de tom de voz específicas para comunicações de alta fricção</li>
+        <li>Redesenhei as comunicações transacionais e criei guidelines para material de treinamento dos agentes internos, aplicando os princípios "jogamos no mesmo time" e "clareza gera confiança" — aprovados com Marketing</li>
+        <li>Conduzi sessões de alinhamento com designers, PMs e times de Payments PJ e operações</li>
+        <li>Criei guidelines de linguagem e integrei Gemini Gems para criação e auditoria de conteúdo de operações — FAQ, macros e e-mails</li>
+        <li>Propus nova régua de comunicação para contestações PJ, ampliando as iterações para uma proposta mais alinhada com as necessidades do cliente PJ</li>
+        <li>Em parceria com Product Ops, estudei proposta para organizar e usar dados internos como suporte à UX (proposta do Shuffle de contestação)</li>
+      </ul>
+      <ul data-lang="en">
+        <li>Mapped the full chargeback journey and identified critical friction points through support data analysis and desk research</li>
+        <li>Defined the content strategy, unifying terminology and creating tone-of-voice guidelines specific to high-friction communications</li>
+        <li>Redesigned transactional communications and created guidelines for internal agent training, applying "we're on the same team" and "clarity builds trust" principles — approved with Marketing</li>
+        <li>Led alignment sessions with designers, PMs, and Payments PJ and operations teams</li>
+        <li>Created language guidelines and integrated Gemini Gems for operations content creation and auditing — FAQs, macros, and emails</li>
+        <li>Proposed a new communication ruleset for PJ chargebacks, expanding iterations toward a solution more aligned with PJ customer needs</li>
+        <li>In partnership with Product Ops, studied a proposal to organize and leverage internal data to support UX (the Shuffle chargeback proposal)</li>
+      </ul>
+    </div>
+
+    <div class="case-images">
+      <figure class="case-figure">
+        <img src="chargeback-mapeamento-analise.png"
+             alt="Mapeamento e análise da jornada de contestação no Nubank PJ, com identificação dos pontos de atrito e apagão de dados"
+             loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+        <figcaption data-lang="pt">Mapeamento da jornada de contestação — pontos de atrito, volume de contatos de suporte e gaps de informação identificados.</figcaption>
+        <figcaption data-lang="en">Chargeback journey mapping — friction points, support contact volume, and information gaps identified.</figcaption>
+      </figure>
+      <div class="case-figures-row">
+        <figure class="case-figure">
+          <img src="Content Design _ chargeback.png"
+               alt="Artefatos de Content Design para o projeto Chargeback Revamp no Nubank PJ"
+               loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Artefatos de Content Design — terminologias unificadas, diretrizes de tom de voz e guidelines de linguagem.</figcaption>
+          <figcaption data-lang="en">Content Design artifacts — unified terminology, tone-of-voice guidelines, and language guidelines.</figcaption>
+        </figure>
+        <figure class="case-figure">
+          <img src="contestacao-mapa.webp"
+               alt="Nova régua de comunicação proposta para contestações PJ no Nubank"
+               loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Nova régua de comunicação para contestações PJ — iterações ampliadas para maior alinhamento com as necessidades do cliente.</figcaption>
+          <figcaption data-lang="en">New communication ruleset for PJ disputes — expanded iterations to better align with customer needs.</figcaption>
+        </figure>
+      </div>
+      <figure class="case-figure">
+        <img src="chargeback-example-comms.png"
+             alt="Antes e depois das comunicações de contestação de venda redesenhadas — conteúdo como guia para o sucesso da pessoa usuária"
+             loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+        <figcaption data-lang="pt">Quando o conteúdo guia e prepara — redesign das comunicações de contestação com foco em clareza, redução de atrito e protagonismo do usuário.</figcaption>
+        <figcaption data-lang="en">When content guides and prepares — chargeback communications redesigned around clarity, friction reduction, and user empowerment.</figcaption>
+      </figure>
+      <figure class="case-figure">
+        <img src="contestacao-chargeback.png"
+             alt="Fluxo da primeira entrega sugerida para o projeto Chargeback Revamp, com diagrama de processo e prototipagem"
+             loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+        <figcaption data-lang="pt">Primeira entrega sugerida — fluxo de processo e prototipagem da solução de visibilidade de dados para o cliente PJ.</figcaption>
+        <figcaption data-lang="en">First suggested delivery — process flow and prototyping of the data visibility solution for PJ customers.</figcaption>
+      </figure>
+    </div>
+
+    <div class="result-block" role="region" aria-label="Resultado principal">
+      <div class="result-number" aria-label="Resultado: mais 92 por cento">+92%</div>
+      <p class="result-text" data-lang="pt">engajamento nas comunicações — taxa de resposta de 13,55% → 26,07% apenas com mudança de conteúdo, implicando em −42% de tickets de atendimento</p>
+      <p class="result-text" data-lang="en">communications engagement — response rate from 13.55% → 26.07% through content changes alone, resulting in −42% in support tickets</p>
+    </div>
+  </main>
+</div>
+
+
+<!-- ══════════════ CASE: METRICS ══════════════ -->
+<div id="case-metrics" class="case-page">
+  <nav class="case-nav" aria-label="Navegação do case">
+    <button class="back-btn" onclick="showHome()" aria-label="Voltar para a página inicial"><span aria-hidden="true">←</span> <span data-lang="pt">Voltar</span><span data-lang="en">Back</span></button>
+    <div class="lang-toggle" role="group" aria-label="Selecionar idioma">
+      <button class="lang-btn active" onclick="setLang('pt')" aria-pressed="true" lang="pt">PT</button>
+      <button class="lang-btn" onclick="setLang('en')" aria-pressed="false" lang="en">EN</button>
+    </div>
+  </nav>
+  <main class="case-content fade-up">
+    <div class="case-header">
+      <p class="case-company">Nubank Seguros · CoE · 2023</p>
+      <h1 class="case-title">Content Metrics</h1>
+      <div class="case-tags">
+        <span class="tag" data-lang="pt">Liderança de iniciativa</span><span class="tag" data-lang="en">Initiative leadership</span>
+        <span class="tag">UX Metrics</span>
+        <span class="tag">Heart Framework</span>
+        <span class="tag" data-lang="pt">Cross-empresa</span><span class="tag" data-lang="en">Company-wide</span>
+      </div>
+    </div>
+    <div class="case-section">
+      <p class="case-section-label" data-lang="pt">Contexto</p><p class="case-section-label" data-lang="en">Context</p>
+      <p data-lang="pt">Conteúdo sem métrica e acionável claro é conteúdo sem voz dentro do negócio. Liderei uma iniciativa para criar um processo sistemático de mensuração de impacto de Content Design dentro da BU de Seguros do Nubank — conectando dados qualitativos de experiência com métricas de produto.</p>
+      <p data-lang="en">Content without clear, actionable metrics has no voice in the business. I led an initiative to create a systematic process for measuring Content Design impact within Nubank's Insurance BU — connecting qualitative experience data with product metrics.</p>
+    </div>
+    <hr class="divider" />
+    <div class="case-section">
+      <p class="case-section-label" data-lang="pt">Problema</p><p class="case-section-label" data-lang="en">Problem</p>
+      <p data-lang="pt">As decisões de conteúdo eram tomadas sem base em dados de experiência do usuário. Não havia processo para medir se o conteúdo estava gerando confiança, engajamento ou entendimento do produto — pilares dos nossos produtos. Isso minava o impacto de CD nas discussões estratégicas do negócio.</p>
+      <p data-lang="en">Content decisions were made without user experience data. There was no process to measure whether content was building trust, driving engagement, or enabling product understanding — all core pillars of our products. This undermined CD's impact in strategic business discussions.</p>
+    </div>
+    <hr class="divider" />
+    <div class="case-section">
+      <p class="case-section-label" data-lang="pt">O que fiz</p><p class="case-section-label" data-lang="en">What I did</p>
+      <ul data-lang="pt">
+        <li>Adaptei o Heart Framework para criar objetivos de mensuração conectados às metas da BU</li>
+        <li>Desenvolvi e refinei o SAS (Satisfaction Score) específico para seguros, passando de 8 para 6 atributos após validação com UXR</li>
+        <li>Rodei o piloto com ~55k clientes de Life Insurance (2.647 respostas, ~4% de taxa de resposta)</li>
+        <li>Apresentei resultados e next steps para lideranças de produto e design</li>
+        <li>Fui convidada para co-criar o UX Metrics Playbook oficial do Nubank como parte do CoE cross-empresa, ao lado de 8 especialistas de diferentes BUs</li>
+      </ul>
+      <ul data-lang="en">
+        <li>Adapted the Heart Framework to create measurement objectives connected to BU goals</li>
+        <li>Developed and refined the SAS (Satisfaction Score) specific to insurance, reducing from 8 to 6 attributes after UXR validation</li>
+        <li>Ran the pilot with ~55k Life Insurance customers (2,647 responses, ~4% response rate)</li>
+        <li>Presented results and next steps to product and design leadership</li>
+        <li>Was invited to co-create Nubank's official UX Metrics Playbook as part of a cross-company CoE, alongside 8 specialists from different BUs</li>
+      </ul>
+    </div>
+
+    <div class="case-images">
+      <figure class="case-figure">
+        <img src="content-metrics-presentation.png"
+             alt="Slide de apresentação do Content Metrics explicando contexto, definição e impacto da iniciativa no Nubank Seguros"
+             loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+        <figcaption data-lang="pt">Fast recap da iniciativa — o que é Content Metrics, por que importa e como conecta dados de experiência a decisões estratégicas.</figcaption>
+        <figcaption data-lang="en">Initiative fast recap — what Content Metrics is, why it matters, and how it connects experience data to strategic decisions.</figcaption>
+      </figure>
+      <div class="case-figures-row">
+        <figure class="case-figure">
+          <img src="CONTENT METRICS.png"
+               alt="Documento Content Design Metrics - SAS validation, autoria de Ana Clara Bianchi, março 2023, Nubank Insurance BU"
+               loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Documento de validação do SAS — especificação dos 6 atributos de satisfação e metodologia de mensuração para Life Insurance.</figcaption>
+          <figcaption data-lang="en">SAS validation document — specification of the 6 satisfaction attributes and measurement methodology for Life Insurance.</figcaption>
+        </figure>
+        <figure class="case-figure">
+          <img src="UX task force.png"
+               alt="Task Force UX Metrics - Quarterly Impact Report Q2/2023, com Ana Clara Bianchi como membro da equipe"
+               loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Task Force UX Metrics (Q2/2023) — relatório de impacto trimestral do CoE cross-empresa do qual fiz parte como co-autora do playbook.</figcaption>
+          <figcaption data-lang="en">UX Metrics Task Force (Q2/2023) — quarterly impact report from the cross-company CoE, where I co-authored the playbook.</figcaption>
+        </figure>
+      </div>
+      <figure class="case-figure">
+        <img src="content-metrics.png"
+             alt="Gráfico de performance do teste A/B de Content Metrics mostrando uplift de conversão de +92%, +74% e +126% nas variantes testadas"
+             loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+        <figcaption data-lang="pt">Resultados do teste — uplift de conversão de +92% a +126% nas variantes priorizadas pelo framework de Content Metrics.</figcaption>
+        <figcaption data-lang="en">Test results — conversion uplift from +92% to +126% on the variants prioritized by the Content Metrics framework.</figcaption>
+      </figure>
+      <div class="case-figures-row">
+        <figure class="case-figure">
+          <img src="Captura de tela 2026-05-16 123457.png"
+               alt="Tela do app Nubank Seguros com análise de UX copy antes da reformulação, destacando pontos de melhoria no texto"
+               loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Análise da experiência de contratação de seguro — pontos de atrito identificados no copy que embasaram as priorizações do framework.</figcaption>
+          <figcaption data-lang="en">Insurance purchase experience analysis — copy friction points identified that informed the framework's prioritizations.</figcaption>
+        </figure>
+        <figure class="case-figure">
+          <img src="Captura de tela 2026-05-16 123540.png"
+               alt="Roadmap do projeto Content Metrics com próximos passos planejados e sugeridos para Q4/2023, Q1 e Q2/2024"
+               loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Próximos passos — roadmap de evolução do projeto com milestones planejados e sugeridos para escala e documentação.</figcaption>
+          <figcaption data-lang="en">Next steps — project evolution roadmap with planned and suggested milestones for scaling and documentation.</figcaption>
+        </figure>
+      </div>
+      <figure class="case-figure">
+        <img src="Growth Content Metrics - Q3 2023.gif"
+             alt="Apresentação animada do Growth Content Metrics Q3 2023 mostrando a evolução da iniciativa"
+             loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+        <figcaption data-lang="pt">Growth Content Metrics Q3/2023 — apresentação da evolução da iniciativa e resultados acumulados ao longo do trimestre.</figcaption>
+        <figcaption data-lang="en">Growth Content Metrics Q3/2023 — presentation of initiative evolution and cumulative results across the quarter.</figcaption>
+      </figure>
+    </div>
+
+    <div class="result-block" role="region" aria-label="Resultado principal">
+      <div class="result-number" aria-label="Resultado: mais 16 por cento">+16%</div>
+      <p class="result-text" data-lang="pt">conversão na variante testada a partir das prioridades do Content Metrics; piloto integrou playbook adotado como padrão institucional de métricas de UX no Nubank</p>
+      <p class="result-text" data-lang="en">conversion on the Content Metrics-prioritized tested variant; pilot contributed to the playbook adopted as Nubank's institutional standard for UX metrics</p>
+    </div>
+  </main>
+</div>
+
+
+<!-- ══════════════ CASE: TTP ══════════════ -->
+<div id="case-ttp" class="case-page">
+  <nav class="case-nav" aria-label="Navegação do case">
+    <button class="back-btn" onclick="showHome()" aria-label="Voltar para a página inicial"><span aria-hidden="true">←</span> <span data-lang="pt">Voltar</span><span data-lang="en">Back</span></button>
+    <div class="lang-toggle" role="group" aria-label="Selecionar idioma">
+      <button class="lang-btn active" onclick="setLang('pt')" aria-pressed="true" lang="pt">PT</button>
+      <button class="lang-btn" onclick="setLang('en')" aria-pressed="false" lang="en">EN</button>
+    </div>
+  </nav>
+  <main class="case-content fade-up">
+    <div class="case-header">
+      <p class="case-company">Nubank PJ · 2025</p>
+      <h1 class="case-title">Tap to Pay: Error Flow</h1>
+      <div class="case-tags">
+        <span class="tag">UX Copy</span>
+        <span class="tag" data-lang="pt">Dados</span><span class="tag" data-lang="en">Data</span>
+        <span class="tag" data-lang="pt">Iteração</span><span class="tag" data-lang="en">Iteration</span>
+      </div>
+    </div>
+    <div class="case-section">
+      <p class="case-section-label" data-lang="pt">Contexto</p><p class="case-section-label" data-lang="en">Context</p>
+      <p data-lang="pt">O Tap to Pay é o produto de pagamentos presenciais do Nubank para pequenos e médios empreendedores. A experiência de erro era um gargalo crítico: a taxa de sucesso inicial era de apenas <strong>11%</strong>, gerando atrito, abandono e contatos de suporte.</p>
+      <p data-lang="en">Tap to Pay is Nubank's in-person payment product for small and medium merchants. The error experience was a critical bottleneck: the initial success rate was just <strong>11%</strong>, generating friction, abandonment, and support contacts.</p>
+    </div>
+    <hr class="divider" />
+    <div class="case-section">
+      <p class="case-section-label" data-lang="pt">Problema</p><p class="case-section-label" data-lang="en">Problem</p>
+      <p data-lang="pt">A UX copy das mensagens de erro não comunicava com clareza o que havia falhado nem o que o usuário deveria fazer. Os dados de interação mostravam que a maioria das pessoas abandonava o fluxo ao encontrar um erro, sem tentar novamente.</p>
+      <p data-lang="en">The UX copy in error messages failed to clearly communicate what had gone wrong or what the user should do next. Interaction data showed that most people abandoned the flow upon hitting an error, without retrying.</p>
+    </div>
+    <hr class="divider" />
+    <div class="case-section">
+      <p class="case-section-label" data-lang="pt">O que fiz</p><p class="case-section-label" data-lang="en">What I did</p>
+      <ul data-lang="pt">
+        <li>Analisei dados de interação para identificar os erros mais frequentes e seus padrões de abandono</li>
+        <li>Dei suporte ao spike de engenharia para obter mais visibilidade da causa raiz dos erros e confiabilidade das informações</li>
+        <li>Trabalhei em parceria com a Product Designer para redesenhar a UX copy de cada estado de erro</li>
+        <li>Apliquei enquadramento baseado em dados para priorizar as melhorias de maior impacto</li>
+        <li>Propus o novo conteúdo e iteramos em duas rodadas até atingir resultado estatisticamente relevante</li>
+      </ul>
+      <ul data-lang="en">
+        <li>Analyzed interaction data to identify the most frequent errors and their abandonment patterns</li>
+        <li>Supported the engineering spike to gain visibility into error root causes and information reliability</li>
+        <li>Partnered with the Product Designer to redesign UX copy for each error state</li>
+        <li>Applied data-based framing to prioritize highest-impact improvements</li>
+        <li>Proposed new content and iterated through two rounds until achieving statistically relevant results</li>
+      </ul>
+    </div>
+    <div class="case-images">
+      <figure class="case-figure">
+        <img src="TTP-error.png"
+             alt="Pairing de Content e Product Design no Tap to Pay — redesign dos estados de erro com before e after e resultado de 53% de aumento na taxa de sucesso"
+             loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+        <figcaption data-lang="pt">Pairing de Content e Product Design — da análise de dados ao redesign dos estados de erro, com resultado de +53% na taxa de sucesso de quem tenta novamente.</figcaption>
+        <figcaption data-lang="en">Content and Product Design pairing — from data analysis to error state redesign, resulting in +53% success rate for users who retry after an error.</figcaption>
+      </figure>
+    </div>
+    <div class="result-block" role="region" aria-label="Resultado principal">
+      <div class="result-number" aria-label="Resultado: mais 53 por cento">+53%</div>
+      <p class="result-text" data-lang="pt">taxa de sucesso — de 11% para 17%, em duas iterações de conteúdo</p>
+      <p class="result-text" data-lang="en">success rate — from 11% to 17%, across two content iterations</p>
+    </div>
+  </main>
+</div>
+
+
+<!-- ══════════════ CASE: IA ══════════════ -->
+<div id="case-ia" class="case-page">
+  <nav class="case-nav" aria-label="Navegação do case">
+    <button class="back-btn" onclick="showHome()" aria-label="Voltar para a página inicial"><span aria-hidden="true">←</span> <span data-lang="pt">Voltar</span><span data-lang="en">Back</span></button>
+    <div class="lang-toggle" role="group" aria-label="Selecionar idioma">
+      <button class="lang-btn active" onclick="setLang('pt')" aria-pressed="true" lang="pt">PT</button>
+      <button class="lang-btn" onclick="setLang('en')" aria-pressed="false" lang="en">EN</button>
+    </div>
+  </nav>
+  <main class="case-content fade-up">
+    <div class="case-header">
+      <p class="case-company">Nubank PJ · 2025</p>
+      <h1 class="case-title" data-lang="pt">Content Guide com IA</h1>
+      <h1 class="case-title" data-lang="en">AI-Powered Content Guide</h1>
+      <div class="case-tags">
+        <span class="tag" data-lang="pt">IA generativa</span><span class="tag" data-lang="en">Generative AI</span>
+        <span class="tag" data-lang="pt">Escalabilidade</span><span class="tag" data-lang="en">Scalability</span>
+        <span class="tag" data-lang="pt">Governança</span><span class="tag" data-lang="en">Governance</span>
+      </div>
+    </div>
+    <div class="case-section">
+      <p class="case-section-label" data-lang="pt">Contexto</p><p class="case-section-label" data-lang="en">Context</p>
+      <p data-lang="pt">Com um time de Content Design distribuído entre múltiplos squads em PJ, garantir consistência de narrativa e qualidade de copy em escala era um desafio operacional real. Liderei o pack de AI dentro da workstream de excelência em design cross-PJ para criar uma solução escalável.</p>
+      <p data-lang="en">With a Content Design team distributed across multiple squads in PJ, ensuring narrative consistency and copy quality at scale was a real operational challenge. I led the AI pack within the cross-PJ design excellence workstream to create a scalable solution.</p>
+    </div>
+    <hr class="divider" />
+    <div class="case-section">
+      <p class="case-section-label" data-lang="pt">Problema</p><p class="case-section-label" data-lang="en">Problem</p>
+      <p data-lang="pt">O tempo gasto para validar narrativa e copy em cada tela era alto e o processo dependia de revisão manual. Sem um mecanismo de escala, a consistência de marca ficava comprometida à medida que o time crescia.</p>
+      <p data-lang="en">The time spent validating narrative and copy for each screen was high, and the process depended on manual review. Without a scaling mechanism, brand consistency was at risk as the team grew.</p>
+    </div>
+    <hr class="divider" />
+    <div class="case-section">
+      <p class="case-section-label" data-lang="pt">O que fiz</p><p class="case-section-label" data-lang="en">What I did</p>
+      <ul data-lang="pt">
+        <li>Estruturei o processo e os artefatos da POC do Content Guide powered by IA</li>
+        <li>Defini os parâmetros de avaliação da Gem: narrativa, voz, glossário, clareza de copy, redução de atrito e alinhamento com diretrizes do Nu</li>
+        <li>Gravei demonstrações em tempo real para evangelizar o uso no chapter</li>
+        <li>Conduzi o kickoff e o período de testes com coleta de feedback contínuo</li>
+        <li>Centralizei as decisões de content design no Content Guide AI, garantindo atualizações acessíveis para toda a empresa</li>
+      </ul>
+      <ul data-lang="en">
+        <li>Structured the process and artifacts for the AI-powered Content Guide POC</li>
+        <li>Defined the Gem's evaluation parameters: narrative, voice, glossary, copy clarity, friction reduction, and Nu guidelines alignment</li>
+        <li>Recorded real-time demos to evangelize usage across the chapter</li>
+        <li>Led the kickoff and testing period with continuous feedback collection</li>
+        <li>Centralized content design decisions in the Content Guide AI, ensuring updates were accessible company-wide</li>
+      </ul>
+    </div>
+    <figure class="case-video-wrap">
+      <video controls preload="metadata" aria-label="POC Content Guide powered by AI — demonstração em tempo real">
+        <source src="POC-content-guide-powered-by-AI.mp4" type="video/mp4" />
+      </video>
+      <figcaption data-lang="pt">Demonstração da POC — Content Guide powered by AI em uso real, validando narrativa, voz e copy em tempo real.</figcaption>
+      <figcaption data-lang="en">POC demo — AI-powered Content Guide in real use, validating narrative, voice, and copy in real time.</figcaption>
+    </figure>
+
+    <div class="result-block" role="region" aria-label="Resultado principal">
+      <div class="result-number" aria-label="Resultado: menos 90 por cento">−90%</div>
+      <p class="result-text" data-lang="pt">redução estimada no tempo de validação de copy (de dias para minutos); 84% de adesão dos designers nos primeiros 30 dias</p>
+      <p class="result-text" data-lang="en">estimated reduction in copy validation time (from days to minutes); 84% designer adoption in the first 30 days</p>
+    </div>
+  </main>
+</div>
+
+
+<!-- ══════════════ CASE: MERENDA ══════════════ -->
+<div id="case-merenda" class="case-page">
+  <nav class="case-nav" aria-label="Navegação do case">
+    <button class="back-btn" onclick="showHome()" aria-label="Voltar para a página inicial"><span aria-hidden="true">←</span> <span data-lang="pt">Voltar</span><span data-lang="en">Back</span></button>
+    <div class="lang-toggle" role="group" aria-label="Selecionar idioma">
+      <button class="lang-btn active" onclick="setLang('pt')" aria-pressed="true" lang="pt">PT</button>
+      <button class="lang-btn" onclick="setLang('en')" aria-pressed="false" lang="en">EN</button>
+    </div>
+  </nav>
+  <main class="case-content fade-up">
+    <div class="case-header">
+      <p class="case-company">PicPay · 2020</p>
+      <h1 class="case-title">Merenda em Casa</h1>
+      <div class="case-tags">
+        <span class="tag" data-lang="pt">Comunicação de crise</span><span class="tag" data-lang="en">Crisis communication</span>
+        <span class="tag" data-lang="pt">Impacto social</span><span class="tag" data-lang="en">Social impact</span>
+        <span class="tag" data-lang="pt">Autoatendimento</span><span class="tag" data-lang="en">Self-service</span>
+        <span class="tag">War Room</span>
+      </div>
+    </div>
+    <div class="case-section">
+      <p class="case-section-label" data-lang="pt">Contexto</p><p class="case-section-label" data-lang="en">Context</p>
+      <p data-lang="pt">No início de 2020, o governo do estado de SP lançou o programa Merenda em Casa para famílias de alunos da rede pública. O PicPay foi escolhido como plataforma de pagamento — e precisava onboar <strong>milhares de usuários de baixa renda</strong> e diretores de escola em tempo recorde, em meio a uma crise de saúde pública.</p>
+      <p data-lang="en">In early 2020, the São Paulo state government launched the Merenda em Casa program for public school families. PicPay was chosen as the payment platform — and needed to onboard <strong>thousands of low-income users</strong> and school principals in record time, amid a public health crisis.</p>
+    </div>
+    <hr class="divider" />
+    <div class="case-section">
+      <p class="case-section-label" data-lang="pt">Problema</p><p class="case-section-label" data-lang="en">Problem</p>
+      <p data-lang="pt">O volume de contatos com o suporte explodiu: pessoas com direito ao benefício, mas que não tinham feito o cadastro corretamente, entravam em contato com dúvidas — e escolas estavam sendo acionadas pelas famílias para ajudá-las a criar conta e usar o app. Não havia autoatendimento eficiente nem material de apoio adequado para esses públicos.</p>
+      <p data-lang="en">Support contact volume exploded: people entitled to the benefit but who hadn't registered correctly were reaching out with questions — and schools were being contacted by families for help creating accounts and using the app. There was no efficient self-service or adequate support materials for these audiences.</p>
+    </div>
+    <hr class="divider" />
+    <div class="case-section">
+      <p class="case-section-label" data-lang="pt">O que fiz</p><p class="case-section-label" data-lang="en">What I did</p>
+      <ul data-lang="pt">
+        <li>Conduzi desk research com análise de dados do atendimento e categorização nas plataformas internas</li>
+        <li>Participei da definição da estratégia e dos critérios de sucesso com lideranças em contexto de War Room</li>
+        <li>Criei e validei o canvas de conteúdo e storytelling para a feature de autoatendimento priorizada</li>
+        <li>Desenvolvi material de apoio para diretores e diretoras de escola — manual PicPay para Auxílio COVID-19</li>
+        <li>Participei da construção do contrato entre produto e time técnico, testes em QA e acompanhamento em produção</li>
+      </ul>
+      <ul data-lang="en">
+        <li>Conducted desk research with support data analysis and internal platform categorization</li>
+        <li>Participated in strategy and success criteria definition with leadership in a War Room context</li>
+        <li>Created and validated the content canvas and storytelling for the prioritized self-service feature</li>
+        <li>Developed support materials for school principals — PicPay Manual for COVID-19 Aid</li>
+        <li>Participated in the product-engineering contract, QA testing, and production monitoring</li>
+      </ul>
+    </div>
+
+    <div class="case-images">
+      <figure class="case-figure">
+        <img src="merenda-contexto.png"
+             alt="Site do governo de SP com campanha Merenda em Casa para 920 mil alunos"
+             loading="lazy"
+             decoding="async"
+             onload="this.classList.add('loaded')" />
+        <figcaption data-lang="pt">O contexto: o site oficial do governo de SP comunicava o programa, mas o fluxo de cadastro gerava dúvidas em massa.</figcaption>
+        <figcaption data-lang="en">The context: the SP government's official website communicated the program, but the registration flow generated a flood of questions.</figcaption>
+      </figure>
+      <div class="case-figures-row">
+        <figure class="case-figure">
+          <img src="merenda-contexo-2.png"
+               alt="Modal Consultar benefício no site do governo SP"
+               loading="lazy"
+               decoding="async"
+               onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Modal de consulta no site do governo — ponto de entrada que gerava confusão e volume de suporte.</figcaption>
+          <figcaption data-lang="en">Government site lookup modal — the entry point driving confusion and support volume.</figcaption>
+        </figure>
+        <figure class="case-figure">
+          <img src="merenda-picpay.png"
+               alt="Widget Auxílio merenda dos estudantes na seção de Ajuda do PicPay"
+               loading="lazy"
+               decoding="async"
+               onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Widget na seção de Ajuda do app: ao tocar, o sistema verificava a situação da conta e oferecia direcionamentos específicos.</figcaption>
+          <figcaption data-lang="en">Help section widget in the app: on tap, the system checked account status and offered specific guidance.</figcaption>
+        </figure>
+      </div>
+      <figure class="case-figure">
+        <img src="manual-merenda-picpay.png"
+             alt="Manual PicPay Auxílio COVID-19 para escolas de SP"
+             loading="lazy"
+             decoding="async"
+             onload="this.classList.add('loaded')" />
+        <figcaption data-lang="pt">Manual PicPay Auxílio COVID-19 — entregue online e impresso para diretores e diretoras de escola de SP.</figcaption>
+        <figcaption data-lang="en">PicPay COVID-19 Aid Manual — delivered online and in print to school principals across SP.</figcaption>
+      </figure>
+    </div>
+
+    <div class="result-block" role="region" aria-label="Resultado principal">
+      <div class="result-number" aria-label="Resultado: menos 86 por cento">−86%</div>
+      <p class="result-text" data-lang="pt">redução nos contatos de suporte relacionados ao programa</p>
+      <p class="result-text" data-lang="en">reduction in program-related support contacts</p>
+    </div>
+  </main>
+</div>
+
+
+<!-- BACK TO TOP -->
+<button id="back-to-top" class="back-to-top" onclick="scrollToTop()" aria-label="Voltar ao topo">
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+    <path d="M7 13V1M2 6l5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+
+
+<!-- ══════════════ JS ══════════════ -->
+<script>
+  let currentLang = 'pt';
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+    document.body.className = document.body.className.replace(/lang-\w+/g, '').trim() + ' lang-' + lang;
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      const isActive = btn.getAttribute('lang') === lang;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+  }
+
+  function scrollToTop() {
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }
+
+  function showCase(id) {
+    document.getElementById('home-page').style.display = 'none';
+    document.querySelectorAll('.case-page').forEach(p => p.style.display = 'none');
+    const page = document.getElementById('case-' + id);
+    if (page) {
+      page.style.display = 'block';
+      page.classList.remove('page-entering');
+      void page.offsetWidth;
+      page.classList.add('page-entering');
+      setTimeout(() => page.classList.remove('page-entering'), 360);
+      scrollToTop();
+      document.getElementById('scroll-progress').style.display = 'block';
+      history.pushState({ view: 'case', id }, '', '#' + id);
+      const h1 = page.querySelector('h1');
+      if (h1) { h1.setAttribute('tabindex', '-1'); h1.focus(); }
+    }
+  }
+
+  function showHome() {
+    document.querySelectorAll('.case-page').forEach(p => p.style.display = 'none');
+    const homePage = document.getElementById('home-page');
+    homePage.style.display = 'block';
+    homePage.classList.remove('page-entering');
+    void homePage.offsetWidth;
+    homePage.classList.add('page-entering');
+    setTimeout(() => homePage.classList.remove('page-entering'), 360);
+    scrollToTop();
+    document.getElementById('scroll-progress').style.display = 'none';
+    document.getElementById('scroll-progress').style.width = '0%';
+    history.pushState({ view: 'home' }, '', window.location.pathname);
+  }
+
+  window.addEventListener('popstate', (e) => {
+    if (e.state && e.state.view === 'case') {
+      document.getElementById('home-page').style.display = 'none';
+      document.querySelectorAll('.case-page').forEach(p => p.style.display = 'none');
+      const page = document.getElementById('case-' + e.state.id);
+      if (page) {
+        page.style.display = 'block';
+        scrollToTop();
+        document.getElementById('scroll-progress').style.display = 'block';
+      }
+    } else {
+      document.querySelectorAll('.case-page').forEach(p => p.style.display = 'none');
+      document.getElementById('home-page').style.display = 'block';
+      scrollToTop();
+      document.getElementById('scroll-progress').style.display = 'none';
+      document.getElementById('scroll-progress').style.width = '0%';
+    }
+  });
+
+  // Scroll listeners: progress bar, back-to-top, nav scroll state
+  window.addEventListener('scroll', () => {
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+
+    // Scroll progress bar
+    const progressEl = document.getElementById('scroll-progress');
+    if (progressEl && progressEl.style.display !== 'none') {
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      progressEl.style.width = total > 0 ? (scrollTop / total * 100) + '%' : '0%';
+    }
+
+    // Back to top button
+    const btt = document.getElementById('back-to-top');
+    if (btt) btt.classList.toggle('visible', scrollTop > 300);
+
+    // Nav scroll state
+    document.querySelectorAll('nav').forEach(nav => {
+      nav.classList.toggle('scrolled', scrollTop > 20);
+    });
+  }, { passive: true });
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const hash = window.location.hash.replace('#', '');
+    const valid = ['chargeback', 'metrics', 'ttp', 'ia', 'merenda'];
+    if (hash && valid.includes(hash)) {
+      document.getElementById('home-page').style.display = 'none';
+      const page = document.getElementById('case-' + hash);
+      if (page) {
+        page.style.display = 'block';
+        document.getElementById('scroll-progress').style.display = 'block';
+      }
+    }
+
+    // Sync lang state on load
+    setLang(currentLang);
+
+    // ── CARD ENTRANCE (IntersectionObserver) ──────────────────
+    const cards = document.querySelectorAll('.card');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reducedMotion) {
+      cards.forEach(c => c.classList.add('revealed'));
+    } else {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const index = Array.from(cards).indexOf(entry.target);
+            setTimeout(() => entry.target.classList.add('revealed'), index * 60);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      cards.forEach(c => observer.observe(c));
+    }
+
+    // ── WORD CYCLING ──────────────────────────────────────────
+    const words = {
+      pt: ['negócios.', 'experiências.', 'pessoas.'],
+      en: ['business.', 'experiences.', 'people.']
+    };
+
+    let cycleIndex = 0;
+
+    function measureAndSetWidth(el, wordList) {
+      const testSpan = document.createElement('span');
+      testSpan.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;font:inherit;font-style:italic;';
+      document.body.appendChild(testSpan);
+      let maxW = 0;
+      wordList.forEach(w => {
+        testSpan.textContent = w;
+        maxW = Math.max(maxW, testSpan.offsetWidth);
+      });
+      document.body.removeChild(testSpan);
+      el.style.minWidth = maxW + 'px';
+    }
+
+    function cycleWord() {
+      cycleIndex = (cycleIndex + 1) % words.pt.length;
+
+      ['pt', 'en'].forEach(lang => {
+        const el = document.getElementById('cycling-word-' + lang);
+        if (!el) return;
+        const nextWord = words[lang][cycleIndex];
+
+        if (reducedMotion) {
+          el.textContent = nextWord;
+          return;
+        }
+
+        el.classList.remove('entering');
+        el.classList.add('exiting');
+
+        setTimeout(() => {
+          el.textContent = nextWord;
+          el.classList.remove('exiting');
+          el.classList.add('entering');
+          setTimeout(() => el.classList.remove('entering'), 400);
+        }, 260);
+      });
+    }
+
+    const ptEl = document.getElementById('cycling-word-pt');
+    const enEl = document.getElementById('cycling-word-en');
+    if (ptEl) measureAndSetWidth(ptEl.parentElement, words.pt);
+    if (enEl) measureAndSetWidth(enEl.parentElement, words.en);
+
+    setInterval(cycleWord, 2800);
+
+    // ── Lightbox ──
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    document.addEventListener('click', e => {
+      const img = e.target.closest('.case-figure img');
+      if (!img) return;
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      lightbox.querySelector('.lightbox-close').focus();
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+      lightboxImg.src = '';
+    }
+
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+    });
+  });
+</script>
+
+<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Imagem em destaque">
+  <button id="lightbox-close" class="lightbox-close" aria-label="Fechar">✕</button>
+  <img id="lightbox-img" class="lightbox-img" src="" alt="" />
+</div>
+
+</body>
+</html>
