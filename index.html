@@ -7,23 +7,24 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F5F4F0'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-size='20' fill='%23C8A96E'%3EA%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
   <style>
 
     /* ══════════════════════════════════════════
        CUSTOM PROPERTIES
     ══════════════════════════════════════════ */
     :root {
-      --bg: #F5F4F0;
+      --bg: #F7F7F5;
       --bg-card: #FFFFFF;
-      --text: #1A1A1A;
-      --text-muted: #6A6A62;
-      --accent: #C8A96E;
-      --accent-light: #EDE4D3;
-      --border: #E2E0D8;
-      --tag-bg: #EEEAE3;
-      --shadow-card: 0 2px 12px rgba(26,26,26,0.06), 0 1px 3px rgba(26,26,26,0.04);
-      --shadow-card-hover: 0 8px 32px rgba(26,26,26,0.10), 0 2px 8px rgba(26,26,26,0.06);
+      --text: #111111;
+      --text-muted: #888888;
+      --accent: #4A6FA5;
+      --accent-light: #EEF2F8;
+      --border: #DDDDD8;
+      --tag-bg: #F0F0EE;
+      --shadow-card: 0 1px 4px rgba(17,17,17,0.05), 0 1px 2px rgba(17,17,17,0.03);
+      --shadow-card-hover: 0 6px 24px rgba(17,17,17,0.08), 0 2px 6px rgba(17,17,17,0.04);
       --transition-base: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       --transition-slow: 0.45s cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -37,8 +38,8 @@
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
       font-size: 16px;
       line-height: 1.65;
       min-height: 100vh;
@@ -149,9 +150,9 @@
     }
 
     .nav-logo { text-decoration: none; color: var(--text); }
-    .nav-logo .first { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 18px; letter-spacing: 0.08em; text-transform: uppercase; }
-    .nav-logo .last  { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 18px; letter-spacing: 0.08em; text-transform: uppercase; }
-    .nav-logo .role  { display: block; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-top: 2px; }
+    .nav-logo .first { font-family: 'Inter', sans-serif; font-weight: 500; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .nav-logo .last  { font-family: 'Inter', sans-serif; font-weight: 300; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .nav-logo .role  { display: block; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-top: 2px; }
 
     .nav-right { display: flex; align-items: center; gap: 32px; }
 
@@ -215,25 +216,20 @@
     }
 
     .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Playfair Display', serif;
       font-weight: 400;
       font-size: clamp(48px, 6vw, 80px);
       line-height: 1.1;
       letter-spacing: -0.02em;
       color: var(--text);
-      margin-bottom: 28px;
+      margin-bottom: 0;
       animation: fadeUp 0.5s ease 0.2s both;
     }
 
     .hero h1 em { font-style: italic; color: var(--text-muted); }
 
     .hero-desc {
-      max-width: 520px;
-      font-size: 16px;
-      line-height: 1.7;
-      color: var(--text);
-      opacity: 0.7;
-      animation: fadeUp 0.5s ease 0.35s both;
+      display: none;
     }
 
     /* ══════════════════════════════════════════
@@ -248,7 +244,7 @@
     .hero-word {
       display: inline-block;
       font-style: italic;
-      color: var(--text-muted);
+      color: var(--accent);
     }
 
     .hero-word::after {
@@ -368,7 +364,7 @@
     .card:nth-child(6) .card-visual { background: #EAEAE6; }
 
     .card-ordinal {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Playfair Display', serif;
       font-weight: 300;
       font-size: 56px;
       line-height: 1;
@@ -382,7 +378,7 @@
     }
 
     .card-metric-bg {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Playfair Display', serif;
       font-weight: 300;
       font-style: italic;
       font-size: 48px;
@@ -414,7 +410,7 @@
     }
 
     .card-title {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Playfair Display', serif;
       font-weight: 400;
       font-size: 22px;
       line-height: 1.25;
@@ -492,7 +488,7 @@
       justify-content: space-between;
     }
 
-    .footer-name { font-family: 'Cormorant Garamond', serif; font-size: 15px; color: var(--text-muted); }
+    .footer-name { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text-muted); }
     .footer-links { display: flex; gap: 24px; }
     .footer-link {
       text-decoration: none;
@@ -507,6 +503,398 @@
       align-items: center;
     }
     .footer-link:hover { color: var(--text); }
+
+    /* ══════════════════════════════════════════
+       NOVAS SEÇÕES HOME
+    ══════════════════════════════════════════ */
+    .home-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 48px 80px;
+    }
+
+    .home-section-label {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      display: block;
+      text-align: center;
+    }
+
+    /* NAV — sem role */
+    .nav-logo .role { display: none; }
+    .nav-logo .first { font-weight: 500; }
+    .nav-logo .last  { font-weight: 300; }
+
+    /* HERO — sem label, sem desc */
+    .hero-label { display: none; }
+    .hero-desc  { display: none; }
+    .hero { text-align: center; }
+    .hero h1 { font-family: 'Playfair Display', serif; }
+    .hero-word { color: var(--accent); font-style: italic; }
+
+    /* FEATURED */
+    .featured-card {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      background: var(--bg-card);
+    }
+
+    .featured-visual {
+      height: 200px;
+      background: #E4EAF2;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: 16px;
+      left: 20px;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 20px;
+      z-index: 1;
+    }
+
+    .featured-body {
+      padding: 32px 40px 36px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: end;
+    }
+
+    .featured-left { display: flex; flex-direction: column; gap: 10px; }
+    .featured-company { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+    .featured-title { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 400; color: var(--text); line-height: 1.2; }
+    .featured-sub { font-size: 13px; color: var(--text-muted); line-height: 1.6; max-width: 520px; }
+
+    .featured-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .ftag {
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: var(--tag-bg);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+
+    .featured-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--accent);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      padding: 0;
+      margin-top: 8px;
+    }
+
+    .featured-metric {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .featured-metric-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1;
+    }
+    .featured-metric-label { font-size: 11px; color: var(--text-muted); }
+
+    /* CASES GRID 2x2 */
+    .cases-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .case-card {
+      background: var(--bg);
+      padding: 28px 28px 56px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      cursor: pointer;
+      border: none;
+      text-align: left;
+      font-family: inherit;
+      position: relative;
+      transition: background var(--transition-base);
+    }
+    .case-card:hover { background: var(--accent-light); }
+
+    .case-arrow {
+      position: absolute;
+      bottom: 24px;
+      right: 24px;
+      font-size: 16px;
+      color: var(--border);
+      transition: color var(--transition-base), transform var(--transition-base);
+    }
+    .case-card:hover .case-arrow { color: var(--accent); transform: translateX(2px); }
+
+    .case-thumb { height: 64px; border-radius: 4px; margin-bottom: 6px; overflow: hidden; }
+    .case-company { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+    .case-name { font-size: 15px; font-weight: 500; color: var(--text); line-height: 1.3; }
+    .case-desc { font-size: 12px; color: var(--text-muted); line-height: 1.55; }
+
+    .case-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
+    .ctag {
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 20px;
+      background: var(--tag-bg);
+      color: var(--text-muted);
+    }
+
+    .case-metric { margin-top: auto; padding-top: 16px; display: flex; flex-direction: column; gap: 1px; }
+    .case-metric-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .case-metric-label { font-size: 10px; color: var(--text-muted); letter-spacing: 0.03em; }
+
+    /* SOBRE MIM */
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+    }
+
+    .about-text { font-size: 14px; line-height: 1.85; color: var(--text); opacity: 0.75; }
+
+    .strengths-list { display: flex; flex-direction: column; }
+    .strength-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .strength-row:last-child { border-bottom: none; }
+    .strength-icon { font-size: 18px; color: var(--accent); margin-top: 2px; flex-shrink: 0; }
+    .strength-title { font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 3px; display: block; }
+    .strength-desc { font-size: 11px; color: var(--text-muted); line-height: 1.65; display: block; }
+
+    /* REFERÊNCIAS */
+    .refs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .ref-card {
+      background: var(--bg-card);
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      min-height: 240px;
+    }
+
+    .ref-quote {
+      font-size: 14px;
+      line-height: 1.85;
+      color: var(--text);
+      opacity: 0.75;
+      font-style: italic;
+      flex: 1;
+    }
+
+    .ref-author {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .ref-name { font-size: 13px; font-weight: 500; color: var(--text); display: block; }
+    .ref-role { font-size: 11px; color: var(--text-muted); margin-top: 2px; display: block; }
+
+    /* FOOTER — mesmo layout do nav */
+    .footer-name { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+    .footer-name strong { font-weight: 500; color: var(--text); }
+    .footer-name-light { font-weight: 300; }
+
+    @media (max-width: 768px) {
+      .home-section { padding: 0 24px 60px; }
+      .featured-body { grid-template-columns: 1fr; }
+      .about-layout { grid-template-columns: 1fr; gap: 32px; }
+      .cases-grid { grid-template-columns: 1fr; }
+      .refs-grid { grid-template-columns: 1fr; }
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .about-text {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--text);
+      opacity: 0.8;
+    }
+
+    .strengths-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .strength-item {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--bg-card);
+    }
+
+    .strength-icon {
+      font-size: 22px;
+      color: var(--accent);
+    }
+
+    .strength-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .strength-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .testimonial-card {
+      background: var(--bg-card);
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .testimonial-quote {
+      font-size: 14px;
+      line-height: 1.85;
+      color: var(--text);
+      opacity: 0.75;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .testimonial-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .testimonial-role {
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.03em;
+    }
+
+    .articles-list {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border);
+    }
+
+    .article-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 24px;
+      padding: 28px 32px;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+      transition: background var(--transition-base);
+    }
+
+    .article-item:last-child { border-bottom: none; }
+    .article-item:hover { background: var(--accent-light); }
+
+    .article-type {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .article-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.4;
+      margin-bottom: 5px;
+    }
+
+    .article-venue {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .article-arrow {
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-top: 2px;
+      flex-shrink: 0;
+      transition: color var(--transition-base), transform var(--transition-base);
+    }
+
+    .article-item:hover .article-arrow { color: var(--accent); transform: translate(2px,-2px); }
+
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; gap: 32px; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .strengths-grid { grid-template-columns: 1fr; }
+      .home-section { padding: 0 24px 60px; }
+    }
 
     /* ══════════════════════════════════════════
        SCROLL PROGRESS
@@ -1075,7 +1463,6 @@
   <nav aria-label="Navegação principal">
     <a href="#" class="nav-logo" onclick="showHome(); return false;" aria-label="Ana Bianchi — página inicial">
       <span class="first">Ana Clara&nbsp;</span><span class="last">Bianchi</span>
-      <span class="role">Senior Content Designer</span>
     </a>
     <div class="nav-right">
       <div class="lang-toggle" role="group" aria-label="Selecionar idioma">
@@ -1087,140 +1474,262 @@
   </nav>
 
   <main id="main-content">
+
+    <!-- HERO -->
     <section class="hero" aria-labelledby="hero-heading">
-      <p class="hero-label" aria-hidden="true">Portfolio</p>
-      <!-- PT: word cycling inline -->
       <h1 id="hero-heading" data-lang="pt" aria-label="Conteúdo que move negócios, experiências e pessoas.">
         Conteúdo que<br>move <span class="hero-word-wrap" aria-hidden="true"><span class="hero-word" id="cycling-word-pt">negócios.</span></span>
       </h1>
-      <!-- EN: word cycling inline -->
       <h1 data-lang="en" aria-label="Content that moves business, experiences and people.">
         Content that<br>moves <span class="hero-word-wrap" aria-hidden="true"><span class="hero-word" id="cycling-word-en">business.</span></span>
       </h1>
-      <p class="hero-desc" data-lang="pt">7+ anos conectando estratégia de conteúdo a resultados mensuráveis em fintechs brasileiras. Nubank e PicPay.</p>
-      <p class="hero-desc" data-lang="en">7+ years connecting content strategy to measurable outcomes at Brazilian fintechs. Nubank and PicPay.</p>
     </section>
 
-    <section class="grid-section" aria-label="Cases selecionados">
-      <p class="grid-label" data-lang="pt" aria-hidden="true">Cases selecionados</p>
-      <p class="grid-label" data-lang="en" aria-hidden="true">Selected work</p>
-
-      <div class="grid" role="list">
-
-        <button class="card" onclick="showCase('chargeback')" role="listitem" aria-label="Ver case: Chargeback Revamp — Nubank PJ">
-          <div class="card-visual" aria-hidden="true" style="background:#DEB8B2;">
-            <img src="chargeback-banner.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block;" />
-          </div>
-          <div class="card-body">
-            <span class="card-company">Nubank PJ</span>
-            <h2 class="card-title">Chargeback Revamp</h2>
-            <p class="card-subtitle" data-lang="pt">Estratégia de conteúdo para comunicações de alta fricção</p>
-            <p class="card-subtitle" data-lang="en">Content strategy for high-friction communications</p>
-            <div class="card-metric"><strong>+92%</strong><span data-lang="pt">engajamento nas comms</span><span data-lang="en">comms engagement</span></div>
-          </div>
-          <span class="card-arrow" aria-hidden="true">
-            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true">
-              <path d="M0 6h14M9 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </button>
-
-        <button class="card" onclick="showCase('metrics')" role="listitem" aria-label="Ver case: Content Metrics — Nubank Seguros e CoE">
-          <div class="card-visual" aria-hidden="true" style="background:#C8D5D5;">
-            <img src="ux-metrics-banner.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block;" />
-          </div>
-          <div class="card-body">
-            <span class="card-company">Nubank Seguros + CoE</span>
-            <h2 class="card-title">Content Metrics</h2>
-            <p class="card-subtitle" data-lang="pt">Framework de mensuração liderado por CD, com impacto cross-empresa</p>
-            <p class="card-subtitle" data-lang="en">CD-led measurement framework with company-wide impact</p>
-            <div class="card-metric"><strong>+16%</strong><span data-lang="pt">conversão na variante testada</span><span data-lang="en">conversion on tested variant</span></div>
-          </div>
-          <span class="card-arrow" aria-hidden="true">
-            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true">
-              <path d="M0 6h14M9 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </button>
-
-        <button class="card" onclick="showCase('ttp')" role="listitem" aria-label="Ver case: Tap to Pay Error Flow — Nubank PJ">
-          <div class="card-visual" aria-hidden="true" style="background:#EBEAEA;">
-            <img src="TTP-Banner.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center center;transform:scale(1.35);transform-origin:center center;display:block;" />
-          </div>
-          <div class="card-body">
-            <span class="card-company">Nubank PJ</span>
-            <h2 class="card-title">Tap to Pay: Error Flow</h2>
-            <p class="card-subtitle" data-lang="pt">UX copy orientada a dados para reduzir abandono</p>
-            <p class="card-subtitle" data-lang="en">Data-driven UX copy to reduce drop-off</p>
-            <div class="card-metric"><strong>+53%</strong><span data-lang="pt">taxa de sucesso</span><span data-lang="en">success rate</span></div>
-          </div>
-          <span class="card-arrow" aria-hidden="true">
-            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true">
-              <path d="M0 6h14M9 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </button>
-
-        <button class="card" onclick="showCase('ia')" role="listitem" aria-label="Ver case: Content Guide com IA — Nubank PJ">
-          <div class="card-visual" aria-hidden="true" style="background:#EDE4F5; display:flex; align-items:center; justify-content:center;">
-            <img src="arara.png" alt="" style="width:65%;height:90%;object-fit:contain;display:block;" />
-          </div>
-          <div class="card-body">
-            <span class="card-company">Nubank PJ</span>
-            <h2 class="card-title" data-lang="pt">Content Guide com IA</h2>
-            <h2 class="card-title" data-lang="en">AI-Powered Content Guide</h2>
-            <p class="card-subtitle" data-lang="pt">Escalando excelência de CD com IA generativa</p>
-            <p class="card-subtitle" data-lang="en">Scaling CD excellence with generative AI</p>
-            <div class="card-metric"><strong>−90%</strong><span data-lang="pt">tempo de validação de copy</span><span data-lang="en">copy validation time</span></div>
-          </div>
-          <span class="card-arrow" aria-hidden="true">
-            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true">
-              <path d="M0 6h14M9 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </button>
-
-        <button class="card" onclick="showCase('merenda')" role="listitem" aria-label="Ver case: Merenda em Casa — PicPay">
-          <div class="card-visual" aria-hidden="true" style="background:#E6EAED;">
-            <img src="manual-merenda-picpay.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;" />
-          </div>
-          <div class="card-body">
-            <span class="card-company">PicPay</span>
-            <h2 class="card-title">Merenda em Casa</h2>
-            <p class="card-subtitle" data-lang="pt">Comunicação de crise em contexto de impacto social</p>
-            <p class="card-subtitle" data-lang="en">Crisis communication with social impact</p>
-            <div class="card-metric"><strong>−86%</strong><span data-lang="pt">contatos de suporte</span><span data-lang="en">support contacts</span></div>
-          </div>
-          <span class="card-arrow" aria-hidden="true">
-            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true">
-              <path d="M0 6h14M9 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </button>
-
-        <div class="card card-placeholder" aria-hidden="true">
-          <div class="card-visual">
-            <div class="card-visual-inner">
-              <span class="card-ordinal">06</span>
+    <!-- FEATURED -->
+    <section class="home-section" aria-label="Case em destaque">
+      <p class="home-section-label" data-lang="pt">Destaque</p>
+      <p class="home-section-label" data-lang="en">Featured</p>
+      <div class="featured-card">
+        <div class="featured-visual" aria-hidden="true">
+          <span class="featured-badge">PJ Payments &amp; Platforms · 2025–2026</span>
+          <img src="pos-tracking.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;" />
+        </div>
+        <div class="featured-body">
+          <div class="featured-left">
+            <span class="featured-company">PJ Payments &amp; Platforms</span>
+            <h2 class="featured-title">POS Nubank</h2>
+            <p class="featured-sub" data-lang="pt">Estratégia de conteúdo para o primeiro hardware do Nubank.</p>
+            <p class="featured-sub" data-lang="en">Content strategy for Nubank's first hardware product.</p>
+            <div class="featured-tags">
+              <span class="ftag">Estratégia de conteúdo</span>
+              <span class="ftag">Arquitetura de informação</span>
+              <span class="ftag">Hardware</span>
+              <span class="ftag">Guidelines</span>
             </div>
-            <span class="coming-soon-badge" data-lang="pt">Em breve</span>
-            <span class="coming-soon-badge" data-lang="en">Soon</span>
+            <button class="featured-cta" onclick="showCase('pos')">
+              <span data-lang="pt">Ver case</span><span data-lang="en">View case</span>
+              <i class="ti ti-arrow-right" aria-hidden="true"></i>
+            </button>
           </div>
-          <div class="card-body">
-            <span class="card-company">POV</span>
-            <h2 class="card-title" data-lang="pt">Processos com IA</h2>
-            <h2 class="card-title" data-lang="en">Working with AI</h2>
-            <p class="card-subtitle" data-lang="pt">Como integro IA generativa no meu processo de trabalho</p>
-            <p class="card-subtitle" data-lang="en">How I integrate generative AI into my workflow</p>
+          <div class="featured-metric">
+            <span class="featured-metric-value">3</span>
+            <span class="featured-metric-label" data-lang="pt">jornadas completas</span>
+            <span class="featured-metric-label" data-lang="en">complete journeys</span>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- GRID 2x2 -->
+    <section class="home-section" aria-label="Cases">
+      <p class="home-section-label" data-lang="pt">O que mais venho projetando</p>
+      <p class="home-section-label" data-lang="en">More of my work</p>
+      <div class="cases-grid">
+
+        <button class="case-card" onclick="showCase('chargeback')" aria-label="Ver case: Chargeback Revamp">
+          <div class="case-thumb" style="background:#E4EAF2;">
+            <img src="chargeback-banner.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" />
+          </div>
+          <div class="case-body">
+            <span class="case-company">Nubank PJ</span>
+            <h2 class="case-name">Chargeback Revamp</h2>
+            <p class="case-desc" data-lang="pt">Redesign da jornada de contestação de vendas — do mapeamento de atrito à estratégia de comunicação.</p>
+            <p class="case-desc" data-lang="en">Redesign of the sales dispute journey — from friction mapping to communication strategy.</p>
+            <div class="case-tags">
+              <span class="ctag">Arquitetura de informação</span>
+              <span class="ctag">Prototipação</span>
+              <span class="ctag">Discovery</span>
+              <span class="ctag">B2B</span>
+            </div>
+            <div class="case-metric">
+              <span class="case-metric-value">+92%</span>
+              <span class="case-metric-label" data-lang="pt">engajamento nas comunicações</span>
+              <span class="case-metric-label" data-lang="en">communications engagement</span>
+            </div>
+          </div>
+          <i class="ti ti-arrow-right case-arrow" aria-hidden="true"></i>
+        </button>
+
+        <button class="case-card" onclick="showCase('metrics')" aria-label="Ver case: Content Metrics">
+          <div class="case-thumb" style="background:#E4EEE8;">
+            <img src="ux-metrics-banner.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" />
+          </div>
+          <div class="case-body">
+            <span class="case-company">Nubank Seguros</span>
+            <h2 class="case-name">Content Metrics</h2>
+            <p class="case-desc" data-lang="pt">Framework de métricas de conteúdo para medir impacto em múltiplas BUs.</p>
+            <p class="case-desc" data-lang="en">Content metrics framework to measure impact across multiple BUs.</p>
+            <div class="case-tags">
+              <span class="ctag">Análise de dados</span>
+              <span class="ctag">Entrevistas com usuários</span>
+              <span class="ctag">Tomada de decisão baseada em evidências</span>
+              <span class="ctag">Cross-functional</span>
+            </div>
+            <div class="case-metric">
+              <span class="case-metric-value">pNPS 75</span>
+              <span class="case-metric-label" data-lang="pt">maior pNPS da categoria no Brasil</span>
+              <span class="case-metric-label" data-lang="en">highest category pNPS in Brazil</span>
+            </div>
+          </div>
+          <i class="ti ti-arrow-right case-arrow" aria-hidden="true"></i>
+        </button>
+
+        <button class="case-card" onclick="showCase('ttp')" aria-label="Ver case: Tap to Pay Error Flow">
+          <div class="case-thumb" style="background:#EAE4EE;">
+            <img src="TTP-Banner.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1.35);transform-origin:center;display:block;" />
+          </div>
+          <div class="case-body">
+            <span class="case-company">Nubank PJ</span>
+            <h2 class="case-name">Tap to Pay Error Flow</h2>
+            <p class="case-desc" data-lang="pt">Redesign da narrativa de erros críticos no fluxo da maquininha no celular.</p>
+            <p class="case-desc" data-lang="en">Redesign of critical error narrative in the phone POS flow.</p>
+            <div class="case-tags">
+              <span class="ctag">Narrativa</span>
+              <span class="ctag">Discovery</span>
+              <span class="ctag">Experimentações</span>
+              <span class="ctag">Sistemas transacionais</span>
+            </div>
+            <div class="case-metric">
+              <span class="case-metric-value">+54%</span>
+              <span class="case-metric-label" data-lang="pt">taxa de sucesso no fluxo de erro</span>
+              <span class="case-metric-label" data-lang="en">success rate in error flow</span>
+            </div>
+          </div>
+          <i class="ti ti-arrow-right case-arrow" aria-hidden="true"></i>
+        </button>
+
+        <button class="case-card" onclick="showCase('merenda')" aria-label="Ver case: Merenda em Casa">
+          <div class="case-thumb" style="background:#EEE8E4;">
+            <img src="manual-merenda-picpay.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;" />
+          </div>
+          <div class="case-body">
+            <span class="case-company">PicPay</span>
+            <h2 class="case-name">Merenda em Casa</h2>
+            <p class="case-desc" data-lang="pt">Estratégia e execução de conteúdo para programa de benefício social em contexto de crise.</p>
+            <p class="case-desc" data-lang="en">Content strategy and execution for a social benefit program in a crisis context.</p>
+            <div class="case-tags">
+              <span class="ctag">Pensamento estratégico</span>
+              <span class="ctag">Fluxos complexos</span>
+              <span class="ctag">UX copy</span>
+              <span class="ctag">Cross-functional</span>
+              <span class="ctag">Sistemas legados</span>
+            </div>
+            <div class="case-metric">
+              <span class="case-metric-value">−86%</span>
+              <span class="case-metric-label" data-lang="pt">contatos de suporte</span>
+              <span class="case-metric-label" data-lang="en">support contacts</span>
+            </div>
+          </div>
+          <i class="ti ti-arrow-right case-arrow" aria-hidden="true"></i>
+        </button>
 
       </div>
     </section>
+
+    <!-- SOBRE MIM -->
+    <section class="home-section" aria-label="Sobre mim">
+      <p class="home-section-label" data-lang="pt">Sobre mim</p>
+      <p class="home-section-label" data-lang="en">About me</p>
+      <div class="about-layout">
+        <p class="about-text" data-lang="pt">Sou uma designer com 8+ anos moldando experiências em fintechs de alto crescimento. Meu diferencial está na interseção entre estratégia de conteúdo, design de interação e pensamento sistêmico. Fora do trabalho, escrevo ficção científica, faço mentoria de designers em início de carreira e penso muito sobre como a linguagem molda a forma como as pessoas experienciam o mundo.</p>
+        <p class="about-text" data-lang="en">I'm a designer with 8+ years shaping experiences at high-growth fintechs. My edge is sitting at the intersection of content strategy, interaction design, and systems thinking. Outside of work I write fantasy fiction, mentor early-career designers, and think a lot about how language shapes the way people experience the world.</p>
+        <div class="strengths-list">
+          <div class="strength-row">
+            <i class="ti ti-route strength-icon" aria-hidden="true"></i>
+            <div>
+              <p class="strength-title" data-lang="pt">Discovery até a entrega e além</p>
+              <p class="strength-title" data-lang="en">Discovery to delivery and beyond</p>
+              <p class="strength-desc" data-lang="pt">Trabalho com ownership end-to-end desde o problema até o impacto, transitando entre decisões de design desde UI até focadas em content design — a depender do projeto.</p>
+              <p class="strength-desc" data-lang="en">I work with end-to-end ownership from the problem to impact, moving between design decisions from UI to content design — depending on the project.</p>
+            </div>
+          </div>
+          <div class="strength-row">
+            <i class="ti ti-layout-grid strength-icon" aria-hidden="true"></i>
+            <div>
+              <p class="strength-title" data-lang="pt">Sistemas de conteúdo</p>
+              <p class="strength-title" data-lang="en">Content systems</p>
+              <p class="strength-desc" data-lang="pt">Crio guidelines e governança que escalam com o produto e contribuem para o design system.</p>
+              <p class="strength-desc" data-lang="en">I create guidelines and governance that scale with the product and contribute to the design system.</p>
+            </div>
+          </div>
+          <div class="strength-row">
+            <i class="ti ti-cpu strength-icon" aria-hidden="true"></i>
+            <div>
+              <p class="strength-title" data-lang="pt">IA no processo</p>
+              <p class="strength-title" data-lang="en">AI in the workflow</p>
+              <p class="strength-desc" data-lang="pt">Uso ferramentas de IA para acelerar ideação e validação, contribuir para sistemas de design e ajudar times a tomarem decisões mais rápidas e fundamentadas.</p>
+              <p class="strength-desc" data-lang="en">I use AI tools to accelerate ideation and validation, contribute to design systems, and help teams make faster, better-grounded decisions.</p>
+            </div>
+          </div>
+          <div class="strength-row">
+            <i class="ti ti-users-group strength-icon" aria-hidden="true"></i>
+            <div>
+              <p class="strength-title" data-lang="pt">Cross-funcional</p>
+              <p class="strength-title" data-lang="en">Cross-functional</p>
+              <p class="strength-desc" data-lang="pt">Colaboro de perto com Produto, outros Designers e Operações para explorar o espaço do problema e alinhar decisões de design.</p>
+              <p class="strength-desc" data-lang="en">I collaborate closely with Product, other Designers, and Operations to explore the problem space and align design decisions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REFERÊNCIAS -->
+    <section class="home-section" aria-label="Referências">
+      <p class="home-section-label" data-lang="pt">Referências</p>
+      <p class="home-section-label" data-lang="en">References</p>
+      <div class="refs-grid">
+        <div class="ref-card">
+          <p class="ref-quote" data-lang="pt">"Ana é uma Content Designer genuinamente apaixonada por seus clientes. Em Insurance, mais de uma vez desafiou decisões de negócio mostrando a perspectiva do cliente — e conseguiu mudar aspectos críticos do produto."</p>
+          <p class="ref-quote" data-lang="en">"Ana is a Content Designer who is genuinely passionate about her customers. In Insurance, more than once, she challenged business decisions by showing the customer perspective — and was able to change critical product aspects."</p>
+          <div class="ref-author">
+            <span class="ref-name">Ivan Toledo</span>
+            <span class="ref-role" data-lang="pt">Design Manager II · iFood (ex-Nubank)</span>
+            <span class="ref-role" data-lang="en">Design Manager II · iFood (formerly Nubank)</span>
+          </div>
+        </div>
+        <div class="ref-card">
+          <p class="ref-quote" data-lang="pt">"A Ana além de uma pessoa incrível, é uma profissional exemplar. Ela trata assuntos que demandam atenção com muita leveza e determinação. Os processos que ela constrói são super completos."</p>
+          <p class="ref-quote" data-lang="en">"Ana is not only an incredible person but an exemplary professional. She handles demanding topics with ease and determination. The processes she builds are very thorough."</p>
+          <div class="ref-author">
+            <span class="ref-name">Patrícia Gonçalves</span>
+            <span class="ref-role">Content Designer · Itaú (ex-PicPay)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PUBLICAÇÕES -->
+    <section class="home-section" aria-label="Publicações">
+      <p class="home-section-label" data-lang="pt">Publicações</p>
+      <p class="home-section-label" data-lang="en">Writing</p>
+      <div class="articles-list">
+        <a href="https://aclarabianchi.medium.com/de-delivery-de-textinho-%C3%A0-experi%C3%AAncia-educacional-do-usu%C3%A1rio-cc2c5f98c192" class="article-item" target="_blank" rel="noopener noreferrer">
+          <div>
+            <p class="article-type">Medium</p>
+            <p class="article-title" data-lang="pt">De delivery de textinho à experiência educacional do usuário</p>
+            <p class="article-title" data-lang="en">From microcopy delivery to user educational experience</p>
+            <p class="article-venue">aclarabianchi.medium.com</p>
+          </div>
+          <span class="article-arrow">↗</span>
+        </a>
+        <a href="https://portalintercom.org.br/anais/nacional2015/lista_area_DT8-PC.htm" class="article-item" target="_blank" rel="noopener noreferrer">
+          <div>
+            <p class="article-type">Paper · Intercom 2015</p>
+            <p class="article-title" data-lang="pt">Esfera pública e tecnologia: narrativas visuais em territórios informacionais digitais</p>
+            <p class="article-title" data-lang="en">Public sphere and technology: visual narratives in digital informational territories</p>
+            <p class="article-venue" data-lang="pt">XXXVIII Congresso Brasileiro de Ciências da Comunicação · UFES</p>
+            <p class="article-venue" data-lang="en">XXXVIII Brazilian Congress of Communication Sciences · UFES</p>
+          </div>
+          <span class="article-arrow">↗</span>
+        </a>
+      </div>
+    </section>
+
   </main>
 
   <footer>
-    <span class="footer-name">Ana Clara Bianchi</span>
+    <span class="footer-name"><strong>Ana Clara</strong> <span class="footer-name-light">Bianchi</span></span>
     <div class="footer-links">
       <a href="https://www.linkedin.com/in/aclarabianchi/" class="footer-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     </div>
@@ -1675,6 +2184,147 @@
       <p class="result-text" data-lang="pt">redução nos contatos de suporte relacionados ao programa</p>
       <p class="result-text" data-lang="en">reduction in program-related support contacts</p>
     </div>
+  </main>
+</div>
+
+
+<!-- ══════════════ CASE: POS ══════════════ -->
+<div id="case-pos" class="case-page">
+  <nav class="case-nav" aria-label="Navegação do case">
+    <button class="back-btn" onclick="showHome()" aria-label="Voltar para a página inicial"><span aria-hidden="true">←</span> <span data-lang="pt">Voltar</span><span data-lang="en">Back</span></button>
+    <div class="lang-toggle" role="group" aria-label="Selecionar idioma">
+      <button class="lang-btn active" onclick="setLang('pt')" aria-pressed="true" lang="pt">PT</button>
+      <button class="lang-btn" onclick="setLang('en')" aria-pressed="false" lang="en">EN</button>
+    </div>
+  </nav>
+  <main class="case-content fade-up">
+    <div class="case-header">
+      <p class="case-company">Nubank PJ · 2024–2025</p>
+      <h1 class="case-title" data-lang="pt">POS Nubank</h1>
+      <h1 class="case-title" data-lang="en">POS Nubank</h1>
+      <div class="case-tags">
+        <span class="tag" data-lang="pt">Estratégia de conteúdo</span><span class="tag" data-lang="en">Content strategy</span>
+        <span class="tag" data-lang="pt">Arquitetura da informação</span><span class="tag" data-lang="en">Information architecture</span>
+        <span class="tag" data-lang="pt">Guidelines</span><span class="tag" data-lang="en">Guidelines</span>
+        <span class="tag" data-lang="pt">Hardware</span><span class="tag" data-lang="en">Hardware</span>
+      </div>
+    </div>
+
+    <div class="case-section">
+      <p class="case-section-label" data-lang="pt">Contexto</p><p class="case-section-label" data-lang="en">Context</p>
+      <p data-lang="pt">O mercado brasileiro de maquininhas é um dos mais disputados do setor financeiro. Mercado Pago, Stone, Ton, InfinitePay e Itaú já ocupam posições consolidadas. Para o Nubank, o POS representava também um território inédito: o primeiro produto físico da empresa — sem histórico em logística de hardware, com operação dependente de um parceiro externo (Fiserv) e seus próprios processos, prazos e linguagem técnica.</p>
+      <p data-lang="en">The Brazilian POS terminal market is one of the most competitive in the financial sector. Mercado Pago, Stone, Ton, InfinitePay, and Itaú already hold consolidated positions. For Nubank, the POS also represented uncharted territory: the company's first physical product — with no history in hardware logistics, and operations dependent on an external partner (Fiserv) with its own processes, timelines, and technical language.</p>
+    </div>
+
+    <hr class="divider" />
+
+    <div class="case-section">
+      <p class="case-section-label" data-lang="pt">Problema</p><p class="case-section-label" data-lang="en">Problem</p>
+      <p data-lang="pt">Uma análise dos principais competidores — Bin, Clover, InfinitePay, Mercado Pago, Itaú e Ton — revelou um antipadrão universal: <strong>comunicação funcional no happy path, comunicação vaga e não acionável nos momentos de erro</strong>. No contexto do POS Nubank, cada falha de comunicação na jornada de entrega tinha custo operacional direto: reentrega, ticket de suporte, máquina parada. A North Star do squad era explícita — medir o percentual de merchants que completam a jornada sem contatar o CX. Conteúdo mal feito não seria apenas uma questão de voz de marca. Seria um problema de custo.</p>
+      <p data-lang="en">An analysis of the main competitors — Bin, Clover, InfinitePay, Mercado Pago, Itaú, and Ton — revealed a universal anti-pattern: <strong>functional communication in the happy path, vague and non-actionable communication at moments of error</strong>. In the POS Nubank context, every communication failure in the delivery journey had a direct operational cost: re-delivery, support ticket, idle terminal. The squad's North Star was explicit — measuring the percentage of merchants who complete the journey without contacting CX. Poor content wasn't just a brand voice issue. It was a cost problem.</p>
+    </div>
+
+    <hr class="divider" />
+
+    <div class="case-section">
+      <p class="case-section-label" data-lang="pt">O que fiz</p><p class="case-section-label" data-lang="en">What I did</p>
+      <ul data-lang="pt">
+        <li>Participei do discovery e dos alinhamentos com a Fiserv desde o início, garantindo que as constraints do parceiro fossem incorporadas ao design da experiência</li>
+        <li>Conduzi análise competitiva com foco em arquitetura da informação e linguagem, produzindo um POV estratégico que norteou as decisões do time</li>
+        <li>Tive ownership das três jornadas iniciais do produto no app: request, tracking e activation — co-projetando com os Product Designers</li>
+        <li>Participei de uma Design Sprint com clientes, mapeando o território semântico — como as pessoas descrevem entrega, rastreamento e ativação</li>
+        <li>Criei as primeiras guidelines de conteúdo do POS Nubank: vocabulário controlado, tom de voz, estrutura de mensagens de erro e princípios de narrativa omnichannel</li>
+      </ul>
+      <ul data-lang="en">
+        <li>Participated in discovery and Fiserv alignment sessions from the start, ensuring partner constraints were incorporated into the experience design</li>
+        <li>Conducted a competitive analysis focused on information architecture and language, producing a strategic POV that guided the team's decisions</li>
+        <li>Owned the three initial product journeys in the app: request, tracking, and activation — co-designing with Product Designers</li>
+        <li>Participated in a Design Sprint with customers, mapping semantic territory — how people describe delivery, tracking, and activation</li>
+        <li>Created the first POS Nubank content guidelines: controlled vocabulary, tone of voice, error message structure, and omnichannel narrative principles</li>
+      </ul>
+    </div>
+
+    <div class="case-images">
+      <figure class="case-figure">
+        <img src="pos-request-marketing.png"
+             alt="Marketing screen da jornada de request do POS Nubank — primeira e segunda dobra com proposta de valor e modelo de mensalidade"
+             loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+        <figcaption data-lang="pt">Marketing screen — primeira dobra autossuficiente para a decisão de continuar. Com drop de até 80% na primeira tela, a hierarquia de informação foi construída para que a proposta de valor seja acessível sem depender do scroll.</figcaption>
+        <figcaption data-lang="en">Marketing screen — first fold self-sufficient for the decision to continue. With drop-off of up to 80% on the first screen, the information hierarchy was built so the value proposition is accessible without scrolling.</figcaption>
+      </figure>
+
+      <div class="case-figures-row">
+        <figure class="case-figure">
+          <img src="pos-request-quantidade.png"
+               alt="Tela de quantidade de maquininhas com modelo de mensalidade e tiers de preço"
+               loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Mensalidade contextualizada no momento da decisão — o modelo de tiers aparece na tela de quantidade, não na primeira dobra. Progressive disclosure como estratégia, não como recurso visual.</figcaption>
+          <figcaption data-lang="en">Monthly fee contextualized at the decision moment — the tier model appears on the quantity screen, not the first fold. Progressive disclosure as strategy, not visual technique.</figcaption>
+        </figure>
+        <figure class="case-figure">
+          <img src="pos-request-horario.png"
+               alt="Tela de horário de entrega com antecipação do conceito de código de entrega"
+               loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Antecipação do código de entrega — o conceito é introduzido na tela de horário, antes da decisão. Na revisão do pedido, quando o toggle aparece, o usuário já conhece o recurso.</figcaption>
+          <figcaption data-lang="en">Delivery code anticipation — the concept is introduced on the time slot screen, before the decision. On the order review screen, when the toggle appears, the user already knows the feature.</figcaption>
+        </figure>
+      </div>
+
+      <div class="case-figures-row">
+        <figure class="case-figure">
+          <img src="pos-request-revisao.png"
+               alt="Tela de revisão do pedido com toggle de código de entrega desligado por padrão"
+               loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Código de entrega como toggle opcional — desligado por padrão ("Qualquer pessoa pode receber"). Segurança para quem quer, sem barreira para quem não precisa.</figcaption>
+          <figcaption data-lang="en">Delivery code as optional toggle — off by default ("Anyone can receive it"). Security for those who want it, no barrier for those who don't.</figcaption>
+        </figure>
+        <figure class="case-figure">
+          <img src="pos-request-confirmacao.png"
+               alt="Tela de confirmação do pedido com tom celebratório e código de entrega em destaque"
+               loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Confirmação com personalização e tom de parceria — "Confirmado, [nome], mais um passo juntos." O código de entrega em destaque com instrução clara e opção de compartilhar.</figcaption>
+          <figcaption data-lang="en">Confirmation with personalization and partnership tone — "Confirmed, [name], one more step together." Delivery code prominently displayed with clear instruction and share option.</figcaption>
+        </figure>
+      </div>
+
+      <figure class="case-figure">
+        <img src="pos-tracking.png"
+             alt="Fluxo completo de tracking do POS Nubank com happy path e três cenários de exceção"
+             loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+        <figcaption data-lang="pt">Fluxo de tracking — happy path e três cenários de exceção (sem código, endereço errado, EC fechado). Cada exceção desenhada para ser acionável: não apenas informa o problema, orienta o próximo passo. O código de recebimento foi uma hipótese levantada a partir do mapeamento semântico na Design Sprint.</figcaption>
+        <figcaption data-lang="en">Tracking flow — happy path and three exception scenarios (no code, wrong address, closed establishment). Each exception designed to be actionable: not just informing the problem, guiding the next step. The delivery code was a hypothesis raised from semantic mapping in the Design Sprint.</figcaption>
+      </figure>
+
+      <figure class="case-figure">
+        <img src="pos-activation.png"
+             alt="Splash sequence de activation do POS Nubank — Olá, Prazer roxinha, Sua aliada na hora de vender"
+             loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+        <figcaption data-lang="pt">Activation — sequência de primeiro contato com o hardware. O princípio orientador: "você já sabe usar, é igual ao seu app." Tom celebratório, linguagem de parceria, progressão que educa sem infantilizar.</figcaption>
+        <figcaption data-lang="en">Activation — first-contact sequence on the hardware. The guiding principle: "you already know how to use it — it's just like your app." Celebratory tone, partnership language, progression that educates without being condescending.</figcaption>
+      </figure>
+    </div>
+
+    <div class="case-section">
+      <p class="case-section-label" data-lang="pt">Guidelines de conteúdo</p><p class="case-section-label" data-lang="en">Content guidelines</p>
+      <p data-lang="pt">Com múltiplos times trabalhando em paralelo e a tensão constante entre a linguagem da Fiserv e a linguagem da marca Nubank, criei as primeiras guidelines de conteúdo do POS como entregável formal — cobrindo vocabulário controlado, tom de voz por momento da jornada, estrutura de mensagens de erro e princípios de narrativa omnichannel. Documentadas no Figma, Confluence e integradas ao workflow de IA do time para garantir adoção no processo de criação.</p>
+      <p data-lang="en">With multiple teams working in parallel and the constant tension between Fiserv's language and Nubank's brand language, I created the first POS content guidelines as a formal deliverable — covering controlled vocabulary, tone of voice per journey moment, error message structure, and omnichannel narrative principles. Documented in Figma, Confluence, and integrated into the team's AI workflow to ensure adoption in the creation process.</p>
+    </div>
+
+    <div class="result-block" role="region" aria-label="Resultado principal">
+      <div class="result-number" aria-label="North Star">North Star</div>
+      <p class="result-text" data-lang="pt">% de merchants que completam a jornada completa sem contatar o CX — a métrica que conectou cada decisão de conteúdo a um impacto operacional real</p>
+      <p class="result-text" data-lang="en">% of merchants who complete the full journey without contacting CX — the metric that connected every content decision to a real operational impact</p>
+    </div>
+
+    <div class="case-section">
+      <p class="case-section-label" data-lang="pt">O que eu faria diferente</p><p class="case-section-label" data-lang="en">What I'd do differently</p>
+      <p data-lang="pt">Teria instrumentado indicadores de conteúdo desde o início — especificamente a taxa de contato ao CX por etapa da jornada. Com a North Star do squad sendo exatamente essa métrica, teria sido possível vincular cada decisão de conteúdo a um número observável desde o lançamento.</p>
+      <p data-lang="en">I would have instrumented content indicators earlier — specifically the CX contact rate per journey stage. With the squad's North Star being exactly that metric, it would have been possible to tie each content decision to an observable number from launch.</p>
+    </div>
+
+    <p class="case-disclaimer" data-lang="pt" style="font-size:12px;color:var(--text-muted);margin-top:48px;font-style:italic;">Projeto em fase pré-lançamento. Telas exibidas com fins de portfolio, mantendo confidencialidade sobre informações estratégicas e comerciais.</p>
+    <p class="case-disclaimer" data-lang="en" style="font-size:12px;color:var(--text-muted);margin-top:48px;font-style:italic;">Product in pre-launch phase. Screens shared for portfolio purposes, maintaining confidentiality over strategic and commercial information.</p>
+
   </main>
 </div>
 
