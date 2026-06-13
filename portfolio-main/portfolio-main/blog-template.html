@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Post Title — Ana Bianchi</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F5F4F0'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-size='20' fill='%23C8A96E'%3EA%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <style>
+
+    /* ══════════════════════════════════════════
+       CUSTOM PROPERTIES (same as index.html)
+    ══════════════════════════════════════════ */
+    :root {
+      --bg: #F7F7F5;
+      --bg-card: #FFFFFF;
+      --text: #111111;
+      --text-muted: #888888;
+      --accent: #4A6FA5;
+      --accent-light: #EEF2F8;
+      --border: #DDDDD8;
+      --tag-bg: #F0F0EE;
+      --shadow-card: 0 1px 4px rgba(17,17,17,0.05), 0 1px 2px rgba(17,17,17,0.03);
+      --shadow-card-hover: 0 6px 24px rgba(17,17,17,0.08), 0 2px 6px rgba(17,17,17,0.04);
+      --transition-base: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      --content-width: 820px;
+      --wide-width: 1100px;
+    }
+
+    /* ══════════════════════════════════════════
+       BASE
+    ══════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    /* ══════════════════════════════════════════
+       ANIMATIONS
+    ══════════════════════════════════════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-up { animation: fadeUp 0.5s ease both; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-up { animation: none !important; }
+      html { scroll-behavior: auto; }
+    }
+
+    /* ══════════════════════════════════════════
+       NAV
+    ══════════════════════════════════════════ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 48px;
+      background: rgba(247, 247, 245, 0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow var(--transition-base), border-color var(--transition-base);
+    }
+
+    nav.scrolled {
+      box-shadow: 0 2px 20px rgba(26,26,26,0.06);
+      border-bottom-color: rgba(226,224,216,0.9);
+    }
+
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color var(--transition-base);
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-family: 'Inter', sans-serif;
+      padding: 8px 0;
+      min-height: 44px;
+      text-decoration: none;
+    }
+    .back-btn:hover { color: var(--text); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 2px;
+      background: var(--tag-bg);
+      border-radius: 20px;
+      padding: 3px;
+    }
+
+    .lang-btn {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 16px;
+      color: var(--text-muted);
+      transition: background var(--transition-base), color var(--transition-base);
+      min-height: 32px;
+    }
+
+    .lang-btn.active {
+      background: var(--bg-card);
+      color: var(--text);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+
+    /* ══════════════════════════════════════════
+       SCROLL PROGRESS
+    ══════════════════════════════════════════ */
+    .scroll-progress {
+      position: fixed;
+      top: 65px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--accent);
+      z-index: 99;
+      transition: width 0.1s linear;
+      pointer-events: none;
+    }
+
+    /* ══════════════════════════════════════════
+       PAGE WRAPPER
+    ══════════════════════════════════════════ */
+    .blog-page {
+      padding-top: 88px;
+    }
+
+    /* ══════════════════════════════════════════
+       LANGUAGE VISIBILITY
+    ══════════════════════════════════════════ */
+    [data-lang] { display: none; }
+    .lang-pt [data-lang="pt"] { display: block; }
+    .lang-pt [data-lang="pt"].inline { display: inline; }
+    .lang-en [data-lang="en"] { display: block; }
+    .lang-en [data-lang="en"].inline { display: inline; }
+    .lang-pt [data-lang="en"],
+    .lang-en [data-lang="pt"] { display: none !important; }
+
+    /* Restore specific displays */
+    .lang-pt .section-badge[data-lang="pt"],
+    .lang-en .section-badge[data-lang="en"] { display: inline-flex; }
+    .lang-pt .metric-label[data-lang="pt"],
+    .lang-en .metric-label[data-lang="en"] { display: block; }
+    .lang-pt .numbered-item[data-lang="pt"],
+    .lang-en .numbered-item[data-lang="en"] { display: flex; }
+    .lang-pt .takeaway-card[data-lang="pt"],
+    .lang-en .takeaway-card[data-lang="en"] { display: flex; }
+    .lang-pt .iteration-label[data-lang="pt"],
+    .lang-en .iteration-label[data-lang="en"] { display: block; }
+
+    /* ══════════════════════════════════════════
+       LAYOUT UTILITIES
+    ══════════════════════════════════════════ */
+    .container {
+      max-width: var(--content-width);
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    .container-wide {
+      max-width: var(--wide-width);
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    .section-gap { margin-bottom: 80px; }
+    .section-gap-sm { margin-bottom: 48px; }
+
+    /* ══════════════════════════════════════════
+       POST HEADER
+    ══════════════════════════════════════════ */
+    .post-header {
+      padding: 64px 48px 80px;
+      max-width: var(--content-width);
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .post-category {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .post-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: clamp(36px, 5vw, 60px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+
+    .post-summary {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+
+    .post-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .post-tag {
+      background: var(--tag-bg);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 20px;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+
+    .post-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION BADGE
+    ══════════════════════════════════════════ */
+    .section-badge-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-light);
+      border: 1px solid rgba(74, 111, 165, 0.2);
+      padding: 5px 14px;
+      border-radius: 20px;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION TITLE + INTRO
+    ══════════════════════════════════════════ */
+    .section-center {
+      text-align: center;
+      max-width: var(--content-width);
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: clamp(28px, 3.5vw, 42px);
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .section-intro {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--text-muted);
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    /* ══════════════════════════════════════════
+       METRIC GRID
+    ══════════════════════════════════════════ */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 48px;
+    }
+
+    .metric-card {
+      background: var(--bg-card);
+      padding: 36px 24px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .metric-value {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: clamp(28px, 3.5vw, 40px);
+      line-height: 1;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+    }
+
+    .metric-label {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* ══════════════════════════════════════════
+       CALLOUT BLOCK
+    ══════════════════════════════════════════ */
+    .callout-block {
+      background: var(--accent-light);
+      border-top: 1px solid rgba(74, 111, 165, 0.15);
+      border-bottom: 1px solid rgba(74, 111, 165, 0.15);
+      padding: 64px 48px;
+      text-align: center;
+      margin: 80px 0;
+    }
+
+    .callout-label {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .callout-text {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: clamp(20px, 2.5vw, 30px);
+      line-height: 1.45;
+      color: var(--text);
+      max-width: 700px;
+      margin: 0 auto;
+      font-style: italic;
+    }
+
+    .callout-block-dark {
+      background: var(--text);
+      padding: 64px 48px;
+      text-align: center;
+      margin: 80px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .callout-block-dark::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--accent);
+    }
+
+    .callout-block-dark .callout-label { color: var(--accent); }
+
+    .callout-block-dark .callout-text {
+      color: rgba(247, 247, 245, 0.9);
+    }
+
+    /* ══════════════════════════════════════════
+       SPLIT 2 COLUMNS
+    ══════════════════════════════════════════ */
+    .split-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+      max-width: var(--wide-width);
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    .split-section.reverse { direction: rtl; }
+    .split-section.reverse > * { direction: ltr; }
+
+    .split-image {
+      width: 100%;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      display: block;
+    }
+
+    .split-content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding-top: 8px;
+    }
+
+    .split-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .split-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: clamp(22px, 2.5vw, 30px);
+      line-height: 1.25;
+      color: var(--text);
+    }
+
+    .split-text {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--text-muted);
+    }
+
+    /* ══════════════════════════════════════════
+       NUMBERED LIST (inside split or standalone)
+    ══════════════════════════════════════════ */
+    .numbered-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .numbered-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 16px 20px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--bg-card);
+    }
+
+    .numbered-item-num {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      flex-shrink: 0;
+      padding-top: 2px;
+      min-width: 24px;
+    }
+
+    .numbered-item-content {}
+
+    .numbered-item-title {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .numbered-item-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ══════════════════════════════════════════
+       TAKEAWAY CARDS (3 columns)
+    ══════════════════════════════════════════ */
+    .takeaways-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .takeaway-card {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding: 32px 28px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--bg-card);
+    }
+
+    .takeaway-icon {
+      font-size: 24px;
+      color: var(--accent);
+    }
+
+    .takeaway-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.35;
+    }
+
+    .takeaway-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ══════════════════════════════════════════
+       ITERATION GRID
+    ══════════════════════════════════════════ */
+    .iterations-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--bg-card);
+      padding: 40px;
+      margin-top: 48px;
+      overflow: hidden;
+    }
+
+    .iterations-grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .iterations-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .iterations-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .iterations-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+    .iteration-item {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .iteration-label {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .iteration-img {
+      width: 100%;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      display: block;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .iteration-img.loaded { opacity: 1; }
+
+    .iteration-caption {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ══════════════════════════════════════════
+       BODY TEXT BLOCK (prose)
+    ══════════════════════════════════════════ */
+    .prose {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--text-muted);
+      max-width: var(--content-width);
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    .prose strong { color: var(--text); font-weight: 500; }
+
+    .prose p + p { margin-top: 20px; }
+
+    /* ══════════════════════════════════════════
+       FULL IMAGE
+    ══════════════════════════════════════════ */
+    .full-image-wrap {
+      max-width: var(--wide-width);
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    .full-image-wrap figure {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .full-image-wrap img {
+      width: 100%;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      display: block;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .full-image-wrap img.loaded { opacity: 1; }
+
+    .full-image-wrap figcaption {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION DIVIDER
+    ══════════════════════════════════════════ */
+    .divider-line {
+      border: none;
+      border-top: 1px solid var(--border);
+      max-width: var(--wide-width);
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    /* ══════════════════════════════════════════
+       CTA LINK
+    ══════════════════════════════════════════ */
+    .cta-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 32px;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--accent);
+      border: none;
+      padding: 14px 28px;
+      border-radius: 2px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity var(--transition-base);
+      font-family: 'Inter', sans-serif;
+    }
+
+    .cta-btn:hover { opacity: 0.85; }
+
+    .cta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity var(--transition-base);
+    }
+
+    .cta-link:hover { opacity: 0.75; }
+
+    /* ══════════════════════════════════════════
+       CREDIT LINE
+    ══════════════════════════════════════════ */
+    .credit-line {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 24px;
+      letter-spacing: 0.03em;
+    }
+
+    /* ══════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════ */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 48px;
+      max-width: var(--wide-width);
+      margin: 80px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-name { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text-muted); }
+    .footer-name strong { font-weight: 500; color: var(--text); }
+    .footer-name-light { font-weight: 300; }
+
+    .footer-links { display: flex; gap: 24px; }
+    .footer-link {
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color var(--transition-base);
+      padding: 8px 0;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+    }
+    .footer-link:hover { color: var(--text); }
+
+    /* ══════════════════════════════════════════
+       BACK TO TOP
+    ══════════════════════════════════════════ */
+    .back-to-top {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--shadow-card);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity var(--transition-base), transform var(--transition-base), background var(--transition-base);
+      z-index: 90;
+      pointer-events: none;
+      font-family: inherit;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .back-to-top:hover {
+      background: var(--accent-light);
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════ */
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      .post-header, .container, .container-wide,
+      .section-center, .split-section, .prose,
+      .full-image-wrap { padding-left: 24px; padding-right: 24px; }
+      .split-section { grid-template-columns: 1fr; gap: 32px; }
+      .split-section.reverse { direction: ltr; }
+      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+      .takeaways-grid { grid-template-columns: 1fr 1fr; }
+      .iterations-wrap { padding: 28px 24px; }
+      footer { flex-direction: column; gap: 20px; align-items: flex-start; padding: 32px 24px; }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .post-header { padding: 48px 20px 60px; }
+      .post-title { font-size: 32px; }
+      .container, .container-wide, .section-center,
+      .split-section, .prose, .full-image-wrap { padding-left: 20px; padding-right: 20px; }
+      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+      .takeaways-grid { grid-template-columns: 1fr; }
+      .iterations-grid.cols-3,
+      .iterations-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+      .callout-block, .callout-block-dark { padding: 48px 20px; }
+      .back-to-top { bottom: 20px; right: 20px; }
+    }
+
+  </style>
+</head>
+<body class="lang-pt">
+
+<!-- SCROLL PROGRESS -->
+<div id="scroll-progress" class="scroll-progress"></div>
+
+<!-- NAV -->
+<nav aria-label="Navegação">
+  <a href="index.html" class="back-btn" aria-label="Voltar para o portfólio">
+    <span aria-hidden="true">←</span>
+    <span data-lang="pt">Voltar</span>
+    <span data-lang="en">Back</span>
+  </a>
+  <div class="lang-toggle" role="group" aria-label="Selecionar idioma">
+    <button class="lang-btn active" onclick="setLang('pt')" aria-pressed="true" lang="pt">PT</button>
+    <button class="lang-btn" onclick="setLang('en')" aria-pressed="false" lang="en">EN</button>
+  </div>
+</nav>
+
+<div class="blog-page">
+  <main id="main-content">
+
+    <!-- ══ POST HEADER ══════════════════════════ -->
+    <header class="post-header fade-up">
+      <p class="post-category" data-lang="pt">Estratégia de Conteúdo</p>
+      <p class="post-category" data-lang="en">Content Strategy</p>
+
+      <h1 class="post-title" data-lang="pt">Título do post aqui</h1>
+      <h1 class="post-title" data-lang="en">Post title goes here</h1>
+
+      <p class="post-summary" data-lang="pt">Um resumo de 2–3 linhas descrevendo o que o leitor vai encontrar neste post. Pode ser o problema, a abordagem ou o resultado principal.</p>
+      <p class="post-summary" data-lang="en">A 2–3 line summary describing what the reader will find in this post. Can be the problem, approach, or main result.</p>
+
+      <div class="post-tags">
+        <span class="post-tag" data-lang="pt">Tag um</span>
+        <span class="post-tag" data-lang="en">Tag one</span>
+        <span class="post-tag" data-lang="pt">Tag dois</span>
+        <span class="post-tag" data-lang="en">Tag two</span>
+        <span class="post-tag">Cross-squad</span>
+      </div>
+    </header>
+
+    <hr class="post-divider" />
+
+
+    <!-- ══ SECTION: BADGE + TÍTULO + INTRO ══════ -->
+    <section style="padding: 80px 0 0;" aria-label="Contexto">
+      <div class="section-badge-wrap">
+        <span class="section-badge" data-lang="pt"><i class="ti ti-search" aria-hidden="true"></i> Contexto</span>
+        <span class="section-badge" data-lang="en"><i class="ti ti-search" aria-hidden="true"></i> Context</span>
+      </div>
+      <div class="section-center section-gap-sm">
+        <h2 class="section-title" data-lang="pt">Qual era o cenário</h2>
+        <h2 class="section-title" data-lang="en">What the landscape looked like</h2>
+        <p class="section-intro" data-lang="pt">Descreva aqui o contexto do projeto. Qual era a situação? Qual o tamanho do problema? Para quem? Um parágrafo curto e direto.</p>
+        <p class="section-intro" data-lang="en">Describe the project context here. What was the situation? How big was the problem? For whom? One short, direct paragraph.</p>
+      </div>
+    </section>
+
+
+    <!-- ══ CALLOUT LIGHT (problema) ═══════════ -->
+    <div class="callout-block" role="region" aria-label="Problema central">
+      <p class="callout-label" data-lang="pt">Problema a resolver</p>
+      <p class="callout-label" data-lang="en">Problem to solve</p>
+      <p class="callout-text" data-lang="pt">"Os usuários têm dificuldade em entender X, levando a Y e perdendo Z." Substitua pelo problema real do seu case.</p>
+      <p class="callout-text" data-lang="en">"Users struggle to understand X, leading to Y and missing out on Z." Replace with the real problem from your case.</p>
+    </div>
+
+
+    <!-- ══ SECTION: BADGE + SPLIT (imagem + texto numerado) ══ -->
+    <section style="padding: 0 0 80px;" aria-label="O que fizemos">
+      <div class="section-badge-wrap" style="margin-bottom: 40px;">
+        <span class="section-badge" data-lang="pt"><i class="ti ti-tool" aria-hidden="true"></i> O que fiz</span>
+        <span class="section-badge" data-lang="en"><i class="ti ti-tool" aria-hidden="true"></i> What I did</span>
+      </div>
+
+      <div class="split-section">
+        <!-- IMAGEM -->
+        <div>
+          <img src="placeholder-split.png" alt="Descrição da imagem" class="split-image"
+               onerror="this.style.background='var(--tag-bg)';this.style.aspectRatio='4/3';this.removeAttribute('src')" />
+        </div>
+        <!-- TEXTO + LISTA NUMERADA -->
+        <div class="split-content">
+          <span class="split-eyebrow" data-lang="pt">Abordagem</span>
+          <span class="split-eyebrow" data-lang="en">Approach</span>
+          <h2 class="split-title" data-lang="pt">Como organizamos as três frentes de trabalho</h2>
+          <h2 class="split-title" data-lang="en">How we organized the three workstreams</h2>
+          <p class="split-text" data-lang="pt">Um parágrafo curto explicando o raciocínio por trás da estrutura do trabalho antes de entrar nos detalhes.</p>
+          <p class="split-text" data-lang="en">A short paragraph explaining the rationale behind the work structure before getting into the details.</p>
+
+          <div class="numbered-list">
+            <div class="numbered-item" data-lang="pt">
+              <span class="numbered-item-num">01</span>
+              <div class="numbered-item-content">
+                <p class="numbered-item-title">Consciência</p>
+                <p class="numbered-item-desc">Melhorar e simplificar a funcionalidade de busca para aumentar a descoberta de itens.</p>
+              </div>
+            </div>
+            <div class="numbered-item" data-lang="en">
+              <span class="numbered-item-num">01</span>
+              <div class="numbered-item-content">
+                <p class="numbered-item-title">Awareness</p>
+                <p class="numbered-item-desc">Enhance and streamline search functionality to improve item discoverability.</p>
+              </div>
+            </div>
+
+            <div class="numbered-item" data-lang="pt">
+              <span class="numbered-item-num">02</span>
+              <div class="numbered-item-content">
+                <p class="numbered-item-title">Consideração</p>
+                <p class="numbered-item-desc">Fornecer ferramentas para comparar e filtrar opções rapidamente.</p>
+              </div>
+            </div>
+            <div class="numbered-item" data-lang="en">
+              <span class="numbered-item-num">02</span>
+              <div class="numbered-item-content">
+                <p class="numbered-item-title">Consideration</p>
+                <p class="numbered-item-desc">Provide tools to compare and narrow down options quickly.</p>
+              </div>
+            </div>
+
+            <div class="numbered-item" data-lang="pt">
+              <span class="numbered-item-num">03</span>
+              <div class="numbered-item-content">
+                <p class="numbered-item-title">Decisão</p>
+                <p class="numbered-item-desc">Resumir informações para reduzir carga cognitiva e viabilizar compras conscientes.</p>
+              </div>
+            </div>
+            <div class="numbered-item" data-lang="en">
+              <span class="numbered-item-num">03</span>
+              <div class="numbered-item-content">
+                <p class="numbered-item-title">Decision</p>
+                <p class="numbered-item-desc">Summarize information to reduce cognitive load and enable informed purchases.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══ SECTION: IMAGEM FULL WIDTH ════════ -->
+    <section style="padding: 0 0 80px;" aria-label="Visão geral do fluxo">
+      <div class="section-badge-wrap" style="margin-bottom: 40px;">
+        <span class="section-badge" data-lang="pt"><i class="ti ti-layout" aria-hidden="true"></i> Design final</span>
+        <span class="section-badge" data-lang="en"><i class="ti ti-layout" aria-hidden="true"></i> Final design</span>
+      </div>
+      <div class="section-center section-gap-sm">
+        <h2 class="section-title" data-lang="pt">O fluxo completo</h2>
+        <h2 class="section-title" data-lang="en">The full flow</h2>
+        <p class="section-intro" data-lang="pt">Descrição de uma linha do que a imagem mostra.</p>
+        <p class="section-intro" data-lang="en">One-line description of what the image shows.</p>
+      </div>
+      <div class="full-image-wrap" style="margin-top: 40px;">
+        <figure>
+          <img src="placeholder-full.png" alt="Fluxo completo"
+               loading="lazy" decoding="async"
+               onload="this.classList.add('loaded')"
+               onerror="this.style.background='var(--tag-bg)';this.style.aspectRatio='16/7';this.removeAttribute('src')" />
+          <figcaption data-lang="pt">Legenda descrevendo o que está na imagem e o insight que ela revela.</figcaption>
+          <figcaption data-lang="en">Caption describing what's in the image and the insight it reveals.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+
+    <!-- ══ SECTION: ITERATIONS GRID ══════════ -->
+    <section style="padding: 0 0 80px;" aria-label="Iterações">
+      <div class="section-badge-wrap">
+        <span class="section-badge" data-lang="pt"><i class="ti ti-refresh" aria-hidden="true"></i> Iterações</span>
+        <span class="section-badge" data-lang="en"><i class="ti ti-refresh" aria-hidden="true"></i> Iterations</span>
+      </div>
+      <div class="section-center section-gap-sm">
+        <h2 class="section-title" data-lang="pt">Múltiplas iterações</h2>
+        <h2 class="section-title" data-lang="en">Multiple iterations</h2>
+        <p class="section-intro" data-lang="pt">Para cumprir os prazos, priorizamos iteração rápida, partindo de mockups em alta fidelidade.</p>
+        <p class="section-intro" data-lang="en">To meet tight deadlines, we prioritized rapid iteration, starting with high-fidelity mocks.</p>
+      </div>
+      <div class="container-wide" style="margin-top: 40px;">
+        <div class="iterations-wrap">
+          <div class="iterations-grid cols-4">
+            <div class="iteration-item">
+              <span class="iteration-label" data-lang="pt">Iteração 1</span>
+              <span class="iteration-label" data-lang="en">Iteration 1</span>
+              <img src="placeholder-iter1.png" alt="Iteração 1" class="iteration-img"
+                   loading="lazy" onload="this.classList.add('loaded')"
+                   onerror="this.style.background='var(--tag-bg)';this.style.aspectRatio='3/4';this.removeAttribute('src')" />
+              <p class="iteration-caption" data-lang="pt">Conceito inicial — foco em X.</p>
+              <p class="iteration-caption" data-lang="en">Initial concept — focus on X.</p>
+            </div>
+            <div class="iteration-item">
+              <span class="iteration-label" data-lang="pt">Iteração 2</span>
+              <span class="iteration-label" data-lang="en">Iteration 2</span>
+              <img src="placeholder-iter2.png" alt="Iteração 2" class="iteration-img"
+                   loading="lazy" onload="this.classList.add('loaded')"
+                   onerror="this.style.background='var(--tag-bg)';this.style.aspectRatio='3/4';this.removeAttribute('src')" />
+              <p class="iteration-caption" data-lang="pt">Refinamento da hierarquia.</p>
+              <p class="iteration-caption" data-lang="en">Hierarchy refinement.</p>
+            </div>
+            <div class="iteration-item">
+              <span class="iteration-label" data-lang="pt">Iteração 3</span>
+              <span class="iteration-label" data-lang="en">Iteration 3</span>
+              <img src="placeholder-iter3.png" alt="Iteração 3" class="iteration-img"
+                   loading="lazy" onload="this.classList.add('loaded')"
+                   onerror="this.style.background='var(--tag-bg)';this.style.aspectRatio='3/4';this.removeAttribute('src')" />
+              <p class="iteration-caption" data-lang="pt">Ajuste de tom e microcopy.</p>
+              <p class="iteration-caption" data-lang="en">Tone and microcopy adjustment.</p>
+            </div>
+            <div class="iteration-item">
+              <span class="iteration-label" data-lang="pt">Versão final</span>
+              <span class="iteration-label" data-lang="en">Final version</span>
+              <img src="placeholder-iter4.png" alt="Versão final" class="iteration-img"
+                   loading="lazy" onload="this.classList.add('loaded')"
+                   onerror="this.style.background='var(--tag-bg)';this.style.aspectRatio='3/4';this.removeAttribute('src')" />
+              <p class="iteration-caption" data-lang="pt">Versão validada e entregue.</p>
+              <p class="iteration-caption" data-lang="en">Validated and shipped version.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══ SECTION: RESULTADOS (metric grid) ═ -->
+    <section style="padding: 0 0 0;" aria-label="Resultados">
+      <div class="section-badge-wrap">
+        <span class="section-badge" data-lang="pt"><i class="ti ti-chart-bar" aria-hidden="true"></i> Resultados</span>
+        <span class="section-badge" data-lang="en"><i class="ti ti-chart-bar" aria-hidden="true"></i> Results</span>
+      </div>
+      <div class="section-center section-gap-sm">
+        <h2 class="section-title" data-lang="pt">Os resultados</h2>
+        <h2 class="section-title" data-lang="en">The results</h2>
+        <p class="section-intro" data-lang="pt">Este projeto melhorou a satisfação e estabeleceu um modelo para escalar a solução.</p>
+        <p class="section-intro" data-lang="en">This project improved satisfaction and set a foundation for scaling the solution.</p>
+      </div>
+      <div class="container-wide">
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <span class="metric-value">+92%</span>
+            <span class="metric-label" data-lang="pt">Engajamento</span>
+            <span class="metric-label" data-lang="en">Engagement</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-value">−42%</span>
+            <span class="metric-label" data-lang="pt">Tickets de suporte</span>
+            <span class="metric-label" data-lang="en">Support tickets</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-value">+16%</span>
+            <span class="metric-label" data-lang="pt">Conversão</span>
+            <span class="metric-label" data-lang="en">Conversion</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-value">84%</span>
+            <span class="metric-label" data-lang="pt">Adoção em 30 dias</span>
+            <span class="metric-label" data-lang="en">Adoption in 30 days</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══ CALLOUT DARK (resultado principal) ═ -->
+    <div class="callout-block-dark" role="region" aria-label="Resultado principal">
+      <p class="callout-label">North Star</p>
+      <p class="callout-text" data-lang="pt">"% de usuários que completam a jornada sem contatar o suporte" — a métrica que conectou cada decisão de conteúdo a um impacto operacional real.</p>
+      <p class="callout-text" data-lang="en">"% of users who complete the journey without contacting support" — the metric that connected every content decision to a real operational impact.</p>
+    </div>
+
+
+    <!-- ══ SECTION: APRENDIZADOS (takeaways) ═ -->
+    <section style="padding: 80px 0;" aria-label="Aprendizados">
+      <div class="section-badge-wrap">
+        <span class="section-badge" data-lang="pt"><i class="ti ti-bulb" aria-hidden="true"></i> Aprendizados</span>
+        <span class="section-badge" data-lang="en"><i class="ti ti-bulb" aria-hidden="true"></i> What I learned</span>
+      </div>
+      <div class="section-center section-gap-sm">
+        <h2 class="section-title" data-lang="pt">O que eu aprendi com esse projeto</h2>
+        <h2 class="section-title" data-lang="en">What I learned from this project</h2>
+      </div>
+      <div class="container-wide">
+        <div class="takeaways-grid">
+          <div class="takeaway-card" data-lang="pt">
+            <i class="ti ti-rocket takeaway-icon" aria-hidden="true"></i>
+            <p class="takeaway-title">Conteúdo como alavanca de negócio</p>
+            <p class="takeaway-desc">Uma mudança de copy bem fundamentada em dados pode ter mais impacto do que meses de redesign de interface.</p>
+          </div>
+          <div class="takeaway-card" data-lang="en">
+            <i class="ti ti-rocket takeaway-icon" aria-hidden="true"></i>
+            <p class="takeaway-title">Content as a business lever</p>
+            <p class="takeaway-desc">A copy change well-grounded in data can have more impact than months of interface redesign.</p>
+          </div>
+
+          <div class="takeaway-card" data-lang="pt">
+            <i class="ti ti-thumb-up takeaway-icon" aria-hidden="true"></i>
+            <p class="takeaway-title">Confiança nasce da transparência</p>
+            <p class="takeaway-desc">Deixar o usuário informado em cada etapa reduz ansiedade e aumenta a percepção de controle sobre a própria jornada.</p>
+          </div>
+          <div class="takeaway-card" data-lang="en">
+            <i class="ti ti-thumb-up takeaway-icon" aria-hidden="true"></i>
+            <p class="takeaway-title">Trust grows through transparency</p>
+            <p class="takeaway-desc">Keeping users informed at each step reduces anxiety and increases perceived control over their own journey.</p>
+          </div>
+
+          <div class="takeaway-card" data-lang="pt">
+            <i class="ti ti-users takeaway-icon" aria-hidden="true"></i>
+            <p class="takeaway-title">Liderança equilibrada gera impacto</p>
+            <p class="takeaway-desc">Colaborar com Produto, Operações e Dados desde o início garante que as decisões de conteúdo sejam sustentáveis.</p>
+          </div>
+          <div class="takeaway-card" data-lang="en">
+            <i class="ti ti-users takeaway-icon" aria-hidden="true"></i>
+            <p class="takeaway-title">Balanced leadership drives impact</p>
+            <p class="takeaway-desc">Collaborating with Product, Operations, and Data from the start ensures content decisions are sustainable.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-name"><strong>Ana Clara</strong> <span class="footer-name-light">Bianchi</span></span>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/aclarabianchi/" class="footer-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </div>
+  </footer>
+</div>
+
+<!-- BACK TO TOP -->
+<button id="back-to-top" class="back-to-top" onclick="scrollToTop()" aria-label="Voltar ao topo">
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+    <path d="M7 13V1M2 6l5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+
+<script>
+  let currentLang = 'pt';
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+    document.body.className = document.body.className.replace(/lang-\w+/g, '').trim() + ' lang-' + lang;
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      const isActive = btn.getAttribute('lang') === lang;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+  }
+
+  function scrollToTop() {
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = document.getElementById('scroll-progress');
+    if (progress) progress.style.width = total > 0 ? (scrollTop / total * 100) + '%' : '0%';
+    const btt = document.getElementById('back-to-top');
+    if (btt) btt.classList.toggle('visible', scrollTop > 300);
+    document.querySelector('nav')?.classList.toggle('scrolled', scrollTop > 20);
+  }, { passive: true });
+
+  window.addEventListener('DOMContentLoaded', () => {
+    setLang(currentLang);
+  });
+</script>
+
+</body>
+</html>

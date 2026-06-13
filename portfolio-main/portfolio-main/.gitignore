@@ -1,0 +1,15 @@
+node_modules/
+.claude/
+package.json
+package-lock.json
+
+# PDFs internos
+*.pdf
+
+# Original PNG substituída por WebP
+contestacao-mapa.png
+
+# Imagens não utilizadas
+chargeback-comms-before-after.png
+cotnent-metrics-presentation.png
+contestacao.png
