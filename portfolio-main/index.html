@@ -1054,6 +1054,63 @@
       cursor: default;
     }
 
+    /* Case hero image */
+    .case-hero {
+      width: 100%;
+      aspect-ratio: 21 / 9;
+      overflow: hidden;
+      border-radius: 8px;
+      margin-bottom: 56px;
+    }
+    .case-hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    /* Two-column intro: context + metadata */
+    .case-intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 64px;
+      align-items: start;
+      margin-bottom: 64px;
+    }
+    .case-intro-text p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--text-muted);
+    }
+    .case-intro-text p strong { color: var(--text); font-weight: 500; }
+
+    /* Metadata table */
+    .case-meta {
+      border-top: 1px solid var(--border);
+    }
+    .case-meta-row {
+      display: flex;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .case-meta-key {
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding-top: 3px;
+      flex: 0 0 108px;
+    }
+    .case-meta-value {
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.55;
+      flex: 1;
+    }
+
     .case-section { margin-bottom: 48px; }
 
     .case-section-label {
@@ -1221,6 +1278,8 @@
       .result-block { grid-template-columns: 1fr; gap: 16px; padding: 44px 36px; }
       .result-number { font-size: 56px; }
       footer { flex-direction: column; gap: 20px; align-items: flex-start; }
+      .case-intro-grid { grid-template-columns: 1fr; gap: 40px; }
+      .case-hero { aspect-ratio: 16 / 9; }
     }
 
     /* ══════════════════════════════════════════
@@ -2270,8 +2329,12 @@
     </div>
   </nav>
   <main class="case-content fade-up">
+
+    <div class="case-hero">
+      <img src="pos-ai-mockup.png" alt="POS Nubank — interface do produto" loading="eager" decoding="async" />
+    </div>
+
     <div class="case-header">
-      <p class="case-company">Nubank PJ · 2024–2025</p>
       <h1 class="case-title" data-lang="pt">POS Nubank</h1>
       <h1 class="case-title" data-lang="en">POS Nubank</h1>
       <div class="case-tags">
@@ -2282,10 +2345,40 @@
       </div>
     </div>
 
-    <div class="case-section">
-      <p class="case-section-label" data-lang="pt">Contexto</p><p class="case-section-label" data-lang="en">Context</p>
-      <p data-lang="pt">O mercado brasileiro de maquininhas é um dos mais disputados do setor financeiro. Mercado Pago, Stone, Ton, InfinitePay e Itaú já ocupam posições consolidadas. Para o Nubank, o POS representava também um território inédito: o primeiro produto físico da empresa — sem histórico em logística de hardware, com operação dependente de um parceiro externo (Fiserv) e seus próprios processos, prazos e linguagem técnica.</p>
-      <p data-lang="en">The Brazilian POS terminal market is one of the most competitive in the financial sector. Mercado Pago, Stone, Ton, InfinitePay, and Itaú already hold consolidated positions. For Nubank, the POS also represented uncharted territory: the company's first physical product — with no history in hardware logistics, and operations dependent on an external partner (Fiserv) with its own processes, timelines, and technical language.</p>
+    <div class="case-intro-grid">
+      <div class="case-intro-text">
+        <p data-lang="pt">O mercado brasileiro de maquininhas é um dos mais disputados do setor financeiro. Mercado Pago, Stone, Ton, InfinitePay e Itaú já ocupam posições consolidadas. Para o Nubank, o POS representava também um território inédito: o primeiro produto físico da empresa — sem histórico em logística de hardware, com operação dependente de um parceiro externo (Fiserv) e seus próprios processos, prazos e linguagem técnica.</p>
+        <p data-lang="en">The Brazilian POS terminal market is one of the most competitive in the financial sector. Mercado Pago, Stone, Ton, InfinitePay, and Itaú already hold consolidated positions. For Nubank, the POS also represented uncharted territory: the company's first physical product — with no history in hardware logistics, and operations dependent on an external partner (Fiserv) with its own processes, timelines, and technical language.</p>
+      </div>
+      <div class="case-meta">
+        <div class="case-meta-row">
+          <span class="case-meta-key" data-lang="pt">Empresa</span>
+          <span class="case-meta-key" data-lang="en">Company</span>
+          <span class="case-meta-value">Nubank</span>
+        </div>
+        <div class="case-meta-row">
+          <span class="case-meta-key" data-lang="pt">Período</span>
+          <span class="case-meta-key" data-lang="en">Period</span>
+          <span class="case-meta-value">2025–2026</span>
+        </div>
+        <div class="case-meta-row">
+          <span class="case-meta-key" data-lang="pt">Papel</span>
+          <span class="case-meta-key" data-lang="en">Role</span>
+          <span class="case-meta-value">Senior Content Design</span>
+        </div>
+        <div class="case-meta-row">
+          <span class="case-meta-key" data-lang="pt">Escopo</span>
+          <span class="case-meta-key" data-lang="en">Scope</span>
+          <span class="case-meta-value" data-lang="pt">Jornadas de request, tracking e activation</span>
+          <span class="case-meta-value" data-lang="en">Request, tracking and activation journeys</span>
+        </div>
+        <div class="case-meta-row">
+          <span class="case-meta-key" data-lang="pt">Colaboradores</span>
+          <span class="case-meta-key" data-lang="en">Collaborators</span>
+          <span class="case-meta-value" data-lang="pt">Time Fiserv, product designer, product manager, product ops, engenharia e CX — 2 squads em consolidação</span>
+          <span class="case-meta-value" data-lang="en">Fiserv team, product designer, product manager, product ops, engineers, and CX — 2 squads in consolidation</span>
+        </div>
+      </div>
     </div>
 
     <hr class="divider" />
