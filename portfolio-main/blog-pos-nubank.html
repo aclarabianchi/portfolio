@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>POS Nubank: conteúdo como pilar da estratégia de produto — Ana Bianchi</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F5F4F0'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-size='20' fill='%23C8A96E'%3EA%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="stylesheet" href="blog-template.html" />
+  <style>
+
+    :root {
+      --bg: #F7F7F5;
+      --bg-card: #FFFFFF;
+      --text: #111111;
+      --text-muted: #888888;
+      --accent: #4A6FA5;
+      --accent-light: #EEF2F8;
+      --border: #DDDDD8;
+      --tag-bg: #F0F0EE;
+      --shadow-card: 0 1px 4px rgba(17,17,17,0.05), 0 1px 2px rgba(17,17,17,0.03);
+      --transition-base: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      --content-width: 820px;
+      --wide-width: 1100px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp 0.5s ease both; }
+    @media (prefers-reduced-motion: reduce) { .fade-up { animation: none !important; } html { scroll-behavior: auto; } }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 48px;
+      background: rgba(247,247,245,0.92);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow var(--transition-base), border-color var(--transition-base);
+    }
+    nav.scrolled { box-shadow: 0 2px 20px rgba(26,26,26,0.06); border-bottom-color: rgba(226,224,216,0.9); }
+
+    .back-btn {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-muted); transition: color var(--transition-base);
+      cursor: pointer; border: none; background: none;
+      font-family: 'Inter', sans-serif; padding: 8px 0; min-height: 44px; text-decoration: none;
+    }
+    .back-btn:hover { color: var(--text); }
+
+    .lang-toggle { display: flex; gap: 2px; background: var(--tag-bg); border-radius: 20px; padding: 3px; }
+    .lang-btn {
+      border: none; background: transparent; cursor: pointer;
+      font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 12px;
+      border-radius: 16px; color: var(--text-muted);
+      transition: background var(--transition-base), color var(--transition-base); min-height: 32px;
+    }
+    .lang-btn.active { background: var(--bg-card); color: var(--text); box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+
+    /* SCROLL PROGRESS */
+    .scroll-progress {
+      position: fixed; top: 65px; left: 0; width: 0%; height: 2px;
+      background: var(--accent); z-index: 99; transition: width 0.1s linear; pointer-events: none;
+    }
+
+    /* PAGE */
+    .blog-page { padding-top: 88px; }
+
+    /* LANG */
+    [data-lang] { display: none; }
+    .lang-pt [data-lang="pt"] { display: block; }
+    .lang-pt [data-lang="pt"].inline { display: inline; }
+    .lang-en [data-lang="en"] { display: block; }
+    .lang-en [data-lang="en"].inline { display: inline; }
+    .lang-pt [data-lang="en"], .lang-en [data-lang="pt"] { display: none !important; }
+    .lang-pt .section-badge[data-lang="pt"], .lang-en .section-badge[data-lang="en"] { display: inline-flex; }
+    .lang-pt .numbered-item[data-lang="pt"], .lang-en .numbered-item[data-lang="en"] { display: flex; }
+    .lang-pt .takeaway-card[data-lang="pt"], .lang-en .takeaway-card[data-lang="en"] { display: flex; }
+    .lang-pt .iteration-label[data-lang="pt"], .lang-en .iteration-label[data-lang="en"] { display: block; }
+
+    /* LAYOUT */
+    .container { max-width: var(--content-width); margin: 0 auto; padding: 0 48px; }
+    .container-wide { max-width: var(--wide-width); margin: 0 auto; padding: 0 48px; }
+    .section-gap { margin-bottom: 80px; }
+    .section-gap-sm { margin-bottom: 48px; }
+
+    /* POST HEADER */
+    .post-header { padding: 64px 48px 80px; max-width: var(--content-width); margin: 0 auto; text-align: center; }
+    .post-category { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+    .post-title { font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(32px, 4.5vw, 56px); line-height: 1.1; letter-spacing: -0.02em; color: var(--text); margin-bottom: 24px; }
+    .post-summary { font-size: 16px; line-height: 1.75; color: var(--text-muted); max-width: 560px; margin: 0 auto 32px; }
+    .post-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 40px; }
+    .post-tag { background: var(--tag-bg); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 12px; border-radius: 20px; color: var(--text-muted); border: 1px solid var(--border); }
+    .post-divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    /* SECTION BADGE */
+    .section-badge-wrap { display: flex; justify-content: center; margin-bottom: 24px; }
+    .section-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--accent); background: var(--accent-light);
+      border: 1px solid rgba(74,111,165,0.2); padding: 5px 14px; border-radius: 20px;
+    }
+
+    /* SECTION TITLE */
+    .section-center { text-align: center; max-width: var(--content-width); margin: 0 auto; padding: 0 48px; }
+    .section-title { font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(26px, 3vw, 38px); line-height: 1.2; letter-spacing: -0.015em; color: var(--text); margin-bottom: 16px; }
+    .section-intro { font-size: 15px; line-height: 1.75; color: var(--text-muted); max-width: 580px; margin: 0 auto; }
+
+    /* CALLOUT LIGHT */
+    .callout-block {
+      background: var(--accent-light);
+      border-top: 1px solid rgba(74,111,165,0.15); border-bottom: 1px solid rgba(74,111,165,0.15);
+      padding: 64px 48px; text-align: center; margin: 80px 0;
+    }
+    .callout-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+    .callout-text { font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(18px, 2.2vw, 26px); line-height: 1.5; color: var(--text); max-width: 680px; margin: 0 auto; font-style: italic; }
+
+    /* CALLOUT DARK */
+    .callout-block-dark {
+      background: var(--text); padding: 64px 48px; text-align: center; margin: 80px 0;
+      position: relative; overflow: hidden;
+    }
+    .callout-block-dark::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--accent); }
+    .callout-block-dark .callout-label { color: var(--accent); }
+    .callout-block-dark .callout-text { color: rgba(247,247,245,0.9); }
+
+    /* SPLIT */
+    .split-section { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; max-width: var(--wide-width); margin: 0 auto; padding: 0 48px; }
+    .split-section.reverse { direction: rtl; }
+    .split-section.reverse > * { direction: ltr; }
+    .split-image { width: 100%; border-radius: 4px; border: 1px solid var(--border); display: block; }
+    .split-content { display: flex; flex-direction: column; gap: 20px; padding-top: 8px; }
+    .split-eyebrow { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+    .split-title { font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(20px, 2.2vw, 28px); line-height: 1.3; color: var(--text); }
+    .split-text { font-size: 15px; line-height: 1.8; color: var(--text-muted); }
+
+    /* NUMBERED LIST */
+    .numbered-list { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+    .numbered-item { display: flex; align-items: flex-start; gap: 16px; padding: 16px 20px; border: 1px solid var(--border); border-radius: 4px; background: var(--bg-card); }
+    .numbered-item-num { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); flex-shrink: 0; padding-top: 2px; min-width: 24px; }
+    .numbered-item-title { font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text); margin-bottom: 4px; }
+    .numbered-item-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+    /* TAKEAWAYS */
+    .takeaways-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 48px; }
+    .takeaway-card { display: flex; flex-direction: column; gap: 14px; padding: 32px 28px; border: 1px solid var(--border); border-radius: 4px; background: var(--bg-card); }
+    .takeaway-icon { font-size: 24px; color: var(--accent); }
+    .takeaway-title { font-size: 14px; font-weight: 500; color: var(--text); line-height: 1.35; }
+    .takeaway-desc { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+
+    /* LEARNINGS (3 cols) */
+    .learnings-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
+
+    /* ITERATIONS */
+    .iterations-wrap { border: 1px solid var(--border); border-radius: 4px; background: var(--bg-card); padding: 40px; margin-top: 40px; overflow: hidden; }
+    .iterations-grid { display: grid; gap: 24px; }
+    .iterations-grid.cols-5 { grid-template-columns: repeat(5, 1fr); }
+    .iteration-item { display: flex; flex-direction: column; gap: 12px; }
+    .iteration-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); }
+    .iteration-img { width: 100%; border-radius: 3px; border: 1px solid var(--border); display: block; opacity: 0; transition: opacity 0.4s ease; }
+    .iteration-img.loaded { opacity: 1; }
+    .iteration-caption { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+    /* FULL IMAGE */
+    .full-image-wrap { max-width: var(--wide-width); margin: 0 auto; padding: 0 48px; }
+    .full-image-wrap figure { display: flex; flex-direction: column; gap: 12px; }
+    .full-image-wrap img { width: 100%; border-radius: 4px; border: 1px solid var(--border); display: block; opacity: 0; transition: opacity 0.4s ease; }
+    .full-image-wrap img.loaded { opacity: 1; }
+    .full-image-wrap figcaption { font-size: 12px; color: var(--text-muted); line-height: 1.5; text-align: center; }
+
+    /* DISCLAIMER */
+    .disclaimer { font-size: 12px; color: var(--text-muted); font-style: italic; text-align: center; max-width: var(--content-width); margin: 0 auto; padding: 0 48px; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 40px 48px; max-width: var(--wide-width); margin: 80px auto 0; display: flex; align-items: center; justify-content: space-between; }
+    .footer-name { font-size: 13px; color: var(--text-muted); }
+    .footer-name strong { font-weight: 500; color: var(--text); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-link { text-decoration: none; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); transition: color var(--transition-base); padding: 8px 0; min-height: 44px; display: flex; align-items: center; }
+    .footer-link:hover { color: var(--text); }
+
+    /* BACK TO TOP */
+    .back-to-top { position: fixed; bottom: 32px; right: 32px; width: 44px; height: 44px; border-radius: 50%; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-muted); display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: var(--shadow-card); opacity: 0; transform: translateY(8px); transition: opacity var(--transition-base), transform var(--transition-base), background var(--transition-base); z-index: 90; pointer-events: none; font-family: inherit; }
+    .back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .back-to-top:hover { background: var(--accent-light); border-color: var(--accent); color: var(--text); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      .post-header, .container, .container-wide, .section-center, .split-section, .full-image-wrap, .disclaimer { padding-left: 24px; padding-right: 24px; }
+      .split-section { grid-template-columns: 1fr; gap: 32px; }
+      .split-section.reverse { direction: ltr; }
+      .takeaways-grid { grid-template-columns: 1fr; }
+      .learnings-grid { grid-template-columns: 1fr 1fr; }
+      .iterations-grid.cols-5 { grid-template-columns: repeat(3, 1fr); }
+      .iterations-wrap { padding: 28px 24px; }
+      footer { flex-direction: column; gap: 20px; align-items: flex-start; padding: 32px 24px; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .post-header { padding: 48px 20px 60px; }
+      .container, .container-wide, .section-center, .split-section, .full-image-wrap, .disclaimer { padding-left: 20px; padding-right: 20px; }
+      .callout-block, .callout-block-dark { padding: 48px 20px; }
+      .takeaways-grid, .learnings-grid { grid-template-columns: 1fr; }
+      .iterations-grid.cols-5 { grid-template-columns: repeat(2, 1fr); }
+      .back-to-top { bottom: 20px; right: 20px; }
+    }
+
+  </style>
+</head>
+<body class="lang-pt">
+
+<div id="scroll-progress" class="scroll-progress"></div>
+
+<nav aria-label="Navegação">
+  <a href="index.html" class="back-btn" aria-label="Voltar para o portfólio">
+    <span aria-hidden="true">←</span>
+    <span data-lang="pt">Voltar</span>
+    <span data-lang="en">Back</span>
+  </a>
+  <div class="lang-toggle" role="group" aria-label="Selecionar idioma">
+    <button class="lang-btn active" onclick="setLang('pt')" aria-pressed="true" lang="pt">PT</button>
+    <button class="lang-btn" onclick="setLang('en')" aria-pressed="false" lang="en">EN</button>
+  </div>
+</nav>
+
+<div class="blog-page">
+<main id="main-content">
+
+  <!-- ══ HEADER ════════════════════════════════ -->
+  <header class="post-header fade-up">
+    <p class="post-category">Nubank PJ · 2024–2025</p>
+
+    <h1 class="post-title" data-lang="pt">POS Nubank: conteúdo como pilar da estratégia de produto</h1>
+    <h1 class="post-title" data-lang="en">POS Nubank: content as a product strategy pillar</h1>
+
+    <p class="post-summary" data-lang="pt">Como estruturei o POV de content design para o primeiro hardware do Nubank — transformando uma análise competitiva de seis concorrentes em estratégia de narrativa, guidelines e três jornadas completas.</p>
+    <p class="post-summary" data-lang="en">How I shaped the content design POV for Nubank's first hardware — turning a six-competitor analysis into narrative strategy, guidelines, and three complete journeys.</p>
+
+    <div class="post-tags">
+      <span class="post-tag" data-lang="pt">Estratégia de conteúdo</span>
+      <span class="post-tag" data-lang="en">Content strategy</span>
+      <span class="post-tag" data-lang="pt">Arquitetura da informação</span>
+      <span class="post-tag" data-lang="en">Information architecture</span>
+      <span class="post-tag">Hardware</span>
+      <span class="post-tag">Guidelines</span>
+      <span class="post-tag">Omnichannel</span>
+    </div>
+  </header>
+
+  <hr class="post-divider" />
+
+
+  <!-- ══ CONTEXTO ══════════════════════════════ -->
+  <section style="padding: 80px 0 0;" aria-label="Contexto">
+    <div class="section-badge-wrap">
+      <span class="section-badge" data-lang="pt"><i class="ti ti-map" aria-hidden="true"></i> Contexto</span>
+      <span class="section-badge" data-lang="en"><i class="ti ti-map" aria-hidden="true"></i> Context</span>
+    </div>
+    <div class="section-center section-gap-sm">
+      <h2 class="section-title" data-lang="pt">O primeiro hardware do Nubank</h2>
+      <h2 class="section-title" data-lang="en">Nubank's first hardware product</h2>
+      <p class="section-intro" data-lang="pt">O mercado brasileiro de maquininhas é um dos mais disputados do setor financeiro. Para o Nubank, o POS representava território inédito: o primeiro produto físico da empresa, com operação dependente de um parceiro externo (Fiserv) e seus próprios processos, prazos e linguagem técnica.</p>
+      <p class="section-intro" data-lang="en">The Brazilian POS terminal market is one of the most competitive in financial services. For Nubank, the POS was uncharted territory: the company's first physical product, with operations dependent on an external partner (Fiserv) with its own processes, timelines, and technical language.</p>
+    </div>
+  </section>
+
+  <!-- CALLOUT: TL;DR -->
+  <div class="callout-block" role="region" aria-label="Visão estratégica">
+    <p class="callout-label" data-lang="pt">Visão estratégica</p>
+    <p class="callout-label" data-lang="en">Strategic vision</p>
+    <p class="callout-text" data-lang="pt">"Nossa maior oportunidade com a maquininha é transformar um dispositivo hoje visto como funcional e impessoal em um parceiro estratégico para o sucesso do cliente PJ. Enquanto o mercado foca na transação, nós focaremos na relação."</p>
+    <p class="callout-text" data-lang="en">"Our greatest opportunity with the POS terminal is to transform a device currently seen as functional and impersonal into a strategic partner for PJ customer success. While the market focuses on the transaction, we'll focus on the relationship."</p>
+  </div>
+
+
+  <!-- ══ ANÁLISE COMPETITIVA ════════════════════ -->
+  <section style="padding: 0 0 80px;" aria-label="Análise competitiva">
+    <div class="section-badge-wrap" style="margin-bottom: 40px;">
+      <span class="section-badge" data-lang="pt"><i class="ti ti-search" aria-hidden="true"></i> Pesquisa</span>
+      <span class="section-badge" data-lang="en"><i class="ti ti-search" aria-hidden="true"></i> Research</span>
+    </div>
+
+    <div class="split-section">
+      <div>
+        <img src="pos-tracking.png" alt="Análise competitiva de maquininhas brasileiras" class="split-image"
+             loading="lazy" onload="this.classList.add('loaded')" />
+      </div>
+      <div class="split-content">
+        <span class="split-eyebrow" data-lang="pt">Análise de 6 concorrentes</span>
+        <span class="split-eyebrow" data-lang="en">6-competitor analysis</span>
+        <h2 class="split-title" data-lang="pt">Como o mercado se comunica em momentos críticos</h2>
+        <h2 class="split-title" data-lang="en">How the market communicates at critical moments</h2>
+        <p class="split-text" data-lang="pt">Analisei Bin, Clover, InfinitePay, Mercado Pago, Itaú e Ton com foco em arquitetura da informação e linguagem — não apenas funcionalidades, mas como cada marca se faz presente nas jornadas críticas do lojista.</p>
+        <p class="split-text" data-lang="en">I analyzed Bin, Clover, InfinitePay, Mercado Pago, Itaú, and Ton with a focus on information architecture and language — not just features, but how each brand shows up in the merchant's critical journeys.</p>
+
+        <div class="numbered-list">
+          <div class="numbered-item" data-lang="pt">
+            <span class="numbered-item-num">01</span>
+            <div>
+              <p class="numbered-item-title">Narrativa e storytelling</p>
+              <p class="numbered-item-desc">Mercado Pago e Itaú constroem narrativa de ecossistema. Ton e InfinitePay falam de parceria. Clover foca na tarefa — e fica fria.</p>
+            </div>
+          </div>
+          <div class="numbered-item" data-lang="en">
+            <span class="numbered-item-num">01</span>
+            <div>
+              <p class="numbered-item-title">Narrative & storytelling</p>
+              <p class="numbered-item-desc">Mercado Pago and Itaú build ecosystem narratives. Ton and InfinitePay lean into partnership. Clover focuses on the task — and feels cold.</p>
+            </div>
+          </div>
+
+          <div class="numbered-item" data-lang="pt">
+            <span class="numbered-item-num">02</span>
+            <div>
+              <p class="numbered-item-title">Tom de voz</p>
+              <p class="numbered-item-desc">Consistência de marca nos líderes. Mas o tom se torna técnico e alarmista nos momentos de erro — quebrando qualquer narrativa de parceria.</p>
+            </div>
+          </div>
+          <div class="numbered-item" data-lang="en">
+            <span class="numbered-item-num">02</span>
+            <div>
+              <p class="numbered-item-title">Voice & tone</p>
+              <p class="numbered-item-desc">Brand consistency among leaders. But tone turns technical and alarmist in error states — breaking any partnership narrative.</p>
+            </div>
+          </div>
+
+          <div class="numbered-item" data-lang="pt">
+            <span class="numbered-item-num">03</span>
+            <div>
+              <p class="numbered-item-title">Jornada omnichannel</p>
+              <p class="numbered-item-desc">Mercado Pago se destaca com ativação via QR Code. A falha mais comum: não oferecer envio de recibo por e-mail direto da maquininha.</p>
+            </div>
+          </div>
+          <div class="numbered-item" data-lang="en">
+            <span class="numbered-item-num">03</span>
+            <div>
+              <p class="numbered-item-title">Omnichannel journey</p>
+              <p class="numbered-item-desc">Mercado Pago stands out with QR Code activation. The most common failure: not offering email receipt directly from the terminal.</p>
+            </div>
+          </div>
+
+          <div class="numbered-item" data-lang="pt">
+            <span class="numbered-item-num">04</span>
+            <div>
+              <p class="numbered-item-title">Arquitetura da informação</p>
+              <p class="numbered-item-desc">Ton e InfinitePay têm menus enxutos. Mercado Pago e InfinitePay falham na hierarquia visual em telas com dados financeiros complexos.</p>
+            </div>
+          </div>
+          <div class="numbered-item" data-lang="en">
+            <span class="numbered-item-num">04</span>
+            <div>
+              <p class="numbered-item-title">Information architecture</p>
+              <p class="numbered-item-desc">Ton and InfinitePay have lean menus. Mercado Pago and InfinitePay fail on visual hierarchy in screens with complex financial data.</p>
+            </div>
+          </div>
+
+          <div class="numbered-item" data-lang="pt">
+            <span class="numbered-item-num">05</span>
+            <div>
+              <p class="numbered-item-title">Comunicação em momentos de erro</p>
+              <p class="numbered-item-desc">O ponto mais fraco de todos os concorrentes. "Erro de Processamento" sem causa, sem ação, sem próximo passo. Universal.</p>
+            </div>
+          </div>
+          <div class="numbered-item" data-lang="en">
+            <span class="numbered-item-num">05</span>
+            <div>
+              <p class="numbered-item-title">Error state communication</p>
+              <p class="numbered-item-desc">The weakest point across all competitors. "Processing Error" with no cause, no action, no next step. Universal.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CALLOUT DARK: anti-padrão -->
+  <div class="callout-block-dark" role="region" aria-label="Anti-padrão universal">
+    <p class="callout-label" data-lang="pt">O anti-padrão universal</p>
+    <p class="callout-label" data-lang="en">The universal anti-pattern</p>
+    <p class="callout-text" data-lang="pt">"Comunicação funcional no happy path. Vaga e não-acionável nos momentos de erro." — Em cada falha de comunicação na jornada do POS, havia um custo operacional direto: reentrega, ticket de suporte, máquina parada.</p>
+    <p class="callout-text" data-lang="en">"Functional communication in the happy path. Vague and non-actionable at moments of error." — Every communication failure in the POS journey had a direct operational cost: re-delivery, support ticket, idle terminal.</p>
+  </div>
+
+
+  <!-- ══ POV ESTRATÉGICO ══════════════════════ -->
+  <section style="padding: 0 0 80px;" aria-label="POV estratégico">
+    <div class="section-badge-wrap">
+      <span class="section-badge" data-lang="pt"><i class="ti ti-bulb" aria-hidden="true"></i> Ponto de vista</span>
+      <span class="section-badge" data-lang="en"><i class="ti ti-bulb" aria-hidden="true"></i> Point of view</span>
+    </div>
+    <div class="section-center section-gap-sm">
+      <h2 class="section-title" data-lang="pt">Da ferramenta à parceria</h2>
+      <h2 class="section-title" data-lang="en">From tool to partnership</h2>
+      <p class="section-intro" data-lang="pt">A análise competitiva revelou quatro oportunidades concretas para diferenciar a experiência da Roxinha. Cada uma com um padrão do mercado, um POV claro e artefatos de content design que sustentam a decisão.</p>
+      <p class="section-intro" data-lang="en">The competitive analysis revealed four concrete opportunities to differentiate the Roxinha experience. Each with a market pattern, a clear POV, and content design artifacts that support the decision.</p>
+    </div>
+    <div class="container-wide">
+      <div class="takeaways-grid">
+
+        <div class="takeaway-card" data-lang="pt">
+          <i class="ti ti-rocket takeaway-icon" aria-hidden="true"></i>
+          <p class="takeaway-title">Narrativa de empoderamento, não transacional</p>
+          <p class="takeaway-desc">Cada venda é uma conquista para o cliente. A maquininha deve celebrar isso — não apenas informar. Mudamos o tom para ser celebratório em momentos-chave: fechamento do dia, metas batidas, primeira venda.</p>
+        </div>
+        <div class="takeaway-card" data-lang="en">
+          <i class="ti ti-rocket takeaway-icon" aria-hidden="true"></i>
+          <p class="takeaway-title">Empowerment narrative, not transactional</p>
+          <p class="takeaway-desc">Every sale is an achievement for the customer. The terminal should celebrate that — not just inform. We shifted tone to be celebratory at key moments: end of day, goals hit, first sale.</p>
+        </div>
+
+        <div class="takeaway-card" data-lang="pt">
+          <i class="ti ti-heart-handshake takeaway-icon" aria-hidden="true"></i>
+          <p class="takeaway-title">Comunicação humana em momentos críticos</p>
+          <p class="takeaway-desc">Um erro é o momento em que o cliente mais precisa de nós. Transformamos a falha em conversa: causa em linguagem humana, ação clara, próximo passo se a ação não resolver.</p>
+        </div>
+        <div class="takeaway-card" data-lang="en">
+          <i class="ti ti-heart-handshake takeaway-icon" aria-hidden="true"></i>
+          <p class="takeaway-title">Human communication at critical moments</p>
+          <p class="takeaway-desc">An error is the moment customers need us most. We turned failure into a conversation: cause in human language, clear action, next step if the action doesn't resolve it.</p>
+        </div>
+
+        <div class="takeaway-card" data-lang="pt">
+          <i class="ti ti-stars takeaway-icon" aria-hidden="true"></i>
+          <p class="takeaway-title">Onboarding memorável — o primeiro "uau"</p>
+          <p class="takeaway-desc">O primeiro contato físico com a marca precisa ser especial, simples e confiável. A narrativa orientadora: "você já sabe usar, é igual ao seu app." Zero fricção, personalização, transparência desde o início.</p>
+        </div>
+        <div class="takeaway-card" data-lang="en">
+          <i class="ti ti-stars takeaway-icon" aria-hidden="true"></i>
+          <p class="takeaway-title">Memorable onboarding — the first "wow"</p>
+          <p class="takeaway-desc">The first physical brand touchpoint needs to be special, simple, and trustworthy. The guiding narrative: "you already know how to use it — it's just like your app." Zero friction, personalization, transparency from the start.</p>
+        </div>
+
+        <div class="takeaway-card" data-lang="pt">
+          <i class="ti ti-layout-grid takeaway-icon" aria-hidden="true"></i>
+          <p class="takeaway-title">Gestão integrada e inteligente</p>
+          <p class="takeaway-desc">A informação deve fluir entre canais adaptando-se ao contexto de cada um: imediata na maquininha, tática no app, estratégica na web. Arquitetura de informação pensada cross-platform desde o início.</p>
+        </div>
+        <div class="takeaway-card" data-lang="en">
+          <i class="ti ti-layout-grid takeaway-icon" aria-hidden="true"></i>
+          <p class="takeaway-title">Integrated and intelligent management</p>
+          <p class="takeaway-desc">Information should flow across channels adapting to each context: immediate on the terminal, tactical on the app, strategic on the web. Cross-platform information architecture from the start.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══ AS 3 JORNADAS ════════════════════════ -->
+  <section style="padding: 0 0 80px;" aria-label="As três jornadas">
+    <div class="section-badge-wrap">
+      <span class="section-badge" data-lang="pt"><i class="ti ti-layout" aria-hidden="true"></i> Design final</span>
+      <span class="section-badge" data-lang="en"><i class="ti ti-layout" aria-hidden="true"></i> Final design</span>
+    </div>
+    <div class="section-center section-gap-sm">
+      <h2 class="section-title" data-lang="pt">As três jornadas iniciais do produto</h2>
+      <h2 class="section-title" data-lang="en">The three initial product journeys</h2>
+      <p class="section-intro" data-lang="pt">Tive ownership das jornadas de request, tracking e activation no app — co-projetando com os Product Designers e aplicando os princípios do Narrative POV em cada decisão de conteúdo.</p>
+      <p class="section-intro" data-lang="en">I owned the request, tracking, and activation journeys in the app — co-designing with Product Designers and applying Narrative POV principles to every content decision.</p>
+    </div>
+
+    <!-- Request journey -->
+    <div class="container-wide" style="margin-top: 48px;">
+      <p style="font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted);margin-bottom:24px;padding-left:4px;" data-lang="pt">Jornada 1 — Request</p>
+      <p style="font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted);margin-bottom:24px;padding-left:4px;" data-lang="en">Journey 1 — Request</p>
+      <div class="iterations-wrap">
+        <div class="iterations-grid cols-5">
+          <div class="iteration-item">
+            <span class="iteration-label" data-lang="pt">Marketing screen</span>
+            <span class="iteration-label" data-lang="en">Marketing screen</span>
+            <img src="pos-request-marketing.png" alt="Marketing screen do POS Nubank" class="iteration-img" loading="lazy" onload="this.classList.add('loaded')" />
+            <p class="iteration-caption" data-lang="pt">Primeira dobra autossuficiente. Drop de até 80% — hierarquia para quem não rola.</p>
+            <p class="iteration-caption" data-lang="en">Self-sufficient first fold. Up to 80% drop-off — hierarchy for non-scrollers.</p>
+          </div>
+          <div class="iteration-item">
+            <span class="iteration-label" data-lang="pt">Quantidade</span>
+            <span class="iteration-label" data-lang="en">Quantity</span>
+            <img src="pos-request-quantidade.png" alt="Tela de quantidade do POS Nubank" class="iteration-img" loading="lazy" onload="this.classList.add('loaded')" />
+            <p class="iteration-caption" data-lang="pt">Mensalidade contextualizada na decisão. Progressive disclosure como estratégia.</p>
+            <p class="iteration-caption" data-lang="en">Monthly fee at the decision point. Progressive disclosure as strategy.</p>
+          </div>
+          <div class="iteration-item">
+            <span class="iteration-label" data-lang="pt">Horário de entrega</span>
+            <span class="iteration-label" data-lang="en">Delivery time</span>
+            <img src="pos-request-horario.png" alt="Tela de horário de entrega do POS Nubank" class="iteration-img" loading="lazy" onload="this.classList.add('loaded')" />
+            <p class="iteration-caption" data-lang="pt">Código de entrega apresentado antes da decisão. Quando o toggle aparece, o usuário já conhece o recurso.</p>
+            <p class="iteration-caption" data-lang="en">Delivery code introduced before the decision. When the toggle appears, the user already knows the feature.</p>
+          </div>
+          <div class="iteration-item">
+            <span class="iteration-label" data-lang="pt">Revisão</span>
+            <span class="iteration-label" data-lang="en">Review</span>
+            <img src="pos-request-revisao.png" alt="Tela de revisão do pedido POS Nubank" class="iteration-img" loading="lazy" onload="this.classList.add('loaded')" />
+            <p class="iteration-caption" data-lang="pt">Toggle opcional, desligado por padrão. Segurança para quem quer, sem barreira para quem não precisa.</p>
+            <p class="iteration-caption" data-lang="en">Optional toggle, off by default. Security for those who want it, no barrier for those who don't.</p>
+          </div>
+          <div class="iteration-item">
+            <span class="iteration-label" data-lang="pt">Confirmação</span>
+            <span class="iteration-label" data-lang="en">Confirmation</span>
+            <img src="pos-request-confirmacao.png" alt="Tela de confirmação do pedido POS Nubank" class="iteration-img" loading="lazy" onload="this.classList.add('loaded')" />
+            <p class="iteration-caption" data-lang="pt">"Confirmado, [nome], mais um passo juntos." Tom de parceria, código em destaque.</p>
+            <p class="iteration-caption" data-lang="en">"Confirmed, [name], one more step together." Partnership tone, code prominently displayed.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tracking journey -->
+    <div style="margin-top: 64px;">
+      <div class="container-wide" style="margin-bottom: 24px;">
+        <p style="font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted);padding-left:4px;" data-lang="pt">Jornada 2 — Tracking</p>
+        <p style="font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted);padding-left:4px;" data-lang="en">Journey 2 — Tracking</p>
+      </div>
+      <div class="full-image-wrap">
+        <figure>
+          <img src="pos-tracking.png" alt="Fluxo completo de tracking do POS Nubank" loading="lazy" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Happy path e três cenários de exceção — sem código, endereço errado, EC fechado. Cada exceção desenhada para ser acionável: não apenas informa o problema, orienta o próximo passo.</figcaption>
+          <figcaption data-lang="en">Happy path and three exception scenarios — no code, wrong address, closed establishment. Each exception designed to be actionable: not just informing the problem, guiding the next step.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- Activation journey -->
+    <div style="margin-top: 64px;">
+      <div class="container-wide" style="margin-bottom: 24px;">
+        <p style="font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted);padding-left:4px;" data-lang="pt">Jornada 3 — Activation</p>
+        <p style="font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted);padding-left:4px;" data-lang="en">Journey 3 — Activation</p>
+      </div>
+      <div class="full-image-wrap">
+        <figure>
+          <img src="pos-activation.png" alt="Sequência de activation do POS Nubank" loading="lazy" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Sequência de primeiro contato com o hardware. Tom celebratório, linguagem de parceria, progressão que educa sem infantilizar.</figcaption>
+          <figcaption data-lang="en">First-contact sequence on the hardware. Celebratory tone, partnership language, progression that educates without being condescending.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══ GUIDELINES ═══════════════════════════ -->
+  <section style="padding: 0 0 80px;" aria-label="Guidelines de conteúdo">
+    <div class="section-badge-wrap">
+      <span class="section-badge" data-lang="pt"><i class="ti ti-file-text" aria-hidden="true"></i> Guidelines</span>
+      <span class="section-badge" data-lang="en"><i class="ti ti-file-text" aria-hidden="true"></i> Guidelines</span>
+    </div>
+
+    <div class="split-section reverse">
+      <div>
+        <img src="pos-tracking-error.png" alt="Exemplo de guideline de mensagem de erro do POS Nubank" class="split-image"
+             loading="lazy" onload="this.classList.add('loaded')" />
+      </div>
+      <div class="split-content">
+        <span class="split-eyebrow" data-lang="pt">Primeiro entregável formal</span>
+        <span class="split-eyebrow" data-lang="en">First formal deliverable</span>
+        <h2 class="split-title" data-lang="pt">Guidelines de conteúdo como produto</h2>
+        <h2 class="split-title" data-lang="en">Content guidelines as a product</h2>
+        <p class="split-text" data-lang="pt">Com múltiplos times trabalhando em paralelo e a tensão constante entre a linguagem da Fiserv e a linguagem da marca Nubank, criei as primeiras guidelines de conteúdo do POS como entregável formal — documentadas no Figma, Confluence e integradas ao workflow de IA do time.</p>
+        <p class="split-text" data-lang="en">With multiple teams working in parallel and the constant tension between Fiserv's language and Nubank's brand language, I created the first POS content guidelines as a formal deliverable — documented in Figma, Confluence, and integrated into the team's AI workflow.</p>
+
+        <div class="numbered-list">
+          <div class="numbered-item" data-lang="pt">
+            <span class="numbered-item-num">01</span>
+            <div>
+              <p class="numbered-item-title">Vocabulário controlado</p>
+              <p class="numbered-item-desc">Campo semântico unificado — menos robô, mais gente. Sem tempo irmão.</p>
+            </div>
+          </div>
+          <div class="numbered-item" data-lang="en">
+            <span class="numbered-item-num">01</span>
+            <div>
+              <p class="numbered-item-title">Controlled vocabulary</p>
+              <p class="numbered-item-desc">Unified semantic field — less robot, more human.</p>
+            </div>
+          </div>
+
+          <div class="numbered-item" data-lang="pt">
+            <span class="numbered-item-num">02</span>
+            <div>
+              <p class="numbered-item-title">Tom de voz por momento da jornada</p>
+              <p class="numbered-item-desc">Celebratório na venda, empático no erro, direto na operação.</p>
+            </div>
+          </div>
+          <div class="numbered-item" data-lang="en">
+            <span class="numbered-item-num">02</span>
+            <div>
+              <p class="numbered-item-title">Tone of voice per journey moment</p>
+              <p class="numbered-item-desc">Celebratory at sale, empathetic at error, direct in operations.</p>
+            </div>
+          </div>
+
+          <div class="numbered-item" data-lang="pt">
+            <span class="numbered-item-num">03</span>
+            <div>
+              <p class="numbered-item-title">Estrutura de mensagens de erro</p>
+              <p class="numbered-item-desc">Causa (linguagem humana) + ação + próximo passo. Sempre acionável.</p>
+            </div>
+          </div>
+          <div class="numbered-item" data-lang="en">
+            <span class="numbered-item-num">03</span>
+            <div>
+              <p class="numbered-item-title">Error message structure</p>
+              <p class="numbered-item-desc">Cause (human language) + action + next step. Always actionable.</p>
+            </div>
+          </div>
+
+          <div class="numbered-item" data-lang="pt">
+            <span class="numbered-item-num">04</span>
+            <div>
+              <p class="numbered-item-title">Princípios de narrativa omnichannel</p>
+              <p class="numbered-item-desc">Imediata na maquininha, tática no app, estratégica na web. Informação que flui entre canais.</p>
+            </div>
+          </div>
+          <div class="numbered-item" data-lang="en">
+            <span class="numbered-item-num">04</span>
+            <div>
+              <p class="numbered-item-title">Omnichannel narrative principles</p>
+              <p class="numbered-item-desc">Immediate on terminal, tactical on app, strategic on web. Information that flows across channels.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CALLOUT DARK: North Star -->
+  <div class="callout-block-dark" role="region" aria-label="North Star">
+    <p class="callout-label">North Star</p>
+    <p class="callout-text" data-lang="pt">"% de merchants que completam a jornada completa sem contatar o CX" — a métrica que conectou cada decisão de conteúdo a um impacto operacional real.</p>
+    <p class="callout-text" data-lang="en">"% of merchants who complete the full journey without contacting CX" — the metric that connected every content decision to a real operational impact.</p>
+  </div>
+
+
+  <!-- ══ APRENDIZADOS ══════════════════════════ -->
+  <section style="padding: 80px 0;" aria-label="Aprendizados">
+    <div class="section-badge-wrap">
+      <span class="section-badge" data-lang="pt"><i class="ti ti-notes" aria-hidden="true"></i> Aprendizados</span>
+      <span class="section-badge" data-lang="en"><i class="ti ti-notes" aria-hidden="true"></i> Learnings</span>
+    </div>
+    <div class="section-center section-gap-sm">
+      <h2 class="section-title" data-lang="pt">O que eu faria diferente</h2>
+      <h2 class="section-title" data-lang="en">What I'd do differently</h2>
+    </div>
+    <div class="container-wide">
+      <div class="learnings-grid">
+
+        <div class="takeaway-card" data-lang="pt">
+          <i class="ti ti-chart-line takeaway-icon" aria-hidden="true"></i>
+          <p class="takeaway-title">Conteúdo é operação</p>
+          <p class="takeaway-desc">Cada falha de comunicação tem custo direto. Teria instrumentado indicadores de conteúdo desde o início — especificamente a taxa de contato ao CX por etapa da jornada.</p>
+        </div>
+        <div class="takeaway-card" data-lang="en">
+          <i class="ti ti-chart-line takeaway-icon" aria-hidden="true"></i>
+          <p class="takeaway-title">Content is operations</p>
+          <p class="takeaway-desc">Every communication failure has a direct cost. I would have instrumented content indicators from the start — specifically CX contact rate per journey stage.</p>
+        </div>
+
+        <div class="takeaway-card" data-lang="pt">
+          <i class="ti ti-hand-stop takeaway-icon" aria-hidden="true"></i>
+          <p class="takeaway-title">Erros são momentos de parceria</p>
+          <p class="takeaway-desc">O mercado trata erro como exceção técnica. Nós tratamos como momento de relacionamento. Essa virada de perspectiva define toda a arquitetura de mensagens.</p>
+        </div>
+        <div class="takeaway-card" data-lang="en">
+          <i class="ti ti-hand-stop takeaway-icon" aria-hidden="true"></i>
+          <p class="takeaway-title">Errors are partnership moments</p>
+          <p class="takeaway-desc">The market treats errors as technical exceptions. We treat them as relationship moments. This perspective shift defines the entire message architecture.</p>
+        </div>
+
+        <div class="takeaway-card" data-lang="pt">
+          <i class="ti ti-settings takeaway-icon" aria-hidden="true"></i>
+          <p class="takeaway-title">Guideline como produto, não documento</p>
+          <p class="takeaway-desc">Guidelines precisam ser instrumentadas no processo de criação para ter adoção real. Integrar ao workflow de IA foi o que garantiu uso no dia a dia do time.</p>
+        </div>
+        <div class="takeaway-card" data-lang="en">
+          <i class="ti ti-settings takeaway-icon" aria-hidden="true"></i>
+          <p class="takeaway-title">Guideline as product, not document</p>
+          <p class="takeaway-desc">Guidelines need to be embedded in the creation process to achieve real adoption. Integrating into the AI workflow is what ensured daily team usage.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- DISCLAIMER -->
+  <p class="disclaimer" data-lang="pt">Projeto em fase pré-lançamento. Telas exibidas com fins de portfólio, mantendo confidencialidade sobre informações estratégicas e comerciais.</p>
+  <p class="disclaimer" data-lang="en">Product in pre-launch phase. Screens shared for portfolio purposes, maintaining confidentiality over strategic and commercial information.</p>
+
+</main>
+
+<footer>
+  <span class="footer-name"><strong>Ana Clara</strong> <span style="font-weight:300;">Bianchi</span></span>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/aclarabianchi/" class="footer-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  </div>
+</footer>
+</div>
+
+<button id="back-to-top" class="back-to-top" onclick="scrollToTop()" aria-label="Voltar ao topo">
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+    <path d="M7 13V1M2 6l5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+
+<script>
+  let currentLang = 'pt';
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+    document.body.className = document.body.className.replace(/lang-\w+/g, '').trim() + ' lang-' + lang;
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      const isActive = btn.getAttribute('lang') === lang;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+  }
+
+  function scrollToTop() {
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = document.getElementById('scroll-progress');
+    if (progress) progress.style.width = total > 0 ? (scrollTop / total * 100) + '%' : '0%';
+    const btt = document.getElementById('back-to-top');
+    if (btt) btt.classList.toggle('visible', scrollTop > 300);
+    document.querySelector('nav')?.classList.toggle('scrolled', scrollTop > 20);
+  }, { passive: true });
+
+  window.addEventListener('DOMContentLoaded', () => setLang(currentLang));
+</script>
+
+</body>
+</html>
