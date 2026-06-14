@@ -1112,6 +1112,73 @@
       flex: 1;
     }
 
+    /* Phase sub-titles */
+    .case-phase-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 14px;
+      line-height: 1.25;
+    }
+
+    /* Phase items */
+    .case-phase-item { margin-bottom: 52px; }
+
+    /* Annotation notes */
+    .case-note {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+      padding-left: 4px;
+    }
+    .case-note-marker {
+      color: var(--accent);
+      flex-shrink: 0;
+      font-size: 15px;
+      line-height: 1.75;
+      opacity: 0.7;
+    }
+    .case-note-body p {
+      font-size: 14px !important;
+      font-style: italic;
+      line-height: 1.65 !important;
+    }
+
+    /* Deliverables block */
+    .case-deliverables {
+      margin: 8px 0 56px;
+      padding: 36px 40px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .case-deliverables-label {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+    }
+    .case-deliverables-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px 48px;
+    }
+    .case-deliverable { display: flex; gap: 14px; align-items: start; }
+    .case-deliverable-num {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      flex-shrink: 0;
+      padding-top: 2px;
+      letter-spacing: 0.05em;
+    }
+    .case-deliverable-text {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.55;
+    }
+
     .case-section { margin-bottom: 48px; }
 
     .case-section-label {
@@ -1281,6 +1348,8 @@
       footer { flex-direction: column; gap: 20px; align-items: flex-start; }
       .case-intro-grid { grid-template-columns: 1fr; gap: 40px; }
       .case-hero { aspect-ratio: 16 / 9; }
+      .case-deliverables-grid { grid-template-columns: 1fr; }
+      .case-deliverables { padding: 28px 24px; }
     }
 
     /* ══════════════════════════════════════════
@@ -2392,88 +2461,176 @@
 
     <hr class="divider" />
 
+    <!-- ① FUNDAÇÃO -->
     <div class="case-section">
-      <p class="case-section-label" data-lang="pt">O que fiz</p><p class="case-section-label" data-lang="en">What I did</p>
-      <ul data-lang="pt">
-        <li>Participei do discovery e dos alinhamentos com a Fiserv desde o início, garantindo que as constraints do parceiro fossem incorporadas ao design da experiência</li>
-        <li>Conduzi análise competitiva com foco em arquitetura da informação e linguagem, produzindo um POV estratégico que norteou as decisões do time</li>
-        <li>Tive ownership das três jornadas iniciais do produto no app: request, tracking e activation — co-projetando com os Product Designers</li>
-        <li>Participei de uma Design Sprint com clientes, mapeando o território semântico — como as pessoas descrevem entrega, rastreamento e ativação</li>
-        <li>Criei as primeiras guidelines de conteúdo do POS Nubank: vocabulário controlado, tom de voz, estrutura de mensagens de erro e princípios de narrativa omnichannel</li>
-      </ul>
-      <ul data-lang="en">
-        <li>Participated in discovery and Fiserv alignment sessions from the start, ensuring partner constraints were incorporated into the experience design</li>
-        <li>Conducted a competitive analysis focused on information architecture and language, producing a strategic POV that guided the team's decisions</li>
-        <li>Owned the three initial product journeys in the app: request, tracking, and activation — co-designing with Product Designers</li>
-        <li>Participated in a Design Sprint with customers, mapping semantic territory — how people describe delivery, tracking, and activation</li>
-        <li>Created the first POS Nubank content guidelines: controlled vocabulary, tone of voice, error message structure, and omnichannel narrative principles</li>
-      </ul>
-    </div>
+      <p class="case-section-label" data-lang="pt">Fundação</p>
+      <p class="case-section-label" data-lang="en">Foundation</p>
 
-    <div class="case-images">
-      <figure class="case-figure">
-        <img src="pos-request-marketing.png"
-             alt="Marketing screen da jornada de request do POS Nubank — primeira e segunda dobra com proposta de valor e modelo de mensalidade"
-             loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-        <figcaption data-lang="pt">Marketing screen — primeira dobra autossuficiente para a decisão de continuar. Com drop de até 80% na primeira tela, a hierarquia de informação foi construída para que a proposta de valor seja acessível sem depender do scroll.</figcaption>
-        <figcaption data-lang="en">Marketing screen — first fold self-sufficient for the decision to continue. With drop-off of up to 80% on the first screen, the information hierarchy was built so the value proposition is accessible without scrolling.</figcaption>
-      </figure>
-
-      <div class="case-figures-row">
-        <figure class="case-figure">
-          <img src="pos-request-quantidade.png"
-               alt="Tela de quantidade de maquininhas com modelo de mensalidade e tiers de preço"
-               loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-          <figcaption data-lang="pt">Mensalidade contextualizada no momento da decisão — o modelo de tiers aparece na tela de quantidade, não na primeira dobra. Progressive disclosure como estratégia, não como recurso visual.</figcaption>
-          <figcaption data-lang="en">Monthly fee contextualized at the decision moment — the tier model appears on the quantity screen, not the first fold. Progressive disclosure as strategy, not visual technique.</figcaption>
-        </figure>
-        <figure class="case-figure">
-          <img src="pos-request-horario.png"
-               alt="Tela de horário de entrega com antecipação do conceito de código de entrega"
-               loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-          <figcaption data-lang="pt">Antecipação do código de entrega — o conceito é introduzido na tela de horário, antes da decisão. Na revisão do pedido, quando o toggle aparece, o usuário já conhece o recurso.</figcaption>
-          <figcaption data-lang="en">Delivery code anticipation — the concept is introduced on the time slot screen, before the decision. On the order review screen, when the toggle appears, the user already knows the feature.</figcaption>
+      <div class="case-phase-item">
+        <h3 class="case-phase-title" data-lang="pt">Discovery e alinhamentos com a Fiserv</h3>
+        <h3 class="case-phase-title" data-lang="en">Discovery and Fiserv alignment</h3>
+        <p data-lang="pt">Participei do discovery e dos alinhamentos com a Fiserv desde o início, garantindo que o time entendesse o cenário as is — como a Fiserv opera, seus processos, prazos e linguagem técnica.</p>
+        <p data-lang="en">Participated in discovery and Fiserv alignment sessions from the start, ensuring the team understood the as-is scenario — how Fiserv operates, its processes, timelines, and technical language.</p>
+        <div class="case-note">
+          <span class="case-note-marker">↳</span>
+          <div class="case-note-body">
+            <p data-lang="pt">Todo esse processo levou mais de 3 meses. Envolveu visitas às estações logísticas, workshops liderados por design e Ops, além de inúmeras reuniões.</p>
+            <p data-lang="en">The entire process took over 3 months — visits to logistics stations, design and Ops-led workshops, and countless meetings.</p>
+          </div>
+        </div>
+        <div class="case-note">
+          <span class="case-note-marker">↳</span>
+          <div class="case-note-body">
+            <p data-lang="pt">Meu papel foi entender os principais atores, conceitos e "nós" dos processos atuais e estressá-los junto ao product designer para desenhar a jornada ideal do Nubank. Envolveu bastante jogo de cintura — desafiamos alguns conceitos e procedimentos do parceiro.</p>
+            <p data-lang="en">My role was to understand the key actors, concepts, and bottlenecks in current processes and stress-test them with the product designer to map Nubank's ideal journey. It required flexibility — we challenged some of the partner's concepts and procedures.</p>
+          </div>
+        </div>
+        <figure class="case-figure" style="margin-top:32px;">
+          <img src="POS-workshop.png" alt="Workshop de discovery com time Fiserv e Nubank" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
         </figure>
       </div>
 
-      <div class="case-figures-row">
-        <figure class="case-figure">
-          <img src="pos-request-revisao.png"
-               alt="Tela de revisão do pedido com toggle de código de entrega desligado por padrão"
-               loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-          <figcaption data-lang="pt">Código de entrega como toggle opcional — desligado por padrão ("Qualquer pessoa pode receber"). Segurança para quem quer, sem barreira para quem não precisa.</figcaption>
-          <figcaption data-lang="en">Delivery code as optional toggle — off by default ("Anyone can receive it"). Security for those who want it, no barrier for those who don't.</figcaption>
-        </figure>
-        <figure class="case-figure">
-          <img src="pos-request-confirmacao.png"
-               alt="Tela de confirmação do pedido com tom celebratório e código de entrega em destaque"
-               loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-          <figcaption data-lang="pt">Confirmação com personalização e tom de parceria — "Confirmado, [nome], mais um passo juntos." O código de entrega em destaque com instrução clara e opção de compartilhar.</figcaption>
-          <figcaption data-lang="en">Confirmation with personalization and partnership tone — "Confirmed, [name], one more step together." Delivery code prominently displayed with clear instruction and share option.</figcaption>
+      <div class="case-phase-item">
+        <h3 class="case-phase-title" data-lang="pt">Análise competitiva e POS Narrative</h3>
+        <h3 class="case-phase-title" data-lang="en">Competitive analysis and POS Narrative</h3>
+        <p data-lang="pt">Conduzi análise competitiva com foco em arquitetura da informação e linguagem, produzindo um POV estratégico que norteou as decisões do time. Criei o documento POS Narrative — que contribuiu para as definições estratégicas do produto, foi validado por marketing e guiou os aspectos iniciais do Design System para POS (Hardware).</p>
+        <p data-lang="en">Conducted a competitive analysis focused on information architecture and language, producing a strategic POV that guided the team's decisions. Created the POS Narrative document — which contributed to the product's strategic definitions, was validated by marketing, and guided the initial aspects of the Design System for POS (Hardware).</p>
+        <figure class="case-figure" style="margin-top:32px;">
+          <img src="pos-SEO.png" alt="Análise competitiva de conteúdo e arquitetura da informação" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
         </figure>
       </div>
 
-      <figure class="case-figure">
-        <img src="pos-tracking.png"
-             alt="Fluxo completo de tracking do POS Nubank com happy path e três cenários de exceção"
-             loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-        <figcaption data-lang="pt">Fluxo de tracking — happy path e três cenários de exceção (sem código, endereço errado, EC fechado). Cada exceção desenhada para ser acionável: não apenas informa o problema, orienta o próximo passo. O código de recebimento foi uma hipótese levantada a partir do mapeamento semântico na Design Sprint.</figcaption>
-        <figcaption data-lang="en">Tracking flow — happy path and three exception scenarios (no code, wrong address, closed establishment). Each exception designed to be actionable: not just informing the problem, guiding the next step. The delivery code was a hypothesis raised from semantic mapping in the Design Sprint.</figcaption>
-      </figure>
+      <div class="case-phase-item">
+        <h3 class="case-phase-title" data-lang="pt">ICP e taxonomia</h3>
+        <h3 class="case-phase-title" data-lang="en">ICP and taxonomy</h3>
+        <p data-lang="pt">Criei um documento com o que sabíamos sobre o ICP de POS, consolidando dados internos de PJ e do mercado — em especial o Sebrae — para contribuir com o conhecimento compartilhado pelas squads.</p>
+        <p data-lang="en">Created a document with what we knew about the POS ICP, consolidating internal PJ and market data — especially Sebrae — to contribute to shared knowledge across squads.</p>
+        <div class="case-note">
+          <span class="case-note-marker">↳</span>
+          <div class="case-note-body">
+            <p data-lang="pt">Apresentei esse material e o disponibilizei na IA que usávamos como repositório de conhecimento.</p>
+            <p data-lang="en">I presented this material and made it available in the AI we used as a knowledge repository.</p>
+          </div>
+        </div>
+        <p data-lang="pt" style="margin-top:20px;">Criei junto com Engenharia a taxonomia de POS — que contribuiu para mais clareza nos processos internos e na comunicação com outras squads de PJ, em especial TTP.</p>
+        <p data-lang="en" style="margin-top:20px;">Created the POS taxonomy together with Engineering — contributing to greater clarity in internal processes and communication with other PJ squads, especially TTP.</p>
+      </div>
 
-      <figure class="case-figure">
-        <img src="pos-activation.png"
-             alt="Splash sequence de activation do POS Nubank — Olá, Prazer roxinha, Sua aliada na hora de vender"
-             loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-        <figcaption data-lang="pt">Activation — sequência de primeiro contato com o hardware. O princípio orientador: "você já sabe usar, é igual ao seu app." Tom celebratório, linguagem de parceria, progressão que educa sem infantilizar.</figcaption>
-        <figcaption data-lang="en">Activation — first-contact sequence on the hardware. The guiding principle: "you already know how to use it — it's just like your app." Celebratory tone, partnership language, progression that educates without being condescending.</figcaption>
-      </figure>
+      <div class="case-phase-item">
+        <h3 class="case-phase-title" data-lang="pt">Design Sprint com clientes</h3>
+        <h3 class="case-phase-title" data-lang="en">Customer Design Sprint</h3>
+        <p data-lang="pt">Participei da Design Sprint de Ops com clientes, mapeando o território semântico — como as pessoas descrevem entrega, rastreamento e ativação — e contribuindo para as decisões de abordagem, tom de voz e canais de contato.</p>
+        <p data-lang="en">Participated in the Ops Design Sprint with customers, mapping semantic territory — how people describe delivery, tracking, and activation — and contributing to decisions on approach, tone of voice, and contact channels.</p>
+        <figure class="case-figure" style="margin-top:32px;">
+          <img src="pos-findmymaquininha-design-sprint.png" alt="Design Sprint com clientes — mapeamento semântico de entrega e rastreamento" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+        </figure>
+      </div>
     </div>
 
+    <hr class="divider" />
+
+    <!-- ② JORNADAS -->
     <div class="case-section">
-      <p class="case-section-label" data-lang="pt">Guidelines de conteúdo</p><p class="case-section-label" data-lang="en">Content guidelines</p>
+      <p class="case-section-label" data-lang="pt">Jornadas</p>
+      <p class="case-section-label" data-lang="en">Journeys</p>
+
+      <div class="case-phase-item">
+        <h3 class="case-phase-title" data-lang="pt">Request</h3>
+        <h3 class="case-phase-title" data-lang="en">Request</h3>
+        <p data-lang="pt">Tive ownership da jornada de request — co-projetando com o product designer. O foco estava em reduzir fricção no happy path e construir uma comunicação que preparasse o merchant para as etapas seguintes.</p>
+        <p data-lang="en">Owned the request journey — co-designing with the product designer. The focus was on reducing friction in the happy path and building communication that prepared the merchant for the next stages.</p>
+        <figure class="case-figure" style="margin-top:32px;">
+          <img src="pos-request-marketing.png" alt="Marketing screen da jornada de request do POS Nubank" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Marketing screen — primeira dobra autossuficiente para a decisão de continuar. Com drop de até 80% na primeira tela, a hierarquia foi construída para que a proposta de valor seja acessível sem depender do scroll.</figcaption>
+          <figcaption data-lang="en">Marketing screen — first fold self-sufficient for the decision to continue. With drop-off of up to 80% on the first screen, the hierarchy was built so the value proposition is accessible without scrolling.</figcaption>
+        </figure>
+        <div class="case-figures-row">
+          <figure class="case-figure">
+            <img src="pos-request-quantidade.png" alt="Tela de quantidade" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+            <figcaption data-lang="pt">Mensalidade contextualizada no momento da decisão. Progressive disclosure como estratégia, não como recurso visual.</figcaption>
+            <figcaption data-lang="en">Monthly fee contextualized at the decision moment. Progressive disclosure as strategy, not visual technique.</figcaption>
+          </figure>
+          <figure class="case-figure">
+            <img src="pos-request-horario.png" alt="Tela de horário de entrega" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+            <figcaption data-lang="pt">Antecipação do código de entrega — o conceito é introduzido antes da decisão.</figcaption>
+            <figcaption data-lang="en">Delivery code anticipation — the concept is introduced before the decision.</figcaption>
+          </figure>
+        </div>
+        <div class="case-figures-row">
+          <figure class="case-figure">
+            <img src="pos-request-revisao.png" alt="Tela de revisão" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+            <figcaption data-lang="pt">Código de entrega como toggle opcional — desligado por padrão.</figcaption>
+            <figcaption data-lang="en">Delivery code as optional toggle — off by default.</figcaption>
+          </figure>
+          <figure class="case-figure">
+            <img src="pos-request-confirmacao.png" alt="Tela de confirmação" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+            <figcaption data-lang="pt">Confirmação com personalização e tom de parceria.</figcaption>
+            <figcaption data-lang="en">Confirmation with personalization and partnership tone.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="case-phase-item">
+        <h3 class="case-phase-title" data-lang="pt">Tracking</h3>
+        <h3 class="case-phase-title" data-lang="en">Tracking</h3>
+        <p data-lang="pt">Tive ownership da jornada de tracking — a mais crítica do ponto de vista operacional. Cada exceção foi desenhada para ser acionável: não apenas informa o problema, orienta o próximo passo.</p>
+        <p data-lang="en">Owned the tracking journey — the most critical from an operational standpoint. Each exception was designed to be actionable: not just informing the problem, but guiding the next step.</p>
+        <figure class="case-figure" style="margin-top:32px;">
+          <img src="pos-tracking.png" alt="Fluxo completo de tracking com happy path e cenários de exceção" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Happy path e três cenários de exceção — sem código, endereço errado, EC fechado. O código de recebimento foi uma hipótese levantada a partir do mapeamento semântico na Design Sprint.</figcaption>
+          <figcaption data-lang="en">Happy path and three exception scenarios — no code, wrong address, closed establishment. The delivery code was a hypothesis raised from semantic mapping in the Design Sprint.</figcaption>
+        </figure>
+      </div>
+
+      <div class="case-phase-item">
+        <h3 class="case-phase-title" data-lang="pt">Activation</h3>
+        <h3 class="case-phase-title" data-lang="en">Activation</h3>
+        <p data-lang="pt">Tive ownership da jornada de activation — primeiro contato do merchant com o hardware. O princípio orientador: "você já sabe usar, é igual ao seu app."</p>
+        <p data-lang="en">Owned the activation journey — the merchant's first contact with the hardware. The guiding principle: "you already know how to use it — it's just like your app."</p>
+        <figure class="case-figure" style="margin-top:32px;">
+          <img src="pos-activation.png" alt="Sequência de activation do POS Nubank" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Tom celebratório, linguagem de parceria, progressão que educa sem infantilizar.</figcaption>
+          <figcaption data-lang="en">Celebratory tone, partnership language, progression that educates without being condescending.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ③ GUIDELINES -->
+    <div class="case-section">
+      <p class="case-section-label" data-lang="pt">Guidelines de conteúdo</p>
+      <p class="case-section-label" data-lang="en">Content guidelines</p>
       <p data-lang="pt">Com múltiplos times trabalhando em paralelo e a tensão constante entre a linguagem da Fiserv e a linguagem da marca Nubank, criei as primeiras guidelines de conteúdo do POS como entregável formal — cobrindo vocabulário controlado, tom de voz por momento da jornada, estrutura de mensagens de erro e princípios de narrativa omnichannel. Documentadas no Figma, Confluence e integradas ao workflow de IA do time para garantir adoção no processo de criação.</p>
       <p data-lang="en">With multiple teams working in parallel and the constant tension between Fiserv's language and Nubank's brand language, I created the first POS content guidelines as a formal deliverable — covering controlled vocabulary, tone of voice per journey moment, error message structure, and omnichannel narrative principles. Documented in Figma, Confluence, and integrated into the team's AI workflow to ensure adoption in the creation process.</p>
+    </div>
+
+    <!-- ARTEFATOS -->
+    <div class="case-deliverables">
+      <p class="case-deliverables-label" data-lang="pt">4 artefatos entregues</p>
+      <p class="case-deliverables-label" data-lang="en">4 deliverables</p>
+      <div class="case-deliverables-grid">
+        <div class="case-deliverable">
+          <span class="case-deliverable-num">01</span>
+          <span class="case-deliverable-text" data-lang="pt">Jornada E2E do pedido de máquina até a ativação</span>
+          <span class="case-deliverable-text" data-lang="en">E2E journey from terminal request to activation</span>
+        </div>
+        <div class="case-deliverable">
+          <span class="case-deliverable-num">02</span>
+          <span class="case-deliverable-text" data-lang="pt">Fluxos em tela e protótipo das jornadas de request, tracking e activation</span>
+          <span class="case-deliverable-text" data-lang="en">Screen flows and prototype for the request, tracking, and activation journeys</span>
+        </div>
+        <div class="case-deliverable">
+          <span class="case-deliverable-num">03</span>
+          <span class="case-deliverable-text" data-lang="pt">Comunicações transacionais mapeadas e criadas</span>
+          <span class="case-deliverable-text" data-lang="en">Transactional communications mapped and created</span>
+        </div>
+        <div class="case-deliverable">
+          <span class="case-deliverable-num">04</span>
+          <span class="case-deliverable-text" data-lang="pt">Guidelines de conteúdo do produto</span>
+          <span class="case-deliverable-text" data-lang="en">Product content guidelines</span>
+        </div>
+      </div>
     </div>
 
     <div class="result-block" role="region" aria-label="Resultado principal">
