@@ -541,6 +541,19 @@
       border-radius: 12px;
       overflow: hidden;
       background: var(--bg-card);
+      /* reset button */
+      display: block;
+      width: 100%;
+      padding: 0;
+      font: inherit;
+      color: inherit;
+      text-align: left;
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .featured-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
     }
 
     .featured-visual {
@@ -935,6 +948,123 @@
     /* ══════════════════════════════════════════
        BACK TO TOP
     ══════════════════════════════════════════ */
+
+    /* ── In-page TOC ──────────────────────────────────── */
+    .case-toc {
+      position: fixed;
+      top: 50%;
+      right: max(20px, calc((100vw - 820px) / 2 - 196px));
+      transform: translateY(-50%);
+      width: 160px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+      z-index: 20;
+    }
+    .case-toc.toc-visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    @media (max-width: 1200px) {
+      .case-toc { display: none; }
+    }
+    .case-toc-label {
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .case-toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .case-toc-link {
+      display: block;
+      font-size: 12px;
+      line-height: 1.5;
+      padding: 5px 0 5px 10px;
+      color: var(--text-muted);
+      text-decoration: none;
+      border-left: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .case-toc-link:hover {
+      color: var(--text);
+    }
+    .case-toc-link.toc-active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* ── Case "Veja também" ───────────────────────────── */
+    .case-next {
+      margin-top: 80px;
+      padding-top: 48px;
+      border-top: 1px solid var(--border);
+    }
+    .case-next-label {
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      display: block;
+    }
+    .case-next-card {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 28px 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .case-next-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    .case-next-company {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .case-next-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .case-next-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .case-next-arrow {
+      font-size: 20px;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      margin-top: 4px;
+      transition: transform 0.2s, color 0.2s;
+    }
+    .case-next-card:hover .case-next-arrow {
+      transform: translateX(4px);
+      color: var(--accent);
+    }
+
     .back-to-top {
       position: fixed;
       bottom: 32px;
@@ -1096,6 +1226,7 @@
       border-bottom: 1px solid var(--border);
       align-items: start;
     }
+    .case-meta-row:last-child { border-bottom: none; }
     .case-meta-key {
       font-size: 9px;
       letter-spacing: 0.16em;
@@ -1109,6 +1240,113 @@
       color: var(--text);
       line-height: 1.55;
       flex: 1;
+    }
+
+    /* Numbered delivery phases (chargeback + other cases) */
+    .case-phase-block { margin-top: 48px; }
+    .case-phase-block + .case-phase-block { margin-top: 52px; }
+    .case-phase-header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+    .case-phase-num { font-size: 11px; letter-spacing: 0.12em; color: var(--text-muted); flex-shrink: 0; font-variant-numeric: tabular-nums; }
+    .case-phase-rule { flex: 1; height: 1px; background: var(--border); }
+    .case-phase-name { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 20px; }
+    .case-phase-block .case-figure { margin-top: 24px; }
+    .case-phase-block .case-figures-row { margin-top: 24px; }
+
+    /* Insight / strategic callout */
+    .case-callout { margin-top: 48px; padding: 32px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; }
+    .case-callout-label { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 16px; }
+    .case-callout p { margin-top: 0; }
+    .case-callout p + p { margin-top: 12px; }
+
+    /* Phase sub-titles */
+    .case-phase-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 14px;
+      line-height: 1.25;
+    }
+
+    /* Phase items */
+    .case-phase-item { margin-bottom: 52px; }
+
+    /* Annotation notes */
+    .case-note {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+      padding-left: 4px;
+    }
+    .case-note-marker {
+      color: var(--accent);
+      flex-shrink: 0;
+      font-size: 15px;
+      line-height: 1.75;
+      opacity: 0.7;
+    }
+    .case-note-body p {
+      font-size: 14px !important;
+      font-style: italic;
+      line-height: 1.65 !important;
+    }
+
+    /* Design decision callout */
+    .case-decision {
+      margin-top: 24px;
+      padding: 22px 26px;
+      background: var(--tag-bg);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .case-decision + .case-decision { margin-top: 12px; }
+    .case-decision-label {
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: block;
+    }
+    .case-decision p {
+      font-size: 14px !important;
+      line-height: 1.7 !important;
+      color: var(--text) !important;
+    }
+    .case-decision p + p { margin-top: 10px; }
+
+    /* Deliverables block */
+    .case-deliverables {
+      margin: 8px 0 56px;
+      padding: 36px 40px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .case-deliverables-label {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+    }
+    .case-deliverables-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px 48px;
+    }
+    .case-deliverable { display: flex; gap: 14px; align-items: start; }
+    .case-deliverable-num {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      flex-shrink: 0;
+      padding-top: 2px;
+      letter-spacing: 0.05em;
+    }
+    .case-deliverable-text {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.55;
     }
 
     .case-section { margin-bottom: 48px; }
@@ -1221,6 +1459,12 @@
       grid-template-columns: 1fr 1fr;
       gap: 24px;
     }
+    .case-figures-row-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .case-phase-block .case-figures-row-3 { margin-top: 24px; }
 
     .case-figure {
       margin: 0;
@@ -1280,6 +1524,9 @@
       footer { flex-direction: column; gap: 20px; align-items: flex-start; }
       .case-intro-grid { grid-template-columns: 1fr; gap: 40px; }
       .case-hero { aspect-ratio: 16 / 9; }
+      .case-deliverables-grid { grid-template-columns: 1fr; }
+      .case-deliverables { padding: 28px 24px; }
+      .case-figures-row-3 { grid-template-columns: 1fr; }
     }
 
     /* ══════════════════════════════════════════
@@ -1381,6 +1628,55 @@
 
     @media (prefers-reduced-motion: reduce) {
       .lightbox-img { animation: none; }
+    }
+
+    /* ── Lightbox zoom ───────────────────────────────── */
+    .lightbox-img.zoomed {
+      max-width: none;
+      max-height: none;
+    }
+    .lightbox.zoomed-active { cursor: grab; }
+    .lightbox.zoomed-active:active { cursor: grabbing; }
+    .lightbox-zoom-controls {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: none;
+      align-items: center;
+      background: rgba(18,18,18,0.78);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 999px;
+      padding: 4px;
+      z-index: 1001;
+      gap: 0;
+    }
+    .lightbox.open .lightbox-zoom-controls { display: flex; }
+    .lightbox-zoom-btn {
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: transparent;
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: background 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .lightbox-zoom-btn:hover { background: rgba(255,255,255,0.15); }
+    .lightbox-zoom-btn:disabled { opacity: 0.3; cursor: default; }
+    .lightbox-zoom-level {
+      font-size: 12px;
+      color: rgba(255,255,255,0.8);
+      min-width: 46px;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.02em;
     }
 
     /* ══════════════════════════════════════════
@@ -1603,7 +1899,7 @@
     <section class="home-section" aria-label="Case em destaque">
       <p class="home-section-label" data-lang="pt">Destaque</p>
       <p class="home-section-label" data-lang="en">Featured</p>
-      <div class="featured-card">
+      <button class="featured-card" onclick="showCase('pos')" aria-label="Ver case: POS Nubank">
         <div class="featured-visual" aria-hidden="true">
           <img src="pos-ai-mockup.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;" />
         </div>
@@ -1619,10 +1915,10 @@
               <span class="ftag">Hardware</span>
               <span class="ftag">Guidelines</span>
             </div>
-            <button class="featured-cta" onclick="showCase('pos')">
+            <span class="featured-cta" aria-hidden="true">
               <span data-lang="pt">Ver case</span><span data-lang="en">View case</span>
               <i class="ti ti-arrow-right" aria-hidden="true"></i>
-            </button>
+            </span>
           </div>
           <div class="featured-metric">
             <span class="featured-metric-value">3</span>
@@ -1630,7 +1926,7 @@
             <span class="featured-metric-label" data-lang="en">complete journeys</span>
           </div>
         </div>
-      </div>
+      </button>
     </section>
 
     <!-- GRID 2x2 -->
@@ -1879,8 +2175,12 @@
     </div>
   </nav>
   <main class="case-content fade-up">
+
+    <div class="case-hero">
+      <img src="chargeback-mapeamento-analise.png" alt="Chargeback Revamp — mapeamento da jornada de contestação no Nubank PJ" loading="eager" decoding="async" />
+    </div>
+
     <div class="case-header">
-      <p class="case-company">Nubank PJ · 2025</p>
       <h1 class="case-title">Chargeback Revamp</h1>
       <div class="case-tags">
         <span class="tag" data-lang="pt">Estratégia de conteúdo</span><span class="tag" data-lang="en">Content strategy</span>
@@ -1889,84 +2189,226 @@
         <span class="tag">Cross-squad</span>
       </div>
     </div>
-    <div class="case-section">
+
+    <div class="case-intro-grid">
+      <div class="case-intro-text">
+        <p data-lang="pt">No Nubank PJ, as contestações de vendas cresciam na mesma velocidade que o negócio — 2,3 mil casos por mês, 85% tratados manualmente, com o cliente completamente no escuro. O projeto Chargeback Revamp nasceu para transformar uma operação crítica e invisível em uma experiência que gera confiança: menos tickets, mais clareza, e conteúdo como solução estrutural.</p>
+        <p data-lang="en">At Nubank PJ, sales disputes were growing as fast as the business — 2,300 cases per month, 85% handled manually, with customers completely in the dark. The Chargeback Revamp project was born to turn a critical, invisible operation into a trust-building experience: fewer tickets, more clarity, and content as a structural solution.</p>
+      </div>
+      <div class="case-meta">
+        <div class="case-meta-row">
+          <span class="case-meta-key" data-lang="pt">Empresa</span>
+          <span class="case-meta-key" data-lang="en">Company</span>
+          <span class="case-meta-value">Nubank</span>
+        </div>
+        <div class="case-meta-row">
+          <span class="case-meta-key" data-lang="pt">Período</span>
+          <span class="case-meta-key" data-lang="en">Period</span>
+          <span class="case-meta-value">2025</span>
+        </div>
+        <div class="case-meta-row">
+          <span class="case-meta-key" data-lang="pt">Papel</span>
+          <span class="case-meta-key" data-lang="en">Role</span>
+          <span class="case-meta-value">Senior Product Design</span>
+        </div>
+        <div class="case-meta-row">
+          <span class="case-meta-key" data-lang="pt">Escopo</span>
+          <span class="case-meta-key" data-lang="en">Scope</span>
+          <span class="case-meta-value" data-lang="pt">Content strategy, comunicações transacionais, guidelines de linguagem, UI copy, interação e handoff com engenharia</span>
+          <span class="case-meta-value" data-lang="en">Content strategy, transactional communications, language guidelines, UI copy, interaction design and engineering handoff</span>
+        </div>
+        <div class="case-meta-row">
+          <span class="case-meta-key" data-lang="pt">Colaboradores</span>
+          <span class="case-meta-key" data-lang="en">Collaborators</span>
+          <span class="case-meta-value" data-lang="pt">Product designer, PM, times de Payments PJ, operações e Product Ops</span>
+          <span class="case-meta-value" data-lang="en">Product designer, PM, Payments PJ, operations and Product Ops teams</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <div class="case-section" id="chargeback-contexto">
       <p class="case-section-label" data-lang="pt">Contexto</p><p class="case-section-label" data-lang="en">Context</p>
       <p data-lang="pt">O volume de contestações de vendas no Nubank PJ crescia na mesma proporção que o negócio — chegando a <strong>2,3 mil casos por mês</strong>. O processo era manual (85% dos casos exigiam acompanhamento humano), fragmentado entre múltiplas equipes, e deixava o cliente no escuro sobre o que estava acontecendo com seu dinheiro.</p>
       <p data-lang="en">The volume of sales disputes at Nubank PJ was growing at the same pace as the business — reaching <strong>2,300 cases per month</strong>. The process was manual (85% of cases required human follow-up), fragmented across multiple teams, and left customers in the dark about what was happening to their money.</p>
+      <div class="case-figures-row">
+        <figure class="case-figure">
+          <img src="chargeback-overview.png"
+               alt="Documento explicativo — o que é uma contestação de venda no Nubank PJ"
+               loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">O domínio: o que é uma contestação e como ela funciona no ecossistema PJ.</figcaption>
+          <figcaption data-lang="en">The domain: what a chargeback is and how it works in the PJ ecosystem.</figcaption>
+        </figure>
+        <figure class="case-figure">
+          <img src="chargeback-101.png"
+               alt="Chargeback 101 — mecânica do processo de contestação de venda no Nubank PJ"
+               loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">A mecânica: como o processo de contestação funcionava — e onde ele quebrava.</figcaption>
+          <figcaption data-lang="en">The mechanics: how the dispute process worked — and where it broke down.</figcaption>
+        </figure>
+      </div>
     </div>
     <hr class="divider" />
-    <div class="case-section">
+    <div class="case-section" id="chargeback-problema">
       <p class="case-section-label" data-lang="pt">Problema</p><p class="case-section-label" data-lang="en">Problem</p>
       <p data-lang="pt">O tNPS das contestações estava em <strong>-2,17%</strong> — muito abaixo da meta de 70 para PJ — e cerca de 40% dos vendedores afetados entravam em contato com o suporte com uma mesma dúvida: "Cadê meu dinheiro?". A causa raiz era um apagão de dados no meio do processo: a informação existia, mas não estava integrada nem acessível onde era necessária.</p>
       <p data-lang="en">The chargeback tNPS stood at <strong>-2.17%</strong> — well below PJ's target of 70 — and around 40% of affected merchants contacted support with the same question: "Where's my money?" The root cause was a data blackout in the middle of the process: the information existed, but wasn't integrated or accessible where needed.</p>
     </div>
     <hr class="divider" />
-    <div class="case-section">
+    <div class="case-section" id="chargeback-fiz">
       <p class="case-section-label" data-lang="pt">O que fiz</p><p class="case-section-label" data-lang="en">What I did</p>
-      <ul data-lang="pt">
-        <li>Mapeei a jornada completa da contestação e identifiquei os pontos críticos de atrito por meio de análise de dados de atendimento e desk research</li>
-        <li>Defini a content strategy do fluxo, unificando terminologias e criando diretrizes de tom de voz específicas para comunicações de alta fricção</li>
-        <li>Redesenhei as comunicações transacionais e criei guidelines para material de treinamento dos agentes internos, aplicando os princípios "jogamos no mesmo time" e "clareza gera confiança" — aprovados com Marketing</li>
-        <li>Conduzi sessões de alinhamento com designers, PMs e times de Payments PJ e operações</li>
-        <li>Criei guidelines de linguagem e integrei Gemini Gems para criação e auditoria de conteúdo de operações — FAQ, macros e e-mails</li>
-        <li>Propus nova régua de comunicação para contestações PJ, ampliando as iterações para uma proposta mais alinhada com as necessidades do cliente PJ</li>
-        <li>Em parceria com Product Ops, estudei proposta para organizar e usar dados internos como suporte à UX (proposta do Shuffle de contestação)</li>
-      </ul>
-      <ul data-lang="en">
-        <li>Mapped the full chargeback journey and identified critical friction points through support data analysis and desk research</li>
-        <li>Defined the content strategy, unifying terminology and creating tone-of-voice guidelines specific to high-friction communications</li>
-        <li>Redesigned transactional communications and created guidelines for internal agent training, applying "we're on the same team" and "clarity builds trust" principles — approved with Marketing</li>
-        <li>Led alignment sessions with designers, PMs, and Payments PJ and operations teams</li>
-        <li>Created language guidelines and integrated Gemini Gems for operations content creation and auditing — FAQs, macros, and emails</li>
-        <li>Proposed a new communication ruleset for PJ chargebacks, expanding iterations toward a solution more aligned with PJ customer needs</li>
-        <li>In partnership with Product Ops, studied a proposal to organize and leverage internal data to support UX (the Shuffle chargeback proposal)</li>
-      </ul>
-    </div>
 
-    <div class="case-images">
-      <figure class="case-figure">
-        <img src="chargeback-mapeamento-analise.png"
-             alt="Mapeamento e análise da jornada de contestação no Nubank PJ, com identificação dos pontos de atrito e apagão de dados"
-             loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-        <figcaption data-lang="pt">Mapeamento da jornada de contestação — pontos de atrito, volume de contatos de suporte e gaps de informação identificados.</figcaption>
-        <figcaption data-lang="en">Chargeback journey mapping — friction points, support contact volume, and information gaps identified.</figcaption>
-      </figure>
-      <div class="case-figures-row">
+      <p data-lang="pt">O projeto tinha duas frentes: uma de processo, análise e risco — liderada pelo time de produto, operações e fraude — e outra de experiência, que era a minha. Atuei como designer responsável pelo projeto com duplo chapéu: content design e product design. Dado o escopo, o tempo e os recursos de engenharia disponíveis (projeto cross-BU de PJ), precisamos priorizar desde o início — e foi assim que estruturei as entregas em fatias.</p>
+      <p data-lang="en">The project had two fronts: one focused on process, analysis, and risk — led by the product, operations, and fraud teams — and another focused on experience, which was mine. I acted as the designer responsible for the project wearing two hats: content design and product design. Given the scope, timeline, and available engineering resources (a cross-BU PJ project), we had to prioritize from day one — and that's how I structured deliveries into slices.</p>
+
+      <!-- Phase 01 -->
+      <div class="case-phase-block">
+        <div class="case-phase-header">
+          <span class="case-phase-num">01</span>
+          <span class="case-phase-rule"></span>
+        </div>
+        <span class="case-phase-name" data-lang="pt">Frente 1 — Low hanging fruits</span>
+        <span class="case-phase-name" data-lang="en">Front 1 — Low hanging fruits</span>
+
+        <p data-lang="pt">Enquanto mapeávamos o tamanho do problema, atuei nos pontos de melhoria imediata: auditei todos os conteúdos e pontos de contato com CX, ajustei o processo e a jornada interna de atendimento, e redesenhei as comunicações transacionais. Essas mudanças foram ao ar antes de qualquer entrega estrutural de produto.</p>
+        <p data-lang="en">While we were still sizing the problem, I tackled immediate improvement areas: audited all content and CX touchpoints, adjusted the internal support process and journey, and redesigned the transactional communications. These changes went live before any structural product delivery.</p>
+
         <figure class="case-figure">
-          <img src="Content Design _ chargeback.png"
-               alt="Artefatos de Content Design para o projeto Chargeback Revamp no Nubank PJ"
+          <img src="chargeback-mapeamento-analise.png"
+               alt="Mapeamento e análise da jornada de contestação no Nubank PJ, com identificação dos pontos de atrito e apagão de dados"
                loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-          <figcaption data-lang="pt">Artefatos de Content Design — terminologias unificadas, diretrizes de tom de voz e guidelines de linguagem.</figcaption>
-          <figcaption data-lang="en">Content Design artifacts — unified terminology, tone-of-voice guidelines, and language guidelines.</figcaption>
+          <figcaption data-lang="pt">Mapeamento da jornada de contestação — pontos de atrito, volume de contatos de suporte e gaps de informação identificados.</figcaption>
+          <figcaption data-lang="en">Chargeback journey mapping — friction points, support contact volume, and information gaps identified.</figcaption>
         </figure>
+
+        <div class="case-figures-row">
+          <figure class="case-figure">
+            <img src="Content Design _ chargeback.png"
+                 alt="Artefatos de Content Design para o projeto Chargeback Revamp no Nubank PJ"
+                 loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+            <figcaption data-lang="pt">Terminologias unificadas, diretrizes de tom de voz e guidelines de linguagem.</figcaption>
+            <figcaption data-lang="en">Unified terminology, tone-of-voice guidelines, and language guidelines.</figcaption>
+          </figure>
+          <figure class="case-figure">
+            <img src="contestacao-mapa.webp"
+                 alt="Nova régua de comunicação proposta para contestações PJ no Nubank"
+                 loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+            <figcaption data-lang="pt">Nova régua de comunicação para contestações PJ — iterações ampliadas para cobrir toda a jornada do cliente.</figcaption>
+            <figcaption data-lang="en">New communication ruleset for PJ disputes — expanded iterations covering the full customer journey.</figcaption>
+          </figure>
+        </div>
+
         <figure class="case-figure">
-          <img src="contestacao-mapa.webp"
-               alt="Nova régua de comunicação proposta para contestações PJ no Nubank"
+          <img src="chargeback-example-comms.png"
+               alt="Antes e depois das comunicações de contestação redesenhadas"
                loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-          <figcaption data-lang="pt">Nova régua de comunicação para contestações PJ — iterações ampliadas para maior alinhamento com as necessidades do cliente.</figcaption>
-          <figcaption data-lang="en">New communication ruleset for PJ disputes — expanded iterations to better align with customer needs.</figcaption>
+          <figcaption data-lang="pt">Quando o conteúdo guia e prepara — redesign das comunicações com foco em clareza, redução de atrito e protagonismo do usuário.</figcaption>
+          <figcaption data-lang="en">When content guides and prepares — communications redesigned around clarity, friction reduction, and user empowerment.</figcaption>
         </figure>
       </div>
-      <figure class="case-figure">
-        <img src="chargeback-example-comms.png"
-             alt="Antes e depois das comunicações de contestação de venda redesenhadas — conteúdo como guia para o sucesso da pessoa usuária"
-             loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-        <figcaption data-lang="pt">Quando o conteúdo guia e prepara — redesign das comunicações de contestação com foco em clareza, redução de atrito e protagonismo do usuário.</figcaption>
-        <figcaption data-lang="en">When content guides and prepares — chargeback communications redesigned around clarity, friction reduction, and user empowerment.</figcaption>
-      </figure>
-      <figure class="case-figure">
-        <img src="contestacao-chargeback.png"
-             alt="Fluxo da primeira entrega sugerida para o projeto Chargeback Revamp, com diagrama de processo e prototipagem"
-             loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-        <figcaption data-lang="pt">Primeira entrega sugerida — fluxo de processo e prototipagem da solução de visibilidade de dados para o cliente PJ.</figcaption>
-        <figcaption data-lang="en">First suggested delivery — process flow and prototyping of the data visibility solution for PJ customers.</figcaption>
-      </figure>
+
+      <!-- Phase 02 -->
+      <div class="case-phase-block">
+        <div class="case-phase-header">
+          <span class="case-phase-num">02</span>
+          <span class="case-phase-rule"></span>
+        </div>
+        <span class="case-phase-name" data-lang="pt">Frente 2 — Experiência do agente interno</span>
+        <span class="case-phase-name" data-lang="en">Front 2 — Internal agent experience</span>
+
+        <p data-lang="pt">A premissa que defendi com o time foi: não dá para desenhar a experiência do usuário sem resolver primeiro a do agente interno. As informações existiam nos nossos sistemas e nas consultas de API dos parceiros — mas não estavam organizadas nem acessíveis para quem atendia. O agente que lidava com <em>money in/money out</em> não era o mesmo com treinamento profundo em chargeback, e quem resolvia o problema de sumiço de dinheiro ficava completamente no escuro.</p>
+        <p data-lang="en">The premise I defended with the team was: you can't design the user experience without first solving the internal agent experience. The information existed in our systems and partner API queries — but it wasn't organized or accessible to the people handling support. The agent managing money in/money out wasn't the same one with deep chargeback training, and whoever was solving the "missing money" problem was operating completely in the dark.</p>
+
+        <ul data-lang="pt">
+          <li><strong>Primeira entrega: visibilidade.</strong> O maior motivo de contato dos usuários PJ não era o chargeback em si — era o sumiço do dinheiro, uma consequência do processo que ninguém via. Desenhei a primeira notificação que dava visibilidade de que algo estava acontecendo no perfil do cliente, trabalhando com os componentes existentes no sistema interno do Nubank (Shuffle).</li>
+          <li><strong>Segunda entrega: consolidação no Shuffle.</strong> Mapeei junto ao CX e aos parceiros todas as informações necessárias para tratar uma contestação. Conduzi duas sessões de workshop e uma de critique com agentes da BPO e do próprio Nubank — para validar se havíamos mapeado tudo e se as nomenclaturas escolhidas faziam sentido para quem usaria a ferramenta. Depois, criei a primeira visualização que consolidava todas essas informações em uma única tela no Shuffle.</li>
+        </ul>
+        <ul data-lang="en">
+          <li><strong>First delivery: visibility.</strong> The biggest driver of PJ user contacts wasn't the chargeback itself — it was the disappearing money, a consequence of the process that no one could see. I designed the first notification giving visibility that something was happening on the client's profile, working with existing components in Nubank's internal system (Shuffle).</li>
+          <li><strong>Second delivery: Shuffle consolidation.</strong> I mapped with CX and partners all the information needed to handle a dispute. I ran two workshop sessions and one critique session with BPO and internal Nubank agents — to validate whether we'd mapped everything and whether the chosen nomenclature made sense to the people who'd actually use it. I then created the first visualization consolidating all that information into a single Shuffle screen.</li>
+        </ul>
+
+        <figure class="case-figure">
+          <img src="contestacao-chargeback.png"
+               alt="Fluxo da primeira entrega — solução de visibilidade para o cliente PJ"
+               loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Primeira entrega: o fluxo de visibilidade — notificação e rastreio do chargeback para o cliente PJ.</figcaption>
+          <figcaption data-lang="en">First delivery: the visibility flow — chargeback notification and tracking for PJ customers.</figcaption>
+        </figure>
+
+        <figure class="case-figure">
+          <img src="chageback-evolucao.png"
+               alt="Evolução do design do Shuffle — Tab contestações, Tab Situação da empresa e Estado vazio"
+               loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Segunda entrega: a evolução do Shuffle — três estados do painel interno de gestão de contestações.</figcaption>
+          <figcaption data-lang="en">Second delivery: the Shuffle evolution — three states of the internal chargeback management panel.</figcaption>
+        </figure>
+
+        <figure class="case-figure">
+          <img src="chargeback-overview-campos-shuffle/Untitled-1.png"
+               alt="Anatomia anotada do painel de detalhe do Shuffle — seções de informação sobre a contestação, a transação e o débito"
+               loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Anatomia do painel de detalhe: cada seção responde a uma pergunta diferente do agente interno — o que aconteceu, em qual transação, o que estamos fazendo, e de onde saiu o dinheiro.</figcaption>
+          <figcaption data-lang="en">Detail panel anatomy: each section answers a different question for the internal agent — what happened, in which transaction, what we're doing, and where the money came from.</figcaption>
+        </figure>
+
+        <div class="case-figures-row-3">
+          <figure class="case-figure">
+            <img src="chargeback-detalhes-dos-campos/Untitled.png"
+                 alt="Filtro de Status — nomenclatura das contestações validada nos workshops com agentes internos"
+                 loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+            <figcaption data-lang="pt">Filtro Status — os estados do ciclo de vida de uma contestação, com nomenclatura validada nos workshops com agentes da BPO e do Nubank.</figcaption>
+            <figcaption data-lang="en">Status filter — chargeback lifecycle states, with nomenclature validated in workshops with BPO and Nubank agents.</figcaption>
+          </figure>
+          <figure class="case-figure">
+            <img src="chargeback-detalhes-dos-campos/Untitled-1.png"
+                 alt="Filtro de Produto — tipos de produto cobertos pela gestão de contestações no Shuffle"
+                 loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+            <figcaption data-lang="pt">Filtro Produto — cobertura de todos os produtos PJ: Maquininha, Tap to Pay, Link de Pagamento, Boleto, Pix Cobrança.</figcaption>
+            <figcaption data-lang="en">Product filter — coverage across all PJ products: Card machine, Tap to Pay, Payment link, Boleto, Pix Cobrança.</figcaption>
+          </figure>
+          <figure class="case-figure">
+            <img src="chargeback-detalhes-dos-campos/Untitled-2.png"
+                 alt="Filtro de Período — opções de janela temporal para análise de contestações no Shuffle"
+                 loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+            <figcaption data-lang="pt">Filtro Período — janelas temporais configuráveis, incluindo período personalizado para análise histórica.</figcaption>
+            <figcaption data-lang="en">Period filter — configurable time windows, including custom range for historical analysis.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- Callout: A aposta -->
+      <div class="case-callout">
+        <span class="case-callout-label" data-lang="pt">A aposta que defendi</span>
+        <span class="case-callout-label" data-lang="en">The bet I defended</span>
+        <p data-lang="pt">Como designer, defendi uma premissa: esse é um dos momentos mais difíceis na vida de um PJ — e muitas microempresas (perfil dominante no Nubank PJ naquele momento) sequer sabem o que é um chargeback. Em vez de simplesmente cobrar o valor devido, como é prática de mercado, propus que, se passasse pelos critérios de risco e negócio, o Nubank arcasse com o primeiro chargeback de um usuário valioso. Não há demonstração de confiança mais concreta do que essa. E havia um argumento de negócio real: naquele momento, o Nubank já absorvia boa parte dos chargebacks de qualquer forma — sem processos nem esforço estruturado para recuperação. A proposta era transformar um custo invisível em um gesto intencional de parceria.</p>
+        <p data-lang="en">As a designer, I defended a premise: this is one of the hardest moments in a PJ user's life — and many microenterprises (the dominant profile in Nubank PJ at the time) don't even know what a chargeback is. Instead of simply charging the amount due, as is standard market practice, I proposed that — if it passed risk and business criteria — Nubank should absorb the first chargeback for a valuable user. There's no more concrete demonstration of trust than that. And there was a real business argument: at that point, Nubank was already absorbing a large share of chargebacks anyway — without structured processes or effort toward recovery. The proposal was to turn an invisible cost into an intentional act of partnership.</p>
+      </div>
     </div>
 
     <div class="result-block" role="region" aria-label="Resultado principal">
       <div class="result-number" aria-label="Resultado: mais 92 por cento">+92%</div>
       <p class="result-text" data-lang="pt">engajamento nas comunicações — taxa de resposta de 13,55% → 26,07% apenas com mudança de conteúdo, implicando em −42% de tickets de atendimento</p>
       <p class="result-text" data-lang="en">communications engagement — response rate from 13.55% → 26.07% through content changes alone, resulting in −42% in support tickets</p>
+    </div>
+
+    <!-- Veja também -->
+    <div class="case-next">
+      <span class="case-next-label" data-lang="pt">Veja também</span>
+      <span class="case-next-label" data-lang="en">See also</span>
+      <button class="case-next-card" onclick="showCase('ttp')" aria-label="Ver case Tap to Pay: Error Flow">
+        <div>
+          <p class="case-next-company">Nubank PJ · 2025</p>
+          <p class="case-next-title">Tap to Pay: Error Flow</p>
+          <div class="case-next-tags">
+            <span class="tag">UX Copy</span>
+            <span class="tag" data-lang="pt">Dados</span><span class="tag" data-lang="en">Data</span>
+            <span class="tag">Pairing</span>
+          </div>
+        </div>
+        <span class="case-next-arrow" aria-hidden="true">→</span>
+      </button>
     </div>
   </main>
 </div>
@@ -1982,8 +2424,12 @@
     </div>
   </nav>
   <main class="case-content fade-up">
+
+    <div class="case-hero">
+      <img src="Growth Content Metrics - Q3 2023.gif" alt="Growth Content Metrics Q3 2023 — evolução da iniciativa de métricas de Content Design no Nubank" loading="eager" decoding="async" />
+    </div>
+
     <div class="case-header">
-      <p class="case-company">Nubank Seguros · CoE · 2023</p>
       <h1 class="case-title">Content Metrics</h1>
       <div class="case-tags">
         <span class="tag" data-lang="pt">Liderança de iniciativa</span><span class="tag" data-lang="en">Initiative leadership</span>
@@ -1992,19 +2438,58 @@
         <span class="tag" data-lang="pt">Cross-empresa</span><span class="tag" data-lang="en">Company-wide</span>
       </div>
     </div>
-    <div class="case-section">
+
+    <div class="case-intro-grid">
+      <div class="case-intro-text">
+        <p data-lang="pt">Conteúdo sem métrica é conteúdo sem voz dentro do negócio. Liderei a criação de um processo sistemático de mensuração do impacto de Content Design na BU de Seguros do Nubank — conectando dados qualitativos de experiência com métricas de produto. O piloto virou referência e integrou o UX Metrics Playbook oficial do Nubank.</p>
+        <p data-lang="en">Content without metrics has no voice in the business. I led the creation of a systematic process to measure Content Design impact within Nubank's Insurance BU — connecting qualitative experience data with product metrics. The pilot became a reference and contributed to Nubank's official UX Metrics Playbook.</p>
+      </div>
+      <div class="case-meta">
+        <div class="case-meta-row">
+          <span class="case-meta-key" data-lang="pt">Empresa</span>
+          <span class="case-meta-key" data-lang="en">Company</span>
+          <span class="case-meta-value">Nubank Seguros · CoE</span>
+        </div>
+        <div class="case-meta-row">
+          <span class="case-meta-key" data-lang="pt">Período</span>
+          <span class="case-meta-key" data-lang="en">Period</span>
+          <span class="case-meta-value">2023</span>
+        </div>
+        <div class="case-meta-row">
+          <span class="case-meta-key" data-lang="pt">Papel</span>
+          <span class="case-meta-key" data-lang="en">Role</span>
+          <span class="case-meta-value">Senior Content Design</span>
+        </div>
+        <div class="case-meta-row">
+          <span class="case-meta-key" data-lang="pt">Escopo</span>
+          <span class="case-meta-key" data-lang="en">Scope</span>
+          <span class="case-meta-value" data-lang="pt">Framework de métricas, piloto com Life Insurance e co-criação do UX Metrics Playbook</span>
+          <span class="case-meta-value" data-lang="en">Metrics framework, Life Insurance pilot and co-creation of the UX Metrics Playbook</span>
+        </div>
+        <div class="case-meta-row">
+          <span class="case-meta-key" data-lang="pt">Colaboradores</span>
+          <span class="case-meta-key" data-lang="en">Collaborators</span>
+          <span class="case-meta-value" data-lang="pt">Time de UXR, lideranças de produto e design, 8 especialistas do CoE cross-empresa</span>
+          <span class="case-meta-value" data-lang="en">UXR team, product and design leadership, 8 cross-company CoE specialists</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <div class="case-section" id="metrics-contexto">
       <p class="case-section-label" data-lang="pt">Contexto</p><p class="case-section-label" data-lang="en">Context</p>
       <p data-lang="pt">Conteúdo sem métrica e acionável claro é conteúdo sem voz dentro do negócio. Liderei uma iniciativa para criar um processo sistemático de mensuração de impacto de Content Design dentro da BU de Seguros do Nubank — conectando dados qualitativos de experiência com métricas de produto.</p>
       <p data-lang="en">Content without clear, actionable metrics has no voice in the business. I led an initiative to create a systematic process for measuring Content Design impact within Nubank's Insurance BU — connecting qualitative experience data with product metrics.</p>
     </div>
     <hr class="divider" />
-    <div class="case-section">
+    <div class="case-section" id="metrics-problema">
       <p class="case-section-label" data-lang="pt">Problema</p><p class="case-section-label" data-lang="en">Problem</p>
       <p data-lang="pt">As decisões de conteúdo eram tomadas sem base em dados de experiência do usuário. Não havia processo para medir se o conteúdo estava gerando confiança, engajamento ou entendimento do produto — pilares dos nossos produtos. Isso minava o impacto de CD nas discussões estratégicas do negócio.</p>
       <p data-lang="en">Content decisions were made without user experience data. There was no process to measure whether content was building trust, driving engagement, or enabling product understanding — all core pillars of our products. This undermined CD's impact in strategic business discussions.</p>
     </div>
     <hr class="divider" />
-    <div class="case-section">
+    <div class="case-section" id="metrics-fiz">
       <p class="case-section-label" data-lang="pt">O que fiz</p><p class="case-section-label" data-lang="en">What I did</p>
       <ul data-lang="pt">
         <li>Adaptei o Heart Framework para criar objetivos de mensuração conectados às metas da BU</li>
@@ -2083,6 +2568,23 @@
       <p class="result-text" data-lang="pt">conversão na variante testada a partir das prioridades do Content Metrics; piloto integrou playbook adotado como padrão institucional de métricas de UX no Nubank</p>
       <p class="result-text" data-lang="en">conversion on the Content Metrics-prioritized tested variant; pilot contributed to the playbook adopted as Nubank's institutional standard for UX metrics</p>
     </div>
+
+    <!-- Veja também -->
+    <div class="case-next">
+      <span class="case-next-label" data-lang="pt">Veja também</span>
+      <span class="case-next-label" data-lang="en">See also</span>
+      <button class="case-next-card" onclick="showCase('merenda')" aria-label="Ver case Merenda em Casa">
+        <div>
+          <p class="case-next-company">PicPay · 2020</p>
+          <p class="case-next-title">Merenda em Casa</p>
+          <div class="case-next-tags">
+            <span class="tag" data-lang="pt">Comunicação de crise</span><span class="tag" data-lang="en">Crisis communication</span>
+            <span class="tag" data-lang="pt">Impacto social</span><span class="tag" data-lang="en">Social impact</span>
+          </div>
+        </div>
+        <span class="case-next-arrow" aria-hidden="true">→</span>
+      </button>
+    </div>
   </main>
 </div>
 
@@ -2097,8 +2599,12 @@
     </div>
   </nav>
   <main class="case-content fade-up">
+
+    <div class="case-hero">
+      <img src="TTP-error.png" alt="Tap to Pay Error Flow — redesign dos estados de erro com resultado de +53% na taxa de sucesso" loading="eager" decoding="async" />
+    </div>
+
     <div class="case-header">
-      <p class="case-company">Nubank PJ · 2025</p>
       <h1 class="case-title">Tap to Pay: Error Flow</h1>
       <div class="case-tags">
         <span class="tag">UX Copy</span>
@@ -2106,19 +2612,58 @@
         <span class="tag" data-lang="pt">Iteração</span><span class="tag" data-lang="en">Iteration</span>
       </div>
     </div>
-    <div class="case-section">
+
+    <div class="case-intro-grid">
+      <div class="case-intro-text">
+        <p data-lang="pt">O Tap to Pay é o produto de pagamentos presenciais do Nubank para PMEs. Com taxa de sucesso inicial de apenas 11%, a experiência de erro era um gargalo crítico — e os dados mostravam que a maioria das pessoas simplesmente desistia. Trabalhei em pairing com a product designer para redesenhar a UX copy de cada estado de erro, em duas iterações, até atingir resultado estatisticamente relevante.</p>
+        <p data-lang="en">Tap to Pay is Nubank's in-person payment product for SMEs. With an initial success rate of just 11%, the error experience was a critical bottleneck — and data showed most people simply gave up. I worked in pairing with the product designer to redesign UX copy for each error state, across two iterations, until reaching a statistically relevant result.</p>
+      </div>
+      <div class="case-meta">
+        <div class="case-meta-row">
+          <span class="case-meta-key" data-lang="pt">Empresa</span>
+          <span class="case-meta-key" data-lang="en">Company</span>
+          <span class="case-meta-value">Nubank</span>
+        </div>
+        <div class="case-meta-row">
+          <span class="case-meta-key" data-lang="pt">Período</span>
+          <span class="case-meta-key" data-lang="en">Period</span>
+          <span class="case-meta-value">2025</span>
+        </div>
+        <div class="case-meta-row">
+          <span class="case-meta-key" data-lang="pt">Papel</span>
+          <span class="case-meta-key" data-lang="en">Role</span>
+          <span class="case-meta-value">Senior Content Design</span>
+        </div>
+        <div class="case-meta-row">
+          <span class="case-meta-key" data-lang="pt">Escopo</span>
+          <span class="case-meta-key" data-lang="en">Scope</span>
+          <span class="case-meta-value" data-lang="pt">Redesign de UX copy dos estados de erro — duas rodadas de iteração</span>
+          <span class="case-meta-value" data-lang="en">UX copy redesign for error states — two rounds of iteration</span>
+        </div>
+        <div class="case-meta-row">
+          <span class="case-meta-key" data-lang="pt">Colaboradores</span>
+          <span class="case-meta-key" data-lang="en">Collaborators</span>
+          <span class="case-meta-value" data-lang="pt">Product designer, engenharia</span>
+          <span class="case-meta-value" data-lang="en">Product designer, engineering</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <div class="case-section" id="ttp-contexto">
       <p class="case-section-label" data-lang="pt">Contexto</p><p class="case-section-label" data-lang="en">Context</p>
       <p data-lang="pt">O Tap to Pay é o produto de pagamentos presenciais do Nubank para pequenos e médios empreendedores. A experiência de erro era um gargalo crítico: a taxa de sucesso inicial era de apenas <strong>11%</strong>, gerando atrito, abandono e contatos de suporte.</p>
       <p data-lang="en">Tap to Pay is Nubank's in-person payment product for small and medium merchants. The error experience was a critical bottleneck: the initial success rate was just <strong>11%</strong>, generating friction, abandonment, and support contacts.</p>
     </div>
     <hr class="divider" />
-    <div class="case-section">
+    <div class="case-section" id="ttp-problema">
       <p class="case-section-label" data-lang="pt">Problema</p><p class="case-section-label" data-lang="en">Problem</p>
       <p data-lang="pt">A UX copy das mensagens de erro não comunicava com clareza o que havia falhado nem o que o usuário deveria fazer. Os dados de interação mostravam que a maioria das pessoas abandonava o fluxo ao encontrar um erro, sem tentar novamente.</p>
       <p data-lang="en">The UX copy in error messages failed to clearly communicate what had gone wrong or what the user should do next. Interaction data showed that most people abandoned the flow upon hitting an error, without retrying.</p>
     </div>
     <hr class="divider" />
-    <div class="case-section">
+    <div class="case-section" id="ttp-fiz">
       <p class="case-section-label" data-lang="pt">O que fiz</p><p class="case-section-label" data-lang="en">What I did</p>
       <ul data-lang="pt">
         <li>Analisei dados de interação para identificar os erros mais frequentes e seus padrões de abandono</li>
@@ -2149,6 +2694,24 @@
       <p class="result-text" data-lang="pt">taxa de sucesso — de 11% para 17%, em duas iterações de conteúdo</p>
       <p class="result-text" data-lang="en">success rate — from 11% to 17%, across two content iterations</p>
     </div>
+
+    <!-- Veja também -->
+    <div class="case-next">
+      <span class="case-next-label" data-lang="pt">Veja também</span>
+      <span class="case-next-label" data-lang="en">See also</span>
+      <button class="case-next-card" onclick="showCase('ia')" aria-label="Ver case Content Guide com IA">
+        <div>
+          <p class="case-next-company">Nubank PJ · 2025</p>
+          <p class="case-next-title" data-lang="pt">Content Guide com IA</p>
+          <p class="case-next-title" data-lang="en">AI-Powered Content Guide</p>
+          <div class="case-next-tags">
+            <span class="tag" data-lang="pt">IA generativa</span><span class="tag" data-lang="en">Generative AI</span>
+            <span class="tag" data-lang="pt">Ferramental</span><span class="tag" data-lang="en">Tooling</span>
+          </div>
+        </div>
+        <span class="case-next-arrow" aria-hidden="true">→</span>
+      </button>
+    </div>
   </main>
 </div>
 
@@ -2163,8 +2726,8 @@
     </div>
   </nav>
   <main class="case-content fade-up">
+
     <div class="case-header">
-      <p class="case-company">Nubank PJ · 2025</p>
       <h1 class="case-title" data-lang="pt">Content Guide com IA</h1>
       <h1 class="case-title" data-lang="en">AI-Powered Content Guide</h1>
       <div class="case-tags">
@@ -2173,19 +2736,58 @@
         <span class="tag" data-lang="pt">Governança</span><span class="tag" data-lang="en">Governance</span>
       </div>
     </div>
-    <div class="case-section">
+
+    <div class="case-intro-grid">
+      <div class="case-intro-text">
+        <p data-lang="pt">Com um time de Content Design distribuído entre múltiplos squads, garantir consistência de narrativa e qualidade de copy em escala era um desafio operacional real. Liderei a criação de um Content Guide com IA — uma Gem treinada nos princípios, glossário e tom de voz do produto — que reduziu o tempo de validação de dias para minutos e alcançou 84% de adesão nos primeiros 30 dias.</p>
+        <p data-lang="en">With a Content Design team distributed across multiple squads, ensuring narrative consistency and copy quality at scale was a real operational challenge. I led the creation of an AI-powered Content Guide — a Gem trained on the product's principles, glossary, and tone of voice — that cut validation time from days to minutes and reached 84% adoption in the first 30 days.</p>
+      </div>
+      <div class="case-meta">
+        <div class="case-meta-row">
+          <span class="case-meta-key" data-lang="pt">Empresa</span>
+          <span class="case-meta-key" data-lang="en">Company</span>
+          <span class="case-meta-value">Nubank</span>
+        </div>
+        <div class="case-meta-row">
+          <span class="case-meta-key" data-lang="pt">Período</span>
+          <span class="case-meta-key" data-lang="en">Period</span>
+          <span class="case-meta-value">2025</span>
+        </div>
+        <div class="case-meta-row">
+          <span class="case-meta-key" data-lang="pt">Papel</span>
+          <span class="case-meta-key" data-lang="en">Role</span>
+          <span class="case-meta-value">Senior Content Design</span>
+        </div>
+        <div class="case-meta-row">
+          <span class="case-meta-key" data-lang="pt">Escopo</span>
+          <span class="case-meta-key" data-lang="en">Scope</span>
+          <span class="case-meta-value" data-lang="pt">POC, treinamento da Gem, evangelização e rollout para o chapter</span>
+          <span class="case-meta-value" data-lang="en">POC, Gem training, evangelization and chapter rollout</span>
+        </div>
+        <div class="case-meta-row">
+          <span class="case-meta-key" data-lang="pt">Colaboradores</span>
+          <span class="case-meta-key" data-lang="en">Collaborators</span>
+          <span class="case-meta-value" data-lang="pt">Chapter de Content Design PJ, workstream de excelência em design</span>
+          <span class="case-meta-value" data-lang="en">PJ Content Design chapter, design excellence workstream</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <div class="case-section" id="ia-contexto">
       <p class="case-section-label" data-lang="pt">Contexto</p><p class="case-section-label" data-lang="en">Context</p>
       <p data-lang="pt">Com um time de Content Design distribuído entre múltiplos squads em PJ, garantir consistência de narrativa e qualidade de copy em escala era um desafio operacional real. Liderei o pack de AI dentro da workstream de excelência em design cross-PJ para criar uma solução escalável.</p>
       <p data-lang="en">With a Content Design team distributed across multiple squads in PJ, ensuring narrative consistency and copy quality at scale was a real operational challenge. I led the AI pack within the cross-PJ design excellence workstream to create a scalable solution.</p>
     </div>
     <hr class="divider" />
-    <div class="case-section">
+    <div class="case-section" id="ia-problema">
       <p class="case-section-label" data-lang="pt">Problema</p><p class="case-section-label" data-lang="en">Problem</p>
       <p data-lang="pt">O tempo gasto para validar narrativa e copy em cada tela era alto e o processo dependia de revisão manual. Sem um mecanismo de escala, a consistência de marca ficava comprometida à medida que o time crescia.</p>
       <p data-lang="en">The time spent validating narrative and copy for each screen was high, and the process depended on manual review. Without a scaling mechanism, brand consistency was at risk as the team grew.</p>
     </div>
     <hr class="divider" />
-    <div class="case-section">
+    <div class="case-section" id="ia-fiz">
       <p class="case-section-label" data-lang="pt">O que fiz</p><p class="case-section-label" data-lang="en">What I did</p>
       <ul data-lang="pt">
         <li>Estruturei o processo e os artefatos da POC do Content Guide powered by IA</li>
@@ -2215,6 +2817,24 @@
       <p class="result-text" data-lang="pt">redução estimada no tempo de validação de copy (de dias para minutos); 84% de adesão dos designers nos primeiros 30 dias</p>
       <p class="result-text" data-lang="en">estimated reduction in copy validation time (from days to minutes); 84% designer adoption in the first 30 days</p>
     </div>
+
+    <!-- Veja também -->
+    <div class="case-next">
+      <span class="case-next-label" data-lang="pt">Veja também</span>
+      <span class="case-next-label" data-lang="en">See also</span>
+      <button class="case-next-card" onclick="showCase('metrics')" aria-label="Ver case Content Metrics">
+        <div>
+          <p class="case-next-company">Nubank Seguros · CoE · 2023</p>
+          <p class="case-next-title">Content Metrics</p>
+          <div class="case-next-tags">
+            <span class="tag" data-lang="pt">Liderança de iniciativa</span><span class="tag" data-lang="en">Initiative leadership</span>
+            <span class="tag">UX Metrics</span>
+            <span class="tag">Heart Framework</span>
+          </div>
+        </div>
+        <span class="case-next-arrow" aria-hidden="true">→</span>
+      </button>
+    </div>
   </main>
 </div>
 
@@ -2229,8 +2849,12 @@
     </div>
   </nav>
   <main class="case-content fade-up">
+
+    <div class="case-hero">
+      <img src="merenda-contexto.png" alt="Site do governo de SP com campanha Merenda em Casa" loading="eager" decoding="async" />
+    </div>
+
     <div class="case-header">
-      <p class="case-company">PicPay · 2020</p>
       <h1 class="case-title">Merenda em Casa</h1>
       <div class="case-tags">
         <span class="tag" data-lang="pt">Comunicação de crise</span><span class="tag" data-lang="en">Crisis communication</span>
@@ -2239,19 +2863,58 @@
         <span class="tag">War Room</span>
       </div>
     </div>
-    <div class="case-section">
+
+    <div class="case-intro-grid">
+      <div class="case-intro-text">
+        <p data-lang="pt">Em 2020, o governo de SP lançou o Merenda em Casa para substituir a merenda escolar durante a pandemia — e o PicPay foi escolhido como plataforma de pagamento. O desafio: onboar milhares de famílias de baixa renda e diretores de escola em tempo recorde, com suporte explodindo e zero material de apoio adequado. Atuei no War Room criando a estratégia de autoatendimento e os materiais que reduziram o volume de contatos e chegaram a 920 mil alunos beneficiados.</p>
+        <p data-lang="en">In 2020, the São Paulo state government launched Merenda em Casa to replace school meals during the pandemic — and PicPay was chosen as the payment platform. The challenge: onboard thousands of low-income families and school principals in record time, with support volume exploding and zero adequate guidance material. I worked in the War Room to build the self-service strategy and materials that reduced contact volume and reached 920,000 student beneficiaries.</p>
+      </div>
+      <div class="case-meta">
+        <div class="case-meta-row">
+          <span class="case-meta-key" data-lang="pt">Empresa</span>
+          <span class="case-meta-key" data-lang="en">Company</span>
+          <span class="case-meta-value">PicPay</span>
+        </div>
+        <div class="case-meta-row">
+          <span class="case-meta-key" data-lang="pt">Período</span>
+          <span class="case-meta-key" data-lang="en">Period</span>
+          <span class="case-meta-value">2020</span>
+        </div>
+        <div class="case-meta-row">
+          <span class="case-meta-key" data-lang="pt">Papel</span>
+          <span class="case-meta-key" data-lang="en">Role</span>
+          <span class="case-meta-value">Content Designer</span>
+        </div>
+        <div class="case-meta-row">
+          <span class="case-meta-key" data-lang="pt">Escopo</span>
+          <span class="case-meta-key" data-lang="en">Scope</span>
+          <span class="case-meta-value" data-lang="pt">Autoatendimento e material de apoio para o Merenda em Casa</span>
+          <span class="case-meta-value" data-lang="en">Self-service flows and support materials for Merenda em Casa</span>
+        </div>
+        <div class="case-meta-row">
+          <span class="case-meta-key" data-lang="pt">Colaboradores</span>
+          <span class="case-meta-key" data-lang="en">Collaborators</span>
+          <span class="case-meta-value" data-lang="pt">Time de produto, design e liderança em War Room</span>
+          <span class="case-meta-value" data-lang="en">Product, design and leadership team in War Room</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <div class="case-section" id="merenda-contexto">
       <p class="case-section-label" data-lang="pt">Contexto</p><p class="case-section-label" data-lang="en">Context</p>
       <p data-lang="pt">No início de 2020, o governo do estado de SP lançou o programa Merenda em Casa para famílias de alunos da rede pública. O PicPay foi escolhido como plataforma de pagamento — e precisava onboar <strong>milhares de usuários de baixa renda</strong> e diretores de escola em tempo recorde, em meio a uma crise de saúde pública.</p>
       <p data-lang="en">In early 2020, the São Paulo state government launched the Merenda em Casa program for public school families. PicPay was chosen as the payment platform — and needed to onboard <strong>thousands of low-income users</strong> and school principals in record time, amid a public health crisis.</p>
     </div>
     <hr class="divider" />
-    <div class="case-section">
+    <div class="case-section" id="merenda-problema">
       <p class="case-section-label" data-lang="pt">Problema</p><p class="case-section-label" data-lang="en">Problem</p>
       <p data-lang="pt">O volume de contatos com o suporte explodiu: pessoas com direito ao benefício, mas que não tinham feito o cadastro corretamente, entravam em contato com dúvidas — e escolas estavam sendo acionadas pelas famílias para ajudá-las a criar conta e usar o app. Não havia autoatendimento eficiente nem material de apoio adequado para esses públicos.</p>
       <p data-lang="en">Support contact volume exploded: people entitled to the benefit but who hadn't registered correctly were reaching out with questions — and schools were being contacted by families for help creating accounts and using the app. There was no efficient self-service or adequate support materials for these audiences.</p>
     </div>
     <hr class="divider" />
-    <div class="case-section">
+    <div class="case-section" id="merenda-fiz">
       <p class="case-section-label" data-lang="pt">O que fiz</p><p class="case-section-label" data-lang="en">What I did</p>
       <ul data-lang="pt">
         <li>Conduzi desk research com análise de dados do atendimento e categorização nas plataformas internas</li>
@@ -2270,15 +2933,6 @@
     </div>
 
     <div class="case-images">
-      <figure class="case-figure">
-        <img src="merenda-contexto.png"
-             alt="Site do governo de SP com campanha Merenda em Casa para 920 mil alunos"
-             loading="lazy"
-             decoding="async"
-             onload="this.classList.add('loaded')" />
-        <figcaption data-lang="pt">O contexto: o site oficial do governo de SP comunicava o programa, mas o fluxo de cadastro gerava dúvidas em massa.</figcaption>
-        <figcaption data-lang="en">The context: the SP government's official website communicated the program, but the registration flow generated a flood of questions.</figcaption>
-      </figure>
       <div class="case-figures-row">
         <figure class="case-figure">
           <img src="merenda-contexo-2.png"
@@ -2315,6 +2969,24 @@
       <p class="result-text" data-lang="pt">redução nos contatos de suporte relacionados ao programa</p>
       <p class="result-text" data-lang="en">reduction in program-related support contacts</p>
     </div>
+
+    <!-- Veja também -->
+    <div class="case-next">
+      <span class="case-next-label" data-lang="pt">Veja também</span>
+      <span class="case-next-label" data-lang="en">See also</span>
+      <button class="case-next-card" onclick="showCase('pos')" aria-label="Ver case POS Nubank">
+        <div>
+          <p class="case-next-company">Nubank PJ · 2024</p>
+          <p class="case-next-title">POS Nubank</p>
+          <div class="case-next-tags">
+            <span class="tag" data-lang="pt">Estratégia de conteúdo</span><span class="tag" data-lang="en">Content strategy</span>
+            <span class="tag" data-lang="pt">Arquitetura de informação</span><span class="tag" data-lang="en">Information architecture</span>
+            <span class="tag">End-to-end</span>
+          </div>
+        </div>
+        <span class="case-next-arrow" aria-hidden="true">→</span>
+      </button>
+    </div>
   </main>
 </div>
 
@@ -2347,8 +3019,8 @@
 
     <div class="case-intro-grid">
       <div class="case-intro-text">
-        <p data-lang="pt">O mercado brasileiro de maquininhas é um dos mais disputados do setor financeiro. Mercado Pago, Stone, Ton, InfinitePay e Itaú já ocupam posições consolidadas. Para o Nubank, o POS representava também um território inédito: o primeiro produto físico da empresa — sem histórico em logística de hardware, com operação dependente de um parceiro externo (Fiserv) e seus próprios processos, prazos e linguagem técnica.</p>
-        <p data-lang="en">The Brazilian POS terminal market is one of the most competitive in the financial sector. Mercado Pago, Stone, Ton, InfinitePay, and Itaú already hold consolidated positions. For Nubank, the POS also represented uncharted territory: the company's first physical product — with no history in hardware logistics, and operations dependent on an external partner (Fiserv) with its own processes, timelines, and technical language.</p>
+        <p data-lang="pt">Para crescer junto às empresas PJ o Nubank entendeu que precisava se consolidar no varejo. E, no Brasil, em 2025, era impensável falar em varejo sem uma estratégia que envolvesse POS. A partir dos aprendizados com TTP (Tap to Pay) e detentora de um economics agressivo, a BU de PJ teve o sinal verde para começar a estruturar o produto de maquininha, previsto para lançamento para o público em 2027.</p>
+        <p data-lang="en">To grow alongside PJ businesses, Nubank understood it needed to establish itself in retail. And in Brazil, in 2025, talking about retail without a POS strategy was unthinkable. Building on the learnings from TTP (Tap to Pay) and with aggressive unit economics, the PJ business unit got the green light to start structuring the POS product, slated for public launch in 2027.</p>
       </div>
       <div class="case-meta">
         <div class="case-meta-row">
@@ -2383,116 +3055,380 @@
 
     <hr class="divider" />
 
-    <div class="case-section">
+    <div class="case-section" id="pos-problema">
       <p class="case-section-label" data-lang="pt">Problema</p><p class="case-section-label" data-lang="en">Problem</p>
-      <p data-lang="pt">Uma análise dos principais competidores — Bin, Clover, InfinitePay, Mercado Pago, Itaú e Ton — revelou um antipadrão universal: <strong>comunicação funcional no happy path, comunicação vaga e não acionável nos momentos de erro</strong>. No contexto do POS Nubank, cada falha de comunicação na jornada de entrega tinha custo operacional direto: reentrega, ticket de suporte, máquina parada. A North Star do squad era explícita — medir o percentual de merchants que completam a jornada sem contatar o CX. Conteúdo mal feito não seria apenas uma questão de voz de marca. Seria um problema de custo.</p>
-      <p data-lang="en">An analysis of the main competitors — Bin, Clover, InfinitePay, Mercado Pago, Itaú, and Ton — revealed a universal anti-pattern: <strong>functional communication in the happy path, vague and non-actionable communication at moments of error</strong>. In the POS Nubank context, every communication failure in the delivery journey had a direct operational cost: re-delivery, support ticket, idle terminal. The squad's North Star was explicit — measuring the percentage of merchants who complete the journey without contacting CX. Poor content wasn't just a brand voice issue. It was a cost problem.</p>
+      <p data-lang="pt">Para ser competitivo em um cenário dominado por players como Itaú, Mercado Pago e Stone, o Nubank lançou mão de duas estratégias centrais: definição do ICP e taxa e condições agressivas para esse público. Isso significava que UX ganhou mais uma responsabilidade: além de trazer o "fator Nubank" (amigável e simples de usar), precisava <strong>reduzir ao máximo os erros, em especial no momento de pedido de máquina e tracking</strong>, para que isso não se traduzisse em custo operacional, que poderia colocar em xeque toda a estratégia do produto.</p>
+      <p data-lang="en">To compete in a landscape dominated by players like Itaú, Mercado Pago, and Stone, Nubank relied on two core strategies: ICP definition and aggressive rates and conditions for that audience. This meant UX took on one more responsibility: beyond delivering the "Nubank factor" (friendly and simple to use), it needed to <strong>minimize errors as much as possible — especially during terminal request and tracking</strong> — to prevent them from translating into operational costs that could undermine the entire product strategy.</p>
     </div>
 
     <hr class="divider" />
 
-    <div class="case-section">
-      <p class="case-section-label" data-lang="pt">O que fiz</p><p class="case-section-label" data-lang="en">What I did</p>
-      <ul data-lang="pt">
-        <li>Participei do discovery e dos alinhamentos com a Fiserv desde o início, garantindo que as constraints do parceiro fossem incorporadas ao design da experiência</li>
-        <li>Conduzi análise competitiva com foco em arquitetura da informação e linguagem, produzindo um POV estratégico que norteou as decisões do time</li>
-        <li>Tive ownership das três jornadas iniciais do produto no app: request, tracking e activation — co-projetando com os Product Designers</li>
-        <li>Participei de uma Design Sprint com clientes, mapeando o território semântico — como as pessoas descrevem entrega, rastreamento e ativação</li>
-        <li>Criei as primeiras guidelines de conteúdo do POS Nubank: vocabulário controlado, tom de voz, estrutura de mensagens de erro e princípios de narrativa omnichannel</li>
-      </ul>
-      <ul data-lang="en">
-        <li>Participated in discovery and Fiserv alignment sessions from the start, ensuring partner constraints were incorporated into the experience design</li>
-        <li>Conducted a competitive analysis focused on information architecture and language, producing a strategic POV that guided the team's decisions</li>
-        <li>Owned the three initial product journeys in the app: request, tracking, and activation — co-designing with Product Designers</li>
-        <li>Participated in a Design Sprint with customers, mapping semantic territory — how people describe delivery, tracking, and activation</li>
-        <li>Created the first POS Nubank content guidelines: controlled vocabulary, tone of voice, error message structure, and omnichannel narrative principles</li>
-      </ul>
-    </div>
+    <!-- ① FUNDAÇÃO -->
+    <div class="case-section" id="pos-fundacao">
+      <p class="case-section-label" data-lang="pt">Fundação</p>
+      <p class="case-section-label" data-lang="en">Foundation</p>
 
-    <div class="case-images">
-      <figure class="case-figure">
-        <img src="pos-request-marketing.png"
-             alt="Marketing screen da jornada de request do POS Nubank — primeira e segunda dobra com proposta de valor e modelo de mensalidade"
-             loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-        <figcaption data-lang="pt">Marketing screen — primeira dobra autossuficiente para a decisão de continuar. Com drop de até 80% na primeira tela, a hierarquia de informação foi construída para que a proposta de valor seja acessível sem depender do scroll.</figcaption>
-        <figcaption data-lang="en">Marketing screen — first fold self-sufficient for the decision to continue. With drop-off of up to 80% on the first screen, the information hierarchy was built so the value proposition is accessible without scrolling.</figcaption>
-      </figure>
+      <div class="case-phase-item">
+        <h3 class="case-phase-title" data-lang="pt">Discovery e alinhamentos com a Fiserv</h3>
+        <h3 class="case-phase-title" data-lang="en">Discovery and Fiserv alignment</h3>
+        <p data-lang="pt">Participei do discovery e dos alinhamentos com a Fiserv desde o início, garantindo que o time entendesse o cenário as is — como a Fiserv opera, seus processos, prazos e linguagem técnica.</p>
+        <p data-lang="en">Participated in discovery and Fiserv alignment sessions from the start, ensuring the team understood the as-is scenario — how Fiserv operates, its processes, timelines, and technical language.</p>
+        <div class="case-note">
+          <span class="case-note-marker">↳</span>
+          <div class="case-note-body">
+            <p data-lang="pt">Todo esse processo levou mais de 3 meses. Envolveu visitas às estações logísticas, workshops liderados por design e Ops, além de inúmeras reuniões.</p>
+            <p data-lang="en">The entire process took over 3 months — visits to logistics stations, design and Ops-led workshops, and countless meetings.</p>
+          </div>
+        </div>
+        <div class="case-note">
+          <span class="case-note-marker">↳</span>
+          <div class="case-note-body">
+            <p data-lang="pt">Meu papel foi entender os principais atores, conceitos e "nós" dos processos atuais e estressá-los junto ao product designer para desenhar a jornada ideal do Nubank. Envolveu bastante jogo de cintura — desafiamos alguns conceitos e procedimentos do parceiro.</p>
+            <p data-lang="en">My role was to understand the key actors, concepts, and bottlenecks in current processes and stress-test them with the product designer to map Nubank's ideal journey. It required flexibility — we challenged some of the partner's concepts and procedures.</p>
+          </div>
+        </div>
+      </div>
 
-      <div class="case-figures-row">
-        <figure class="case-figure">
-          <img src="pos-request-quantidade.png"
-               alt="Tela de quantidade de maquininhas com modelo de mensalidade e tiers de preço"
-               loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-          <figcaption data-lang="pt">Mensalidade contextualizada no momento da decisão — o modelo de tiers aparece na tela de quantidade, não na primeira dobra. Progressive disclosure como estratégia, não como recurso visual.</figcaption>
-          <figcaption data-lang="en">Monthly fee contextualized at the decision moment — the tier model appears on the quantity screen, not the first fold. Progressive disclosure as strategy, not visual technique.</figcaption>
-        </figure>
-        <figure class="case-figure">
-          <img src="pos-request-horario.png"
-               alt="Tela de horário de entrega com antecipação do conceito de código de entrega"
-               loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-          <figcaption data-lang="pt">Antecipação do código de entrega — o conceito é introduzido na tela de horário, antes da decisão. Na revisão do pedido, quando o toggle aparece, o usuário já conhece o recurso.</figcaption>
-          <figcaption data-lang="en">Delivery code anticipation — the concept is introduced on the time slot screen, before the decision. On the order review screen, when the toggle appears, the user already knows the feature.</figcaption>
+      <div class="case-phase-item">
+        <h3 class="case-phase-title" data-lang="pt">Análise competitiva e POS Narrative</h3>
+        <h3 class="case-phase-title" data-lang="en">Competitive analysis and POS Narrative</h3>
+        <p data-lang="pt">Conduzi análise competitiva com foco em arquitetura da informação e linguagem, produzindo um POV estratégico que norteou as decisões do time. Criei o documento POS Narrative — que contribuiu para as definições estratégicas do produto, foi validado por marketing e guiou os aspectos iniciais do Design System para POS (Hardware).</p>
+        <p data-lang="en">Conducted a competitive analysis focused on information architecture and language, producing a strategic POV that guided the team's decisions. Created the POS Narrative document — which contributed to the product's strategic definitions, was validated by marketing, and guided the initial aspects of the Design System for POS (Hardware).</p>
+      </div>
+
+      <div class="case-phase-item">
+        <h3 class="case-phase-title" data-lang="pt">ICP e taxonomia</h3>
+        <h3 class="case-phase-title" data-lang="en">ICP and taxonomy</h3>
+        <p data-lang="pt">Criei um documento com o que sabíamos sobre o ICP de POS, consolidando dados internos de PJ e do mercado — em especial o Sebrae — para contribuir com o conhecimento compartilhado pelas squads.</p>
+        <p data-lang="en">Created a document with what we knew about the POS ICP, consolidating internal PJ and market data — especially Sebrae — to contribute to shared knowledge across squads.</p>
+        <div class="case-note">
+          <span class="case-note-marker">↳</span>
+          <div class="case-note-body">
+            <p data-lang="pt">Apresentei esse material e o disponibilizei na IA que usávamos como repositório de conhecimento.</p>
+            <p data-lang="en">I presented this material and made it available in the AI we used as a knowledge repository.</p>
+          </div>
+        </div>
+        <p data-lang="pt" style="margin-top:20px;">Criei junto com Engenharia a taxonomia de POS — que contribuiu para mais clareza nos processos internos e na comunicação com outras squads de PJ, em especial TTP.</p>
+        <p data-lang="en" style="margin-top:20px;">Created the POS taxonomy together with Engineering — contributing to greater clarity in internal processes and communication with other PJ squads, especially TTP.</p>
+        <figure class="case-figure" style="margin-top:32px;">
+          <img src="POS-taxonomia.png" alt="Planilha de taxonomia do POS Nubank" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Taxonomia de POS — criada com Engenharia para padronizar conceitos e nomenclaturas entre squads.</figcaption>
+          <figcaption data-lang="en">POS taxonomy — created with Engineering to standardize concepts and naming across squads.</figcaption>
         </figure>
       </div>
 
-      <div class="case-figures-row">
-        <figure class="case-figure">
-          <img src="pos-request-revisao.png"
-               alt="Tela de revisão do pedido com toggle de código de entrega desligado por padrão"
-               loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-          <figcaption data-lang="pt">Código de entrega como toggle opcional — desligado por padrão ("Qualquer pessoa pode receber"). Segurança para quem quer, sem barreira para quem não precisa.</figcaption>
-          <figcaption data-lang="en">Delivery code as optional toggle — off by default ("Anyone can receive it"). Security for those who want it, no barrier for those who don't.</figcaption>
-        </figure>
-        <figure class="case-figure">
-          <img src="pos-request-confirmacao.png"
-               alt="Tela de confirmação do pedido com tom celebratório e código de entrega em destaque"
-               loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-          <figcaption data-lang="pt">Confirmação com personalização e tom de parceria — "Confirmado, [nome], mais um passo juntos." O código de entrega em destaque com instrução clara e opção de compartilhar.</figcaption>
-          <figcaption data-lang="en">Confirmation with personalization and partnership tone — "Confirmed, [name], one more step together." Delivery code prominently displayed with clear instruction and share option.</figcaption>
+      <div class="case-phase-item">
+        <h3 class="case-phase-title" data-lang="pt">Design Sprint com clientes</h3>
+        <h3 class="case-phase-title" data-lang="en">Customer Design Sprint</h3>
+        <p data-lang="pt">Participei da Design Sprint de Ops com clientes, mapeando o território semântico — como as pessoas descrevem entrega, rastreamento e ativação — e contribuindo para as decisões de abordagem, tom de voz e canais de contato.</p>
+        <p data-lang="en">Participated in the Ops Design Sprint with customers, mapping semantic territory — how people describe delivery, tracking, and activation — and contributing to decisions on approach, tone of voice, and contact channels.</p>
+        <figure class="case-figure" style="margin-top:32px;">
+          <img src="POS-workshop-desenho.png" alt="Design Sprint com clientes — rascunho de feature mapeada" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Design Sprint com clientes — exemplo de feature que mapeamos para o momento de consolidação do produto.</figcaption>
+          <figcaption data-lang="en">Design Sprint with customers — example of a feature we mapped for the product's consolidation stage.</figcaption>
         </figure>
       </div>
-
-      <figure class="case-figure">
-        <img src="pos-tracking.png"
-             alt="Fluxo completo de tracking do POS Nubank com happy path e três cenários de exceção"
-             loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-        <figcaption data-lang="pt">Fluxo de tracking — happy path e três cenários de exceção (sem código, endereço errado, EC fechado). Cada exceção desenhada para ser acionável: não apenas informa o problema, orienta o próximo passo. O código de recebimento foi uma hipótese levantada a partir do mapeamento semântico na Design Sprint.</figcaption>
-        <figcaption data-lang="en">Tracking flow — happy path and three exception scenarios (no code, wrong address, closed establishment). Each exception designed to be actionable: not just informing the problem, guiding the next step. The delivery code was a hypothesis raised from semantic mapping in the Design Sprint.</figcaption>
-      </figure>
-
-      <figure class="case-figure">
-        <img src="pos-activation.png"
-             alt="Splash sequence de activation do POS Nubank — Olá, Prazer roxinha, Sua aliada na hora de vender"
-             loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-        <figcaption data-lang="pt">Activation — sequência de primeiro contato com o hardware. O princípio orientador: "você já sabe usar, é igual ao seu app." Tom celebratório, linguagem de parceria, progressão que educa sem infantilizar.</figcaption>
-        <figcaption data-lang="en">Activation — first-contact sequence on the hardware. The guiding principle: "you already know how to use it — it's just like your app." Celebratory tone, partnership language, progression that educates without being condescending.</figcaption>
-      </figure>
     </div>
 
-    <div class="case-section">
-      <p class="case-section-label" data-lang="pt">Guidelines de conteúdo</p><p class="case-section-label" data-lang="en">Content guidelines</p>
+    <hr class="divider" />
+
+    <!-- ② JORNADAS -->
+    <div class="case-section" id="pos-jornadas">
+      <p class="case-section-label" data-lang="pt">Jornadas</p>
+      <p class="case-section-label" data-lang="en">Journeys</p>
+
+      <p data-lang="pt" style="margin-bottom:32px;">Com a fundação estabelecida — pesquisa, narrativa, taxonomia e sprint com clientes — o time tinha insumos para projetar as três jornadas. Tive ownership das três: request, tracking e activation. Cada uma com seus próprios desafios de conteúdo, componentes e regras de negócio.</p>
+      <p data-lang="en" style="margin-bottom:32px;">With the foundation in place — research, narrative, taxonomy, and customer sprint — the team had the inputs to design the three journeys. I owned all three: request, tracking, and activation. Each with its own content challenges, component decisions, and business rules.</p>
+
+      <figure class="case-figure" style="margin-bottom:64px;">
+        <img src="pos-objetivo-fluxos.png" alt="Objetivos e fluxos das jornadas de POS Nubank" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+        <figcaption data-lang="pt">Cada jornada foi projetada com objetivo, fluxo e princípio de conteúdo próprios — interdependentes, mas com ownership separado.</figcaption>
+        <figcaption data-lang="en">Each journey was designed with its own objective, flow, and content principle — interdependent, but with separate ownership.</figcaption>
+      </figure>
+
+      <!-- REQUEST -->
+      <div class="case-phase-item">
+        <h3 class="case-phase-title" data-lang="pt">Request</h3>
+        <h3 class="case-phase-title" data-lang="en">Request</h3>
+        <p data-lang="pt">A jornada de request é onde o merchant decide. Ela concentra tensões reais: proposta de valor clara versus detalhes legais obrigatórios; velocidade de decisão versus configurações técnicas como código de entrega e janela de horário. Tive ownership dessa jornada, co-projetando com o product designer com foco em reduzir carga cognitiva no happy path e preparar o merchant para as etapas seguintes.</p>
+        <p data-lang="en">The request journey is where the merchant decides. It concentrates real tensions: a clear value proposition against mandatory legal details; speed of decision against technical configuration like delivery code and time slot. I owned this journey, co-designing with the product designer with a focus on reducing cognitive load in the happy path and preparing the merchant for the next stages.</p>
+        <p data-lang="pt" style="margin-top:16px; font-size:14px; color:var(--text-muted); font-style:italic;">O produto ainda não foi lançado ao público. O que está documentado aqui são as decisões centrais da jornada — os pontos onde conteúdo, componente e regra de negócio se encontraram e exigiram uma escolha deliberada.</p>
+        <p data-lang="en" style="margin-top:16px; font-size:14px; color:var(--text-muted); font-style:italic;">The product hasn't launched yet. What's documented here are the key decisions in the journey — the points where content, component, and business rule converged and demanded a deliberate choice.</p>
+
+        <!-- Marketing screen -->
+        <figure class="case-figure" style="margin-top:40px;">
+          <img src="pos-request-marketing.png" alt="Marketing screen da jornada de request do POS Nubank" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Marketing screen — a primeira tela é onde a maioria das pessoas abandona. Em fluxos de aquisição de produto físico no Nubank, o drop na primeira tela pode chegar a 80%. Esse é o padrão esperado para POS. O design partiu da premissa de que na primeira dobra a proposta de valor tem que chegar sem scroll, sem que a pessoa precise buscar mais informação para decidir.</figcaption>
+          <figcaption data-lang="en">Marketing screen — the first screen is where most people leave. In Nubank physical product acquisition flows, drop-off on the first screen can reach 80%. This is the expected pattern for POS. The design started from the premise that the value proposition has to land above the fold — without scrolling, without the person needing to seek more information to decide.</figcaption>
+        </figure>
+
+        <!-- Quantidade: decisão + tela juntas -->
+        <h4 class="case-phase-title" style="font-size:17px; margin-top:56px; margin-bottom:0;" data-lang="pt">Escolha do número de maquininhas</h4>
+        <h4 class="case-phase-title" style="font-size:17px; margin-top:56px; margin-bottom:0;" data-lang="en">Choosing the number of terminals</h4>
+
+        <figure class="case-figure" style="margin-top:20px;">
+          <img src="pos-request-quantidade.png" alt="Tela de seleção de quantidade de maquininhas" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Stepper pré-preenchido com o valor padrão do perfil. A mensalidade aparece contextualizada no momento da decisão — não depois.</figcaption>
+          <figcaption data-lang="en">Stepper pre-filled with the profile's default value. The monthly fee appears contextualized at the decision moment — not after.</figcaption>
+        </figure>
+
+        <div class="case-decision" style="margin-top:32px;">
+          <span class="case-decision-label" data-lang="pt">Decisão de design — Quantidade</span>
+          <span class="case-decision-label" data-lang="en">Design decision — Quantity</span>
+          <p data-lang="pt">O componente chega pré-preenchido com o valor padrão do perfil — na maioria dos casos, 1 maquininha. A decisão elimina a escolha ativa no happy path: quem não precisa mudar, não muda. Quem precisa, tem o controle. O limite máximo é definido por regra de negócio aplicada ao perfil do cliente — o componente materializa essa constraint sem expô-la diretamente ao usuário.</p>
+          <p data-lang="en">The component arrives pre-filled with the user's default value — in most cases, 1 terminal. The decision eliminates active choice in the happy path: users who don't need to change, won't. Those who do, have control. The maximum limit is defined by business rules applied to the customer profile — the component surfaces this constraint without exposing it directly.</p>
+        </div>
+
+        <!-- Horário: decisão + tela juntas -->
+        <h4 class="case-phase-title" style="font-size:17px; margin-top:56px; margin-bottom:0;" data-lang="pt">Janela de entrega</h4>
+        <h4 class="case-phase-title" style="font-size:17px; margin-top:56px; margin-bottom:0;" data-lang="en">Delivery time slot</h4>
+
+        <figure class="case-figure" style="margin-top:20px;">
+          <img src="pos-request-horario.png" alt="Tela de seleção de horário de entrega" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Botões visuais para seleção de janela de entrega. O usuário PJ não quer ler uma lista — quer identificar e confirmar em um gesto.</figcaption>
+          <figcaption data-lang="en">Visual buttons for delivery window selection. The PJ user doesn't want to read a list — they want to identify and confirm in a single gesture.</figcaption>
+          <div class="case-note">
+            <span class="case-note-marker">↳</span>
+            <div class="case-note-body">
+              <p data-lang="pt">O "Código de entrega opcional" no rodapé desta tela não é decorativo. A hipótese é que introduzir o conceito aqui — quando o merchant já está pensando em entrega — reduz a carga cognitiva na revisão e aumenta a ativação do código. Quando ele aparecer novamente, a pessoa já sabe o que é e por que importa.</p>
+              <p data-lang="en">The "Optional delivery code" at the bottom of this screen isn't decorative. The hypothesis is that introducing the concept here — when the merchant is already thinking about delivery — reduces cognitive load at review and increases code activation. When it appears again, they already know what it is and why it matters.</p>
+            </div>
+          </div>
+        </figure>
+
+        <div class="case-decision" style="margin-top:32px;">
+          <span class="case-decision-label" data-lang="pt">Decisão de design — Horário de entrega</span>
+          <span class="case-decision-label" data-lang="en">Design decision — Delivery time slot</span>
+          <p data-lang="pt">Para um perfil PJ com alta fricção acumulada e baixa tolerância a erros, priorizamos escaneabilidade. O componente de botões visuais permite identificar e selecionar o horário ideal em um único gesto, sem percorrer uma lista. A escolha revelou um debt de design system: por padrão no DS do Nubank, o componente permite apenas seleção única. Ficou mapeado como ponto a validar com o time de DS — se e como suportaria seleção múltipla de janelas.</p>
+          <p data-lang="en">For a PJ user profile with accumulated friction and low error tolerance, we prioritized scannability. The visual button component lets users identify and select their preferred time slot in a single gesture, without scrolling a list. The choice surfaced a design system debt: by default in Nubank's DS, the component only allows single selection. This was flagged as a point to validate with the DS team — whether and how it could support multiple time window selection.</p>
+          <p data-lang="pt">O rodapé desta tela introduz o código de entrega antes que ele seja uma decisão. A hipótese: esse é o momento certo — o merchant acabou de pensar em quando a máquina chega, o que abre um contexto natural para apresentar o próximo passo do processo logístico. Quando o código aparecer de novo na tela de revisão, a pessoa já sabe o que é e por que importa. A validação estava prevista para julho de 2025.</p>
+          <p data-lang="en">The bottom of this screen introduces the delivery code before it becomes a decision. The hypothesis: this is the right moment — the merchant just thought about when the terminal arrives, which naturally opens context for the next step in the logistics process. When the code appears again at review, they already know what it is and why it matters. Validation was planned for July 2025.</p>
+        </div>
+
+        <!-- Revisão + Confirmação -->
+        <h4 class="case-phase-title" style="font-size:17px; margin-top:56px; margin-bottom:16px;" data-lang="pt">Revisão e confirmação do pedido</h4>
+        <h4 class="case-phase-title" style="font-size:17px; margin-top:56px; margin-bottom:16px;" data-lang="en">Order review and confirmation</h4>
+
+        <p data-lang="pt">Por padrão no Nubank, telas de revisão são exatamente isso: revisão. A única ação do usuário é confirmar que está tudo ok e prosseguir. Aqui, optamos por quebrar esse padrão intencionalmente — incluindo uma ação na tela de revisão: ativar ou não o código de entrega.</p>
+        <p data-lang="en">By default at Nubank, review screens are exactly that: review. The user's only action is to confirm everything looks right and proceed. Here, we deliberately broke that pattern — adding an action to the review screen: whether or not to activate the delivery code.</p>
+        <p data-lang="pt" style="margin-top:12px;">Nossa hipótese foi que esse era o momento ideal para a decisão do código. O usuário já foi apresentado ao código nas telas anteriores — sabe o que é e como funciona. Embora o Nubank não use esse mecanismo em outros produtos, ele é familiar (players de diferentes segmentos e indústrias usam o código de confirmação como camada extra de segurança na entrega). Ao trazer a ativação do código para a revisão, a jornada fica coesa e enxuta, sem exigir uma tela adicional.</p>
+        <p data-lang="en" style="margin-top:12px;">Our hypothesis was that this was the ideal moment for the code decision. The user was already introduced to the delivery code in earlier screens — they know what it is and how it works. While Nubank doesn't use this mechanism in other products, it's familiar (players across different industries use a confirmation code as an extra layer of delivery security). By bringing the code activation to the review screen, the journey stays cohesive and lean, without requiring an additional screen.</p>
+
+        <div class="case-figures-row" style="margin-top:32px;">
+          <figure class="case-figure">
+            <img src="pos-request-revisao.png" alt="Tela de revisão do pedido" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+            <figcaption data-lang="pt">Revisão — código de entrega aparece como toggle opcional, desligado por padrão. O conceito foi introduzido em telas anteriores; aqui o merchant já sabe o que está escolhendo.</figcaption>
+            <figcaption data-lang="en">Review — delivery code appears as an optional toggle, off by default. The concept was introduced in earlier screens; by here the merchant already knows what they're choosing.</figcaption>
+          </figure>
+          <figure class="case-figure">
+            <img src="pos-request-confirmacao.png" alt="Tela de confirmação do pedido" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+            <figcaption data-lang="pt">Confirmação com nome do merchant e tom de parceria. O produto ainda não chegou — mas a relação já foi estabelecida.</figcaption>
+            <figcaption data-lang="en">Confirmation with the merchant's name and partnership tone. The product hasn't arrived yet — but the relationship has already been established.</figcaption>
+          </figure>
+        </div>
+
+
+
+        <!-- Dados e premissas -->
+        <h4 class="case-phase-title" style="font-size:17px; margin-top:56px; margin-bottom:0;" data-lang="pt">Dados e premissas</h4>
+        <h4 class="case-phase-title" style="font-size:17px; margin-top:56px; margin-bottom:0;" data-lang="en">Data and assumptions</h4>
+
+        <div class="case-decision" style="margin-top:16px;">
+          <span class="case-decision-label" data-lang="pt">Dados e premissas</span>
+          <span class="case-decision-label" data-lang="en">Data and assumptions</span>
+          <p data-lang="pt">Parte das decisões foi orientada por dados — internos de PJ e do mercado. Outra parte foi assumida como verdade para seguir em frente, em um contexto de alta velocidade e mudança constante nos times. Essas premissas foram documentadas e estavam previstas para validação em testes de usabilidade e nos aprendizados contínuos do produto.</p>
+          <p data-lang="en">Some decisions were driven by data — internal PJ data and market research. Others were assumed as true in order to move forward, in a context of high velocity and constant team change. These assumptions were documented and planned for validation in usability tests and through ongoing product learnings.</p>
+        </div>
+        <figure class="case-figure" style="margin-top:20px;">
+          <img src="pos-assumptions-Dados.png" alt="Dados e premissas que orientaram as decisões de design" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Mapa de dados confirmados e premissas assumidas — quais decisões tinham evidência e quais precisavam de validação futura.</figcaption>
+          <figcaption data-lang="en">Map of confirmed data and assumed premises — which decisions had evidence and which needed future validation.</figcaption>
+        </figure>
+
+      </div>
+
+      <!-- TRACKING -->
+      <div class="case-phase-item">
+        <h3 class="case-phase-title" data-lang="pt">Tracking</h3>
+        <h3 class="case-phase-title" data-lang="en">Tracking</h3>
+        <p data-lang="pt">A jornada de tracking foi a mais complexa do ponto de vista estrutural. Para o merchant, acompanhar a entrega da maquininha é crítico: a máquina precisa chegar no horário e funcionar desde o primeiro uso. Para o Nubank, logística era território novo — a única referência existente era a entrega do cartão de crédito, uma experiência defasada. Mapeamos todos os momentos em que o Nubank (PJ e PF) envia produtos físicos aos clientes para propor um template que pudesse ser aprovado e adotado de forma ampla.</p>
+        <p data-lang="en">The tracking journey was the most structurally complex. For the merchant, following the terminal delivery is critical: the machine needs to arrive on time and work from day one. For Nubank, logistics was new territory — the only existing reference was credit card delivery, an outdated experience. We mapped every moment where Nubank (PJ and PF) sends physical products to customers in order to propose a template that could be approved and adopted broadly.</p>
+
+        <figure class="case-figure" style="margin-top:40px;">
+          <img src="pos-cadeia-logistica1.png" alt="Cadeia logística da Fiserv mapeada pela equipe" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Cadeia logística da Fiserv — mapeamento dos processos, atores e pontos críticos que informaram as decisões de conteúdo para cada momento do tracking.</figcaption>
+          <figcaption data-lang="en">Fiserv logistics chain — mapping of processes, actors, and critical points that informed content decisions for each tracking moment.</figcaption>
+        </figure>
+
+        <h4 class="case-phase-title" style="font-size:17px; margin-top:56px; margin-bottom:0;" data-lang="pt">Template de tracking</h4>
+        <h4 class="case-phase-title" style="font-size:17px; margin-top:56px; margin-bottom:0;" data-lang="en">Tracking template</h4>
+
+        <figure class="case-figure" style="margin-top:20px;">
+          <img src="pos-Estrutura tracking.png" alt="Estrutura do template de tracking" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Estrutura do template de tracking — hierarquia da informação e conteúdo variável por momento da jornada.</figcaption>
+          <figcaption data-lang="en">Tracking template structure — information hierarchy and variable content per journey moment.</figcaption>
+        </figure>
+
+        <div class="case-decision" style="margin-top:32px;">
+          <span class="case-decision-label" data-lang="pt">Decisão de design — Template de tracking</span>
+          <span class="case-decision-label" data-lang="en">Design decision — Tracking template</span>
+          <p data-lang="pt">Propusemos um template novo — que não existia no Nubank. A proposta foi apresentada e aprovada via Nubank Wide, com PJ sendo a primeira área a implementá-la. Outras áreas seguiriam, adotando o mesmo template.</p>
+          <p data-lang="en">We proposed a new template — one that didn't exist in Nubank. The proposal was presented and approved Nubank Wide, with PJ being the first area to implement it. Other areas would follow, adopting the same template.</p>
+        </div>
+
+        <p data-lang="pt" style="margin-top:24px;">A hierarquia do componente segue relevância decrescente e conteúdo variável por momento da jornada: <strong>1. Status principal</strong> — o que o usuário está acompanhando agora; <strong>2. Código de entrega</strong> — novo para o Nubank e para a Fiserv. Crítico: se o usuário ativou o recebimento via código, a entrega só acontece com o código correto informado ao entregador; <strong>3. Conteúdo variável</strong> — condicionado ao momento: em trânsito, problema identificado, janela de cancelamento disponível (determinada por regra de negócio); <strong>4. Modal de histórico</strong> — detalhe dos eventos da entrega, acionado pelo usuário.</p>
+        <p data-lang="en" style="margin-top:24px;">The component hierarchy follows decreasing relevance and variable content per journey moment: <strong>1. Main status</strong> — what the user is tracking right now; <strong>2. Delivery code</strong> — new to Nubank and Fiserv. Critical: if the user activated code-based delivery, it only succeeds when the correct code is given to the courier; <strong>3. Variable content</strong> — conditioned to the moment: in transit, issue identified, cancellation window available (determined by business rules); <strong>4. History modal</strong> — delivery event details, triggered by the user.</p>
+
+
+
+        <figure class="case-figure" style="margin-top:24px;">
+          <img src="pos-tracking.png" alt="Fluxo completo de tracking com happy path e cenários de exceção" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Três momentos da jornada de tracking: pedido recebido, entrega no dia e atualização de prazo com modal de histórico. O conteúdo do componente muda a cada momento — status, código de entrega, ações disponíveis e dados do entregador.</figcaption>
+          <figcaption data-lang="en">Three moments in the tracking journey: order received, delivery day, and updated delivery date with history modal. The component content changes at each moment — status, delivery code, available actions, and courier details.</figcaption>
+        </figure>
+
+        <p data-lang="pt" style="margin-top:28px;">Exibir os dados do entregador — foto, nome e placa — foi um ponto levantado pelo time de design como imprescindível para a experiência. Na maioria dos casos, a entrega acontece via moto, e o merchant precisa saber quem está chegando. Mas esses dados não existem na Fiserv: precisam ser solicitados à empresa responsável pela entrega via API, no formato e na estrutura que o Nubank consegue consumir. Isso exigiu negociação com o parceiro e mapeamento de cenários de contingência — o que exibir quando a foto não está disponível, quando a placa está incompleta, ou quando nenhuma informação chegou. Em alguns casos, o card é exibido com dados parciais; em outros, não é exibido.</p>
+        <p data-lang="en" style="margin-top:28px;">Displaying courier details — photo, name, and license plate — was flagged by the design team as essential to the experience. In most cases delivery happens via motorcycle, and the merchant needs to know who's arriving. But this data doesn't exist in Fiserv's systems: it has to be requested from the delivery company via API, in the format and structure Nubank can consume. That required negotiation with the partner and mapping contingency scenarios — what to show when the photo isn't available, when the plate is incomplete, or when no information comes through. In some cases the card is shown with partial data; in others, it isn't shown at all.</p>
+
+        <div class="case-decision" style="margin-top:24px;">
+          <span class="case-decision-label" data-lang="pt">Lógica de erros</span>
+          <span class="case-decision-label" data-lang="en">Error logic</span>
+          <p data-lang="pt">A mesma lógica foi aplicada às mensagens de erro: para cada falha, entendemos o que causou o problema, quem precisa agir para resolvê-lo, e o que comunicar. Se a ação é do usuário, a mensagem diz o que ele precisa fazer. Se a resolução depende do Nubank ou da Fiserv, a mensagem comunica o que já está sendo feito — sem deixar o merchant esperando sem resposta.</p>
+          <p data-lang="en">The same logic was applied to error messages: for each failure, we understood what caused the problem, who needs to act to resolve it, and what to communicate. If the action is the user's, the message tells them what to do. If resolution depends on Nubank or Fiserv, the message communicates what's already being handled — without leaving the merchant waiting without a response.</p>
+        </div>
+      </div>
+
+      <!-- ACTIVATION -->
+      <div class="case-phase-item">
+        <h3 class="case-phase-title" data-lang="pt">Activation</h3>
+        <h3 class="case-phase-title" data-lang="en">Activation</h3>
+        <p data-lang="pt">Activation é o primeiro contato físico do merchant com o hardware. O risco é o mesmo de qualquer onboarding de produto novo: fricção no começo compromete o uso contínuo. A diferença aqui é que o merchant já tem uma relação com o Nubank via app — e esse foi o ponto de partida do design. O princípio orientador: "você já sabe usar, é igual ao seu app."</p>
+        <p data-lang="en">Activation is the merchant's first physical contact with the hardware. The risk is the same as any new product onboarding: friction at the start undermines long-term use. The difference here is that the merchant already has a relationship with Nubank through the app — and that was the starting point for the design. The guiding principle: "you already know how to use it — it's just like your app."</p>
+
+        <h4 class="case-phase-title" style="font-size:17px; margin-top:40px; margin-bottom:0;" data-lang="pt">Onboarding sem parecer onboarding</h4>
+        <h4 class="case-phase-title" style="font-size:17px; margin-top:40px; margin-bottom:0;" data-lang="en">Onboarding that doesn't feel like onboarding</h4>
+
+        <div class="case-decision" style="margin-top:16px;">
+          <span class="case-decision-label" data-lang="pt">Decisão de design — Activation</span>
+          <span class="case-decision-label" data-lang="en">Design decision — Activation</span>
+          <p data-lang="pt">O onboarding do hardware foi projetado para não parecer um onboarding. A âncora é a familiaridade: o merchant já conhece o padrão visual e de linguagem do Nubank. A ativação reforça essa familiaridade em vez de criar um modelo mental novo. Tom celebratório com sobriedade — parceria, não festa. Cada passo educa sem infantilizar.</p>
+          <p data-lang="en">The hardware onboarding was designed not to feel like an onboarding. The anchor is familiarity: the merchant already knows Nubank's visual and language pattern. Activation reinforces that familiarity rather than creating a new mental model. Celebratory tone with restraint — partnership, not party. Each step educates without being condescending.</p>
+        </div>
+
+        <figure class="case-figure" style="margin-top:32px;">
+          <img src="pos-activation.png" alt="Sequência de activation do POS Nubank" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Sequência de activation — familiaridade como redutora de fricção, progressão que entrega confiança antes do primeiro uso.</figcaption>
+          <figcaption data-lang="en">Activation sequence — familiarity as a friction reducer, progression that delivers confidence before first use.</figcaption>
+        </figure>
+
+        <p data-lang="pt" style="margin-top:28px;">O desafio aqui era duplo. Era a primeira vez que o time de design e engenharia projetava para um dispositivo diferente de um celular ou desktop — o que trouxe constraints técnicos específicos do hardware: estabilidade de performance e de bateria eram inegociáveis. E foi justamente aí que surgiu o segundo desafio: criar uma experiência à moda do Nubank — simples, que encante, fácil de entender — sem onerar a estabilidade do hardware.</p>
+        <p data-lang="en" style="margin-top:28px;">The challenge here was twofold. It was the first time the design and engineering team was designing for a device other than a phone or desktop — which introduced hardware-specific constraints: performance and battery stability were non-negotiable. And that's exactly where the second challenge came from: creating a Nubank-style experience — simple, delightful, easy to understand — without compromising hardware stability.</p>
+
+        <p data-lang="pt" style="margin-top:16px;">Para isso, foi necessário entender os diferentes momentos em que o usuário liga a máquina: a primeira vez, quando tudo é novo, e os usos recorrentes, quando a experiência precisa ser rápida e invisível. O recorte aqui é o primeiro boot. Para ele, havia critérios técnicos a cumprir — uso de animação, uso de imagem, e especialmente o tempo: quantos segundos esse fluxo poderia durar sem impactar a percepção de performance. Tudo isso entrou no projeto das telas iniciais.</p>
+        <p data-lang="en" style="margin-top:16px;">To get there, we needed to understand the different moments when the user turns the machine on: the first time, when everything is new, and recurring use, when the experience needs to be fast and invisible. The focus here is the first boot. For that moment, there were technical criteria to meet — use of animation, use of images, and especially timing: how many seconds this flow could last without impacting the perception of performance. All of that informed the design of the initial screens.</p>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ③ GUIDELINES -->
+    <div class="case-section" id="pos-guidelines">
+      <p class="case-section-label" data-lang="pt">Guidelines de conteúdo</p>
+      <p class="case-section-label" data-lang="en">Content guidelines</p>
       <p data-lang="pt">Com múltiplos times trabalhando em paralelo e a tensão constante entre a linguagem da Fiserv e a linguagem da marca Nubank, criei as primeiras guidelines de conteúdo do POS como entregável formal — cobrindo vocabulário controlado, tom de voz por momento da jornada, estrutura de mensagens de erro e princípios de narrativa omnichannel. Documentadas no Figma, Confluence e integradas ao workflow de IA do time para garantir adoção no processo de criação.</p>
       <p data-lang="en">With multiple teams working in parallel and the constant tension between Fiserv's language and Nubank's brand language, I created the first POS content guidelines as a formal deliverable — covering controlled vocabulary, tone of voice per journey moment, error message structure, and omnichannel narrative principles. Documented in Figma, Confluence, and integrated into the team's AI workflow to ensure adoption in the creation process.</p>
     </div>
 
-    <div class="result-block" role="region" aria-label="Resultado principal">
-      <div class="result-number" aria-label="North Star">North Star</div>
-      <p class="result-text" data-lang="pt">% de merchants que completam a jornada completa sem contatar o CX — a métrica que conectou cada decisão de conteúdo a um impacto operacional real</p>
-      <p class="result-text" data-lang="en">% of merchants who complete the full journey without contacting CX — the metric that connected every content decision to a real operational impact</p>
+    <!-- ARTEFATOS -->
+    <div class="case-deliverables">
+      <p class="case-deliverables-label" data-lang="pt">4 artefatos entregues</p>
+      <p class="case-deliverables-label" data-lang="en">4 deliverables</p>
+      <div class="case-deliverables-grid">
+        <div class="case-deliverable">
+          <span class="case-deliverable-num">01</span>
+          <span class="case-deliverable-text" data-lang="pt">Jornada E2E do pedido de máquina até a ativação</span>
+          <span class="case-deliverable-text" data-lang="en">E2E journey from terminal request to activation</span>
+        </div>
+        <div class="case-deliverable">
+          <span class="case-deliverable-num">02</span>
+          <span class="case-deliverable-text" data-lang="pt">Fluxos em tela e protótipo das jornadas de request, tracking e activation</span>
+          <span class="case-deliverable-text" data-lang="en">Screen flows and prototype for the request, tracking, and activation journeys</span>
+        </div>
+        <div class="case-deliverable">
+          <span class="case-deliverable-num">03</span>
+          <span class="case-deliverable-text" data-lang="pt">Comunicações transacionais mapeadas e criadas</span>
+          <span class="case-deliverable-text" data-lang="en">Transactional communications mapped and created</span>
+        </div>
+        <div class="case-deliverable">
+          <span class="case-deliverable-num">04</span>
+          <span class="case-deliverable-text" data-lang="pt">Guidelines de conteúdo do produto</span>
+          <span class="case-deliverable-text" data-lang="en">Product content guidelines</span>
+        </div>
+      </div>
     </div>
 
-    <div class="case-section">
+
+    <div class="case-section" id="pos-diferente">
       <p class="case-section-label" data-lang="pt">O que eu faria diferente</p><p class="case-section-label" data-lang="en">What I'd do differently</p>
-      <p data-lang="pt">Teria instrumentado indicadores de conteúdo desde o início — especificamente a taxa de contato ao CX por etapa da jornada. Com a North Star do squad sendo exatamente essa métrica, teria sido possível vincular cada decisão de conteúdo a um número observável desde o lançamento.</p>
-      <p data-lang="en">I would have instrumented content indicators earlier — specifically the CX contact rate per journey stage. With the squad's North Star being exactly that metric, it would have been possible to tie each content decision to an observable number from launch.</p>
+      <p data-lang="pt">Este é um projeto com alto grau de complexidade e ambiguidade — todo o time estava aprendendo ao mesmo tempo a lidar com um produto novo, com um parceiro novo, e entre si. Nesse contexto, o que eu faria diferente seria investir mais cedo na estruturação de dois elementos: os princípios de design inegociáveis e o protocolo de gestão do conhecimento com o parceiro.</p>
+      <p data-lang="en">This is a project with a high degree of complexity and ambiguity — the entire team was simultaneously learning to navigate a new product, a new partner, and each other. In that context, what I'd do differently is invest earlier in structuring two things: the non-negotiable design principles and the knowledge management protocol with the partner.</p>
+      <p data-lang="pt" style="margin-top:12px;">Não foi incomum a mesma informação chegar de formas diferentes para diferentes pessoas de design e produto — o que gerava retrabalho e ciclos desnecessários de validação. Uma forma estabelecida desde o dia um de como capturar, validar e circular aprendizados do parceiro teria reduzido significativamente esse atrito. Em projetos com múltiplas interfaces e alta dependência externa, a clareza operacional é, ela mesma, uma decisão de design.</p>
+      <p data-lang="en" style="margin-top:12px;">It wasn't uncommon for the same information to reach different people on the design and product teams in different forms — generating rework and unnecessary validation cycles. A clear protocol established from day one for how to capture, validate, and circulate partner learnings would have significantly reduced that friction. In projects with multiple interfaces and high external dependency, operational clarity is itself a design decision.</p>
     </div>
 
     <p class="case-disclaimer" data-lang="pt" style="font-size:12px;color:var(--text-muted);margin-top:48px;font-style:italic;">Projeto em fase pré-lançamento. Telas exibidas com fins de portfolio, mantendo confidencialidade sobre informações estratégicas e comerciais.</p>
     <p class="case-disclaimer" data-lang="en" style="font-size:12px;color:var(--text-muted);margin-top:48px;font-style:italic;">Product in pre-launch phase. Screens shared for portfolio purposes, maintaining confidentiality over strategic and commercial information.</p>
 
+    <!-- Veja também -->
+    <div class="case-next">
+      <span class="case-next-label" data-lang="pt">Veja também</span>
+      <span class="case-next-label" data-lang="en">See also</span>
+      <button class="case-next-card" onclick="showCase('chargeback')" aria-label="Ver case Chargeback Revamp">
+        <div>
+          <p class="case-next-company">Nubank PJ · 2025</p>
+          <p class="case-next-title">Chargeback Revamp</p>
+          <div class="case-next-tags">
+            <span class="tag" data-lang="pt">Estratégia de conteúdo</span><span class="tag" data-lang="en">Content strategy</span>
+            <span class="tag" data-lang="pt">Tom de voz</span><span class="tag" data-lang="en">Voice &amp; tone</span>
+            <span class="tag" data-lang="pt">Dados</span><span class="tag" data-lang="en">Data</span>
+            <span class="tag">Cross-squad</span>
+          </div>
+        </div>
+        <span class="case-next-arrow" aria-hidden="true">→</span>
+      </button>
+    </div>
+
   </main>
 </div>
 
+
+<!-- In-page TOC: POS -->
+<nav class="case-toc" id="pos-toc" data-case="case-pos" aria-label="Navegação da página">
+  <p class="case-toc-label" data-lang="pt">Nesta página</p>
+  <p class="case-toc-label" data-lang="en">On this page</p>
+  <ul class="case-toc-list">
+    <li>
+      <a class="case-toc-link" href="#pos-problema" data-lang="pt">Problema</a>
+      <a class="case-toc-link" href="#pos-problema" data-lang="en">Problem</a>
+    </li>
+    <li>
+      <a class="case-toc-link" href="#pos-fundacao" data-lang="pt">Fundação</a>
+      <a class="case-toc-link" href="#pos-fundacao" data-lang="en">Foundation</a>
+    </li>
+    <li>
+      <a class="case-toc-link" href="#pos-jornadas" data-lang="pt">Jornadas</a>
+      <a class="case-toc-link" href="#pos-jornadas" data-lang="en">Journeys</a>
+    </li>
+    <li>
+      <a class="case-toc-link" href="#pos-guidelines" data-lang="pt">Guidelines</a>
+      <a class="case-toc-link" href="#pos-guidelines" data-lang="en">Guidelines</a>
+    </li>
+    <li>
+      <a class="case-toc-link" href="#pos-diferente" data-lang="pt">Reflexão</a>
+      <a class="case-toc-link" href="#pos-diferente" data-lang="en">Reflection</a>
+    </li>
+  </ul>
+</nav>
 
 <!-- BACK TO TOP -->
 <button id="back-to-top" class="back-to-top" onclick="scrollToTop()" aria-label="Voltar ao topo">
@@ -2539,6 +3475,8 @@
       history.pushState({ view: 'case', id }, '', '#' + id);
       const h1 = page.querySelector('h1');
       if (h1) { h1.setAttribute('tabindex', '-1'); h1.focus(); }
+      // Trigger TOC update after case opens
+      setTimeout(function() { if (typeof window.tocUpdate === 'function') window.tocUpdate(); }, 80);
     }
   }
 
@@ -2720,10 +3658,44 @@
     gateBtn.addEventListener('click', tryPassword);
     gateInput.addEventListener('keydown', e => { if (e.key === 'Enter') tryPassword(); });
 
-    // ── Lightbox ──
+    // ── Lightbox + Zoom ──
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
+    const zoomInBtn = document.getElementById('lightbox-zoom-in');
+    const zoomOutBtn = document.getElementById('lightbox-zoom-out');
+    const zoomLabel = document.getElementById('lightbox-zoom-level');
 
+    const ZOOM_MIN = 0.5, ZOOM_MAX = 3, ZOOM_STEP = 0.25, ZOOM_FIT = 1;
+    let zoom = ZOOM_FIT;
+    let panX = 0, panY = 0;
+    let dragging = false, dragStartX = 0, dragStartY = 0, panStartX = 0, panStartY = 0;
+
+    function applyTransform() {
+      lightboxImg.style.transform = `translate(${panX}px, ${panY}px) scale(${zoom})`;
+      zoomLabel.textContent = Math.round(zoom * 100) + '%';
+      zoomInBtn.disabled = zoom >= ZOOM_MAX;
+      zoomOutBtn.disabled = zoom <= ZOOM_MIN;
+      const isZoomed = zoom > ZOOM_FIT;
+      lightboxImg.classList.toggle('zoomed', isZoomed);
+      lightbox.classList.toggle('zoomed-active', isZoomed);
+    }
+
+    function setZoom(v) {
+      zoom = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, v));
+      if (zoom <= ZOOM_FIT) { panX = 0; panY = 0; }
+      applyTransform();
+    }
+
+    function resetZoom() {
+      zoom = ZOOM_FIT; panX = 0; panY = 0;
+      lightboxImg.style.transform = '';
+      lightboxImg.classList.remove('zoomed', 'dragging');
+      zoomLabel.textContent = '100%';
+      zoomInBtn.disabled = false;
+      zoomOutBtn.disabled = false;
+    }
+
+    // Abrir — exclusivo de .case-figure img
     document.addEventListener('click', e => {
       const img = e.target.closest('.case-figure img');
       if (!img) return;
@@ -2731,6 +3703,7 @@
       lightboxImg.alt = img.alt;
       lightbox.classList.add('open');
       document.body.style.overflow = 'hidden';
+      resetZoom();
       lightbox.querySelector('.lightbox-close').focus();
     });
 
@@ -2738,23 +3711,160 @@
       lightbox.classList.remove('open');
       document.body.style.overflow = '';
       lightboxImg.src = '';
+      resetZoom();
     }
 
     lightbox.addEventListener('click', e => {
-      if (e.target === lightbox) closeLightbox();
+      // Só fecha no click no backdrop quando não está em modo de pan
+      if (e.target === lightbox && zoom <= ZOOM_FIT) closeLightbox();
     });
-
     document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
 
+    // Botões
+    zoomInBtn.addEventListener('click', () => setZoom(zoom + ZOOM_STEP));
+    zoomOutBtn.addEventListener('click', () => setZoom(zoom - ZOOM_STEP));
+
+    // Duplo clique: fit ↔ 2×
+    lightboxImg.addEventListener('dblclick', () => setZoom(zoom <= ZOOM_FIT ? 2 : ZOOM_FIT));
+
+    // Scroll/wheel — zoom com deltaY, pan horizontal com deltaX (trackpad)
+    lightbox.addEventListener('wheel', e => {
+      if (!lightbox.classList.contains('open')) return;
+      e.preventDefault();
+      // Trackpad horizontal swipe → pan
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && zoom > ZOOM_FIT) {
+        panX -= e.deltaX;
+        panY -= e.deltaY;
+        applyTransform();
+      } else {
+        // Scroll vertical → zoom
+        setZoom(zoom + (e.deltaY < 0 ? ZOOM_STEP : -ZOOM_STEP));
+      }
+    }, { passive: false });
+
+    // Teclado
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === '+' || e.key === '=') setZoom(zoom + ZOOM_STEP);
+      if (e.key === '-' || e.key === '_') setZoom(zoom - ZOOM_STEP);
+      if (e.key === '0') setZoom(ZOOM_FIT);
+      // Setas para pan quando em zoom
+      if (zoom > ZOOM_FIT) {
+        const PAN_STEP = 60;
+        if (e.key === 'ArrowLeft')  { panX += PAN_STEP; applyTransform(); e.preventDefault(); }
+        if (e.key === 'ArrowRight') { panX -= PAN_STEP; applyTransform(); e.preventDefault(); }
+        if (e.key === 'ArrowUp')    { panY += PAN_STEP; applyTransform(); e.preventDefault(); }
+        if (e.key === 'ArrowDown')  { panY -= PAN_STEP; applyTransform(); e.preventDefault(); }
+      }
     });
+
+    // Pan (arrastar) — mousedown no lightbox inteiro, não só na imagem
+    lightbox.addEventListener('mousedown', e => {
+      if (zoom <= ZOOM_FIT) return;
+      if (e.target.closest('button')) return; // não interfere com botões
+      dragging = true;
+      dragStartX = e.clientX; dragStartY = e.clientY;
+      panStartX = panX; panStartY = panY;
+      lightbox.style.cursor = 'grabbing';
+      e.preventDefault();
+    });
+    document.addEventListener('mousemove', e => {
+      if (!dragging) return;
+      panX = panStartX + (e.clientX - dragStartX);
+      panY = panStartY + (e.clientY - dragStartY);
+      applyTransform();
+    });
+    document.addEventListener('mouseup', e => {
+      if (!dragging) return;
+      dragging = false;
+      lightbox.style.cursor = '';
+      // Só fecha se não houve movimento (clique puro no backdrop)
+      if (Math.abs(e.clientX - dragStartX) < 4 && Math.abs(e.clientY - dragStartY) < 4) {
+        if (e.target === lightbox) closeLightbox();
+      }
+    });
+
+    // Touch — pan em dispositivos touch
+    let touchStartX = 0, touchStartY = 0, touchPanStartX = 0, touchPanStartY = 0;
+    lightbox.addEventListener('touchstart', e => {
+      if (zoom <= ZOOM_FIT || e.touches.length !== 1) return;
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      touchPanStartX = panX;
+      touchPanStartY = panY;
+    }, { passive: true });
+    lightbox.addEventListener('touchmove', e => {
+      if (zoom <= ZOOM_FIT || e.touches.length !== 1) return;
+      e.preventDefault();
+      panX = touchPanStartX + (e.touches[0].clientX - touchStartX);
+      panY = touchPanStartY + (e.touches[0].clientY - touchStartY);
+      applyTransform();
+    }, { passive: false });
   });
+
+  // ── In-page TOC ──────────────────────────────────────────
+  (function () {
+    var tocEntries = [];
+
+    document.querySelectorAll('.case-toc').forEach(function (toc) {
+      var caseId = toc.getAttribute('data-case');
+      var casePage = caseId ? document.getElementById(caseId) : null;
+      if (!casePage) return;
+
+      var links = Array.from(toc.querySelectorAll('.case-toc-link'));
+      var ids = Array.from(new Set(links.map(function (l) { return l.getAttribute('href').replace('#', ''); })));
+
+      tocEntries.push({ toc: toc, casePage: casePage, links: links, ids: ids });
+    });
+
+    function updateAll() {
+      tocEntries.forEach(function (entry) {
+        var toc = entry.toc, casePage = entry.casePage, links = entry.links, ids = entry.ids;
+        var isVisible = getComputedStyle(casePage).display !== 'none';
+
+        if (!isVisible) {
+          toc.classList.remove('toc-visible');
+          return;
+        }
+
+        var targets = ids.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+        if (!targets.length) return;
+
+        var vh = window.innerHeight;
+        var firstTop = targets[0].getBoundingClientRect().top;
+
+        // Mostrar TOC quando Problema aparece na tela (ou já passou)
+        toc.classList.toggle('toc-visible', firstTop <= vh * 0.95);
+
+        // Seção ativa = última cujo topo cruzou 30% do viewport
+        var active = targets[0].id;
+        targets.forEach(function (t) {
+          if (t.getBoundingClientRect().top < vh * 0.35) active = t.id;
+        });
+
+        links.forEach(function (link) {
+          link.classList.toggle('toc-active', link.getAttribute('href') === '#' + active);
+        });
+      });
+    }
+
+    // Expor para showCase() chamar diretamente
+    window.tocUpdate = updateAll;
+
+    // Scroll
+    window.addEventListener('scroll', updateAll, { passive: true });
+  })();
 </script>
 
 <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Imagem em destaque">
   <button id="lightbox-close" class="lightbox-close" aria-label="Fechar">✕</button>
   <img id="lightbox-img" class="lightbox-img" src="" alt="" />
+  <div class="lightbox-zoom-controls">
+    <button class="lightbox-zoom-btn" id="lightbox-zoom-out" aria-label="Zoom out">−</button>
+    <span class="lightbox-zoom-level" id="lightbox-zoom-level">100%</span>
+    <button class="lightbox-zoom-btn" id="lightbox-zoom-in" aria-label="Zoom in">+</button>
+  </div>
 </div>
 
 </body>
