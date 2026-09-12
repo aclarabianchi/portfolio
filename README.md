@@ -1,5 +1,5 @@
 # portfolio
-# Ana Bianchi — Senior Content Designer 
+# Ana Bianchi — Senior UX Designer 
 
 Boas-vindas ao repositório do meu portfólio profissional. Este projeto foi desenvolvido para apresentar, de forma transparente, estruturada e mensurável, o impacto de UX e Estratégia de Conteúdo em produtos digitais de alta escala.
 
