@@ -1707,7 +1707,10 @@
       position: fixed;
       inset: 0;
       z-index: 99999;
-      background: var(--bg);
+      background: #0e0e0c;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -1715,113 +1718,210 @@
       padding: 32px;
     }
 
+    /* overlay escuro sobre a foto */
+    #password-gate::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(8, 8, 6, 0.52);
+      z-index: 0;
+    }
+
     #password-gate .gate-header {
       position: absolute;
       top: 0; left: 0; right: 0;
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       justify-content: space-between;
-      padding: 22px 48px;
-      border-bottom: 1px solid var(--border);
+      padding: 28px 40px 28px;
+      z-index: 1;
     }
 
+    /* logo stacked — ANA / CLARA / BIANCHI */
     #password-gate .gate-name {
       font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 800;
+      line-height: 0.92;
+      letter-spacing: -0.01em;
       text-transform: uppercase;
-      color: var(--text);
+      color: #ffffff;
       text-decoration: none;
+      display: flex;
+      flex-direction: column;
     }
 
-    #password-gate .gate-name span { font-weight: 300; }
+    #password-gate .gate-name span { font-weight: 800; }
 
-    #password-gate .gate-linkedin {
+    /* toggle pill PT/EN */
+    #password-gate .gate-lang-pill {
+      display: flex;
+      align-items: center;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 100px;
+      padding: 3px;
+      gap: 0;
+    }
+
+    #password-gate .gate-lang-pill button {
+      background: transparent;
+      border: none;
+      color: rgba(255,255,255,0.5);
       font-family: 'Inter', sans-serif;
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color var(--transition-base);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      padding: 5px 14px;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: background var(--transition-base), color var(--transition-base);
     }
 
-    #password-gate .gate-linkedin:hover { color: var(--text); }
+    #password-gate .gate-lang-pill button.active {
+      background: rgba(255,255,255,0.88);
+      color: #0e0e0c;
+    }
+
+    /* ícone LinkedIn */
+    #password-gate .gate-linkedin {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 4px;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 15px;
+      transition: border-color var(--transition-base), color var(--transition-base);
+    }
+
+    #password-gate .gate-linkedin:hover {
+      border-color: rgba(255,255,255,0.6);
+      color: #ffffff;
+    }
+
+    /* card central com glass */
+    #password-gate .gate-card {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 380px;
+      background: rgba(12, 12, 10, 0.5);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 3px;
+      padding: 48px 40px 40px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.55), 0 2px 8px rgba(0,0,0,0.3);
+    }
 
     #password-gate .gate-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(28px, 5vw, 42px);
+      font-size: clamp(26px, 4vw, 36px);
       font-weight: 400;
-      color: var(--text);
-      margin-bottom: 8px;
+      color: #ffffff;
+      margin-bottom: 10px;
       text-align: center;
+      text-wrap: balance;
+      line-height: 1.2;
     }
 
     #password-gate .gate-desc {
-      font-size: 14px;
-      color: var(--text-muted);
-      margin-bottom: 40px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 36px;
       text-align: center;
+      line-height: 1.65;
     }
+
+    #password-gate .gate-desc a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color var(--transition-base);
+    }
+
+    #password-gate .gate-desc a:hover { color: #ffffff; }
 
     #password-gate .gate-form {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       width: 100%;
-      max-width: 320px;
     }
 
     #password-gate input[type="password"] {
       width: 100%;
-      padding: 14px 18px;
-      border: 1px solid var(--border);
-      border-radius: 32px;
-      background: var(--bg);
-      color: var(--text);
+      padding: 13px 18px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 2px;
+      background: rgba(255,255,255,0.06);
+      color: #ffffff;
       font-family: 'Inter', sans-serif;
       font-size: 14px;
       letter-spacing: 0.06em;
       outline: none;
-      transition: border-color var(--transition-base);
+      transition: border-color var(--transition-base), background var(--transition-base);
       text-align: center;
     }
 
     #password-gate input[type="password"]:focus {
-      border-color: var(--accent);
+      border-color: rgba(255,255,255,0.4);
+      background: rgba(255,255,255,0.1);
     }
 
     #password-gate input[type="password"]::placeholder {
-      color: var(--text-muted);
-      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.12em;
     }
 
     #password-gate .gate-btn {
       width: 100%;
-      padding: 14px 18px;
-      background: var(--accent);
-      color: var(--bg);
+      padding: 13px 18px;
+      background: #ffffff;
+      color: #0e0e0c;
       border: none;
-      border-radius: 32px;
+      border-radius: 2px;
       font-family: 'Inter', sans-serif;
       font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.12em;
+      font-weight: 600;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       cursor: pointer;
       transition: opacity var(--transition-base);
+      margin-top: 2px;
     }
 
-    #password-gate .gate-btn:hover { opacity: 0.82; }
+    #password-gate .gate-btn:hover { opacity: 0.85; }
+    #password-gate .gate-btn:focus-visible { outline: 2px solid rgba(255,255,255,0.6); outline-offset: 2px; }
 
     #password-gate .gate-error {
       font-size: 12px;
-      color: #B85C5C;
+      color: #e07070;
       letter-spacing: 0.04em;
       min-height: 18px;
       text-align: center;
+    }
+
+    /* crédito da foto no canto inferior */
+    #password-gate .gate-photo-credit {
+      position: absolute;
+      bottom: 20px;
+      right: 24px;
+      z-index: 1;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.22);
+      text-transform: uppercase;
     }
 
     @keyframes gateShake {
@@ -1834,30 +1934,42 @@
       animation: gateShake 0.35s ease;
     }
 
+    @media (max-width: 480px) {
+      #password-gate .gate-header { padding: 18px 20px; }
+      #password-gate .gate-card { padding: 36px 24px 32px; }
+    }
+
   </style>
 </head>
 <body class="lang-pt">
 
 <div id="password-gate">
   <div class="gate-header">
-    <p class="gate-name">Ana Clara <span>Bianchi</span></p>
-    <div style="display:flex;align-items:center;gap:32px;">
-      <div class="lang-toggle" role="group" aria-label="Selecionar idioma">
-        <button class="lang-btn active" onclick="setLang('pt')" aria-pressed="true" lang="pt">PT</button>
-        <button class="lang-btn" onclick="setLang('en')" aria-pressed="false" lang="en">EN</button>
+    <p class="gate-name"><span>Ana</span><span>Clara</span><span>Bianchi</span></p>
+    <div style="display:flex;align-items:center;gap:14px;">
+      <div class="gate-lang-pill" role="group" aria-label="Selecionar idioma">
+        <button class="active" onclick="setLang('pt')" aria-pressed="true" lang="pt">PT</button>
+        <button onclick="setLang('en')" aria-pressed="false" lang="en">EN</button>
       </div>
-      <a href="https://www.linkedin.com/in/aclarabianchi/" class="gate-linkedin" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/aclarabianchi/" class="gate-linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <i class="ti ti-brand-linkedin"></i>
+      </a>
     </div>
   </div>
-  <h1 class="gate-title" data-lang="pt">Boas-vindas</h1>
-  <h1 class="gate-title" data-lang="en">Welcome</h1>
-  <p class="gate-desc" data-lang="pt">Você precisa da senha para acessar este portfólio.<br>Perdeu ou esqueceu de anotar? <a href="https://www.linkedin.com/in/aclarabianchi/" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:none;">Fala comigo no LinkedIn.</a></p>
-  <p class="gate-desc" data-lang="en">You'll need a password to view this work.<br>Lost it? <a href="https://www.linkedin.com/in/aclarabianchi/" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:none;">Send me a DM on LinkedIn.</a></p>
-  <div class="gate-form" id="gate-form">
-    <input type="password" id="gate-input" placeholder="Password" autocomplete="off" data-placeholder-pt="Senha" data-placeholder-en="Password" />
-    <button class="gate-btn" id="gate-btn"><span data-lang="pt">Acessar</span><span data-lang="en">Enter</span></button>
-    <p class="gate-error" id="gate-error"></p>
+
+  <div class="gate-card">
+    <h1 class="gate-title" data-lang="pt">Boas-vindas</h1>
+    <h1 class="gate-title" data-lang="en">Welcome</h1>
+    <p class="gate-desc" data-lang="pt">Você precisa da senha para acessar este portfólio.<br>Perdeu ou esqueceu de anotar? <a href="https://www.linkedin.com/in/aclarabianchi/" target="_blank" rel="noopener noreferrer">Fala comigo no LinkedIn.</a></p>
+    <p class="gate-desc" data-lang="en">You'll need a password to view this work.<br>Lost it? <a href="https://www.linkedin.com/in/aclarabianchi/" target="_blank" rel="noopener noreferrer">Send me a DM on LinkedIn.</a></p>
+    <div class="gate-form" id="gate-form">
+      <input type="password" id="gate-input" placeholder="Password" autocomplete="off" data-placeholder-pt="Senha" data-placeholder-en="Password" />
+      <button class="gate-btn" id="gate-btn"><span data-lang="pt">Acessar</span><span data-lang="en">Enter</span></button>
+      <p class="gate-error" id="gate-error"></p>
+    </div>
   </div>
+
+  <p class="gate-photo-credit" id="gate-photo-credit"></p>
 </div>
 
 <a href="#main-content" class="skip-link">
@@ -3473,7 +3585,7 @@
     currentLang = lang;
     document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
     document.body.className = document.body.className.replace(/lang-\w+/g, '').trim() + ' lang-' + lang;
-    document.querySelectorAll('.lang-btn').forEach(btn => {
+    document.querySelectorAll('.lang-btn, .gate-lang-pill button').forEach(btn => {
       const isActive = btn.getAttribute('lang') === lang;
       btn.classList.toggle('active', isActive);
       btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
@@ -3648,13 +3760,25 @@
 
     setInterval(cycleWord, 2800);
 
-    // ── Password gate ──
+    // ── Password gate — imagem de fundo aleatória ──
+    // Adicione os caminhos das suas fotos aqui (até 5):
+    const GATE_PHOTOS = [
+      'fotos-password-hero/Nanquim.png',
+      // adicione mais fotos aqui conforme forem chegando (até 5)
+    ];
+
     const GATE_PASSWORD = 'portfolio2025';
     const gate = document.getElementById('password-gate');
     const gateInput = document.getElementById('gate-input');
     const gateBtn = document.getElementById('gate-btn');
     const gateForm = document.getElementById('gate-form');
     const gateError = document.getElementById('gate-error');
+    const gateCredit = document.getElementById('gate-photo-credit');
+
+    if (GATE_PHOTOS.length > 0) {
+      const photo = GATE_PHOTOS[Math.floor(Math.random() * GATE_PHOTOS.length)];
+      gate.style.backgroundImage = `url('${photo}')`;
+    }
 
     function unlockPortfolio() {
       gate.style.opacity = '0';
