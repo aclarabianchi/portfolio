@@ -1727,6 +1727,20 @@
       z-index: 0;
     }
 
+    /* terceiro tempo: a sala escurece em volta do card */
+    #password-gate::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, rgba(23, 5, 36, 0.20) 0%, rgba(16, 3, 26, 0.90) 100%);
+      opacity: 0;
+      transition: opacity 600ms ease-out 100ms;
+    }
+
+    #password-gate.is-ready::after { opacity: 1; }
+
     #password-gate .gate-header {
       position: absolute;
       top: 0; left: 0; right: 0;
@@ -1792,16 +1806,13 @@
       justify-content: center;
       width: 32px;
       height: 32px;
-      border: 1px solid rgba(255,255,255,0.25);
-      border-radius: 4px;
-      color: rgba(255,255,255,0.75);
+      color: rgba(255,255,255,0.85);
       text-decoration: none;
-      font-size: 15px;
-      transition: border-color var(--transition-base), color var(--transition-base);
+      font-size: 20px;
+      transition: color var(--transition-base);
     }
 
     #password-gate .gate-linkedin:hover {
-      border-color: rgba(255,255,255,0.6);
       color: #ffffff;
     }
 
@@ -1813,20 +1824,87 @@
       flex-direction: column;
       align-items: center;
       width: 100%;
-      max-width: 380px;
-      background: rgba(12, 12, 10, 0.5);
+      max-width: 298px;
+      background: rgba(12, 12, 10, 0.45);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: 3px;
       padding: 48px 40px 40px;
       box-shadow: 0 24px 64px rgba(0,0,0,0.55), 0 2px 8px rgba(0,0,0,0.3);
+      transition: background var(--transition-base);
+    }
+
+    /* alça: a faixa inteira arrasta, o traço é só o sinal */
+    #password-gate .gate-grab {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #password-gate .gate-grab::before {
+      content: '';
+      width: 32px;
+      height: 3px;
+      border-radius: 2px;
+      background: rgba(255,255,255,0.25);
+      transition: background var(--transition-base);
+    }
+
+    /* o card inteiro é a pegada, então a alça acende ao passar por qualquer parte dele */
+    #password-gate .gate-card:hover .gate-grab::before { background: rgba(255,255,255,0.45); }
+
+    /* os controles não arrastam: mantêm gesto e cursor próprios */
+    #password-gate .gate-card {
+      cursor: grab;
+      touch-action: none;
+    }
+
+    #password-gate .gate-card input,
+    #password-gate .gate-card button,
+    #password-gate .gate-card a,
+    #password-gate .gate-card label {
+      touch-action: auto;
+      cursor: auto;
+    }
+
+    #password-gate .gate-card button,
+    #password-gate .gate-card a { cursor: pointer; }
+    #password-gate .gate-card input { cursor: text; }
+
+    /* enquanto arrasta, o card abre passagem para a foto */
+    #password-gate .gate-card.is-dragging {
+      background: rgba(12, 12, 10, 0.12);
+      cursor: grabbing;
+    }
+
+    #password-gate .gate-card.is-dragging .gate-grab { cursor: grabbing; }
+
+    #password-gate .gate-card > *:not(.gate-grab) {
+      transition: opacity var(--transition-base);
+    }
+
+    #password-gate .gate-card.is-dragging > *:not(.gate-grab) { opacity: 0.35; }
+
+    /* primeiro e segundo tempo: o card sobe da base até o lugar dele */
+    #password-gate .gate-card.is-entering {
+      transition: transform 440ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    #password-gate .gate-card.is-recentering {
+      transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1), background var(--transition-base);
     }
 
     #password-gate .gate-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(26px, 4vw, 36px);
-      font-weight: 400;
+      font-family: 'Inter', sans-serif;
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
       color: #ffffff;
       margin-bottom: 10px;
       text-align: center;
@@ -1835,15 +1913,15 @@
     }
 
     #password-gate .gate-desc {
-      font-size: 13px;
-      color: rgba(255,255,255,0.5);
+      font-size: 12px;
+      color: rgba(255,255,255,0.7);
       margin-bottom: 36px;
       text-align: center;
-      line-height: 1.65;
+      line-height: 20px;
     }
 
     #password-gate .gate-desc a {
-      color: rgba(255,255,255,0.75);
+      color: #ffffff;
       text-decoration: underline;
       text-underline-offset: 3px;
       transition: color var(--transition-base);
@@ -1857,6 +1935,20 @@
       align-items: center;
       gap: 10px;
       width: 100%;
+    }
+
+    #password-gate .gate-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+    }
+
+    #password-gate .gate-label {
+      font-size: 12px;
+      line-height: 20px;
+      color: rgba(255,255,255,0.7);
+      text-align: center;
     }
 
     #password-gate input[type="password"] {
@@ -1877,11 +1969,6 @@
     #password-gate input[type="password"]:focus {
       border-color: rgba(255,255,255,0.4);
       background: rgba(255,255,255,0.1);
-    }
-
-    #password-gate input[type="password"]::placeholder {
-      color: rgba(255,255,255,0.3);
-      letter-spacing: 0.12em;
     }
 
     #password-gate .gate-btn {
@@ -1906,10 +1993,23 @@
 
     #password-gate .gate-error {
       font-size: 12px;
-      color: #e07070;
+      color: #f4a3a3;
       letter-spacing: 0.04em;
       min-height: 18px;
       text-align: center;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 160ms ease-out, transform 160ms ease-out;
+    }
+
+    #password-gate .gate-error.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* o campo em erro é marcado pelo próprio atributo de acessibilidade */
+    #password-gate input[type="password"][aria-invalid="true"] {
+      border-color: #e07070;
     }
 
     /* crédito da foto no canto inferior */
@@ -1924,19 +2024,19 @@
       text-transform: uppercase;
     }
 
-    @keyframes gateShake {
-      0%,100% { transform: translateX(0); }
-      20%,60%  { transform: translateX(-6px); }
-      40%,80%  { transform: translateX(6px); }
-    }
+    @media (prefers-reduced-motion: reduce) {
+      #password-gate .gate-error {
+        transform: none;
+        transition-duration: 1ms;
+      }
 
-    #password-gate .gate-form.shake {
-      animation: gateShake 0.35s ease;
+      #password-gate .gate-card.is-recentering { transition-duration: 1ms; }
+      #password-gate .gate-card.is-entering { transition-duration: 1ms; }
+      #password-gate::after { transition-duration: 1ms; transition-delay: 0ms; }
     }
 
     @media (max-width: 480px) {
       #password-gate .gate-header { padding: 18px 20px; }
-      #password-gate .gate-card { padding: 36px 24px 32px; }
     }
 
   </style>
@@ -1958,14 +2058,18 @@
   </div>
 
   <div class="gate-card">
+    <div class="gate-grab" id="gate-grab" aria-hidden="true"></div>
     <h1 class="gate-title" data-lang="pt">Boas-vindas</h1>
     <h1 class="gate-title" data-lang="en">Welcome</h1>
-    <p class="gate-desc" data-lang="pt">Você precisa da senha para acessar este portfólio.<br>Perdeu ou esqueceu de anotar? <a href="https://www.linkedin.com/in/aclarabianchi/" target="_blank" rel="noopener noreferrer">Fala comigo no LinkedIn.</a></p>
-    <p class="gate-desc" data-lang="en">You'll need a password to view this work.<br>Lost it? <a href="https://www.linkedin.com/in/aclarabianchi/" target="_blank" rel="noopener noreferrer">Send me a DM on LinkedIn.</a></p>
+    <p class="gate-desc" data-lang="pt">Informe a senha para acessar este portfólio. Perdeu ou esqueceu de anotar? <a href="https://www.linkedin.com/in/aclarabianchi/" target="_blank" rel="noopener noreferrer">Fala comigo no LinkedIn.</a></p>
+    <p class="gate-desc" data-lang="en">You'll need a password to view this work. Lost it? <a href="https://www.linkedin.com/in/aclarabianchi/" target="_blank" rel="noopener noreferrer">Send me a DM on LinkedIn.</a></p>
     <div class="gate-form" id="gate-form">
-      <input type="password" id="gate-input" placeholder="Password" autocomplete="off" data-placeholder-pt="Senha" data-placeholder-en="Password" />
+      <div class="gate-field">
+        <label class="gate-label" for="gate-input"><span data-lang="pt">Senha</span><span data-lang="en">Password</span></label>
+        <input type="password" id="gate-input" autocomplete="off" />
+      </div>
       <button class="gate-btn" id="gate-btn"><span data-lang="pt">Acessar</span><span data-lang="en">Enter</span></button>
-      <p class="gate-error" id="gate-error"></p>
+      <p class="gate-error" id="gate-error" role="status" data-msg-pt="Senha incorreta." data-msg-en="Incorrect password."></p>
     </div>
   </div>
 
@@ -3590,8 +3694,10 @@
       btn.classList.toggle('active', isActive);
       btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
     });
-    const input = document.getElementById('gate-input');
-    if (input) input.placeholder = input.dataset['placeholder' + lang.charAt(0).toUpperCase() + lang.slice(1)] || '';
+    const erroGate = document.getElementById('gate-error');
+    if (erroGate && erroGate.dataset.shown === '1') {
+      erroGate.textContent = erroGate.dataset['msg' + lang.charAt(0).toUpperCase() + lang.slice(1)] || '';
+    }
   }
 
   function scrollToTop() {
@@ -3771,13 +3877,13 @@
     const gate = document.getElementById('password-gate');
     const gateInput = document.getElementById('gate-input');
     const gateBtn = document.getElementById('gate-btn');
-    const gateForm = document.getElementById('gate-form');
     const gateError = document.getElementById('gate-error');
     const gateCredit = document.getElementById('gate-photo-credit');
 
+    let fotoDoGate = null;
     if (GATE_PHOTOS.length > 0) {
-      const photo = GATE_PHOTOS[Math.floor(Math.random() * GATE_PHOTOS.length)];
-      gate.style.backgroundImage = `url('${photo}')`;
+      fotoDoGate = GATE_PHOTOS[Math.floor(Math.random() * GATE_PHOTOS.length)];
+      gate.style.backgroundImage = `url('${fotoDoGate}')`;
     }
 
     function unlockPortfolio() {
@@ -3787,27 +3893,181 @@
       sessionStorage.setItem('portfolio_auth', '1');
     }
 
+    // ── Entrada em três tempos: o card sobe e a sala escurece junto ──
+    const SUBIDA = 440, ESPIADA = 118;
+
+    function focarSenha() {
+      // no toque o foco automático abre o teclado e briga com o layout
+      if (!window.matchMedia('(pointer: coarse)').matches) gateInput.focus();
+    }
+
+    function tocarEntrada() {
+      const card = gate.querySelector('.gate-card');
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        gate.classList.add('is-ready');
+        focarSenha();
+        return;
+      }
+      const r = card.getBoundingClientRect();
+      const deslocamento = Math.max(0, (window.innerHeight - ESPIADA) - r.top);
+      card.style.transform = 'translateY(' + deslocamento + 'px)';
+      card.classList.add('is-entering');
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        card.style.transform = '';
+        gate.classList.add('is-ready');
+        // o relógio conta a partir da subida, não de quando o script rodou
+        setTimeout(() => {
+          card.classList.remove('is-entering');
+          focarSenha();
+        }, SUBIDA + 40);
+      }));
+    }
+
+    // aba em segundo plano não roda requestAnimationFrame: a entrada espera a pessoa olhar
+    function quandoVisivel(tocar) {
+      if (document.visibilityState !== 'hidden') { tocar(); return; }
+      document.addEventListener('visibilitychange', function aoAparecer() {
+        if (document.visibilityState === 'hidden') return;
+        document.removeEventListener('visibilitychange', aoAparecer);
+        tocar();
+      });
+    }
+
     if (sessionStorage.getItem('portfolio_auth') === '1') {
       gate.remove();
+    } else if (fotoDoGate) {
+      // só sobe depois que a foto está pronta, senão o card sobe sobre o vazio
+      const img = new Image();
+      let tocou = false;
+      const tocarUmaVez = () => { if (!tocou) { tocou = true; quandoVisivel(tocarEntrada); } };
+      img.onload = tocarUmaVez;
+      img.onerror = tocarUmaVez;
+      img.src = fotoDoGate;
+      setTimeout(tocarUmaVez, 1200);
     } else {
-      setTimeout(() => gateInput.focus(), 100);
+      quandoVisivel(tocarEntrada);
+    }
+
+    function gateErrorText() {
+      return gateError.dataset['msg' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || '';
+    }
+
+    function showGateError() {
+      gateError.dataset.shown = '1';
+      gateError.textContent = gateErrorText();
+      gateError.classList.add('is-visible');
+      gateInput.setAttribute('aria-invalid', 'true');
+      // mantém o que foi digitado e seleciona, para digitar por cima substituir
+      gateInput.focus();
+      gateInput.select();
+    }
+
+    function clearGateError() {
+      if (gateError.dataset.shown !== '1') return;
+      delete gateError.dataset.shown;
+      gateError.textContent = '';
+      gateError.classList.remove('is-visible');
+      gateInput.removeAttribute('aria-invalid');
     }
 
     function tryPassword() {
       if (gateInput.value === GATE_PASSWORD) {
         unlockPortfolio();
       } else {
-        gateError.textContent = 'Senha incorreta.';
-        gateForm.classList.remove('shake');
-        void gateForm.offsetWidth;
-        gateForm.classList.add('shake');
-        gateInput.value = '';
-        gateInput.focus();
+        showGateError();
       }
     }
 
     gateBtn.addEventListener('click', tryPassword);
+    // some ao digitar, não ao focar: o próprio erro devolve o foco ao campo
+    gateInput.addEventListener('input', clearGateError);
     gateInput.addEventListener('keydown', e => { if (e.key === 'Enter') tryPassword(); });
+
+    // ── Alça: arrastar o card para ver a foto por baixo ──
+    const gateCard = gate.querySelector('.gate-card');
+    const gateGrab = document.getElementById('gate-grab');
+    let arrasto = null;
+    let posX = 0, posY = 0;
+
+    function aplicarPosicao() {
+      gateCard.style.transform = (posX || posY) ? 'translate(' + posX + 'px, ' + posY + 'px)' : '';
+    }
+
+    function iniciarArrasto(e) {
+      // controle não arrasta: campo, botão, link e rótulo seguem sendo o que são
+      if (e.target.closest('input, button, a, label')) return;
+      const r = gateCard.getBoundingClientRect();
+      // posição do card sem o deslocamento atual, para calcular os limites
+      const esq = r.left - posX, topo = r.top - posY;
+      // o card pode sair quase todo, desde que sobrem 44px visíveis em cada eixo
+      const visivel = 44;
+      const minX = visivel - (esq + r.width), maxX = window.innerWidth - visivel - esq;
+      const minY = visivel - (topo + r.height), maxY = window.innerHeight - visivel - topo;
+      arrasto = { id: e.pointerId, x: e.clientX, y: e.clientY, px: posX, py: posY, minX, maxX, minY, maxY, ativo: false };
+      // os ouvintes vão na janela: o ponteiro sai do card o tempo todo durante o arrasto
+      window.addEventListener('pointermove', moverArrasto);
+      window.addEventListener('pointerup', terminarArrasto);
+      window.addEventListener('pointercancel', terminarArrasto);
+      gateCard.classList.remove('is-recentering');
+      e.preventDefault();
+    }
+
+    function moverArrasto(e) {
+      if (!arrasto || e.pointerId !== arrasto.id) return;
+      // 4px de limiar: clicar no card não pode piscar o modo espiar
+      if (!arrasto.ativo) {
+        if (Math.abs(e.clientX - arrasto.x) < 4 && Math.abs(e.clientY - arrasto.y) < 4) return;
+        arrasto.ativo = true;
+        gateCard.classList.add('is-dragging');
+      }
+      const preso = (v, min, max) => Math.min(Math.max(v, min), max);
+      posX = preso(arrasto.px + (e.clientX - arrasto.x), arrasto.minX, arrasto.maxX);
+      posY = preso(arrasto.py + (e.clientY - arrasto.y), arrasto.minY, arrasto.maxY);
+      aplicarPosicao();
+    }
+
+    function terminarArrasto() {
+      if (!arrasto) return;
+      window.removeEventListener('pointermove', moverArrasto);
+      window.removeEventListener('pointerup', terminarArrasto);
+      window.removeEventListener('pointercancel', terminarArrasto);
+      arrasto = null;
+      gateCard.classList.remove('is-dragging');
+    }
+
+    function ajustarAosLimites() {
+      if (!posX && !posY) return;
+      const r = gateCard.getBoundingClientRect();
+      const esq = r.left - posX, topo = r.top - posY;
+      const visivel = 44;
+      const preso = (v, min, max) => (min > max ? 0 : Math.min(Math.max(v, min), max));
+      posX = preso(posX, visivel - (esq + r.width), window.innerWidth - visivel - esq);
+      posY = preso(posY, visivel - (topo + r.height), window.innerHeight - visivel - topo);
+      aplicarPosicao();
+    }
+
+    function recentralizarCard() {
+      if (!posX && !posY) return;
+      posX = 0; posY = 0;
+      gateCard.classList.add('is-recentering');
+      aplicarPosicao();
+      setTimeout(() => gateCard.classList.remove('is-recentering'), 340);
+    }
+
+    if (gateGrab) {
+      gateCard.addEventListener('pointerdown', iniciarArrasto);
+      // duplo toque na alça devolve o card ao centro
+      gateGrab.addEventListener('dblclick', recentralizarCard);
+      // a alça pode sair da tela, então há duas saídas que não dependem dela
+      gate.addEventListener('dblclick', e => { if (!gateCard.contains(e.target)) recentralizarCard(); });
+      document.addEventListener('keydown', function escapeRecentraliza(e) {
+        if (e.key !== 'Escape') return;
+        if (!document.body.contains(gateCard)) { document.removeEventListener('keydown', escapeRecentraliza); return; }
+        recentralizarCard();
+      });
+      // o teclado do celular dispara resize: prende aos limites em vez de recentralizar
+      window.addEventListener('resize', ajustarAosLimites);
+    }
 
     // ── Lightbox + Zoom ──
     const lightbox = document.getElementById('lightbox');
