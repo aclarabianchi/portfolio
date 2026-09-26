@@ -1632,6 +1632,9 @@
       color: var(--text-muted);
     }
 
+    /* respiro quando um intertítulo vem logo depois de um parágrafo */
+    .case-section > p + .case-phase-item { margin-top: 44px; }
+
     @media (max-width: 720px) {
       .case-stats { grid-template-columns: 1fr; }
       .case-topics { grid-template-columns: 1fr; }
@@ -2393,25 +2396,26 @@
           </div>
         </button>
 
-        <button class="case-card" onclick="showCase('ttp')" aria-label="Ver case: Tap to Pay Onboarding Find My Tap">
+        <button class="case-card" onclick="showCase('pj')" aria-label="Ver case: PJ Payments">
           <div class="case-thumb" style="background:#EAE4EE;">
-            <img src="ttp-card-thumb.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" />
+            <img src="hero-pj-payments.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" />
           </div>
           <div class="case-body">
             <span class="case-company">Nubank PJ</span>
-            <h2 class="case-name">Tap to Pay: Onboarding Find My Tap</h2>
-            <p class="case-desc" data-lang="pt">Narrativa de onboarding e fluxo guiado para ajudar o usuário a encontrar a posição ideal do NFC no celular.</p>
-            <p class="case-desc" data-lang="en">Onboarding narrative and guided flow to help users find the ideal NFC tap position on their phone.</p>
+            <h2 class="case-name" data-lang="pt">PJ Payments: desenhar o que acontece quando dá errado</h2>
+            <h2 class="case-name" data-lang="en">PJ Payments: designing what happens when it fails</h2>
+            <p class="case-desc" data-lang="pt">Tap to Pay e boleto, sempre na mesma região do produto: o erro de leitura, o pagamento que atrasa, a tarefa repetida.</p>
+            <p class="case-desc" data-lang="en">Tap to Pay and boleto, always in the same region of the product: the failed card read, the late payment, the repeated task.</p>
             <div class="case-tags">
-              <span class="ctag">Narrativa</span>
-              <span class="ctag">Discovery</span>
+              <span class="ctag">Fluxo</span>
+              <span class="ctag">Estados de erro</span>
               <span class="ctag">Sistemas transacionais</span>
-              <span class="ctag">UI</span>
-              <span class="ctag">Redesign</span>
+              <span class="ctag">Experimentação</span>
+              <span class="ctag">UX copy</span>
             </div>
             <div class="case-footer">
-              <span class="case-metric-value" data-lang="pt">NPS recorde de 83 pontos</span>
-              <span class="case-metric-value" data-lang="en">Record NPS score of 83</span>
+              <span class="case-metric-value" data-lang="pt">Fluxo de erro: 11% → 17% de sucesso</span>
+              <span class="case-metric-value" data-lang="en">Error flow: 11% → 17% success rate</span>
               <i class="ti ti-arrow-right case-arrow" aria-hidden="true"></i>
             </div>
           </div>
@@ -2816,7 +2820,7 @@
     <div class="case-next">
       <span class="case-next-label" data-lang="pt">Veja também</span>
       <span class="case-next-label" data-lang="en">See also</span>
-      <button class="case-next-card" onclick="showCase('ttp')" aria-label="Ver case Tap to Pay: Onboarding Find My Tap">
+      <button class="case-next-card" onclick="showCase('pj')" aria-label="Ver case Tap to Pay: Onboarding Find My Tap">
         <div>
           <p class="case-next-company">Nubank PJ · 2025</p>
           <p class="case-next-title">Tap to Pay: Onboarding Find My Tap</p>
@@ -3009,7 +3013,8 @@
 
 
 <!-- ══════════════ CASE: TTP ══════════════ -->
-<div id="case-ttp" class="case-page">
+<!-- ══════════════ CASE: PJ PAYMENTS ══════════════ -->
+<div id="case-pj" class="case-page">
   <nav class="case-nav" aria-label="Navegação do case">
     <button class="back-btn" onclick="showHome()" aria-label="Voltar para a página inicial"><span aria-hidden="true">←</span> <span data-lang="pt">Voltar</span><span data-lang="en">Back</span></button>
     <div class="lang-toggle" role="group" aria-label="Selecionar idioma">
@@ -3020,30 +3025,37 @@
   <main class="case-content fade-up">
 
     <div class="case-hero">
-      <img src="ttp-card-thumb.png" alt="Tap to Pay: Onboarding Find My Tap — da versão atual à visão de futuro do produto" loading="eager" decoding="async" />
+      <img src="hero-pj-payments.png" alt="Tap to Pay — a maquininha no celular, na tela de entrada do produto" loading="eager" decoding="async" />
     </div>
 
     <div class="case-header">
-      <h1 class="case-title">Tap to Pay: Onboarding Find My Tap</h1>
+      <h1 class="case-title" data-lang="pt">PJ Payments — desenhar o que acontece quando dá errado</h1>
+      <h1 class="case-title" data-lang="en">PJ Payments — designing what happens when it fails</h1>
       <div class="case-tags">
-        <span class="tag" data-lang="pt">Narrativa</span><span class="tag" data-lang="en">Narrative</span>
-        <span class="tag" data-lang="pt">Onboarding</span><span class="tag" data-lang="en">Onboarding</span>
-        <span class="tag">UX Copy</span>
-        <span class="tag">UI</span>
-        <span class="tag">Redesign</span>
+        <span class="tag" data-lang="pt">Fluxo</span><span class="tag" data-lang="en">Flow</span>
+        <span class="tag" data-lang="pt">Sistemas transacionais</span><span class="tag" data-lang="en">Transactional systems</span>
+        <span class="tag" data-lang="pt">Estados de erro</span><span class="tag" data-lang="en">Error states</span>
+        <span class="tag" data-lang="pt">Experimentação</span><span class="tag" data-lang="en">Experimentation</span>
+        <span class="tag" data-lang="pt">Pagamento presencial</span><span class="tag" data-lang="en">In-person payments</span>
+        <span class="tag">Cross-squad</span>
+        <span class="tag">UX copy</span>
       </div>
     </div>
 
     <div class="case-intro-grid">
       <div class="case-intro-text">
-        <p data-lang="pt">O Tap to Pay é o produto de pagamentos presenciais do Nubank para PMEs. Muitas pessoas descobriam a função sem saber exatamente onde encostar o cartão para o NFC ser reconhecido — gerando tentativas frustradas logo no primeiro uso. Desenhei a narrativa de onboarding, o redesign da tela de entrada e o fluxo guiado (happy e unhappy path) para ajudar cada usuário a encontrar a posição ideal de toque no próprio celular.</p>
-        <p data-lang="en">Tap to Pay is Nubank's in-person payment product for SMEs. Many people discovered the feature without knowing exactly where to tap their card for the NFC to be recognized — leading to frustrated attempts on first use. I designed the onboarding narrative, the entry screen redesign, and the guided flow (happy and unhappy path) to help each user find the ideal tap position on their own phone.</p>
+        <p class="case-readtime"><i class="ti ti-clock" aria-hidden="true"></i><span data-lang="pt" class="inline">10 minutos de leitura</span><span data-lang="en" class="inline">10 min read</span></p>
+        <p class="case-lede" data-lang="pt">Onde a transação se perde ou se recupera.</p>
+        <p class="case-lede" data-lang="en">Where the transaction is lost or recovered.</p>
+        <p data-lang="pt">Em PJ Payments trabalhei quase sempre na mesma região do produto: o erro de leitura do cartão, o pagamento que atrasa, a tarefa repetida pela vigésima vez. São os momentos que o mercado trata como exceção técnica e que, quando medidos, são exatamente onde a transação se perde ou se recupera.</p>
+        <p data-lang="pt" style="margin-top:12px;">No fluxo de erro do Tap to Pay, a taxa de sucesso saiu de 11% para 17% em duas iterações. Nas cobranças por boleto, as FAQs em fluxo chegaram a 90% de deflexão de atendimento.</p>
+        <p data-lang="en">In PJ Payments I worked almost always in the same region of the product: the card read that fails, the payment that runs late, the task repeated for the twentieth time — the moments the market treats as technical exceptions and that, once measured, are exactly where a transaction is lost or recovered.</p>
       </div>
       <div class="case-meta">
         <div class="case-meta-row">
           <span class="case-meta-key" data-lang="pt">Empresa</span>
           <span class="case-meta-key" data-lang="en">Company</span>
-          <span class="case-meta-value">Nubank</span>
+          <span class="case-meta-value">Nubank · PJ Payments</span>
         </div>
         <div class="case-meta-row">
           <span class="case-meta-key" data-lang="pt">Período</span>
@@ -3058,95 +3070,382 @@
         <div class="case-meta-row">
           <span class="case-meta-key" data-lang="pt">Escopo</span>
           <span class="case-meta-key" data-lang="en">Scope</span>
-          <span class="case-meta-value" data-lang="pt">Narrativa de onboarding, redesign da tela de entrada e fluxo guiado de detecção do NFC</span>
-          <span class="case-meta-value" data-lang="en">Onboarding narrative, entry screen redesign, and guided NFC detection flow</span>
+          <span class="case-meta-value" data-lang="pt">Narrativa de fluxo, UX copy, estados de erro, régua de comunicação, glossário e guidelines, atuação cross-squad</span>
+          <span class="case-meta-value" data-lang="en">Flow narrative, UX copy, error states, communication ruler, glossary and guidelines, cross-squad work</span>
         </div>
         <div class="case-meta-row">
           <span class="case-meta-key" data-lang="pt">Colaboradores</span>
           <span class="case-meta-key" data-lang="en">Collaborators</span>
-          <span class="case-meta-value" data-lang="pt">Product designer, engenharia</span>
-          <span class="case-meta-value" data-lang="en">Product designer, engineering</span>
+          <span class="case-meta-value" data-lang="pt">Product designers, product managers, BAs e times de CX das squads de In-person, Digital Sales e Cross-Payment</span>
+          <span class="case-meta-value" data-lang="en">Product designers, product managers, BAs and CX teams from the In-person, Digital Sales and Cross-Payment squads</span>
         </div>
       </div>
     </div>
 
-    <hr class="divider" />
-
-    <div class="case-section" id="ttp-contexto">
-      <p class="case-section-label" data-lang="pt">Contexto</p><p class="case-section-label" data-lang="en">Context</p>
-      <p data-lang="pt">O Tap to Pay transforma o próprio celular do vendedor em maquininha: basta encostar o cartão na parte de trás do aparelho para cobrar. Mas a posição exata da antena NFC varia de acordo com o modelo e a marca do celular, e isso não era algo que o Nubank ainda ensinava com clareza.</p>
-      <p data-lang="en">Tap to Pay turns the merchant's own phone into a POS terminal: just tap the card on the back of the device to charge. But the exact NFC antenna position varies by phone model and brand, and Nubank wasn't yet teaching this clearly.</p>
-    </div>
-    <hr class="divider" />
-    <div class="case-section" id="ttp-problema">
-      <p class="case-section-label" data-lang="pt">Problema</p><p class="case-section-label" data-lang="en">Problem</p>
-      <p data-lang="pt">Sem orientação, a pessoa vendedora tentava encostar o cartão em pontos aleatórios do celular até o pagamento ser reconhecido (ou desistia no meio do caminho). A tela de entrada do produto também carregava informação demais logo no primeiro contato, competindo com a orientação de uso que o cliente mais precisava naquele momento.</p>
-      <p data-lang="en">Without guidance, merchants would tap the card at random spots on the phone until payment was recognized — or give up along the way. The product's entry screen also front-loaded too much information on first contact, competing with the exact guidance the customer needed most at that moment.</p>
-    </div>
-    <hr class="divider" />
-    <div class="case-section" id="ttp-fiz">
-      <p class="case-section-label" data-lang="pt">O que fiz</p><p class="case-section-label" data-lang="en">What I did</p>
-      <ul data-lang="pt">
-        <li>Estruturei a narrativa de onboarding em início, meio e fim, para guiar a pessoa por todo o processo de descoberta sem sobrecarregá-la de informação</li>
-        <li>Redesenhei a tela de entrada/marketing, simplificando título e descrição e reforçando a imagem que representa o gesto correto de toque</li>
-        <li>Co-desenhei o fluxo guiado de detecção do NFC, com happy path (posição encontrada) e unhappy path (tutorial e dicas de troubleshooting quando o toque não é detectado)</li>
-        <li>Apoiei evoluções complementares de UX: atalhos para Android/iOS, melhorias de copy no Card Capture, atualização de comunicações e FAQ/macros de suporte</li>
-      </ul>
-      <ul data-lang="en">
-        <li>Structured the onboarding narrative into start, middle, and end, guiding the merchant through the whole discovery process without overloading them with information</li>
-        <li>Redesigned the entry/marketing screen, simplifying the title and description and reinforcing the image that represents the correct tap gesture</li>
-        <li>Co-designed the guided NFC detection flow, with a happy path (position found) and an unhappy path (tutorial and troubleshooting tips when the tap isn't detected)</li>
-        <li>Supported complementary UX evolutions: Android/iOS shortcuts, Card Capture copy improvements, updated communications, and support FAQ/macros</li>
-      </ul>
-    </div>
-    <div class="case-images">
-      <figure class="case-figure">
-        <img src="ttp-onboarding-hero.png"
-             alt="Fluxo de tutorial de NFC do Tap to Pay — happy path guiando a pessoa até encontrar a posição ideal do NFC"
-             loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-        <figcaption data-lang="pt">Happy path do tutorial de NFC — a pessoa é guiada passo a passo até encontrar e confirmar a posição ideal de toque no celular.</figcaption>
-        <figcaption data-lang="en">NFC tutorial happy path — the merchant is guided step by step until finding and confirming the ideal tap position on the phone.</figcaption>
-      </figure>
+    <div data-lang="en">
+      <p class="case-translation-note">This case is being rewritten. The full text is available in Portuguese while the English version is in progress — switch to PT above to read it.</p>
     </div>
 
-    <div class="case-section" id="ttp-decisoes">
-      <p class="case-section-label" data-lang="pt">Decisões de design</p><p class="case-section-label" data-lang="en">Design decisions</p>
-      <p data-lang="pt">A estrutura de início, meio e fim guiou a narrativa do onboarding, evitando sobrecarregar a pessoa logo no primeiro contato com o produto. Na comunicação com o vendedor, priorizamos ajudá-lo a encontrar a posição ideal do NFC no próprio celular — pedindo que aproxime o cartão da parte de trás do aparelho, próximo à câmera, onde normalmente fica a antena. E na abordagem visual do tutorial, usamos o ponto de vista do aparelho e do cartão para ancorar visualmente cada passo, motion para reforçar o comportamento esperado e sinalizar mudança de status, e copy focada no resultado ("mantenha a posição", "o topo é o lugar ideal") em vez de termos técnicos como "antena NFC" — para ser compreendida por qualquer pessoa vendedora, independente de conhecimento técnico.</p>
-      <p data-lang="en">The start-middle-end structure guided the onboarding narrative, avoiding overwhelming the merchant on first contact with the product. In the copy directed at the seller, we prioritized helping them find the ideal NFC position on their own phone — asking them to hold the card against the back of the device, near the camera, where the antenna is usually located. And in the tutorial's visual approach, we used the device and card's point of view to visually anchor each step, motion to reinforce expected behavior and signal status changes, and copy focused on the outcome ("hold the position", "the top is the ideal spot") rather than technical terms like "NFC antenna" — so it could be understood by any merchant, regardless of technical knowledge.</p>
-    </div>
+    <div data-lang="pt">
 
-    <div class="result-block" role="region" aria-label="Resultado principal">
-      <div class="result-number" aria-label="Resultado: NPS recorde de 83 pontos">83</div>
-      <p class="result-text" data-lang="pt">NPS recorde do Tap to Pay (+2pp; Android 82, iOS 83); TPV mensal &gt; R$1 bi nos últimos 30 dias (~7x YoY), com MAUs em alta</p>
-      <p class="result-text" data-lang="en">record Tap to Pay NPS (+2pp; Android 82, iOS 83); monthly TPV &gt; R$1B in the last 30 days (~7x YoY), with MAUs climbing</p>
-    </div>
+      <div class="case-section" id="pj-contexto">
+        <p class="case-section-label">Contexto</p>
+        <p>O Nubank PJ oferece várias formas de receber: Tap to Pay, boleto, Pix Cobrança, link de pagamento. Atuei de forma transversal, atendendo três squads ao mesmo tempo — In-person, Digital Sales e Cross-Payment.</p>
+        <p style="margin-top:12px;">Trabalhar assim tem uma vantagem que demorei a perceber: você vê o mesmo problema repetido em produtos diferentes. E o problema que mais se repetia era o momento da falha. Todo produto de pagamento tem um caminho feliz bem cuidado e um caminho de erro que ninguém quis desenhar.</p>
+        <p style="margin-top:12px;"><strong>Foi ali que passei a maior parte do tempo.</strong></p>
+      </div>
 
-    <hr class="divider" />
-    <div class="case-section" id="ttp-futuro">
-      <p class="case-section-label" data-lang="pt">Pontos que levamos para evoluções futuras</p><p class="case-section-label" data-lang="en">Points for future evolution</p>
-      <p data-lang="pt">Enxergávamos a detecção do NFC como uma funcionalidade do produto — algo que o usuário pudesse acessar não só no onboarding, mas a qualquer momento, inclusive ao trocar de celular, já que a posição da antena varia por modelo. Também víamos a possibilidade de ensinar de forma antecipada e mais simples onde aproximar o cartão no momento do pagamento — por exemplo, uma animação lembrando quem está operando o celular de onde a pessoa pagadora deve encostar o cartão. Esses foram os pontos e recomendações que sintetizamos e apresentamos ao time.</p>
-      <p data-lang="en">We saw NFC detection as a product feature in its own right — something users could access not just during onboarding, but at any time, including when switching phones, since antenna position varies by model. We also saw an opportunity to teach the tap position earlier and in an even simpler way at the moment of payment — for example, an animation reminding whoever is operating the phone where the paying customer should tap their card. These were the points and recommendations we synthesized and presented to the team.</p>
+      <div class="case-section" id="pj-ttp">
+        <p class="case-section-label">Tap to Pay</p>
+        <p>O Tap to Pay transforma o celular do vendedor em maquininha: basta encostar o cartão na traseira do aparelho para cobrar. Produto com NPS 80 e proposta de valor forte — as melhores condições sem precisar comprar ou alugar máquina.</p>
+        <p style="margin-top:12px;">Mas performance, nesse tipo de produto, é o mínimo. Se a cobrança falha na frente do comprador, não existe copy que console.</p>
+
+        <div class="case-phase-item">
+          <h3 class="case-phase-title">As métricas do time</h3>
+          <p>O discovery de otimização de fluxo declarou as metas antes de começar, e são elas que orientam as três frentes abaixo:</p>
+
+          <div class="case-callout">
+            <span class="case-callout-label">Métrica-alvo</span>
+            <p>Redução do tempo até concluir — tempo para configurar a cobrança e tempo para ler o cartão.</p>
+          </div>
+
+          <div class="case-topics">
+            <div class="case-topic">
+              <span class="case-topic-label">Métricas de performance</span>
+              <p>Menos contatos de “como funciona”, <strong>menos erro</strong>, mais transações.</p>
+            </div>
+            <div class="case-topic">
+              <span class="case-topic-label">Plano de pesquisa</span>
+              <p>Três fases — survey quantitativo, entrevistas em profundidade e um laboratório de casos de uso.</p>
+            </div>
+          </div>
+
+          <p>O plano declarava também os <strong>não-objetivos</strong>: definir ou testar soluções novas não fazia parte daquela etapa.</p>
+        </div>
+
+        <div class="case-phase-item">
+          <h3 class="case-phase-title">Frente 1 — Encontrar o ponto de toque</h3>
+          <p>A posição da antena NFC muda conforme o modelo e a marca do aparelho, e o Nubank não ensinava isso em lugar nenhum. Sem orientação, a pessoa encostava o cartão em pontos aleatórios do próprio celular até funcionar — ou desistia no meio, na frente do cliente.</p>
+          <p style="margin-top:12px;">Estruturei a narrativa do onboarding em início, meio e fim, e co-desenhei o fluxo guiado de detecção, com os dois caminhos:</p>
+
+          <div class="case-topics">
+            <div class="case-topic">
+              <span class="case-topic-label">Caminho feliz</span>
+              <p>A pessoa é guiada passo a passo até encontrar e confirmar a posição ideal no próprio aparelho.</p>
+            </div>
+            <div class="case-topic">
+              <span class="case-topic-label">Caminho infeliz</span>
+              <p>Se a detecção falha nas três posições possíveis, o fluxo não termina em erro. Ele oferece o que fazer — tirar a capa, encostar na traseira, testar na vertical, manter o cartão por pelo menos cinco segundos — e recomeça.</p>
+            </div>
+          </div>
+
+          <figure class="case-figure">
+            <img src="ttp-onboarding-hero.png" alt="Caminho feliz do tutorial de NFC: da instrução inicial à confirmação da posição ideal" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+            <figcaption>Caminho feliz: a pessoa é guiada até confirmar a posição ideal no próprio aparelho.</figcaption>
+          </figure>
+
+          <figure class="case-figure">
+            <img src="ttp-nfc-detection-flow.png" alt="Caminho infeliz do tutorial de NFC: posição ideal não encontrada, dicas de solução e recomeço do fluxo" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+            <figcaption>Caminho infeliz: “posição ideal não encontrada” termina em dicas acionáveis e recomeço, não em erro.</figcaption>
+          </figure>
+
+          <div class="case-callout">
+            <span class="case-callout-label">A regra</span>
+            <p>As decisões de linguagem e visual seguiram uma regra: <strong>falar do resultado, não do mecanismo.</strong> “Mantenha a posição” e “o topo é o lugar ideal”, em vez de “antena NFC”. A ilustração usa o ponto de vista do aparelho e do cartão para ancorar cada passo, e o motion sinaliza a mudança de status — porque a pessoa está olhando para o celular, não lendo.</p>
+          </div>
+        </div>
+
+        <div class="case-phase-item">
+          <h3 class="case-phase-title">Frente 2 — Reduzir a carga da tela de entrada</h3>
+          <p>A primeira tela do produto carregava informação demais logo no primeiro contato, competindo com a orientação de uso que o cliente mais precisava naquele momento.</p>
+          <p style="margin-top:12px;">O trabalho foi de subtração, em três versões: da tela como estava, para uma primeira proposta, para a proposta final — título e descrição revistos, lista de taxas visualmente mais leve e aderente ao design system.</p>
+          <p style="margin-top:12px;">Exploramos também uma <strong>visão de futuro</strong> para a tela, mais ambiciosa. Ela ficou marcada explicitamente como fora daquela entrega. Registrar o que não vai agora, e por quê, é o que impede a exploração de virar promessa.</p>
+        </div>
+
+        <div class="case-phase-item">
+          <h3 class="case-phase-title">Frente 3 — O fluxo de erro</h3>
+          <p><strong>Quem liderou esta frente foi a product designer.</strong> Dei suporte à pesquisa e contribuí no desenho. E havia uma segunda camada no meu papel: ela estava em nível pleno e eu, sênior — então acompanhá-la e apoiar o desenvolvimento dela ao longo do projeto fazia parte do trabalho, tanto quanto o resultado.</p>
+          <p style="margin-top:12px;">Registro isso porque é uma parte da senioridade que raramente aparece em portfólio. Nem todo projeto de um designer sênior é um projeto que ele lidera. Em time saudável, parte do que se faz é criar as condições para outra pessoa liderar bem — e depois não reivindicar o crédito por isso.</p>
+
+          <div class="case-quote">
+            <blockquote lang="en">She helped deepen my understanding of content design, fostered cross-product conversations around consistency, and contributed to meaningful improvements across the user journeys we worked on.</blockquote>
+            <cite>Giulia Chagas, Product Designer · recomendação no LinkedIn, junho de 2026</cite>
+          </div>
+
+          <p>A frente seguiu quatro passos:</p>
+
+          <ol class="case-steps">
+            <li class="case-step">
+              <span class="case-step-num">1</span>
+              <div>
+                <p class="case-step-title">Analisar a situação</p>
+                <p class="case-step-desc">Uma matriz de todos os erros por tipo, cruzada com o que o cliente conseguia fazer em cada um.</p>
+              </div>
+            </li>
+            <li class="case-step">
+              <span class="case-step-num">2</span>
+              <div>
+                <p class="case-step-title">Criar hipóteses e princípios</p>
+                <p class="case-step-desc">A comunicação de erro precisava ser <strong>clara, simples e coerente</strong>.</p>
+              </div>
+            </li>
+            <li class="case-step">
+              <span class="case-step-num">3</span>
+              <div>
+                <p class="case-step-title">Explorar e definir a proposta</p>
+                <p class="case-step-desc">Só então, a reescrita das mensagens.</p>
+              </div>
+            </li>
+            <li class="case-step">
+              <span class="case-step-num">4</span>
+              <div>
+                <p class="case-step-title">Medir</p>
+                <p class="case-step-desc">Duas iterações, contra a experiência original.</p>
+              </div>
+            </li>
+          </ol>
+
+          <p>A mudança central foi parar de descrever o problema e passar a oferecer a saída. Uma mensagem que diz “o cartão usado não permite esse tipo de pagamento” está tecnicamente correta e deixa a pessoa parada na frente do comprador. A versão nova nomeia a alternativa que existe naquele momento.</p>
+
+          <div class="case-callout">
+            <span class="case-callout-label">Onde deixa de ser sobre texto</span>
+            <p><strong>E é aí que essa mudança deixa de ser sobre texto.</strong> Para dizer qual é a saída, o sistema precisa saber qual saída existe — para aquele vendedor, aquele cartão, aquela transação, naquele instante. Cada mensagem virou uma condição a ser validada contra um cenário real.</p>
+          </div>
+
+          <p>Isso só foi viável porque engenharia e operações estiveram próximas o tempo todo, com troca constante para validar cada cenário. Sem essa proximidade, o resultado teria sido o de sempre: mensagens mais gentis dizendo a mesma coisa inútil.</p>
+
+          <p style="margin-top:12px;"><strong>O resultado, em duas iterações:</strong></p>
+
+          <div class="case-stats" style="--cols:3;">
+            <div class="case-stat">
+              <p class="case-stat-value">11%</p>
+              <p class="case-stat-label">de taxa de sucesso na experiência original</p>
+            </div>
+            <div class="case-stat">
+              <p class="case-stat-value">14%</p>
+              <p class="case-stat-label">na primeira iteração — +27% sobre a original</p>
+            </div>
+            <div class="case-stat">
+              <p class="case-stat-value is-accent">17%</p>
+              <p class="case-stat-label">na segunda iteração — <strong>+55% sobre a original</strong></p>
+            </div>
+          </div>
+
+          <p>Por componente: o botão primário saiu de 12% para 17%, o secundário de 22% para 27%.</p>
+
+          <div class="case-callout">
+            <span class="case-callout-label">Uma nota sobre atribuição</span>
+            <p>No mesmo período, o Tap to Pay bateu NPS recorde de 83 e ultrapassou R$ 1 bilhão de TPV mensal. Esses números são do produto inteiro e do pacote de evoluções de UX daquele semestre — atalhos para Android e iOS, melhorias na captura de cartão, atualização de comunicações e FAQ. Contribuí para esse pacote, mas <strong>o número que é do fluxo de erro é o 11% para 17%.</strong></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-section" id="pj-boleto">
+        <p class="case-section-label">Boleto</p>
+
+        <div class="case-phase-item">
+          <h3 class="case-phase-title">O discovery</h3>
+          <p>A pesquisa com o ICP mapeou a jornada inteira de cobrança por boleto, e o desenho que saiu dela diz quase tudo: <strong>metade do trabalho acontece fora do nosso app.</strong></p>
+
+          <ol class="case-steps">
+            <li class="case-step">
+              <span class="case-step-num">1</span>
+              <div>
+                <p class="case-step-title">Fechar o negócio</p>
+                <p class="case-step-desc">Salvar os dados do comprador em planilha, bloco de notas ou no sistema de nota fiscal · <strong>fora do app</strong></p>
+              </div>
+            </li>
+            <li class="case-step">
+              <span class="case-step-num">2</span>
+              <div>
+                <p class="case-step-title">Cobrar</p>
+                <p class="case-step-desc">Configurar o boleto, criar a cobrança, baixar o PDF, emitir a nota · <strong>metade fora</strong></p>
+              </div>
+            </li>
+            <li class="case-step">
+              <span class="case-step-num">3</span>
+              <div>
+                <p class="case-step-title">Enviar</p>
+                <p class="case-step-desc">Juntar boleto e nota e mandar por e-mail ou WhatsApp · <strong>fora do app</strong></p>
+              </div>
+            </li>
+            <li class="case-step">
+              <span class="case-step-num">4</span>
+              <div>
+                <p class="case-step-title">Gerir</p>
+                <p class="case-step-desc">Acompanhar no app, controlar em planilha, cobrar quem atrasou · <strong>quase todo fora</strong></p>
+              </div>
+            </li>
+          </ol>
+
+          <p>As dores que sustentaram as três frentes seguintes:</p>
+          <ul style="margin-top:12px; padding-left:20px; display:flex; flex-direction:column; gap:10px;">
+            <li>O app não guardava os dados do comprador. Mesmo com lista de clientes, o vendedor teria que cadastrar cada cliente duas vezes — no banco e na plataforma do governo.</li>
+            <li>A troca constante de aplicativo para copiar e colar dados, com erro de digitação e autocorreção no caminho. <em>“Toda vez você tá repetindo os dados que poderiam ser salvos. E se sai alguma coisa errada no CNPJ, não aparece no buscador de boleto dele.”</em></li>
+            <li>O app não tinha juros nem multa — e o vendedor precisava disso para lidar com atraso.</li>
+            <li>A cobrança gerava link ou código de barras, não PDF. <em>“Quando concluo, não gera o boleto em PDF. Tenho que enviar o link para o meu WhatsApp, clicar lá e baixar.”</em></li>
+          </ul>
+
+          <div class="case-callout">
+            <span class="case-callout-label">O dado</span>
+            <p>Um dado do quantitativo explica por que boleto ainda importa tanto em B2B: <strong>quem decide a forma de pagamento não é quem vende, é quem compra.</strong></p>
+          </div>
+        </div>
+
+        <div class="case-phase-item">
+          <h3 class="case-phase-title">Frente 1 — Juros e multa</h3>
+          <p>Trabalhei a régua de comunicação, os templates e as <strong>FAQs integradas ao fluxo</strong> — a informação no ponto da dúvida, e não numa central de ajuda a três cliques de distância.</p>
+
+          <div class="case-stats" style="--cols:3;">
+            <div class="case-stat">
+              <p class="case-stat-value is-accent">~90%</p>
+              <p class="case-stat-label">de deflexão de atendimento nas cobranças de boleto, em novembro</p>
+            </div>
+            <div class="case-stat">
+              <p class="case-stat-value">0,01%</p>
+              <p class="case-stat-label">de tickets: indicadores de atendimento estáveis</p>
+            </div>
+            <div class="case-stat">
+              <p class="case-stat-value">3,0 dias</p>
+              <p class="case-stat-label">de mediana de pagamento, contra 4,8 — um sinal inicial</p>
+            </div>
+          </div>
+
+          <p>E aqui vale ser exato sobre o que o teste mostrou e o que não mostrou. Comparando tratamento e controle: conclusão de pagamento +2,79%, taxa de atividade −0,94%, TPV +2,27% — <strong>nenhum dos três estatisticamente significativo.</strong> Houve um sinal inicial de pagamento mais rápido, com mediana de 3,0 dias contra 4,8.</p>
+          <p style="margin-top:12px;">A leitura de negócio que levamos foi essa: paridade com o mercado, potencial de receita por tarifa, e redução do tempo médio de recebimento sem aumentar fricção. A deflexão de atendimento é o resultado sólido; o resto era sinal, e apresentei como sinal.</p>
+        </div>
+
+        <div class="case-phase-item">
+          <h3 class="case-phase-title">Frente 2 — Novos limites de pagamento</h3>
+          <p>Explorei e propus a régua de comunicação, e defini o conteúdo e os templates.</p>
+
+          <div class="case-stats" style="--cols:3;">
+            <div class="case-stat">
+              <p class="case-stat-value">R$ 2.136</p>
+              <p class="case-stat-label">de TPV por cliente ativo, antes das comunicações</p>
+            </div>
+            <div class="case-stat">
+              <p class="case-stat-value">R$ 2.207</p>
+              <p class="case-stat-label">depois do anúncio no app</p>
+            </div>
+            <div class="case-stat">
+              <p class="case-stat-value is-accent">R$ 2.251</p>
+              <p class="case-stat-label">depois do e-mail — recorde histórico no período</p>
+            </div>
+          </div>
+
+          <p>O TPV total foi de R$ 54,0 milhões para R$ 57,6 milhões. O anúncio teve 85% de taxa de exibição e 12,43% de cliques.</p>
+
+          <div class="case-callout">
+            <span class="case-callout-label">O que não aconteceu</span>
+            <p>O número de clientes ativos não avançou de forma relevante. As comunicações elevaram o quanto quem já usava passou a transacionar, e não quantas pessoas passaram a usar. <strong>São coisas diferentes, e a segunda não era efeito que comunicação sozinha fosse produzir.</strong></p>
+          </div>
+        </div>
+
+        <div class="case-phase-item">
+          <h3 class="case-phase-title">Frente 3 — Lista de clientes</h3>
+          <p>Ataca diretamente a dor mapeada no discovery: uma tela no início do fluxo para selecionar clientes recorrentes, com carga automática dos que já existiam. Menos digitação repetida, menos erro de CNPJ, menos cobrança que não aparece na busca do comprador.</p>
+          <p style="margin-top:12px;">O tema “lista de clientes” havia se tornado a principal dor no NPS de boletos, que estava em 69.</p>
+        </div>
+      </div>
+
+      <div class="case-section" id="pj-escala">
+        <p class="case-section-label">O trabalho que dá escala</p>
+        <p>Além dos projetos, mantive a base que faz o conteúdo funcionar sem depender de mim:</p>
+
+        <ol class="case-steps">
+          <li class="case-step">
+            <span class="case-step-num">1</span>
+            <div>
+              <p class="case-step-title">Glossário de PJ Payments</p>
+              <p class="case-step-desc">Mapeamento de conceitos e documentação, para que squads diferentes chamassem a mesma coisa pelo mesmo nome.</p>
+            </div>
+          </li>
+          <li class="case-step">
+            <span class="case-step-num">2</span>
+            <div>
+              <p class="case-step-title">Alinhamento de terminologia entre Payments e Enterprise</p>
+              <p class="case-step-desc">Liderei um mapeamento de inconsistências reunindo designers e content designers dos dois domínios, para definirmos prioridades juntos e acordarmos como registrar decisões de conteúdo.</p>
+            </div>
+          </li>
+          <li class="case-step">
+            <span class="case-step-num">3</span>
+            <div>
+              <p class="case-step-title">Princípios de cenário de erro</p>
+              <p class="case-step-desc">A definição do que a comunicação de falha precisa fazer, e de como tangibilizar isso em tela. É a fundação conceitual da terceira frente do Tap to Pay.</p>
+            </div>
+          </li>
+          <li class="case-step">
+            <span class="case-step-num">4</span>
+            <div>
+              <p class="case-step-title">Content Guide com IA</p>
+              <p class="case-step-desc">Liderei um pack dentro da workstream de excelência em design para criar um guia de conteúdo assistido por IA: estruturei a POC, defini os parâmetros de avaliação, gravei demonstrações e conduzi o período de testes. Chegou a <strong>84% de adesão entre os designers nos primeiros 30 dias.</strong></p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="case-section" id="pj-diferente">
+        <p class="case-section-label">O que eu faria diferente</p>
+        <p><strong>Definir a métrica de cada frente junto com a frente.</strong> A separação entre o que era resultado do fluxo de erro e o que era resultado do pacote de UX só ficou nítida depois. Enquanto não estava, o número grande do produto tendia a absorver o crédito do trabalho específico — o que atrapalha a leitura de impacto de todo mundo, não só a minha.</p>
+        <p style="margin-top:12px;"><strong>Aprofundar arquitetura de informação em contexto multiplataforma.</strong> Recebi esse feedback formalmente, no projeto de lista de clientes, e ele estava certo: eu tratava app e web com o mesmo desenho de informação, quando os dois contextos de uso pedem recortes diferentes. Foi um dos pontos que passei a trabalhar depois, e o guia de conteúdo com IA nasceu em parte desse esforço de fechar lacunas apontadas.</p>
+        <p style="margin-top:12px;"><strong>Acordar prioridade com cada squad, explicitamente.</strong> Atender três squads ao mesmo tempo, num semestre em que o projeto de POS também entrava, custou consistência. Aprendi que em atuação transversal o acordo de prioridade não é overhead administrativo — é parte do trabalho de design, e precisa ser feito antes de o conflito aparecer.</p>
+      </div>
+
+      <p class="case-footnote">Projeto desenvolvido no Nubank PJ. Telas e artefatos exibidos com fins de portfólio, mantendo confidencialidade sobre informações estratégicas e comerciais.</p>
+
     </div>
 
     <!-- Veja também -->
     <div class="case-next">
       <span class="case-next-label" data-lang="pt">Veja também</span>
       <span class="case-next-label" data-lang="en">See also</span>
-      <button class="case-next-card" onclick="showCase('ia')" aria-label="Ver case Content Guide com IA">
+      <button class="case-next-card" onclick="showCase('pos')" aria-label="Ver case POS Nubank">
         <div>
-          <p class="case-next-company">Nubank PJ · 2025</p>
-          <p class="case-next-title" data-lang="pt">Content Guide com IA</p>
-          <p class="case-next-title" data-lang="en">AI-Powered Content Guide</p>
+          <p class="case-next-company">Nubank PJ · 2025–2026</p>
+          <p class="case-next-title" data-lang="pt">POS — o primeiro hardware do Nubank</p>
+          <p class="case-next-title" data-lang="en">POS — Nubank's first hardware</p>
           <div class="case-next-tags">
-            <span class="tag" data-lang="pt">IA generativa</span><span class="tag" data-lang="en">Generative AI</span>
-            <span class="tag" data-lang="pt">Ferramental</span><span class="tag" data-lang="en">Tooling</span>
+            <span class="tag" data-lang="pt">Hardware</span><span class="tag" data-lang="en">Hardware</span>
+            <span class="tag" data-lang="pt">Arquitetura de informação</span><span class="tag" data-lang="en">Information architecture</span>
+            <span class="tag" data-lang="pt">Jornada E2E</span><span class="tag" data-lang="en">End-to-end journey</span>
           </div>
         </div>
         <span class="case-next-arrow" aria-hidden="true">→</span>
       </button>
     </div>
+
   </main>
 </div>
+
+
+<!-- In-page TOC: PJ Payments -->
+<nav class="case-toc" id="pj-toc" data-case="case-pj" aria-label="Navegação da página">
+  <p class="case-toc-label" data-lang="pt">Nesta página</p>
+  <p class="case-toc-label" data-lang="en">On this page</p>
+  <ul class="case-toc-list">
+    <li>
+      <a class="case-toc-link" href="#pj-contexto" data-lang="pt">Contexto</a>
+      <a class="case-toc-link" href="#pj-contexto" data-lang="en">Context</a>
+    </li>
+    <li>
+      <a class="case-toc-link" href="#pj-ttp" data-lang="pt">Tap to Pay</a>
+      <a class="case-toc-link" href="#pj-ttp" data-lang="en">Tap to Pay</a>
+    </li>
+    <li>
+      <a class="case-toc-link" href="#pj-boleto" data-lang="pt">Boleto</a>
+      <a class="case-toc-link" href="#pj-boleto" data-lang="en">Boleto</a>
+    </li>
+    <li>
+      <a class="case-toc-link" href="#pj-escala" data-lang="pt">O trabalho que dá escala</a>
+      <a class="case-toc-link" href="#pj-escala" data-lang="en">Work that scales</a>
+    </li>
+    <li>
+      <a class="case-toc-link" href="#pj-diferente" data-lang="pt">O que eu faria diferente</a>
+      <a class="case-toc-link" href="#pj-diferente" data-lang="en">What I'd do differently</a>
+    </li>
+  </ul>
+</nav>
 
 
 <!-- ══════════════ CASE: IA ══════════════ -->
@@ -4027,8 +4326,10 @@
   }, { passive: true });
 
   window.addEventListener('DOMContentLoaded', () => {
-    const hash = window.location.hash.replace('#', '');
-    const valid = ['chargeback', 'metrics', 'ttp', 'ia', 'merenda'];
+    const rawHash = window.location.hash.replace('#', '');
+    const valid = ['pos', 'pj', 'chargeback', 'metrics', 'ia', 'merenda'];
+    const aliases = { ttp: 'pj' };
+    const hash = aliases[rawHash] || rawHash;
     if (hash && valid.includes(hash)) {
       document.getElementById('home-page').style.display = 'none';
       const page = document.getElementById('case-' + hash);
