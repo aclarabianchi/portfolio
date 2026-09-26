@@ -2374,23 +2374,25 @@
           </div>
         </button>
 
-        <button class="case-card" onclick="showCase('metrics')" aria-label="Ver case: Content Metrics">
+        <button class="case-card" onclick="showCase('insurance')" aria-label="Ver case: Claims">
           <div class="case-thumb" style="background:#E4EEE8;">
-            <img src="content-metrics-case-final.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" />
+            <img src="hero-insurance.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" />
           </div>
           <div class="case-body">
             <span class="case-company">Nubank Seguros</span>
-            <h2 class="case-name">Content Metrics</h2>
-            <p class="case-desc" data-lang="pt">Framework de métricas de conteúdo para medir impacto em múltiplas BUs.</p>
-            <p class="case-desc" data-lang="en">Content metrics framework to measure impact across multiple BUs.</p>
+            <h2 class="case-name" data-lang="pt">Claims: a experiência que faltava em cinco produtos</h2>
+            <h2 class="case-name" data-lang="en">Claims: the experience missing from five products</h2>
+            <p class="case-desc" data-lang="pt">Status do acionamento no app, desenhado para escalar de um produto de seguro para todos os outros.</p>
+            <p class="case-desc" data-lang="en">In-app claim status, designed to scale from one insurance product to all the others.</p>
             <div class="case-tags">
-              <span class="ctag">Análise de dados</span>
-              <span class="ctag">Decisão por dados</span>
-              <span class="ctag">Cross-functional</span>
+              <span class="ctag">Arquitetura de informação</span>
+              <span class="ctag">Sistemas complexos</span>
+              <span class="ctag">Integração com parceiros</span>
+              <span class="ctag">Escala multi-produto</span>
             </div>
             <div class="case-footer">
-              <span class="case-metric-value" data-lang="pt">pNPS 75 — maior da categoria no Brasil</span>
-              <span class="case-metric-value" data-lang="en">pNPS 75 — highest category score in Brazil</span>
+              <span class="case-metric-value" data-lang="pt">NPS de sinistro 83 · −10 h por acionamento</span>
+              <span class="case-metric-value" data-lang="en">Claim NPS 83 · −10 h per claim</span>
               <i class="ti ti-arrow-right case-arrow" aria-hidden="true"></i>
             </div>
           </div>
@@ -2957,8 +2959,8 @@
 </nav>
 
 
-<!-- ══════════════ CASE: METRICS ══════════════ -->
-<div id="case-metrics" class="case-page">
+<!-- ══════════════ CASE: INSURANCE / CLAIMS ══════════════ -->
+<div id="case-insurance" class="case-page">
   <nav class="case-nav" aria-label="Navegação do case">
     <button class="back-btn" onclick="showHome()" aria-label="Voltar para a página inicial"><span aria-hidden="true">←</span> <span data-lang="pt">Voltar</span><span data-lang="en">Back</span></button>
     <div class="lang-toggle" role="group" aria-label="Selecionar idioma">
@@ -2969,170 +2971,292 @@
   <main class="case-content fade-up">
 
     <div class="case-hero">
-      <img src="Growth Content Metrics - Q3 2023.gif" alt="Growth Content Metrics Q3 2023 — evolução da iniciativa de métricas de Content Design no Nubank" loading="eager" decoding="async" />
+      <img src="hero-insurance.png" alt="Claims — o acompanhamento do acionamento do seguro no app" loading="eager" decoding="async" />
     </div>
 
     <div class="case-header">
-      <h1 class="case-title">Content Metrics</h1>
+      <h1 class="case-title" data-lang="pt">Claims — a experiência que faltava em cinco produtos</h1>
+      <h1 class="case-title" data-lang="en">Claims — the experience missing from five products</h1>
       <div class="case-tags">
-        <span class="tag" data-lang="pt">Liderança de iniciativa</span><span class="tag" data-lang="en">Initiative leadership</span>
-        <span class="tag">UX Metrics</span>
-        <span class="tag">Heart Framework</span>
-        <span class="tag" data-lang="pt">Cross-empresa</span><span class="tag" data-lang="en">Company-wide</span>
+        <span class="tag" data-lang="pt">Sistemas complexos</span><span class="tag" data-lang="en">Complex systems</span>
+        <span class="tag" data-lang="pt">Arquitetura de informação</span><span class="tag" data-lang="en">Information architecture</span>
+        <span class="tag" data-lang="pt">Integração com parceiros</span><span class="tag" data-lang="en">Partner integration</span>
+        <span class="tag">Design system</span>
+        <span class="tag" data-lang="pt">Escala multi-produto</span><span class="tag" data-lang="en">Multi-product scale</span>
+        <span class="tag" data-lang="pt">Experimentação</span><span class="tag" data-lang="en">Experimentation</span>
+        <span class="tag" data-lang="pt">Acessibilidade</span><span class="tag" data-lang="en">Accessibility</span>
       </div>
     </div>
 
     <div class="case-intro-grid">
       <div class="case-intro-text">
-        <p data-lang="pt">Conteúdo sem métrica é conteúdo sem voz dentro do negócio. Liderei a criação de um processo sistemático de mensuração do impacto de Content Design na BU de Seguros do Nubank — conectando dados qualitativos de experiência com métricas de produto. O piloto virou referência e integrou o UX Metrics Playbook oficial do Nubank.</p>
-        <p data-lang="en">Content without metrics has no voice in the business. I led the creation of a systematic process to measure Content Design impact within Nubank's Insurance BU — connecting qualitative experience data with product metrics. The pilot became a reference and contributed to Nubank's official UX Metrics Playbook.</p>
+        <p class="case-readtime"><i class="ti ti-clock" aria-hidden="true"></i><span data-lang="pt" class="inline">10 minutos de leitura</span><span data-lang="en" class="inline">10 min read</span></p>
+        <p class="case-lede" data-lang="pt">A hora da verdade de um seguro (qualquer um)</p>
+        <p class="case-lede" data-lang="en">The moment of truth of any insurance product</p>
+        <p data-lang="pt">Os cinco produtos de seguro do Nubank tinham números fortes. Vida, por exemplo, tinha 2 milhões de apólices ativas e o maior NPS da categoria, mas todos compartilhavam o mesmo ponto cego: o momento de usar o produto.</p>
+        <p data-lang="pt" style="margin-top:12px;">O cliente acionava o seguro e se perdia dentro de um processo com três empresas envolvidas, sem nenhum lugar para consultar o que estava acontecendo. Co-desenhei junto da service designer a experiência de status in-app e docs tracking, que passou a servir todos os produtos, e conduzi a definição do nível certo de informação em cada etapa do processo; o que permitiu que a mesma estrutura escalasse para todo o portfólio.</p>
+        <p data-lang="en">Nubank's five insurance products had strong numbers — Life alone had 2 million active policies and the highest NPS in its category. But they all shared the same blind spot: the moment the product is actually used.</p>
       </div>
       <div class="case-meta">
         <div class="case-meta-row">
           <span class="case-meta-key" data-lang="pt">Empresa</span>
           <span class="case-meta-key" data-lang="en">Company</span>
-          <span class="case-meta-value">Nubank Seguros · CoE</span>
+          <span class="case-meta-value">Nubank · Seguros</span>
         </div>
         <div class="case-meta-row">
           <span class="case-meta-key" data-lang="pt">Período</span>
           <span class="case-meta-key" data-lang="en">Period</span>
-          <span class="case-meta-value">2023</span>
+          <span class="case-meta-value">2021–2025</span>
         </div>
         <div class="case-meta-row">
           <span class="case-meta-key" data-lang="pt">Papel</span>
           <span class="case-meta-key" data-lang="en">Role</span>
-          <span class="case-meta-value">Senior Content Design</span>
+          <span class="case-meta-value">Senior Content Designer</span>
         </div>
         <div class="case-meta-row">
           <span class="case-meta-key" data-lang="pt">Escopo</span>
           <span class="case-meta-key" data-lang="en">Scope</span>
-          <span class="case-meta-value" data-lang="pt">Framework de métricas, piloto com Life Insurance e co-criação do UX Metrics Playbook</span>
-          <span class="case-meta-value" data-lang="en">Metrics framework, Life Insurance pilot and co-creation of the UX Metrics Playbook</span>
-        </div>
-        <div class="case-meta-row">
-          <span class="case-meta-key" data-lang="pt">Colaboradores</span>
-          <span class="case-meta-key" data-lang="en">Collaborators</span>
-          <span class="case-meta-value" data-lang="pt">Time de UXR, lideranças de produto e design, 8 especialistas do CoE cross-empresa</span>
-          <span class="case-meta-value" data-lang="en">UXR team, product and design leadership, 8 cross-company CoE specialists</span>
+          <span class="case-meta-value" data-lang="pt">Arquitetura de informação, mapeamento de eventos e estados, definição de requisitos de API, régua de comunicação, pesquisa de linguagem, experimentação e governança</span>
+          <span class="case-meta-value" data-lang="en">Information architecture, event and state mapping, API requirements, communication ruler, language research, experimentation and governance</span>
         </div>
       </div>
     </div>
 
-    <hr class="divider" />
-
-    <div class="case-section" id="metrics-contexto">
-      <p class="case-section-label" data-lang="pt">Contexto</p><p class="case-section-label" data-lang="en">Context</p>
-      <p data-lang="pt">Conteúdo sem métrica e acionável claro é conteúdo sem voz dentro do negócio. Liderei uma iniciativa para criar um processo sistemático de mensuração de impacto de Content Design dentro da BU de Seguros do Nubank — conectando dados qualitativos de experiência com métricas de produto.</p>
-      <p data-lang="en">Content without clear, actionable metrics has no voice in the business. I led an initiative to create a systematic process for measuring Content Design impact within Nubank's Insurance BU — connecting qualitative experience data with product metrics.</p>
-    </div>
-    <hr class="divider" />
-    <div class="case-section" id="metrics-problema">
-      <p class="case-section-label" data-lang="pt">Problema</p><p class="case-section-label" data-lang="en">Problem</p>
-      <p data-lang="pt">As decisões de conteúdo eram tomadas sem base em dados de experiência do usuário. Não havia processo para medir se o conteúdo estava gerando confiança, engajamento ou entendimento do produto — pilares dos nossos produtos. Isso minava o impacto de CD nas discussões estratégicas do negócio.</p>
-      <p data-lang="en">Content decisions were made without user experience data. There was no process to measure whether content was building trust, driving engagement, or enabling product understanding — all core pillars of our products. This undermined CD's impact in strategic business discussions.</p>
-    </div>
-    <hr class="divider" />
-    <div class="case-section" id="metrics-fiz">
-      <p class="case-section-label" data-lang="pt">O que fiz</p><p class="case-section-label" data-lang="en">What I did</p>
-      <ul data-lang="pt">
-        <li>Adaptei o Heart Framework para criar objetivos de mensuração conectados às metas da BU</li>
-        <li>Desenvolvi e refinei o SAS (Satisfaction Score) específico para seguros, passando de 8 para 6 atributos após validação com UXR</li>
-        <li>Rodei o piloto com ~55k clientes de Life Insurance (2.647 respostas, ~4% de taxa de resposta)</li>
-        <li>Apresentei resultados e next steps para lideranças de produto e design</li>
-        <li>Fui convidada para co-criar o UX Metrics Playbook oficial do Nubank como parte do CoE cross-empresa, ao lado de 8 especialistas de diferentes BUs</li>
-      </ul>
-      <ul data-lang="en">
-        <li>Adapted the Heart Framework to create measurement objectives connected to BU goals</li>
-        <li>Developed and refined the SAS (Satisfaction Score) specific to insurance, reducing from 8 to 6 attributes after UXR validation</li>
-        <li>Ran the pilot with ~55k Life Insurance customers (2,647 responses, ~4% response rate)</li>
-        <li>Presented results and next steps to product and design leadership</li>
-        <li>Was invited to co-create Nubank's official UX Metrics Playbook as part of a cross-company CoE, alongside 8 specialists from different BUs</li>
-      </ul>
+    <div data-lang="en">
+      <p class="case-translation-note">This case is being rewritten. The full text is available in Portuguese while the English version is in progress — switch to PT above to read it.</p>
     </div>
 
-    <div class="case-images">
-      <figure class="case-figure">
-        <img src="content-metrics-presentation.png"
-             alt="Slide de apresentação do Content Metrics explicando contexto, definição e impacto da iniciativa no Nubank Seguros"
-             loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-        <figcaption data-lang="pt">Fast recap da iniciativa — o que é Content Metrics, por que importa e como conecta dados de experiência a decisões estratégicas.</figcaption>
-        <figcaption data-lang="en">Initiative fast recap — what Content Metrics is, why it matters, and how it connects experience data to strategic decisions.</figcaption>
-      </figure>
-      <div class="case-figures-row">
-        <figure class="case-figure">
-          <img src="CONTENT METRICS.png"
-               alt="Documento Content Design Metrics - SAS validation, autoria de Ana Clara Bianchi, março 2023, Nubank Insurance BU"
-               loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-          <figcaption data-lang="pt">Documento de validação do SAS — especificação dos 6 atributos de satisfação e metodologia de mensuração para Life Insurance.</figcaption>
-          <figcaption data-lang="en">SAS validation document — specification of the 6 satisfaction attributes and measurement methodology for Life Insurance.</figcaption>
-        </figure>
-        <figure class="case-figure">
-          <img src="UX task force.png"
-               alt="Task Force UX Metrics - Quarterly Impact Report Q2/2023, com Ana Clara Bianchi como membro da equipe"
-               loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-          <figcaption data-lang="pt">Task Force UX Metrics (Q2/2023) — relatório de impacto trimestral do CoE cross-empresa do qual fiz parte como co-autora do playbook.</figcaption>
-          <figcaption data-lang="en">UX Metrics Task Force (Q2/2023) — quarterly impact report from the cross-company CoE, where I co-authored the playbook.</figcaption>
-        </figure>
+    <div data-lang="pt">
+
+      <div class="case-section" id="ins-contexto">
+        <p class="case-section-label">Contexto</p>
+        <p>Trabalhei nos cinco produtos de seguro do Nubank, a maior parte deles operados em parceria com a Chubb como seguradora, a PLL ou a Ikê na logística. Cada um com sua própria maturidade e seus próprios números:</p>
+
+        <div class="case-stats" style="--cols:3;">
+          <div class="case-stat">
+            <p class="case-stat-value">NPS 83</p>
+            <p class="case-stat-label"><strong>Vida</strong> · churn de ⅓ do mercado · o maior NPS da categoria · SES 88 em clareza</p>
+          </div>
+          <div class="case-stat">
+            <p class="case-stat-value">NPS 79</p>
+            <p class="case-stat-label"><strong>Residencial</strong> · o maior da categoria no Brasil · SES 86 em clareza</p>
+          </div>
+          <div class="case-stat">
+            <p class="case-stat-value">NPS 79</p>
+            <p class="case-stat-label"><strong>Auto</strong> · contra ~61 do mercado · SES 93 em clareza</p>
+          </div>
+        </div>
+
+        <div class="case-stats" style="--cols:2;">
+          <div class="case-stat">
+            <p class="case-stat-value">NPS 61</p>
+            <p class="case-stat-label"><strong>Celular</strong> · O produto que mais sofria com a jornada de Claim · SES 86 em clareza</p>
+          </div>
+          <div class="case-stat">
+            <p class="case-stat-value">NPS 83</p>
+            <p class="case-stat-label"><strong>Proteção financeira</strong> · SES 93 em clareza 💜</p>
+          </div>
+        </div>
+
+        <p>Eu poderia contar sobre qualquer um deles, inclusive sobre como, com o chapéu de content designer, conseguimos avaliações tão positivas em “clareza”; mas quero contar sobre a única coisa que todos os produtos tinham em comum: o sinistro.</p>
       </div>
-      <figure class="case-figure">
-        <img src="content-metrics.png"
-             alt="Gráfico de performance do teste A/B de Content Metrics mostrando uplift de conversão de +92%, +74% e +126% nas variantes testadas"
-             loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-        <figcaption data-lang="pt">Resultados do teste — uplift de conversão de +92% a +126% nas variantes priorizadas pelo framework de Content Metrics.</figcaption>
-        <figcaption data-lang="en">Test results — conversion uplift from +92% to +126% on the variants prioritized by the Content Metrics framework.</figcaption>
-      </figure>
-      <div class="case-figures-row">
-        <figure class="case-figure">
-          <img src="Captura de tela 2026-05-16 123457.png"
-               alt="Tela do app Nubank Seguros com análise de UX copy antes da reformulação, destacando pontos de melhoria no texto"
-               loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-          <figcaption data-lang="pt">Análise da experiência de contratação de seguro — pontos de atrito identificados no copy que embasaram as priorizações do framework.</figcaption>
-          <figcaption data-lang="en">Insurance purchase experience analysis — copy friction points identified that informed the framework's prioritizations.</figcaption>
-        </figure>
-        <figure class="case-figure">
-          <img src="Captura de tela 2026-05-16 123540.png"
-               alt="Roadmap do projeto Content Metrics com próximos passos planejados e sugeridos para Q4/2023, Q1 e Q2/2024"
-               loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-          <figcaption data-lang="pt">Próximos passos — roadmap de evolução do projeto com milestones planejados e sugeridos para escala e documentação.</figcaption>
-          <figcaption data-lang="en">Next steps — project evolution roadmap with planned and suggested milestones for scaling and documentation.</figcaption>
-        </figure>
-      </div>
-      <figure class="case-figure">
-        <img src="Growth Content Metrics - Q3 2023.gif"
-             alt="Apresentação animada do Growth Content Metrics Q3 2023 mostrando a evolução da iniciativa"
-             loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-        <figcaption data-lang="pt">Growth Content Metrics Q3/2023 — apresentação da evolução da iniciativa e resultados acumulados ao longo do trimestre.</figcaption>
-        <figcaption data-lang="en">Growth Content Metrics Q3/2023 — presentation of initiative evolution and cumulative results across the quarter.</figcaption>
-      </figure>
-    </div>
 
-    <div class="result-block" role="region" aria-label="Resultado principal">
-      <div class="result-number" aria-label="Resultado: mais 16 por cento">+16%</div>
-      <p class="result-text" data-lang="pt">conversão na variante testada a partir das prioridades do Content Metrics; piloto integrou playbook adotado como padrão institucional de métricas de UX no Nubank</p>
-      <p class="result-text" data-lang="en">conversion on the Content Metrics-prioritized tested variant; pilot contributed to the playbook adopted as Nubank's institutional standard for UX metrics</p>
+      <div class="case-section" id="ins-virada">
+        <p class="case-section-label">A virada: o acionamento</p>
+        <p>Um seguro só prova o que vale no dia em que é acionado. E era exatamente para resolver esse ponto que a BU criou o time de Claims. Nessa squad, trabalhei junto de produto, engenharia e de uma pessoa designer de serviço.</p>
+
+        <p class="case-statement">“Acionei o seguro, e agora?” Clientes não tinham visibilidade dos próximos passos.</p>
+
+        <p>O e-mail era a única ferramenta de visibilidade. E a titularidade da comunicação mudava conforme a etapa do processo: algumas mensagens saíam da Chubb, outras da PLL ou demais parceiros. Isso fazia com que <strong>o cliente pudesse receber informações diferentes sobre o mesmo acionamento, dependendo de quem tinha mandado o último e-mail.</strong> Para saber qualquer coisa com certeza, precisava ligar. E, adivinha? Esse vinha sendo um gargalo do time de suporte.</p>
+
+        <div class="case-phase-item">
+          <h3 class="case-phase-title">Os dados</h3>
+
+          <div class="case-stats" style="--cols:2;">
+            <div class="case-stat">
+              <p class="case-stat-value">~40%</p>
+              <p class="case-stat-label">dos contatos com o suporte eram sobre <strong>visibilidade do processo</strong></p>
+            </div>
+            <div class="case-stat">
+              <p class="case-stat-value">60%</p>
+              <p class="case-stat-label">eram problemas reais durante o processo, como o envio de documentos</p>
+            </div>
+          </div>
+
+          <p>Corroborando os dados acima, <strong>“visibilidade de processo” era o terceiro maior motivo de reclamação</strong> entre detratores e neutros no NPS dos produtos, inclusive o Seguro Celular.</p>
+          <p style="margin-top:12px;">No passado, o time teve como hipótese natural que o cliente de Seguro Celular estaria sem o aparelho, então não adiantaria colocar informação no app. Os dados mostraram o contrário: <strong>mesmo com o aparelho roubado, as pessoas davam um jeito de continuar conectadas.</strong></p>
+        </div>
+      </div>
+
+      <div class="case-section" id="ins-discovery">
+        <p class="case-section-label">O discovery</p>
+        <p><strong>O discovery foi liderado pela service designer e por mim:</strong> ela ficou com o mapeamento dos atores, o blueprint do processo (sinistro por roubo e por dano acidental) e eu com a coleta de inputs com CX. Foi aí que o problema real apareceu, e ele não era de interface.</p>
+      </div>
+
+      <div class="case-section" id="ins-restricao">
+        <p class="case-section-label">A restrição que definiu o design</p>
+        <p>Antes de desenhar qualquer tela, era preciso saber o que a API do parceiro conseguia informar. <strong>Essa investigação nos mostrou que</strong> parte do problema não se resolvia com interface.</p>
+        <p style="margin-top:12px;">Havia <strong>3 listas de eventos que não batiam entre si</strong>: uma mapeada anteriormente com a Chubb, os eventos salvos no ETL e os presentes no código; e não estava claro qual ator disparava cada um.</p>
+        <p style="margin-top:12px;">O relatório de Loss Run, tido como fonte de verdade, não continha eventos que existiam na API e que, pela lógica do processo, deveriam estar lá. E, conforme a informação atravessava cada empresa, ela perdia significado: não havia entendimento comum sobre o que cada evento queria dizer.</p>
+        <p style="margin-top:12px;">A saída foi validar caso a caso direto nos sistemas da Chubb e da PLL, em sessões de trabalho com as duas.</p>
+
+        <div class="case-stats" style="--cols:4;">
+          <div class="case-stat">
+            <p class="case-stat-value is-accent">73</p>
+            <p class="case-stat-label">eventos disponíveis</p>
+          </div>
+          <div class="case-stat">
+            <p class="case-stat-value">38</p>
+            <p class="case-stat-label">efetivamente recebidos</p>
+          </div>
+          <div class="case-stat">
+            <p class="case-stat-value">34</p>
+            <p class="case-stat-label">usados na experiência</p>
+          </div>
+          <div class="case-stat">
+            <p class="case-stat-value">9</p>
+            <p class="case-stat-label">eventos novos especificados para a API</p>
+          </div>
+        </div>
+
+        <p>Esse foi o ponto de partida para pensar no design: <strong>34 eventos crus, emitidos por três empresas diferentes, com nomes que faziam sentido para sistemas e não para pessoas.</strong> Nossa missão era transformar isso em algo que um cliente entendesse no, possivelmente, pior dia da sua vida.</p>
+      </div>
+
+      <div class="case-section" id="ins-solucao">
+        <p class="case-section-label">A solução</p>
+
+        <div class="case-phase-item">
+          <h3 class="case-phase-title">Dois níveis, para escalar</h3>
+          <p>Co-desenhei junto da service designer a visibilidade em dois níveis: um <strong>ponto de entrada</strong> e uma <strong>página de detalhe</strong>. A escolha foi feita contra as restrições reais de esforço de engenharia e time. Mas o motivo principal era outro: manter a informação principal <strong>idêntica para todos os produtos</strong>, deixando as particularidades para a visão detalhada.</p>
+
+          <figure class="case-figure">
+            <img src="ins-entrypoint.png" alt="Ponto de entrada do acionamento na tela do Seguro de Vida, com status e link para detalhes" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          </figure>
+        </div>
+
+        <div class="case-phase-item">
+          <h3 class="case-phase-title">Agrupar para reduzir ansiedade</h3>
+          <p>O processo tem de sete a dez etapas, dependendo do produto e do tipo de sinistro. Mostrar dez passos para alguém que acabou de ter o celular roubado não é transparência — é sobrecarga.</p>
+          <p style="margin-top:12px;">Criei uma categoria de agrupamento nova, compreensível para quem está no meio do processo e escalável para os outros produtos. Na tela de gestão, os passos que exigem ação do cliente ganharam um estado próprio de <strong>ação pendente</strong>, com copy reforçando o que precisava ser feito porque havia risco real de a pessoa não completar uma etapa obrigatória por não saber que ela existia.</p>
+
+          <figure class="case-figure">
+            <img src="ins-steps-flow.png" alt="Fluxo de etapas do acionamento, com os agrupamentos e os estados de cada passo" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          </figure>
+        </div>
+      </div>
+
+      <div class="case-section" id="ins-resultado">
+        <p class="case-section-label">Resultado</p>
+        <p>O rollout começou por Celular, com os demais produtos previstos na sequência. Estes são os <strong>primeiros resultados</strong>:</p>
+
+        <div class="case-stats" style="--cols:3;">
+          <div class="case-stat">
+            <p class="case-stat-value is-accent">NPS 83</p>
+            <p class="case-stat-label">NPS de sinistro, a 1ª vez que passamos de 80</p>
+          </div>
+          <div class="case-stat">
+            <p class="case-stat-value">−10 h</p>
+            <p class="case-stat-label">no tempo total por acionamento</p>
+          </div>
+          <div class="case-stat">
+            <p class="case-stat-value">10 → 2%</p>
+            <p class="case-stat-label">de recorrência de contato</p>
+          </div>
+        </div>
+
+        <div class="case-callout">
+          <span class="case-callout-label">O desdobramento</span>
+          <p>E o trabalho teve um desdobramento que não estava no plano: <strong>a estrutura virou a fundação do Docs Tracking</strong>, o primeiro rastreamento documental end-to-end do Nubank, que chegou aos primeiros usuários externos no início de 2025.</p>
+        </div>
+
+        <p class="case-statement">Posso dizer que hoje eu sei tudo sobre cartório — e foi o Docs Tracking que me ensinou.</p>
+      </div>
+
+      <div class="case-section" id="ins-base">
+        <p class="case-section-label">O trabalho de base</p>
+
+        <div class="case-phase-item">
+          <h3 class="case-phase-title">Linguagem</h3>
+          <p>Seguro é um domínio que o cliente não domina. Franquia, sinistro, beneficiário, carência — cada termo carrega o peso de uma decisão e de uma desconfiança. Conduzi a pesquisa de convenção de nomenclatura, construí o glossário de produtos e documentei o padrão de como nomeamos as coisas.</p>
+          <p style="margin-top:12px;">Fiz também a <strong>análise de acessibilidade do Seguro de Vida</strong>, junto ao Design Tribe, e a pesquisa de linguagem e percepção do produto: o foco era entender não só se as pessoas compreendiam os termos, mas o que sentiam ao lê-los.</p>
+        </div>
+
+        <div class="case-phase-item">
+          <h3 class="case-phase-title">O alinhamento</h3>
+          <p>Cada produto e cada cobertura exige documentos diferentes, muitas vezes de pessoas diferentes. Por prevenção a fraude, alguns ainda têm requisitos específicos, como autenticação em cartório.</p>
+          <p style="margin-top:12px;">O desafio não era só listar esses documentos, mas responder <strong>o que o cliente realmente precisa saber</strong>: qual documento, de quem pedir, onde encontrar, como ele deve ser e o que fazer se algo der errado.</p>
+
+          <figure class="case-figure">
+            <img src="ins-docs.png" alt="Telas de envio e de documentos necessários no acionamento do seguro" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          </figure>
+
+          <p>Ao longo de 2 meses de conversas quase diárias com os parceiros, validamos cobertura por cobertura. Para estruturar essa apuração, propus à designer de serviço um questionário inspirado na pirâmide invertida do jornalismo, ampliado para capturar não só o que cada documento é, mas como obtê-lo e quais requisitos precisa cumprir. O objetivo era dar instruções precisas a um cliente que, via de regra, está passando por um momento difícil.</p>
+        </div>
+      </div>
+
+      <p class="case-footnote">Projeto desenvolvido no Nubank Seguros. Telas e artefatos exibidos com fins de portfólio, mantendo confidencialidade sobre informações estratégicas e comerciais.</p>
+
     </div>
 
     <!-- Veja também -->
     <div class="case-next">
       <span class="case-next-label" data-lang="pt">Veja também</span>
       <span class="case-next-label" data-lang="en">See also</span>
-      <button class="case-next-card" onclick="showCase('merenda')" aria-label="Ver case Merenda em Casa">
+      <button class="case-next-card" onclick="showCase('chargeback')" aria-label="Ver case Chargeback Revamp">
         <div>
-          <p class="case-next-company">PicPay · 2020</p>
-          <p class="case-next-title">Merenda em Casa</p>
+          <p class="case-next-company">Nubank PJ · 2025</p>
+          <p class="case-next-title">Chargeback Revamp</p>
           <div class="case-next-tags">
-            <span class="tag" data-lang="pt">Comunicação de crise</span><span class="tag" data-lang="en">Crisis communication</span>
-            <span class="tag" data-lang="pt">Impacto social</span><span class="tag" data-lang="en">Social impact</span>
+            <span class="tag" data-lang="pt">Sistemas complexos</span><span class="tag" data-lang="en">Complex systems</span>
+            <span class="tag" data-lang="pt">Ferramenta interna</span><span class="tag" data-lang="en">Internal tooling</span>
+            <span class="tag">B2B</span>
           </div>
         </div>
         <span class="case-next-arrow" aria-hidden="true">→</span>
       </button>
     </div>
+
   </main>
 </div>
 
 
-<!-- ══════════════ CASE: TTP ══════════════ -->
+<!-- In-page TOC: Insurance -->
+<nav class="case-toc" id="insurance-toc" data-case="case-insurance" aria-label="Navegação da página">
+  <p class="case-toc-label" data-lang="pt">Nesta página</p>
+  <p class="case-toc-label" data-lang="en">On this page</p>
+  <ul class="case-toc-list">
+    <li>
+      <a class="case-toc-link" href="#ins-contexto" data-lang="pt">Contexto</a>
+      <a class="case-toc-link" href="#ins-contexto" data-lang="en">Context</a>
+    </li>
+    <li>
+      <a class="case-toc-link" href="#ins-virada" data-lang="pt">A virada: o acionamento</a>
+      <a class="case-toc-link" href="#ins-virada" data-lang="en">The claim</a>
+    </li>
+    <li>
+      <a class="case-toc-link" href="#ins-discovery" data-lang="pt">O discovery</a>
+      <a class="case-toc-link" href="#ins-discovery" data-lang="en">Discovery</a>
+    </li>
+    <li>
+      <a class="case-toc-link" href="#ins-restricao" data-lang="pt">A restrição que definiu o design</a>
+      <a class="case-toc-link" href="#ins-restricao" data-lang="en">The constraint</a>
+    </li>
+    <li>
+      <a class="case-toc-link" href="#ins-solucao" data-lang="pt">A solução</a>
+      <a class="case-toc-link" href="#ins-solucao" data-lang="en">The solution</a>
+    </li>
+    <li>
+      <a class="case-toc-link" href="#ins-resultado" data-lang="pt">Resultado</a>
+      <a class="case-toc-link" href="#ins-resultado" data-lang="en">Outcome</a>
+    </li>
+    <li>
+      <a class="case-toc-link" href="#ins-base" data-lang="pt">O trabalho de base</a>
+      <a class="case-toc-link" href="#ins-base" data-lang="en">Foundational work</a>
+    </li>
+  </ul>
+</nav>
+
+
 <!-- ══════════════ CASE: PJ PAYMENTS ══════════════ -->
 <div id="case-pj" class="case-page">
   <nav class="case-nav" aria-label="Navegação do case">
@@ -3674,14 +3798,15 @@
     <div class="case-next">
       <span class="case-next-label" data-lang="pt">Veja também</span>
       <span class="case-next-label" data-lang="en">See also</span>
-      <button class="case-next-card" onclick="showCase('metrics')" aria-label="Ver case Content Metrics">
+      <button class="case-next-card" onclick="showCase('insurance')" aria-label="Ver case Claims">
         <div>
-          <p class="case-next-company">Nubank Seguros · CoE · 2023</p>
-          <p class="case-next-title">Content Metrics</p>
+          <p class="case-next-company">Nubank Seguros · 2021–2025</p>
+          <p class="case-next-title" data-lang="pt">Claims — a experiência que faltava em cinco produtos</p>
+          <p class="case-next-title" data-lang="en">Claims — the experience missing from five products</p>
           <div class="case-next-tags">
-            <span class="tag" data-lang="pt">Liderança de iniciativa</span><span class="tag" data-lang="en">Initiative leadership</span>
-            <span class="tag">UX Metrics</span>
-            <span class="tag">Heart Framework</span>
+            <span class="tag" data-lang="pt">Arquitetura de informação</span><span class="tag" data-lang="en">Information architecture</span>
+            <span class="tag" data-lang="pt">Integração com parceiros</span><span class="tag" data-lang="en">Partner integration</span>
+            <span class="tag" data-lang="pt">Escala multi-produto</span><span class="tag" data-lang="en">Multi-product scale</span>
           </div>
         </div>
         <span class="case-next-arrow" aria-hidden="true">→</span>
@@ -4447,8 +4572,8 @@
 
   window.addEventListener('DOMContentLoaded', () => {
     const rawHash = window.location.hash.replace('#', '');
-    const valid = ['pos', 'pj', 'chargeback', 'metrics', 'ia', 'merenda'];
-    const aliases = { ttp: 'pj' };
+    const valid = ['pos', 'pj', 'chargeback', 'insurance', 'ia', 'merenda'];
+    const aliases = { ttp: 'pj', metrics: 'insurance' };
     const hash = aliases[rawHash] || rawHash;
     if (hash && valid.includes(hash)) {
       document.getElementById('home-page').style.display = 'none';
