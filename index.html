@@ -2601,7 +2601,8 @@
         <p class="case-lede" data-lang="en">You can't fix the experience of the person selling without first fixing the experience of the person supporting them</p>
         <p data-lang="pt">No Nubank PJ, as contestações de venda cresciam na mesma velocidade que o negócio: 1.064 casos em um único mês, R$ 2,18 milhões parados, e o time interno gastando 120 horas por mês para produzir 58 defesas. E o pior: tudo isso sem o sistema dar visibilidade das informações para o cliente ou para o agente interno de atendimento. Completamente no escuro, o cliente PJ só via que algo estava acontecendo quando um débito era lançado na sua conta; e isso, naturalmente estressava os setores de atendimento.</p>
         <p data-lang="pt" style="margin-top:12px;">Após discovery e validações, desenhei a jornada dos dois lados (cliente e agente interno) partindo de uma premissa que defendi com o time: <strong>não dá para resolver a experiência de quem vende sem antes resolver a de quem atende.</strong></p>
-        <p data-lang="en">At Nubank PJ, sales disputes were growing as fast as the business: 1,064 cases in a single month, R$ 2.18 million on hold, and the internal team spending 120 hours a month to produce 58 defenses — with no visibility for either the customer or the support agent.</p>
+        <p data-lang="en">At Nubank PJ, sales disputes were growing as fast as the business: 1,064 cases in a single month, R$ 2.18 million on hold, and the internal team spending 120 hours a month to produce 58 defenses. And worse: all of it without the system giving any visibility to the customer or to the support agent. Completely in the dark, the business customer only saw that something was happening when a debit hit their account; and that, naturally, put pressure on the support teams.</p>
+        <p data-lang="en" style="margin-top:12px;">After discovery and validation, I designed the journey on both sides (customer and internal agent) starting from a premise I argued for with the team: <strong>you can't fix the experience of the person selling without first fixing the experience of the person supporting them.</strong></p>
       </div>
       <div class="case-meta">
         <div class="case-meta-row">
@@ -2629,256 +2630,320 @@
       </div>
     </div>
 
-    <div data-lang="en">
-      <p class="case-translation-note">This case is being rewritten. The full text is available in Portuguese while the English version is in progress — switch to PT above to read it.</p>
+    <div class="case-section" id="cb-contexto">
+      <p class="case-section-label" data-lang="pt">Contexto</p>
+      <p class="case-section-label" data-lang="en">Context</p>
+      <p data-lang="pt">Contestação de venda é quando o comprador questiona uma compra junto à bandeira do cartão. Para quem vendeu, significa ver o dinheiro de uma venda que já era sua sumir da conta.</p>
+      <p data-lang="en">A sales dispute is when the buyer questions a purchase with the card network. For whoever made the sale, it means watching money that was already theirs disappear from the account.</p>
+      <p data-lang="pt" style="margin-top:12px;">Três atores externos participam de cada caso (o banco emissor, a bandeira e a adquirente), a informação atravessava todos eles antes de chegar ao Nubank e “morria” escondida em um webhook, que era subutilizado.</p>
+      <p data-lang="en" style="margin-top:12px;">Three external actors take part in each case (the issuing bank, the card network and the acquirer). The information crossed all of them before reaching Nubank and then “died” hidden in a webhook that was barely used.</p>
+      <p data-lang="pt" style="margin-top:12px;">O resultado era um processo que consumia muito e entregava pouco:</p>
+      <p data-lang="en" style="margin-top:12px;">The result was a process that consumed a lot and delivered little:</p>
+
+      <div class="case-stats" style="--cols:3;">
+        <div class="case-stat">
+          <p class="case-stat-value">−2,17</p>
+          <p class="case-stat-label" data-lang="pt">tNPS na medição que orientou o projeto</p>
+          <p class="case-stat-label" data-lang="en">tNPS in the measurement that guided the project</p>
+        </div>
+        <div class="case-stat">
+          <p class="case-stat-value">~40%</p>
+          <p class="case-stat-label" data-lang="pt">dos vendedores afetados entravam em contato com o suporte</p>
+          <p class="case-stat-label" data-lang="en">of affected sellers contacted support</p>
+        </div>
+        <div class="case-stat">
+          <p class="case-stat-value">~120 h</p>
+          <p class="case-stat-label" data-lang="pt">por mês do time interno dedicadas ao processo</p>
+          <p class="case-stat-label" data-lang="en">per month of internal team time spent on the process</p>
+        </div>
+      </div>
+
+      <div class="case-stats" style="--cols:2;">
+        <div class="case-stat">
+          <p class="case-stat-value">7</p>
+          <p class="case-stat-label" data-lang="pt">ferramentas diferentes para tratar um único caso</p>
+          <p class="case-stat-label" data-lang="en">different tools to handle a single case</p>
+        </div>
+        <div class="case-stat">
+          <p class="case-stat-value">19</p>
+          <p class="case-stat-label" data-lang="pt">reclamações regulatórias, além de 5 RDRs e 18 registros no Reclame Aqui</p>
+          <p class="case-stat-label" data-lang="en">regulatory complaints, plus 5 RDRs and 18 public complaint records</p>
+        </div>
+      </div>
     </div>
 
-    <div data-lang="pt">
+    <div class="case-section" id="cb-problema">
+      <p class="case-section-label" data-lang="pt">O problema</p>
+      <p class="case-section-label" data-lang="en">The problem</p>
+      <p data-lang="pt">O funil de março foi o estopim para a priorização da iniciativa Nubank PJ wide:</p>
+      <p data-lang="en">March's funnel was the trigger for prioritizing the initiative across Nubank PJ:</p>
 
-      <div class="case-section" id="cb-contexto">
-        <p class="case-section-label">Contexto</p>
-        <p>Contestação de venda é quando o comprador questiona uma compra junto à bandeira do cartão. Para quem vendeu, significa ver o dinheiro de uma venda que já era sua sumir da conta.</p>
-        <p style="margin-top:12px;">Três atores externos participam de cada caso (o banco emissor, a bandeira e a adquirente), a informação atravessava todos eles antes de chegar ao Nubank e “morria” escondida em um webhook, que era subutilizado.</p>
-        <p style="margin-top:12px;">O resultado era um processo que consumia muito e entregava pouco:</p>
-
-        <div class="case-stats" style="--cols:3;">
-          <div class="case-stat">
-            <p class="case-stat-value">−2,17</p>
-            <p class="case-stat-label">tNPS na medição que orientou o projeto</p>
-          </div>
-          <div class="case-stat">
-            <p class="case-stat-value">~40%</p>
-            <p class="case-stat-label">dos vendedores afetados entravam em contato com o suporte</p>
-          </div>
-          <div class="case-stat">
-            <p class="case-stat-value">~120 h</p>
-            <p class="case-stat-label">por mês do time interno dedicadas ao processo</p>
-          </div>
+      <div class="case-stats" style="--cols:4;">
+        <div class="case-stat">
+          <p class="case-stat-value is-accent">1.064</p>
+          <p class="case-stat-label" data-lang="pt">contestações recebidas<br>R$ 2,18 milhões</p>
+          <p class="case-stat-label" data-lang="en">disputes received<br>R$ 2.18 million</p>
         </div>
-
-        <div class="case-stats" style="--cols:2;">
-          <div class="case-stat">
-            <p class="case-stat-value">7</p>
-            <p class="case-stat-label">ferramentas diferentes para tratar um único caso</p>
-          </div>
-          <div class="case-stat">
-            <p class="case-stat-value">19</p>
-            <p class="case-stat-label">reclamações regulatórias, além de 5 RDRs e 18 registros no Reclame Aqui</p>
-          </div>
+        <div class="case-stat">
+          <p class="case-stat-value">747</p>
+          <p class="case-stat-label" data-lang="pt">follow-ups manuais</p>
+          <p class="case-stat-label" data-lang="en">manual follow-ups</p>
+        </div>
+        <div class="case-stat">
+          <p class="case-stat-value">94</p>
+          <p class="case-stat-label" data-lang="pt">clientes responderam às nossas solicitações de documentos</p>
+          <p class="case-stat-label" data-lang="en">customers replied to our document requests</p>
+        </div>
+        <div class="case-stat">
+          <p class="case-stat-value">58</p>
+          <p class="case-stat-label" data-lang="pt">defesas construídas e enviadas (sim, de 1 mil)</p>
+          <p class="case-stat-label" data-lang="en">defenses built and filed (yes, out of a thousand)</p>
         </div>
       </div>
 
-      <div class="case-section" id="cb-problema">
-        <p class="case-section-label">O problema</p>
-        <p>O funil de março foi o estopim para a priorização da iniciativa Nubank PJ wide:</p>
+      <p data-lang="pt">Durante o discovery que conduzi com engenharia e o time de operações de produto, descobrimos que <strong>85% dos vendedores que passavam pelo chargeback eram legítimos; não fraudadores.</strong> E essas pessoas simplesmente não respondiam às nossas tentativas de contato por e-mail. O que nos impossibilitava de criar uma defesa forte junto à bandeira do cartão e acabava ocasionando o débito definitivo do valor.</p>
+      <p data-lang="en">During the discovery I ran with engineering and the product operations team, we found that <strong>85% of the sellers going through a chargeback were legitimate; not fraudsters.</strong> And those people simply didn't reply to our attempts to reach them by email. That made it impossible to build a strong defense with the card network and ended in the amount being definitively debited.</p>
+      <p data-lang="pt" style="margin-top:12px;">“Mas estamos falando de dinheiro, por que as pessoas não respondem?”, era uma das nossas perguntas. Quando descobrimos o porquê, aprendemos que os clientes PJ respondiam sim, mas bem antes do que imaginávamos.</p>
+      <p data-lang="en" style="margin-top:12px;">“But we're talking about money — why don't people respond?” was one of our questions. When we found out why, we learned that business customers did respond, just far earlier than we imagined.</p>
+      <p data-lang="pt" style="margin-top:12px;">86% dos clientes PJ que passavam por chargeback entravam em contato com o suporte para solucionar a mesma questão: “cadê meu dinheiro?”. Ou seja, eles detectavam o problema antes mesmo que o time especialista pudesse entrar em contato e acabavam falando com agentes que não tinham a informação do chargeback e nem como identificar o porquê do dinheiro ter sumido.</p>
+      <p data-lang="en" style="margin-top:12px;">86% of business customers going through a chargeback contacted support about the same thing: “where's my money?”. In other words, they spotted the problem before the specialist team could even reach out, and ended up talking to agents who had no chargeback information and no way to identify why the money had vanished.</p>
 
-        <div class="case-stats" style="--cols:4;">
-          <div class="case-stat">
-            <p class="case-stat-value is-accent">1.064</p>
-            <p class="case-stat-label">contestações recebidas<br>R$ 2,18 milhões</p>
+      <p class="case-statement" data-lang="pt">A informação existia, mas não estava organizada nem acessível para quem precisava dela.</p>
+      <p class="case-statement" data-lang="en">The information existed, but it wasn't organized or accessible to the people who needed it.</p>
+    </div>
+
+    <div class="case-section" id="cb-premissa">
+      <p class="case-section-label" data-lang="pt">A premissa que defendi</p>
+      <p class="case-section-label" data-lang="en">The premise I argued for</p>
+      <p data-lang="pt">Defendi com o time a premissa que orientou o projeto: <strong>não dava para desenhar a experiência do vendedor sem antes resolver a UX do agente que o atende.</strong> O agente que lidava com entrada e saída de dinheiro não era o mesmo com treinamento profundo em chargeback — e estava tão no escuro quanto o cliente. O próprio time de chargeback precisava passar por 7 planilhas ou sistemas para entender um caso, criar uma defesa e enviá-la.</p>
+      <p data-lang="en">I argued with the team for the premise that guided the project: <strong>you couldn't design the seller's experience without first fixing the UX of the agent who serves them.</strong> The agent handling money in and money out wasn't the one with deep chargeback training — and was as much in the dark as the customer. The chargeback team itself had to go through 7 spreadsheets or systems to understand a case, build a defense and file it.</p>
+    </div>
+
+    <div class="case-section" id="cb-discovery">
+      <p class="case-section-label" data-lang="pt">O discovery</p>
+      <p class="case-section-label" data-lang="en">The discovery</p>
+      <p data-lang="pt">Conduzi o mapeamento em 4 etapas, documentadas num board que virou referência do projeto:</p>
+      <p data-lang="en">I ran the mapping in 4 stages, documented on a board that became the project's reference:</p>
+
+      <ol class="case-steps">
+        <li class="case-step">
+          <span class="case-step-num">1</span>
+          <div>
+            <p class="case-step-title" data-lang="pt">Mapa de jornada da contestação</p>
+            <p class="case-step-title" data-lang="en">Dispute journey map</p>
+            <p class="case-step-desc" data-lang="pt">Para cada um, o que a pessoa está pensando e sentindo, separado das fricções percebidas. Uma raia para o vendedor, outra para o agente.</p>
+            <p class="case-step-desc" data-lang="en">For each moment, what the person is thinking and feeling, separated from the frictions they perceive. One lane for the seller, another for the agent.</p>
           </div>
-          <div class="case-stat">
-            <p class="case-stat-value">747</p>
-            <p class="case-stat-label">follow-ups manuais</p>
+        </li>
+        <li class="case-step">
+          <span class="case-step-num">2</span>
+          <div>
+            <p class="case-step-title" data-lang="pt">Levantamento de necessidades</p>
+            <p class="case-step-title" data-lang="en">Needs assessment</p>
+            <p class="case-step-desc" data-lang="pt">Dividido entre o que a experiência precisa resolver para o cliente e o que precisa oferecer para o agente.</p>
+            <p class="case-step-desc" data-lang="en">Split between what the experience has to solve for the customer and what it has to offer the agent.</p>
           </div>
-          <div class="case-stat">
-            <p class="case-stat-value">94</p>
-            <p class="case-stat-label">clientes responderam às nossas solicitações de documentos</p>
+        </li>
+        <li class="case-step">
+          <span class="case-step-num">3</span>
+          <div>
+            <p class="case-step-title" data-lang="pt">Como poderíamos</p>
+            <p class="case-step-title" data-lang="en">How might we</p>
+            <p class="case-step-desc" data-lang="pt">Dezenas de perguntas geradas a partir das necessidades — e é de uma delas que nasce a aposta que descrevo mais adiante.</p>
+            <p class="case-step-desc" data-lang="en">Dozens of questions generated from the needs — and one of them is where the bet I describe further down comes from.</p>
           </div>
-          <div class="case-stat">
-            <p class="case-stat-value">58</p>
-            <p class="case-stat-label">defesas construídas e enviadas (sim, de 1 mil)</p>
+        </li>
+        <li class="case-step">
+          <span class="case-step-num">4</span>
+          <div>
+            <p class="case-step-title" data-lang="pt">Matriz de valor × dor</p>
+            <p class="case-step-title" data-lang="en">Value × pain matrix</p>
+            <p class="case-step-desc" data-lang="pt">Para priorizar. O discovery terminou em decisão compartilhada com stakeholders.</p>
+            <p class="case-step-desc" data-lang="en">To prioritize. The discovery ended in a decision shared with stakeholders.</p>
+          </div>
+        </li>
+      </ol>
+
+      <figure class="case-figure">
+        <img src="cb-jornada.png" alt="Mapa de jornada da contestação, em duas raias: vendedor e agente interno" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+      </figure>
+    </div>
+
+    <div class="case-section" id="cb-entregas">
+      <p class="case-section-label" data-lang="pt">Como estruturei as entregas</p>
+      <p class="case-section-label" data-lang="en">How I structured the deliveries</p>
+      <p data-lang="pt">O projeto era cross-BU, com recursos de engenharia limitados e prazo apertado. Em vez de esperar uma entrega estrutural, propus fatiar o trabalho em 3 frentes que funcionavam de forma independente. O time de produto aceitou a sugestão e então começamos.</p>
+      <p data-lang="en">The project was cross-BU, with limited engineering resources and a tight deadline. Instead of waiting for one structural delivery, I proposed slicing the work into 3 fronts that worked independently. The product team accepted the suggestion, and we started.</p>
+
+      <div class="case-phase-item">
+        <h3 class="case-phase-title" data-lang="pt">Frente 1 — Comunicações</h3>
+        <h3 class="case-phase-title" data-lang="en">Front 1 — Communications</h3>
+        <p data-lang="pt">Auditei todo o conteúdo e os pontos de contato com CX, ajustei o processo interno de atendimento e redesenhei as comunicações transacionais. Analisei as FAQs, os e-mails ativos, a carta de contestação e o blog do Nubank, mapeando os vazios de informação em cada ponto.</p>
+        <p data-lang="en">I audited all the content and CX touchpoints, adjusted the internal support process and redesigned the transactional communications. I analyzed the FAQs, the live emails, the dispute letter and Nubank's blog, mapping the information gaps at each point.</p>
+        <p data-lang="pt" style="margin-top:12px;">O resultado foi uma <strong>nova régua de comunicação</strong>: a definição de quando falar, em que ponto do processo, com qual objetivo, cobrindo a jornada inteira.</p>
+        <p data-lang="en" style="margin-top:12px;">The result was a <strong>new communication ruler</strong>: defining when to speak, at which point of the process, with which purpose, covering the entire journey.</p>
+
+        <figure class="case-figure">
+          <img src="cb-content-audit.png" alt="Parte do content audit das comunicações de contestação" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt"><strong>PARTE DO CONTENT AUDIT.</strong> Diagnostiquei o que funciona e o que precisava melhorar. Implementamos as melhorias nas comms atuais.</figcaption>
+          <figcaption data-lang="en"><strong>PART OF THE CONTENT AUDIT.</strong> I diagnosed what works and what needed improving. We implemented the improvements in the existing comms.</figcaption>
+        </figure>
+
+        <figure class="case-figure">
+          <img src="cb-regua.png" alt="Nova régua de comunicação da contestação" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt"><strong>RÉGUA DE COMUNICAÇÃO.</strong> Nova proposta buscava automatizar os envios e adicionar lembretes a partir da interação com o cliente.</figcaption>
+          <figcaption data-lang="en"><strong>COMMUNICATION RULER.</strong> The new proposal aimed to automate sends and add reminders based on the customer's interaction.</figcaption>
+        </figure>
+      </div>
+
+      <div class="case-phase-item">
+        <h3 class="case-phase-title" data-lang="pt">Frente 2 — A experiência do agente interno MVP</h3>
+        <h3 class="case-phase-title" data-lang="en">Front 2 — The internal agent experience, MVP</h3>
+        <p data-lang="pt"><strong>Primeira entrega: visibilidade.</strong> O maior motivo de contato não era a contestação em si, era o dinheiro que sumia sem explicação. Desenhei a primeira notificação que sinalizava, no perfil do cliente, que algo estava acontecendo. Usei os componentes que já existiam no sistema interno, para ir ao ar sem depender de desenvolvimento novo.</p>
+        <p data-lang="en"><strong>First delivery: visibility.</strong> The biggest reason for contact wasn't the dispute itself, it was money disappearing without explanation. I designed the first notification that flagged, on the customer's profile, that something was happening. I used components that already existed in the internal system, so it could ship without new development.</p>
+
+        <div class="case-callout">
+          <span class="case-callout-label" data-lang="pt">A decisão de design que mais importou</span>
+          <span class="case-callout-label" data-lang="en">The design decision that mattered most</span>
+          <p data-lang="pt">Separar dois perfis de agente com necessidades diferentes de informação. Desenhar dois níveis de profundidade dentro da mesma ferramenta era a diferença entre uma tela consultável e uma tela que ninguém usa.</p>
+          <p data-lang="en">Separating two agent profiles with different information needs. Designing two levels of depth inside the same tool was the difference between a screen people consult and a screen nobody uses.</p>
+        </div>
+
+        <div class="case-topics">
+          <div class="case-topic">
+            <span class="case-topic-label" data-lang="pt">O generalista</span>
+            <span class="case-topic-label" data-lang="en">The generalist</span>
+            <p data-lang="pt">Precisa de volume e histórico para responder rápido no primeiro contato.</p>
+            <p data-lang="en">Needs volume and history to answer quickly on first contact.</p>
+          </div>
+          <div class="case-topic">
+            <span class="case-topic-label" data-lang="pt">O especialista em contestação</span>
+            <span class="case-topic-label" data-lang="en">The dispute specialist</span>
+            <p data-lang="pt">Precisa de detalhe, documentação e pós-defesa.</p>
+            <p data-lang="en">Needs detail, documentation and what happens after the defense.</p>
           </div>
         </div>
 
-        <p>Durante o discovery que conduzi com engenharia e o time de operações de produto, descobrimos que <strong>85% dos vendedores que passavam pelo chargeback eram legítimos; não fraudadores.</strong> E essas pessoas simplesmente não respondiam às nossas tentativas de contato por e-mail. O que nos impossibilitava de criar uma defesa forte junto à bandeira do cartão e acabava ocasionando o débito definitivo do valor.</p>
-        <p style="margin-top:12px;">“Mas estamos falando de dinheiro, por que as pessoas não respondem?”, era uma das nossas perguntas. Quando descobrimos o porquê, aprendemos que os clientes PJ respondiam sim, mas bem antes do que imaginávamos.</p>
-        <p style="margin-top:12px;">86% dos clientes PJ que passavam por chargeback entravam em contato com o suporte para solucionar a mesma questão: “cadê meu dinheiro?”. Ou seja, eles detectavam o problema antes mesmo que o time especialista pudesse entrar em contato e acabavam falando com agentes que não tinham a informação do chargeback e nem como identificar o porquê do dinheiro ter sumido.</p>
-
-        <p class="case-statement">A informação existia, mas não estava organizada nem acessível para quem precisava dela.</p>
+        <figure class="case-figure">
+          <img src="cb-notificacao.png" alt="Notificação de contestação no perfil do cliente, na plataforma interna" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt"><strong>NOTIFICAÇÃO NO PERFIL DO CLIENTE.</strong> Primeira vez que info de chargeback entrou na plataforma interna. Engenharia levou 4 dias para implementar, testar e colocar em produção.</figcaption>
+          <figcaption data-lang="en"><strong>NOTIFICATION ON THE CUSTOMER PROFILE.</strong> The first time chargeback information entered the internal platform. Engineering took 4 days to implement, test and ship it.</figcaption>
+        </figure>
       </div>
 
-      <div class="case-section" id="cb-premissa">
-        <p class="case-section-label">A premissa que defendi</p>
-        <p>Defendi com o time a premissa que orientou o projeto: <strong>não dava para desenhar a experiência do vendedor sem antes resolver a UX do agente que o atende.</strong> O agente que lidava com entrada e saída de dinheiro não era o mesmo com treinamento profundo em chargeback — e estava tão no escuro quanto o cliente. O próprio time de chargeback precisava passar por 7 planilhas ou sistemas para entender um caso, criar uma defesa e enviá-la.</p>
-      </div>
+      <div class="case-phase-item">
+        <h3 class="case-phase-title" data-lang="pt">Frente 3 — A experiência do agente interno E2E</h3>
+        <h3 class="case-phase-title" data-lang="en">Front 3 — The internal agent experience, end to end</h3>
+        <p data-lang="pt"><strong>Segunda entrega: consolidação.</strong> Mapeei com CX e com a parceira todas as informações necessárias para tratar uma contestação. Conduzi duas sessões de workshop e uma critique com agentes da BPO e do Nubank para validar se o mapeamento estava completo e, principalmente, se a nomenclatura escolhida fazia sentido para quem ia usar a ferramenta todos os dias. Depois, desenhei a visualização que reunia tudo numa tela só.</p>
+        <p data-lang="en"><strong>Second delivery: consolidation.</strong> With CX and the partner, I mapped every piece of information needed to handle a dispute. I ran two workshop sessions and one critique with BPO and Nubank agents to validate whether the mapping was complete and, above all, whether the chosen naming made sense to the people who would use the tool every day. Then I designed the view that brought it all onto a single screen.</p>
 
-      <div class="case-section" id="cb-discovery">
-        <p class="case-section-label">O discovery</p>
-        <p>Conduzi o mapeamento em 4 etapas, documentadas num board que virou referência do projeto:</p>
+        <figure class="case-figure">
+          <img src="cb-painel-v1.png" alt="Primeira versão do painel de contestação" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt"><strong>PRIMEIRA VERSÃO DO PAINEL DE CONTESTAÇÃO.</strong> Acesso via CTA na notificação no perfil do cliente, que é fixa.</figcaption>
+          <figcaption data-lang="en"><strong>FIRST VERSION OF THE DISPUTE PANEL.</strong> Accessed through a CTA in the notification on the customer profile, which is pinned.</figcaption>
+        </figure>
+
+        <p data-lang="pt">Em termos de arquitetura e coerência, entendi que a informação de chargeback precisaria viver junto das informações de cobrança de um modo geral. No entanto, iterar no widget de cobrança, que era legado, ia levar cerca de 2 meses. Para a visão acima, combinamos 2 semanas com engenharia.</p>
+        <p data-lang="en">In terms of architecture and coherence, I understood that chargeback information would need to live alongside billing information in general. Iterating on the billing widget, however, was legacy work and would take about 2 months. For the view above, we agreed on 2 weeks with engineering.</p>
+        <p data-lang="pt" style="margin-top:12px;">O painel em si, seria reaproveitado porque é o comportamento padrão a partir do widget no sistema interno.</p>
+        <p data-lang="en" style="margin-top:12px;">The panel itself would be reused, since it's the standard behavior from the widget in the internal system.</p>
+
+        <figure class="case-figure">
+          <img src="cb-painel-expandido.png" alt="Painel expandido de contestação, com todos os dados de análise" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt"><strong>PAINEL EXPANDIDO.</strong> Exibe todos os dados necessários para análise de uma contestação para os times de chargeback, mas também fraude.</figcaption>
+          <figcaption data-lang="en"><strong>EXPANDED PANEL.</strong> Shows every piece of data needed to analyze a dispute, for the chargeback teams and for fraud too.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="case-section" id="cb-aposta">
+      <p class="case-section-label" data-lang="pt">A aposta que defendi</p>
+      <p class="case-section-label" data-lang="en">The bet I made the case for</p>
+      <p data-lang="pt">Para a experiência do usuário final, o cliente PJ, construí uma proposta de visão que dividi com meus pares e a liderança de Design. O objetivo era solucionar de forma categórica o NPS negativo, atrelando essa solução aos valores do Nubank.</p>
+      <p data-lang="en">For the end user's experience — the business customer — I built a vision proposal that I shared with my peers and with Design leadership. The goal was to decisively fix the negative NPS, tying that solution to Nubank's values.</p>
+
+      <p class="case-statement" data-lang="pt">Como poderíamos arcar com a primeira venda contestada para transformar a contestação em um momento de confiança?</p>
+      <p class="case-statement" data-lang="en">How might we cover the first disputed sale, turning the dispute into a moment of trust?</p>
+
+      <p data-lang="pt">Levei a proposta com dois argumentos. O de experiência: esse é um dos momentos mais difíceis na vida de um pequeno negócio, e boa parte das microempresas (perfil dominante na base do Nubank PJ naquele momento) nem sabe o que é um chargeback.</p>
+      <p data-lang="en">I took the proposal forward with two arguments. The experience one: this is one of the hardest moments in the life of a small business, and most micro-businesses (the dominant profile in Nubank PJ's base at the time) don't even know what a chargeback is.</p>
+      <p data-lang="pt" style="margin-top:12px;">O de negócio: <strong>o Nubank já absorvia boa parte desses valores de qualquer forma</strong>, sem um processo estruturado de recuperação. A proposta era transformar um custo que já existia, invisível, em um gesto intencional de parceria.</p>
+      <p data-lang="en" style="margin-top:12px;">The business one: <strong>Nubank already absorbed much of those amounts anyway</strong>, with no structured recovery process. The proposal was to turn a cost that already existed, invisibly, into an intentional gesture of partnership.</p>
+
+      <figure class="case-figure">
+        <img src="cb-visao-proposta.png" alt="Visão geral da proposta de experiência para o cliente PJ" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+        <figcaption data-lang="pt"><strong>VISÃO GERAL DA PROPOSTA</strong> que levei para o PRD. Engenharia começou a avaliação técnica a partir disso.</figcaption>
+        <figcaption data-lang="en"><strong>OVERVIEW OF THE PROPOSAL</strong> I took into the PRD. Engineering started the technical assessment from it.</figcaption>
+      </figure>
+
+      <div class="case-phase-item">
+        <h3 class="case-phase-title" data-lang="pt">Porquês desta jornada — Aspectos de produto e design</h3>
+        <h3 class="case-phase-title" data-lang="en">The whys behind this journey — product and design aspects</h3>
 
         <ol class="case-steps">
           <li class="case-step">
             <span class="case-step-num">1</span>
             <div>
-              <p class="case-step-title">Mapa de jornada da contestação</p>
-              <p class="case-step-desc">Para cada um, o que a pessoa está pensando e sentindo, separado das fricções percebidas. Uma raia para o vendedor, outra para o agente.</p>
+              <p class="case-step-title" data-lang="pt">Arquitetura e modelo mental</p>
+              <p class="case-step-title" data-lang="en">Architecture and mental model</p>
+              <p class="case-step-desc" data-lang="pt">Posicionei contestação no mesmo nível das transações. Para o cliente, o débito de uma contestação é uma movimentação, então é ali que ele procura entender o que aconteceu. Isso preservou o modelo mental existente e deu visibilidade completa: transação, valor, status, casos simultâneos e histórico.</p>
+              <p class="case-step-desc" data-lang="en">I placed disputes at the same level as transactions. For the customer, a dispute debit is a movement in the account, so that's where they look to understand what happened. This preserved the existing mental model and gave full visibility: transaction, amount, status, simultaneous cases and history.</p>
             </div>
           </li>
           <li class="case-step">
             <span class="case-step-num">2</span>
             <div>
-              <p class="case-step-title">Levantamento de necessidades</p>
-              <p class="case-step-desc">Dividido entre o que a experiência precisa resolver para o cliente e o que precisa oferecer para o agente.</p>
+              <p class="case-step-title" data-lang="pt">Design como mapa para engenharia</p>
+              <p class="case-step-title" data-lang="en">Design as a map for engineering</p>
+              <p class="case-step-desc" data-lang="pt">O domínio depende de integrações com parceiros, bandeiras e dados do cliente. Construí a visão sobre componentes e templates existentes para acelerar a entrega e deixar explícito quais dados e integrações eram críticos em cada etapa, tanto no app quanto no desktop. O material virou base para o spike de engenharia.</p>
+              <p class="case-step-desc" data-lang="en">The domain depends on integrations with partners, card networks and customer data. I built the vision on existing components and templates to speed up delivery and make explicit which data and integrations were critical at each stage, both on app and desktop. The material became the basis for the engineering spike.</p>
             </div>
           </li>
           <li class="case-step">
             <span class="case-step-num">3</span>
             <div>
-              <p class="case-step-title">Como poderíamos</p>
-              <p class="case-step-desc">Dezenas de perguntas geradas a partir das necessidades — e é de uma delas que nasce a aposta que descrevo mais adiante.</p>
+              <p class="case-step-title" data-lang="pt">Envio de documentação via ecossistema</p>
+              <p class="case-step-title" data-lang="en">Document submission through the ecosystem</p>
+              <p class="case-step-desc" data-lang="pt">Tirei o envio de documentos do e-mail e trouxe para dentro do ecossistema, com rastreabilidade. A única referência interna era a experiência de Seguros, que eu ajudei a projetar, e parti dos aprendizados dela e iterei na visão para PJ.</p>
+              <p class="case-step-desc" data-lang="en">I moved document submission out of email and into the ecosystem, with traceability. The only internal reference was the Insurance experience, which I helped design, so I started from its learnings and iterated on the vision for PJ.</p>
             </div>
           </li>
           <li class="case-step">
             <span class="case-step-num">4</span>
             <div>
-              <p class="case-step-title">Matriz de valor × dor</p>
-              <p class="case-step-desc">Para priorizar. O discovery terminou em decisão compartilhada com stakeholders.</p>
+              <p class="case-step-title" data-lang="pt">Comunicação como parte do produto</p>
+              <p class="case-step-title" data-lang="en">Communication as part of the product</p>
+              <p class="case-step-desc" data-lang="pt">Contestação é um processo longo e assíncrono, e a dor central era a falta de informação. Desenhei a orquestração entre in-app/Desktop, push, WhatsApp e e-mail para que cada mudança de estado chegue ao cliente de forma proativa.</p>
+              <p class="case-step-desc" data-lang="en">A dispute is a long, asynchronous process, and the core pain was the lack of information. I designed the orchestration across in-app/desktop, push, WhatsApp and email so that every change of state reaches the customer proactively.</p>
             </div>
           </li>
         </ol>
-
-        <figure class="case-figure">
-          <img src="cb-jornada.png" alt="Mapa de jornada da contestação, em duas raias: vendedor e agente interno" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-        </figure>
       </div>
-
-      <div class="case-section" id="cb-entregas">
-        <p class="case-section-label">Como estruturei as entregas</p>
-        <p>O projeto era cross-BU, com recursos de engenharia limitados e prazo apertado. Em vez de esperar uma entrega estrutural, propus fatiar o trabalho em 3 frentes que funcionavam de forma independente. O time de produto aceitou a sugestão e então começamos.</p>
-
-        <div class="case-phase-item">
-          <h3 class="case-phase-title">Frente 1 — Comunicações</h3>
-          <p>Auditei todo o conteúdo e os pontos de contato com CX, ajustei o processo interno de atendimento e redesenhei as comunicações transacionais. Analisei as FAQs, os e-mails ativos, a carta de contestação e o blog do Nubank, mapeando os vazios de informação em cada ponto.</p>
-          <p style="margin-top:12px;">O resultado foi uma <strong>nova régua de comunicação</strong>: a definição de quando falar, em que ponto do processo, com qual objetivo, cobrindo a jornada inteira.</p>
-
-          <figure class="case-figure">
-            <img src="cb-content-audit.png" alt="Parte do content audit das comunicações de contestação" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-            <figcaption><strong>PARTE DO CONTENT AUDIT.</strong> Diagnostiquei o que funciona e o que precisava melhorar. Implementamos as melhorias nas comms atuais.</figcaption>
-          </figure>
-
-          <figure class="case-figure">
-            <img src="cb-regua.png" alt="Nova régua de comunicação da contestação" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-            <figcaption><strong>RÉGUA DE COMUNICAÇÃO.</strong> Nova proposta buscava automatizar os envios e adicionar lembretes a partir da interação com o cliente.</figcaption>
-          </figure>
-        </div>
-
-        <div class="case-phase-item">
-          <h3 class="case-phase-title">Frente 2 — A experiência do agente interno MVP</h3>
-          <p><strong>Primeira entrega: visibilidade.</strong> O maior motivo de contato não era a contestação em si, era o dinheiro que sumia sem explicação. Desenhei a primeira notificação que sinalizava, no perfil do cliente, que algo estava acontecendo. Usei os componentes que já existiam no sistema interno, para ir ao ar sem depender de desenvolvimento novo.</p>
-
-          <div class="case-callout">
-            <span class="case-callout-label">A decisão de design que mais importou</span>
-            <p>Separar dois perfis de agente com necessidades diferentes de informação. Desenhar dois níveis de profundidade dentro da mesma ferramenta era a diferença entre uma tela consultável e uma tela que ninguém usa.</p>
-          </div>
-
-          <div class="case-topics">
-            <div class="case-topic">
-              <span class="case-topic-label">O generalista</span>
-              <p>Precisa de volume e histórico para responder rápido no primeiro contato.</p>
-            </div>
-            <div class="case-topic">
-              <span class="case-topic-label">O especialista em contestação</span>
-              <p>Precisa de detalhe, documentação e pós-defesa.</p>
-            </div>
-          </div>
-
-          <figure class="case-figure">
-            <img src="cb-notificacao.png" alt="Notificação de contestação no perfil do cliente, na plataforma interna" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-            <figcaption><strong>NOTIFICAÇÃO NO PERFIL DO CLIENTE.</strong> Primeira vez que info de chargeback entrou na plataforma interna. Engenharia levou 4 dias para implementar, testar e colocar em produção.</figcaption>
-          </figure>
-        </div>
-
-        <div class="case-phase-item">
-          <h3 class="case-phase-title">Frente 3 — A experiência do agente interno E2E</h3>
-          <p><strong>Segunda entrega: consolidação.</strong> Mapeei com CX e com a parceira todas as informações necessárias para tratar uma contestação. Conduzi duas sessões de workshop e uma critique com agentes da BPO e do Nubank para validar se o mapeamento estava completo e, principalmente, se a nomenclatura escolhida fazia sentido para quem ia usar a ferramenta todos os dias. Depois, desenhei a visualização que reunia tudo numa tela só.</p>
-
-          <figure class="case-figure">
-            <img src="cb-painel-v1.png" alt="Primeira versão do painel de contestação" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-            <figcaption><strong>PRIMEIRA VERSÃO DO PAINEL DE CONTESTAÇÃO.</strong> Acesso via CTA na notificação no perfil do cliente, que é fixa.</figcaption>
-          </figure>
-
-          <p>Em termos de arquitetura e coerência, entendi que a informação de chargeback precisaria viver junto das informações de cobrança de um modo geral. No entanto, iterar no widget de cobrança, que era legado, ia levar cerca de 2 meses. Para a visão acima, combinamos 2 semanas com engenharia.</p>
-          <p style="margin-top:12px;">O painel em si, seria reaproveitado porque é o comportamento padrão a partir do widget no sistema interno.</p>
-
-          <figure class="case-figure">
-            <img src="cb-painel-expandido.png" alt="Painel expandido de contestação, com todos os dados de análise" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-            <figcaption><strong>PAINEL EXPANDIDO.</strong> Exibe todos os dados necessários para análise de uma contestação para os times de chargeback, mas também fraude.</figcaption>
-          </figure>
-        </div>
-      </div>
-
-      <div class="case-section" id="cb-aposta">
-        <p class="case-section-label">A aposta que defendi</p>
-        <p>Para a experiência do usuário final, o cliente PJ, construí uma proposta de visão que dividi com meus pares e a liderança de Design. O objetivo era solucionar de forma categórica o NPS negativo, atrelando essa solução aos valores do Nubank.</p>
-
-        <p class="case-statement">Como poderíamos arcar com a primeira venda contestada para transformar a contestação em um momento de confiança?</p>
-
-        <p>Levei a proposta com dois argumentos. O de experiência: esse é um dos momentos mais difíceis na vida de um pequeno negócio, e boa parte das microempresas (perfil dominante na base do Nubank PJ naquele momento) nem sabe o que é um chargeback.</p>
-        <p style="margin-top:12px;">O de negócio: <strong>o Nubank já absorvia boa parte desses valores de qualquer forma</strong>, sem um processo estruturado de recuperação. A proposta era transformar um custo que já existia, invisível, em um gesto intencional de parceria.</p>
-
-        <figure class="case-figure">
-          <img src="cb-visao-proposta.png" alt="Visão geral da proposta de experiência para o cliente PJ" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-          <figcaption><strong>VISÃO GERAL DA PROPOSTA</strong> que levei para o PRD. Engenharia começou a avaliação técnica a partir disso.</figcaption>
-        </figure>
-
-        <div class="case-phase-item">
-          <h3 class="case-phase-title">Porquês desta jornada — Aspectos de produto e design</h3>
-
-          <ol class="case-steps">
-            <li class="case-step">
-              <span class="case-step-num">1</span>
-              <div>
-                <p class="case-step-title">Arquitetura e modelo mental</p>
-                <p class="case-step-desc">Posicionei contestação no mesmo nível das transações. Para o cliente, o débito de uma contestação é uma movimentação, então é ali que ele procura entender o que aconteceu. Isso preservou o modelo mental existente e deu visibilidade completa: transação, valor, status, casos simultâneos e histórico.</p>
-              </div>
-            </li>
-            <li class="case-step">
-              <span class="case-step-num">2</span>
-              <div>
-                <p class="case-step-title">Design como mapa para engenharia</p>
-                <p class="case-step-desc">O domínio depende de integrações com parceiros, bandeiras e dados do cliente. Construí a visão sobre componentes e templates existentes para acelerar a entrega e deixar explícito quais dados e integrações eram críticos em cada etapa, tanto no app quanto no desktop. O material virou base para o spike de engenharia.</p>
-              </div>
-            </li>
-            <li class="case-step">
-              <span class="case-step-num">3</span>
-              <div>
-                <p class="case-step-title">Envio de documentação via ecossistema</p>
-                <p class="case-step-desc">Tirei o envio de documentos do e-mail e trouxe para dentro do ecossistema, com rastreabilidade. A única referência interna era a experiência de Seguros, que eu ajudei a projetar, e parti dos aprendizados dela e iterei na visão para PJ.</p>
-              </div>
-            </li>
-            <li class="case-step">
-              <span class="case-step-num">4</span>
-              <div>
-                <p class="case-step-title">Comunicação como parte do produto</p>
-                <p class="case-step-desc">Contestação é um processo longo e assíncrono, e a dor central era a falta de informação. Desenhei a orquestração entre in-app/Desktop, push, WhatsApp e e-mail para que cada mudança de estado chegue ao cliente de forma proativa.</p>
-              </div>
-            </li>
-          </ol>
-        </div>
-      </div>
-
-      <div class="case-section" id="cb-resultado">
-        <p class="case-section-label">Resultado</p>
-
-        <div class="case-stats" style="--cols:2;">
-          <div class="case-stat">
-            <p class="case-stat-value is-accent">26,07%</p>
-            <p class="case-stat-label">de taxa de resposta, contra 13,55% antes dessa iniciativa.</p>
-          </div>
-          <div class="case-stat">
-            <p class="case-stat-value">+92%</p>
-            <p class="case-stat-label">na quantidade de documentação recebida.</p>
-          </div>
-        </div>
-
-        <p>Com uma mudança de prioridade da empresa, eu e o time de produto fomos realocados para o projeto da maquininha (POS), recém-aprovado pela liderança executiva, e a iniciativa de contestação passou para outro time. As duas primeiras fatias já estavam no ar antes da transição.</p>
-      </div>
-
-      <p class="case-footnote">Projeto desenvolvido no Nubank PJ. Telas e artefatos exibidos com fins de portfólio, mantendo confidencialidade sobre informações estratégicas e comerciais.</p>
-
     </div>
 
+    <div class="case-section" id="cb-resultado">
+      <p class="case-section-label" data-lang="pt">Resultado</p>
+      <p class="case-section-label" data-lang="en">Outcome</p>
+
+      <div class="case-stats" style="--cols:2;">
+        <div class="case-stat">
+          <p class="case-stat-value is-accent">26,07%</p>
+          <p class="case-stat-label" data-lang="pt">de taxa de resposta, contra 13,55% antes dessa iniciativa.</p>
+          <p class="case-stat-label" data-lang="en">response rate, against 13.55% before this initiative.</p>
+        </div>
+        <div class="case-stat">
+          <p class="case-stat-value">+92%</p>
+          <p class="case-stat-label" data-lang="pt">na quantidade de documentação recebida.</p>
+          <p class="case-stat-label" data-lang="en">in the volume of documentation received.</p>
+        </div>
+      </div>
+
+      <p data-lang="pt">Com uma mudança de prioridade da empresa, eu e o time de produto fomos realocados para o projeto da maquininha (POS), recém-aprovado pela liderança executiva, e a iniciativa de contestação passou para outro time. As duas primeiras fatias já estavam no ar antes da transição.</p>
+      <p data-lang="en">With a shift in company priorities, the product team and I were reallocated to the card terminal project (POS), newly approved by executive leadership, and the dispute initiative moved to another team. The first two slices were already live before the transition.</p>
+    </div>
+
+    <p class="case-footnote" data-lang="pt">Projeto desenvolvido no Nubank PJ. Telas e artefatos exibidos com fins de portfólio, mantendo confidencialidade sobre informações estratégicas e comerciais.</p>
+    <p class="case-footnote" data-lang="en">Project developed at Nubank PJ. Screens and artifacts shown for portfolio purposes, maintaining confidentiality over strategic and commercial information.</p>
     <!-- Veja também -->
     <div class="case-next">
       <span class="case-next-label" data-lang="pt">Veja também</span>
@@ -2974,7 +3039,8 @@
         <p class="case-lede" data-lang="en">The moment of truth of any insurance product</p>
         <p data-lang="pt">Os cinco produtos de seguro do Nubank tinham números fortes. Vida, por exemplo, tinha 2 milhões de apólices ativas e o maior NPS da categoria, mas todos compartilhavam o mesmo ponto cego: o momento de usar o produto.</p>
         <p data-lang="pt" style="margin-top:12px;">O cliente acionava o seguro e se perdia dentro de um processo com três empresas envolvidas, sem nenhum lugar para consultar o que estava acontecendo. Co-desenhei junto da service designer a experiência de status in-app e docs tracking, que passou a servir todos os produtos, e conduzi a definição do nível certo de informação em cada etapa do processo; o que permitiu que a mesma estrutura escalasse para todo o portfólio.</p>
-        <p data-lang="en">Nubank's five insurance products had strong numbers — Life alone had 2 million active policies and the highest NPS in its category. But they all shared the same blind spot: the moment the product is actually used.</p>
+        <p data-lang="en">Nubank's five insurance products had strong numbers. Life, for instance, had 2 million active policies and the highest NPS in its category, but they all shared the same blind spot: the moment the product is actually used.</p>
+        <p data-lang="en" style="margin-top:12px;">The customer filed a claim and got lost inside a process involving three companies, with nowhere to check what was happening. With the service designer, I co-designed the in-app status and docs tracking experience that went on to serve every product, and I led the definition of the right level of information at each stage of the process — which is what let the same structure scale across the whole portfolio.</p>
       </div>
       <div class="case-meta">
         <div class="case-meta-row">
@@ -3001,182 +3067,225 @@
       </div>
     </div>
 
-    <div data-lang="en">
-      <p class="case-translation-note">This case is being rewritten. The full text is available in Portuguese while the English version is in progress — switch to PT above to read it.</p>
+    <div class="case-section" id="ins-contexto">
+      <p class="case-section-label" data-lang="pt">Contexto</p>
+      <p class="case-section-label" data-lang="en">Context</p>
+      <p data-lang="pt">Trabalhei nos cinco produtos de seguro do Nubank, a maior parte deles operados em parceria com a Chubb como seguradora, a PLL ou a Ikê na logística. Cada um com sua própria maturidade e seus próprios números:</p>
+      <p data-lang="en">I worked on all five of Nubank's insurance products, most of them operated in partnership with Chubb as the insurer and PLL or Ikê on logistics. Each with its own maturity and its own numbers:</p>
+
+      <div class="case-stats" style="--cols:3;">
+        <div class="case-stat">
+          <p class="case-stat-value">NPS 83</p>
+          <p class="case-stat-label" data-lang="pt"><strong>Vida</strong> · churn de ⅓ do mercado · o maior NPS da categoria · SES 88 em clareza</p>
+          <p class="case-stat-label" data-lang="en"><strong>Life</strong> · churn at ⅓ of the market · the highest NPS in the category · SES 88 on clarity</p>
+        </div>
+        <div class="case-stat">
+          <p class="case-stat-value">NPS 79</p>
+          <p class="case-stat-label" data-lang="pt"><strong>Residencial</strong> · o maior da categoria no Brasil · SES 86 em clareza</p>
+          <p class="case-stat-label" data-lang="en"><strong>Home</strong> · the highest in its category in Brazil · SES 86 on clarity</p>
+        </div>
+        <div class="case-stat">
+          <p class="case-stat-value">NPS 79</p>
+          <p class="case-stat-label" data-lang="pt"><strong>Auto</strong> · contra ~61 do mercado · SES 93 em clareza</p>
+          <p class="case-stat-label" data-lang="en"><strong>Auto</strong> · against ~61 for the market · SES 93 on clarity</p>
+        </div>
+      </div>
+
+      <div class="case-stats" style="--cols:2;">
+        <div class="case-stat">
+          <p class="case-stat-value">NPS 61</p>
+          <p class="case-stat-label" data-lang="pt"><strong>Celular</strong> · O produto que mais sofria com a jornada de Claim · SES 86 em clareza</p>
+          <p class="case-stat-label" data-lang="en"><strong>Mobile</strong> · the product that suffered most from the claims journey · SES 86 on clarity</p>
+        </div>
+        <div class="case-stat">
+          <p class="case-stat-value">NPS 83</p>
+          <p class="case-stat-label" data-lang="pt"><strong>Proteção financeira</strong> · SES 93 em clareza 💜</p>
+          <p class="case-stat-label" data-lang="en"><strong>Financial protection</strong> · SES 93 on clarity 💜</p>
+        </div>
+      </div>
+
+      <p data-lang="pt">Eu poderia contar sobre qualquer um deles, inclusive sobre como, com o chapéu de content designer, conseguimos avaliações tão positivas em “clareza”; mas quero contar sobre a única coisa que todos os produtos tinham em comum: o sinistro.</p>
+      <p data-lang="en">I could tell you about any of them, including how, wearing the content designer hat, we got such positive scores on “clarity”; but I want to tell you about the one thing all the products had in common: the claim.</p>
     </div>
 
-    <div data-lang="pt">
+    <div class="case-section" id="ins-virada">
+      <p class="case-section-label" data-lang="pt">A virada: o acionamento</p>
+      <p class="case-section-label" data-lang="en">The turn: filing a claim</p>
+      <p data-lang="pt">Um seguro só prova o que vale no dia em que é acionado. E era exatamente para resolver esse ponto que a BU criou o time de Claims. Nessa squad, trabalhei junto de produto, engenharia e de uma pessoa designer de serviço.</p>
+      <p data-lang="en">Insurance only proves its worth on the day it's claimed. And it was exactly to solve that point that the business unit created the Claims team. In that squad, I worked alongside product, engineering and a service designer.</p>
 
-      <div class="case-section" id="ins-contexto">
-        <p class="case-section-label">Contexto</p>
-        <p>Trabalhei nos cinco produtos de seguro do Nubank, a maior parte deles operados em parceria com a Chubb como seguradora, a PLL ou a Ikê na logística. Cada um com sua própria maturidade e seus próprios números:</p>
+      <p class="case-statement" data-lang="pt">“Acionei o seguro, e agora?” Clientes não tinham visibilidade dos próximos passos.</p>
+      <p class="case-statement" data-lang="en">“I filed a claim — now what?” Customers had no visibility of the next steps.</p>
 
-        <div class="case-stats" style="--cols:3;">
-          <div class="case-stat">
-            <p class="case-stat-value">NPS 83</p>
-            <p class="case-stat-label"><strong>Vida</strong> · churn de ⅓ do mercado · o maior NPS da categoria · SES 88 em clareza</p>
-          </div>
-          <div class="case-stat">
-            <p class="case-stat-value">NPS 79</p>
-            <p class="case-stat-label"><strong>Residencial</strong> · o maior da categoria no Brasil · SES 86 em clareza</p>
-          </div>
-          <div class="case-stat">
-            <p class="case-stat-value">NPS 79</p>
-            <p class="case-stat-label"><strong>Auto</strong> · contra ~61 do mercado · SES 93 em clareza</p>
-          </div>
-        </div>
+      <p data-lang="pt">O e-mail era a única ferramenta de visibilidade. E a titularidade da comunicação mudava conforme a etapa do processo: algumas mensagens saíam da Chubb, outras da PLL ou demais parceiros. Isso fazia com que <strong>o cliente pudesse receber informações diferentes sobre o mesmo acionamento, dependendo de quem tinha mandado o último e-mail.</strong> Para saber qualquer coisa com certeza, precisava ligar. E, adivinha? Esse vinha sendo um gargalo do time de suporte.</p>
+      <p data-lang="en">Email was the only visibility tool. And ownership of the communication shifted with the stage of the process: some messages came from Chubb, others from PLL or other partners. That meant <strong>the customer could receive different information about the same claim, depending on who had sent the last email.</strong> To know anything for sure, they had to call. And guess what? That had become a bottleneck for the support team.</p>
+
+      <div class="case-phase-item">
+        <h3 class="case-phase-title" data-lang="pt">Os dados</h3>
+        <h3 class="case-phase-title" data-lang="en">The data</h3>
 
         <div class="case-stats" style="--cols:2;">
           <div class="case-stat">
-            <p class="case-stat-value">NPS 61</p>
-            <p class="case-stat-label"><strong>Celular</strong> · O produto que mais sofria com a jornada de Claim · SES 86 em clareza</p>
+            <p class="case-stat-value">~40%</p>
+            <p class="case-stat-label" data-lang="pt">dos contatos com o suporte eram sobre <strong>visibilidade do processo</strong></p>
+            <p class="case-stat-label" data-lang="en">of support contacts were about <strong>visibility of the process</strong></p>
           </div>
           <div class="case-stat">
-            <p class="case-stat-value">NPS 83</p>
-            <p class="case-stat-label"><strong>Proteção financeira</strong> · SES 93 em clareza 💜</p>
+            <p class="case-stat-value">60%</p>
+            <p class="case-stat-label" data-lang="pt">eram problemas reais durante o processo, como o envio de documentos</p>
+            <p class="case-stat-label" data-lang="en">were real problems during the process, such as submitting documents</p>
           </div>
         </div>
 
-        <p>Eu poderia contar sobre qualquer um deles, inclusive sobre como, com o chapéu de content designer, conseguimos avaliações tão positivas em “clareza”; mas quero contar sobre a única coisa que todos os produtos tinham em comum: o sinistro.</p>
+        <p data-lang="pt">Corroborando os dados acima, <strong>“visibilidade de processo” era o terceiro maior motivo de reclamação</strong> entre detratores e neutros no NPS dos produtos, inclusive o Seguro Celular.</p>
+        <p data-lang="en">Backing up the data above, <strong>“process visibility” was the third biggest complaint driver</strong> among detractors and passives in the products' NPS, Mobile insurance included.</p>
+        <p data-lang="pt" style="margin-top:12px;">No passado, o time teve como hipótese natural que o cliente de Seguro Celular estaria sem o aparelho, então não adiantaria colocar informação no app. Os dados mostraram o contrário: <strong>mesmo com o aparelho roubado, as pessoas davam um jeito de continuar conectadas.</strong></p>
+        <p data-lang="en" style="margin-top:12px;">In the past, the team's natural hypothesis was that a Mobile insurance customer would be without their phone, so putting information in the app wouldn't help. The data showed the opposite: <strong>even with the phone stolen, people found a way to stay connected.</strong></p>
       </div>
-
-      <div class="case-section" id="ins-virada">
-        <p class="case-section-label">A virada: o acionamento</p>
-        <p>Um seguro só prova o que vale no dia em que é acionado. E era exatamente para resolver esse ponto que a BU criou o time de Claims. Nessa squad, trabalhei junto de produto, engenharia e de uma pessoa designer de serviço.</p>
-
-        <p class="case-statement">“Acionei o seguro, e agora?” Clientes não tinham visibilidade dos próximos passos.</p>
-
-        <p>O e-mail era a única ferramenta de visibilidade. E a titularidade da comunicação mudava conforme a etapa do processo: algumas mensagens saíam da Chubb, outras da PLL ou demais parceiros. Isso fazia com que <strong>o cliente pudesse receber informações diferentes sobre o mesmo acionamento, dependendo de quem tinha mandado o último e-mail.</strong> Para saber qualquer coisa com certeza, precisava ligar. E, adivinha? Esse vinha sendo um gargalo do time de suporte.</p>
-
-        <div class="case-phase-item">
-          <h3 class="case-phase-title">Os dados</h3>
-
-          <div class="case-stats" style="--cols:2;">
-            <div class="case-stat">
-              <p class="case-stat-value">~40%</p>
-              <p class="case-stat-label">dos contatos com o suporte eram sobre <strong>visibilidade do processo</strong></p>
-            </div>
-            <div class="case-stat">
-              <p class="case-stat-value">60%</p>
-              <p class="case-stat-label">eram problemas reais durante o processo, como o envio de documentos</p>
-            </div>
-          </div>
-
-          <p>Corroborando os dados acima, <strong>“visibilidade de processo” era o terceiro maior motivo de reclamação</strong> entre detratores e neutros no NPS dos produtos, inclusive o Seguro Celular.</p>
-          <p style="margin-top:12px;">No passado, o time teve como hipótese natural que o cliente de Seguro Celular estaria sem o aparelho, então não adiantaria colocar informação no app. Os dados mostraram o contrário: <strong>mesmo com o aparelho roubado, as pessoas davam um jeito de continuar conectadas.</strong></p>
-        </div>
-      </div>
-
-      <div class="case-section" id="ins-discovery">
-        <p class="case-section-label">O discovery</p>
-        <p><strong>O discovery foi liderado pela service designer e por mim:</strong> ela ficou com o mapeamento dos atores, o blueprint do processo (sinistro por roubo e por dano acidental) e eu com a coleta de inputs com CX. Foi aí que o problema real apareceu, e ele não era de interface.</p>
-      </div>
-
-      <div class="case-section" id="ins-restricao">
-        <p class="case-section-label">A restrição que definiu o design</p>
-        <p>Antes de desenhar qualquer tela, era preciso saber o que a API do parceiro conseguia informar. <strong>Essa investigação nos mostrou que</strong> parte do problema não se resolvia com interface.</p>
-        <p style="margin-top:12px;">Havia <strong>3 listas de eventos que não batiam entre si</strong>: uma mapeada anteriormente com a Chubb, os eventos salvos no ETL e os presentes no código; e não estava claro qual ator disparava cada um.</p>
-        <p style="margin-top:12px;">O relatório de Loss Run, tido como fonte de verdade, não continha eventos que existiam na API e que, pela lógica do processo, deveriam estar lá. E, conforme a informação atravessava cada empresa, ela perdia significado: não havia entendimento comum sobre o que cada evento queria dizer.</p>
-        <p style="margin-top:12px;">A saída foi validar caso a caso direto nos sistemas da Chubb e da PLL, em sessões de trabalho com as duas.</p>
-
-        <div class="case-stats" style="--cols:4;">
-          <div class="case-stat">
-            <p class="case-stat-value is-accent">73</p>
-            <p class="case-stat-label">eventos disponíveis</p>
-          </div>
-          <div class="case-stat">
-            <p class="case-stat-value">38</p>
-            <p class="case-stat-label">efetivamente recebidos</p>
-          </div>
-          <div class="case-stat">
-            <p class="case-stat-value">34</p>
-            <p class="case-stat-label">usados na experiência</p>
-          </div>
-          <div class="case-stat">
-            <p class="case-stat-value">9</p>
-            <p class="case-stat-label">eventos novos especificados para a API</p>
-          </div>
-        </div>
-
-        <p>Esse foi o ponto de partida para pensar no design: <strong>34 eventos crus, emitidos por três empresas diferentes, com nomes que faziam sentido para sistemas e não para pessoas.</strong> Nossa missão era transformar isso em algo que um cliente entendesse no, possivelmente, pior dia da sua vida.</p>
-      </div>
-
-      <div class="case-section" id="ins-solucao">
-        <p class="case-section-label">A solução</p>
-
-        <div class="case-phase-item">
-          <h3 class="case-phase-title">Dois níveis, para escalar</h3>
-          <p>Co-desenhei junto da service designer a visibilidade em dois níveis: um <strong>ponto de entrada</strong> e uma <strong>página de detalhe</strong>. A escolha foi feita contra as restrições reais de esforço de engenharia e time. Mas o motivo principal era outro: manter a informação principal <strong>idêntica para todos os produtos</strong>, deixando as particularidades para a visão detalhada.</p>
-
-          <figure class="case-figure">
-            <img src="ins-entrypoint.png" alt="Ponto de entrada do acionamento na tela do Seguro de Vida, com status e link para detalhes" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-          </figure>
-        </div>
-
-        <div class="case-phase-item">
-          <h3 class="case-phase-title">Agrupar para reduzir ansiedade</h3>
-          <p>O processo tem de sete a dez etapas, dependendo do produto e do tipo de sinistro. Mostrar dez passos para alguém que acabou de ter o celular roubado não é transparência — é sobrecarga.</p>
-          <p style="margin-top:12px;">Criei uma categoria de agrupamento nova, compreensível para quem está no meio do processo e escalável para os outros produtos. Na tela de gestão, os passos que exigem ação do cliente ganharam um estado próprio de <strong>ação pendente</strong>, com copy reforçando o que precisava ser feito porque havia risco real de a pessoa não completar uma etapa obrigatória por não saber que ela existia.</p>
-
-          <figure class="case-figure">
-            <img src="ins-steps-flow.png" alt="Fluxo de etapas do acionamento, com os agrupamentos e os estados de cada passo" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-          </figure>
-        </div>
-      </div>
-
-      <div class="case-section" id="ins-resultado">
-        <p class="case-section-label">Resultado</p>
-        <p>O rollout começou por Celular, com os demais produtos previstos na sequência. Estes são os <strong>primeiros resultados</strong>:</p>
-
-        <div class="case-stats" style="--cols:3;">
-          <div class="case-stat">
-            <p class="case-stat-value is-accent">NPS 83</p>
-            <p class="case-stat-label">NPS de sinistro, a 1ª vez que passamos de 80</p>
-          </div>
-          <div class="case-stat">
-            <p class="case-stat-value">−10 h</p>
-            <p class="case-stat-label">no tempo total por acionamento</p>
-          </div>
-          <div class="case-stat">
-            <p class="case-stat-value">10 → 2%</p>
-            <p class="case-stat-label">de recorrência de contato</p>
-          </div>
-        </div>
-
-        <div class="case-callout">
-          <span class="case-callout-label">O desdobramento</span>
-          <p>E o trabalho teve um desdobramento que não estava no plano: <strong>a estrutura virou a fundação do Docs Tracking</strong>, o primeiro rastreamento documental end-to-end do Nubank, que chegou aos primeiros usuários externos no início de 2025.</p>
-        </div>
-
-        <p class="case-statement">Posso dizer que hoje eu sei tudo sobre cartório — e foi o Docs Tracking que me ensinou.</p>
-      </div>
-
-      <div class="case-section" id="ins-base">
-        <p class="case-section-label">O trabalho de base</p>
-
-        <div class="case-phase-item">
-          <h3 class="case-phase-title">Linguagem</h3>
-          <p>Seguro é um domínio que o cliente não domina. Franquia, sinistro, beneficiário, carência — cada termo carrega o peso de uma decisão e de uma desconfiança. Conduzi a pesquisa de convenção de nomenclatura, construí o glossário de produtos e documentei o padrão de como nomeamos as coisas.</p>
-          <p style="margin-top:12px;">Fiz também a <strong>análise de acessibilidade do Seguro de Vida</strong>, junto ao Design Tribe, e a pesquisa de linguagem e percepção do produto: o foco era entender não só se as pessoas compreendiam os termos, mas o que sentiam ao lê-los.</p>
-        </div>
-
-        <div class="case-phase-item">
-          <h3 class="case-phase-title">O alinhamento</h3>
-          <p>Cada produto e cada cobertura exige documentos diferentes, muitas vezes de pessoas diferentes. Por prevenção a fraude, alguns ainda têm requisitos específicos, como autenticação em cartório.</p>
-          <p style="margin-top:12px;">O desafio não era só listar esses documentos, mas responder <strong>o que o cliente realmente precisa saber</strong>: qual documento, de quem pedir, onde encontrar, como ele deve ser e o que fazer se algo der errado.</p>
-
-          <figure class="case-figure">
-            <img src="ins-docs.png" alt="Telas de envio e de documentos necessários no acionamento do seguro" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-          </figure>
-
-          <p>Ao longo de 2 meses de conversas quase diárias com os parceiros, validamos cobertura por cobertura. Para estruturar essa apuração, propus à designer de serviço um questionário inspirado na pirâmide invertida do jornalismo, ampliado para capturar não só o que cada documento é, mas como obtê-lo e quais requisitos precisa cumprir. O objetivo era dar instruções precisas a um cliente que, via de regra, está passando por um momento difícil.</p>
-        </div>
-      </div>
-
-      <p class="case-footnote">Projeto desenvolvido no Nubank Seguros. Telas e artefatos exibidos com fins de portfólio, mantendo confidencialidade sobre informações estratégicas e comerciais.</p>
-
     </div>
 
+    <div class="case-section" id="ins-discovery">
+      <p class="case-section-label" data-lang="pt">O discovery</p>
+      <p class="case-section-label" data-lang="en">The discovery</p>
+      <p data-lang="pt"><strong>O discovery foi liderado pela service designer e por mim:</strong> ela ficou com o mapeamento dos atores, o blueprint do processo (sinistro por roubo e por dano acidental) e eu com a coleta de inputs com CX. Foi aí que o problema real apareceu, e ele não era de interface.</p>
+      <p data-lang="en"><strong>The discovery was led by the service designer and me:</strong> she took the mapping of actors and the blueprint of the process (claims for theft and for accidental damage), and I took the input gathering with CX. That's where the real problem appeared, and it wasn't an interface problem.</p>
+    </div>
+
+    <div class="case-section" id="ins-restricao">
+      <p class="case-section-label" data-lang="pt">A restrição que definiu o design</p>
+      <p class="case-section-label" data-lang="en">The constraint that defined the design</p>
+      <p data-lang="pt">Antes de desenhar qualquer tela, era preciso saber o que a API do parceiro conseguia informar. <strong>Essa investigação nos mostrou que</strong> parte do problema não se resolvia com interface.</p>
+      <p data-lang="en">Before designing any screen, we had to know what the partner's API could actually report. <strong>That investigation showed us that</strong> part of the problem couldn't be solved with interface.</p>
+      <p data-lang="pt" style="margin-top:12px;">Havia <strong>3 listas de eventos que não batiam entre si</strong>: uma mapeada anteriormente com a Chubb, os eventos salvos no ETL e os presentes no código; e não estava claro qual ator disparava cada um.</p>
+      <p data-lang="en" style="margin-top:12px;">There were <strong>3 lists of events that didn't match each other</strong>: one mapped previously with Chubb, the events stored in the ETL, and the ones present in the code; and it wasn't clear which actor triggered each one.</p>
+      <p data-lang="pt" style="margin-top:12px;">O relatório de Loss Run, tido como fonte de verdade, não continha eventos que existiam na API e que, pela lógica do processo, deveriam estar lá. E, conforme a informação atravessava cada empresa, ela perdia significado: não havia entendimento comum sobre o que cada evento queria dizer.</p>
+      <p data-lang="en" style="margin-top:12px;">The Loss Run report, treated as the source of truth, didn't contain events that existed in the API and that, by the logic of the process, should have been there. And as the information crossed each company, it lost meaning: there was no shared understanding of what each event meant.</p>
+      <p data-lang="pt" style="margin-top:12px;">A saída foi validar caso a caso direto nos sistemas da Chubb e da PLL, em sessões de trabalho com as duas.</p>
+      <p data-lang="en" style="margin-top:12px;">The way out was validating case by case straight in Chubb's and PLL's systems, in working sessions with both.</p>
+
+      <div class="case-stats" style="--cols:4;">
+        <div class="case-stat">
+          <p class="case-stat-value is-accent">73</p>
+          <p class="case-stat-label" data-lang="pt">eventos disponíveis</p>
+          <p class="case-stat-label" data-lang="en">events available</p>
+        </div>
+        <div class="case-stat">
+          <p class="case-stat-value">38</p>
+          <p class="case-stat-label" data-lang="pt">efetivamente recebidos</p>
+          <p class="case-stat-label" data-lang="en">actually received</p>
+        </div>
+        <div class="case-stat">
+          <p class="case-stat-value">34</p>
+          <p class="case-stat-label" data-lang="pt">usados na experiência</p>
+          <p class="case-stat-label" data-lang="en">used in the experience</p>
+        </div>
+        <div class="case-stat">
+          <p class="case-stat-value">9</p>
+          <p class="case-stat-label" data-lang="pt">eventos novos especificados para a API</p>
+          <p class="case-stat-label" data-lang="en">new events specified for the API</p>
+        </div>
+      </div>
+
+      <p data-lang="pt">Esse foi o ponto de partida para pensar no design: <strong>34 eventos crus, emitidos por três empresas diferentes, com nomes que faziam sentido para sistemas e não para pessoas.</strong> Nossa missão era transformar isso em algo que um cliente entendesse no, possivelmente, pior dia da sua vida.</p>
+      <p data-lang="en">That was the starting point for the design: <strong>34 raw events, emitted by three different companies, with names that made sense to systems and not to people.</strong> Our job was to turn that into something a customer could understand on what might be the worst day of their life.</p>
+    </div>
+
+    <div class="case-section" id="ins-solucao">
+      <p class="case-section-label" data-lang="pt">A solução</p>
+      <p class="case-section-label" data-lang="en">The solution</p>
+
+      <div class="case-phase-item">
+        <h3 class="case-phase-title" data-lang="pt">Dois níveis, para escalar</h3>
+        <h3 class="case-phase-title" data-lang="en">Two levels, built to scale</h3>
+        <p data-lang="pt">Co-desenhei junto da service designer a visibilidade em dois níveis: um <strong>ponto de entrada</strong> e uma <strong>página de detalhe</strong>. A escolha foi feita contra as restrições reais de esforço de engenharia e time. Mas o motivo principal era outro: manter a informação principal <strong>idêntica para todos os produtos</strong>, deixando as particularidades para a visão detalhada.</p>
+        <p data-lang="en">With the service designer, I co-designed visibility on two levels: an <strong>entry point</strong> and a <strong>detail page</strong>. The choice was made against the real constraints of engineering effort and time. But the main reason was another one: keeping the primary information <strong>identical across every product</strong>, leaving the particulars to the detailed view.</p>
+
+        <figure class="case-figure">
+          <img src="ins-entrypoint.png" alt="Ponto de entrada do acionamento na tela do Seguro de Vida, com status e link para detalhes" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+        </figure>
+      </div>
+
+      <div class="case-phase-item">
+        <h3 class="case-phase-title" data-lang="pt">Agrupar para reduzir ansiedade</h3>
+        <h3 class="case-phase-title" data-lang="en">Grouping to reduce anxiety</h3>
+        <p data-lang="pt">O processo tem de sete a dez etapas, dependendo do produto e do tipo de sinistro. Mostrar dez passos para alguém que acabou de ter o celular roubado não é transparência — é sobrecarga.</p>
+        <p data-lang="en">The process has seven to ten stages, depending on the product and the type of claim. Showing ten steps to someone who just had their phone stolen isn't transparency — it's overload.</p>
+        <p data-lang="pt" style="margin-top:12px;">Criei uma categoria de agrupamento nova, compreensível para quem está no meio do processo e escalável para os outros produtos. Na tela de gestão, os passos que exigem ação do cliente ganharam um estado próprio de <strong>ação pendente</strong>, com copy reforçando o que precisava ser feito porque havia risco real de a pessoa não completar uma etapa obrigatória por não saber que ela existia.</p>
+        <p data-lang="en" style="margin-top:12px;">I created a new grouping category, understandable to someone in the middle of the process and scalable to the other products. On the management screen, steps requiring customer action got their own <strong>pending action</strong> state, with copy reinforcing what needed to be done — because there was a real risk of someone not completing a mandatory step simply from not knowing it existed.</p>
+
+        <figure class="case-figure">
+          <img src="ins-steps-flow.png" alt="Fluxo de etapas do acionamento, com os agrupamentos e os estados de cada passo" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+        </figure>
+      </div>
+    </div>
+
+    <div class="case-section" id="ins-resultado">
+      <p class="case-section-label" data-lang="pt">Resultado</p>
+      <p class="case-section-label" data-lang="en">Outcome</p>
+      <p data-lang="pt">O rollout começou por Celular, com os demais produtos previstos na sequência. Estes são os <strong>primeiros resultados</strong>:</p>
+      <p data-lang="en">The rollout started with Mobile, with the other products planned next. These are the <strong>first results</strong>:</p>
+
+      <div class="case-stats" style="--cols:3;">
+        <div class="case-stat">
+          <p class="case-stat-value is-accent">NPS 83</p>
+          <p class="case-stat-label" data-lang="pt">NPS de sinistro, a 1ª vez que passamos de 80</p>
+          <p class="case-stat-label" data-lang="en">claim NPS, the first time we passed 80</p>
+        </div>
+        <div class="case-stat">
+          <p class="case-stat-value">−10 h</p>
+          <p class="case-stat-label" data-lang="pt">no tempo total por acionamento</p>
+          <p class="case-stat-label" data-lang="en">in total handling time per claim</p>
+        </div>
+        <div class="case-stat">
+          <p class="case-stat-value">10 → 2%</p>
+          <p class="case-stat-label" data-lang="pt">de recorrência de contato</p>
+          <p class="case-stat-label" data-lang="en">in repeat contact</p>
+        </div>
+      </div>
+
+      <div class="case-callout">
+        <span class="case-callout-label" data-lang="pt">O desdobramento</span>
+        <span class="case-callout-label" data-lang="en">The spin-off</span>
+        <p data-lang="pt">E o trabalho teve um desdobramento que não estava no plano: <strong>a estrutura virou a fundação do Docs Tracking</strong>, o primeiro rastreamento documental end-to-end do Nubank, que chegou aos primeiros usuários externos no início de 2025.</p>
+        <p data-lang="en">And the work had a spin-off that wasn't in the plan: <strong>the structure became the foundation of Docs Tracking</strong>, Nubank's first end-to-end document tracking, which reached its first external users in early 2025.</p>
+      </div>
+
+      <p class="case-statement" data-lang="pt">Posso dizer que hoje eu sei tudo sobre cartório — e foi o Docs Tracking que me ensinou.</p>
+      <p class="case-statement" data-lang="en">I can honestly say I now know everything about notary offices — and it was Docs Tracking that taught me.</p>
+    </div>
+
+    <div class="case-section" id="ins-base">
+      <p class="case-section-label" data-lang="pt">O trabalho de base</p>
+      <p class="case-section-label" data-lang="en">The foundational work</p>
+
+      <div class="case-phase-item">
+        <h3 class="case-phase-title" data-lang="pt">Linguagem</h3>
+        <h3 class="case-phase-title" data-lang="en">Language</h3>
+        <p data-lang="pt">Seguro é um domínio que o cliente não domina. Franquia, sinistro, beneficiário, carência — cada termo carrega o peso de uma decisão e de uma desconfiança. Conduzi a pesquisa de convenção de nomenclatura, construí o glossário de produtos e documentei o padrão de como nomeamos as coisas.</p>
+        <p data-lang="en">Insurance is a domain customers don't master. Deductible, claim, beneficiary, waiting period — each term carries the weight of a decision and of a suspicion. I ran the naming convention research, built the product glossary and documented the standard for how we name things.</p>
+        <p data-lang="pt" style="margin-top:12px;">Fiz também a <strong>análise de acessibilidade do Seguro de Vida</strong>, junto ao Design Tribe, e a pesquisa de linguagem e percepção do produto: o foco era entender não só se as pessoas compreendiam os termos, mas o que sentiam ao lê-los.</p>
+        <p data-lang="en" style="margin-top:12px;">I also ran the <strong>accessibility analysis of Life insurance</strong>, together with the Design Tribe, and the product's language and perception research: the focus was understanding not only whether people understood the terms, but what they felt reading them.</p>
+      </div>
+
+      <div class="case-phase-item">
+        <h3 class="case-phase-title" data-lang="pt">O alinhamento</h3>
+        <h3 class="case-phase-title" data-lang="en">The alignment</h3>
+        <p data-lang="pt">Cada produto e cada cobertura exige documentos diferentes, muitas vezes de pessoas diferentes. Por prevenção a fraude, alguns ainda têm requisitos específicos, como autenticação em cartório.</p>
+        <p data-lang="en">Each product and each coverage requires different documents, often from different people. For fraud prevention, some carry specific requirements, such as notarized authentication.</p>
+        <p data-lang="pt" style="margin-top:12px;">O desafio não era só listar esses documentos, mas responder <strong>o que o cliente realmente precisa saber</strong>: qual documento, de quem pedir, onde encontrar, como ele deve ser e o que fazer se algo der errado.</p>
+        <p data-lang="en" style="margin-top:12px;">The challenge wasn't only listing those documents, but answering <strong>what the customer actually needs to know</strong>: which document, who to ask for it, where to find it, what it must look like, and what to do if something goes wrong.</p>
+
+        <figure class="case-figure">
+          <img src="ins-docs.png" alt="Telas de envio e de documentos necessários no acionamento do seguro" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+        </figure>
+
+        <p data-lang="pt">Ao longo de 2 meses de conversas quase diárias com os parceiros, validamos cobertura por cobertura. Para estruturar essa apuração, propus à designer de serviço um questionário inspirado na pirâmide invertida do jornalismo, ampliado para capturar não só o que cada documento é, mas como obtê-lo e quais requisitos precisa cumprir. O objetivo era dar instruções precisas a um cliente que, via de regra, está passando por um momento difícil.</p>
+        <p data-lang="en">Over 2 months of almost daily conversations with the partners, we validated coverage by coverage. To structure that reporting work, I proposed to the service designer a questionnaire inspired by journalism's inverted pyramid, extended to capture not only what each document is, but how to obtain it and which requirements it must meet. The goal was to give precise instructions to a customer who, as a rule, is going through a hard moment.</p>
+      </div>
+    </div>
+
+    <p class="case-footnote" data-lang="pt">Projeto desenvolvido no Nubank Seguros. Telas e artefatos exibidos com fins de portfólio, mantendo confidencialidade sobre informações estratégicas e comerciais.</p>
+    <p class="case-footnote" data-lang="en">Project developed at Nubank Seguros. Screens and artifacts shown for portfolio purposes, maintaining confidentiality over strategic and commercial information.</p>
     <!-- Veja também -->
     <div class="case-next">
       <span class="case-next-label" data-lang="pt">Veja também</span>
@@ -3273,6 +3382,7 @@
         <p data-lang="pt">Em PJ Payments trabalhei quase sempre na mesma região do produto: o erro de leitura do cartão, o pagamento que atrasa, a tarefa repetida pela vigésima vez. São os momentos que o mercado trata como exceção técnica e que, quando medidos, são exatamente onde a transação se perde ou se recupera.</p>
         <p data-lang="pt" style="margin-top:12px;">No fluxo de erro do Tap to Pay, a taxa de sucesso saiu de 11% para 17% em duas iterações. Nas cobranças por boleto, as FAQs em fluxo chegaram a 90% de deflexão de atendimento.</p>
         <p data-lang="en">In PJ Payments I worked almost always in the same region of the product: the card read that fails, the payment that runs late, the task repeated for the twentieth time — the moments the market treats as technical exceptions and that, once measured, are exactly where a transaction is lost or recovered.</p>
+        <p data-lang="en" style="margin-top:12px;">In Tap to Pay's error flow, the success rate went from 11% to 17% over two iterations. In boleto invoicing, in-flow FAQs reached 90% support deflection.</p>
       </div>
       <div class="case-meta">
         <div class="case-meta-row">
@@ -3305,320 +3415,419 @@
       </div>
     </div>
 
-    <div data-lang="en">
-      <p class="case-translation-note">This case is being rewritten. The full text is available in Portuguese while the English version is in progress — switch to PT above to read it.</p>
+    <div class="case-section" id="pj-contexto">
+      <p class="case-section-label" data-lang="pt">Contexto</p>
+      <p class="case-section-label" data-lang="en">Context</p>
+      <p data-lang="pt">O Nubank PJ oferece várias formas de receber: Tap to Pay, boleto, Pix Cobrança, link de pagamento. Atuei de forma transversal, atendendo três squads ao mesmo tempo — In-person, Digital Sales e Cross-Payment.</p>
+      <p data-lang="en">Nubank PJ offers several ways to get paid: Tap to Pay, boleto, Pix invoicing, payment link. I worked across the area, serving three squads at once — In-person, Digital Sales and Cross-Payment.</p>
+      <p data-lang="pt" style="margin-top:12px;">Trabalhar assim tem uma vantagem que demorei a perceber: você vê o mesmo problema repetido em produtos diferentes. E o problema que mais se repetia era o momento da falha. Todo produto de pagamento tem um caminho feliz bem cuidado e um caminho de erro que ninguém quis desenhar.</p>
+      <p data-lang="en" style="margin-top:12px;">Working this way has an advantage I took a while to notice: you see the same problem repeat across different products. And the problem that repeated most was the moment of failure. Every payment product has a well-tended happy path and an error path nobody wanted to design.</p>
+      <p data-lang="pt" style="margin-top:12px;"><strong>Foi ali que passei a maior parte do tempo.</strong></p>
+      <p data-lang="en" style="margin-top:12px;"><strong>That's where I spent most of my time.</strong></p>
     </div>
 
-    <div data-lang="pt">
+    <div class="case-section" id="pj-ttp">
+      <p class="case-section-label" data-lang="pt">Tap to Pay</p>
+      <p class="case-section-label" data-lang="en">Tap to Pay</p>
+      <p data-lang="pt">O Tap to Pay transforma o celular do vendedor em maquininha: basta encostar o cartão na traseira do aparelho para cobrar. Produto com NPS 80 e proposta de valor forte — as melhores condições sem precisar comprar ou alugar máquina.</p>
+      <p data-lang="en">Tap to Pay turns the seller's phone into a card terminal: you just tap the card on the back of the device to charge. A product with an NPS of 80 and a strong value proposition — the best terms without buying or renting hardware.</p>
+      <p data-lang="pt" style="margin-top:12px;">Mas performance, nesse tipo de produto, é o mínimo. Se a cobrança falha na frente do comprador, não existe copy que console.</p>
+      <p data-lang="en" style="margin-top:12px;">But performance, in this kind of product, is the bare minimum. If the charge fails in front of the buyer, no copy will console anyone.</p>
 
-      <div class="case-section" id="pj-contexto">
-        <p class="case-section-label">Contexto</p>
-        <p>O Nubank PJ oferece várias formas de receber: Tap to Pay, boleto, Pix Cobrança, link de pagamento. Atuei de forma transversal, atendendo três squads ao mesmo tempo — In-person, Digital Sales e Cross-Payment.</p>
-        <p style="margin-top:12px;">Trabalhar assim tem uma vantagem que demorei a perceber: você vê o mesmo problema repetido em produtos diferentes. E o problema que mais se repetia era o momento da falha. Todo produto de pagamento tem um caminho feliz bem cuidado e um caminho de erro que ninguém quis desenhar.</p>
-        <p style="margin-top:12px;"><strong>Foi ali que passei a maior parte do tempo.</strong></p>
+      <div class="case-phase-item">
+        <h3 class="case-phase-title" data-lang="pt">As métricas do time</h3>
+        <h3 class="case-phase-title" data-lang="en">The team's metrics</h3>
+        <p data-lang="pt">O discovery de otimização de fluxo declarou as metas antes de começar, e são elas que orientam as três frentes abaixo:</p>
+        <p data-lang="en">The flow optimization discovery declared its goals before starting, and they guide the three fronts below:</p>
+
+        <div class="case-callout">
+          <span class="case-callout-label" data-lang="pt">Métrica-alvo</span>
+          <span class="case-callout-label" data-lang="en">Target metric</span>
+          <p data-lang="pt">Redução do tempo até concluir — tempo para configurar a cobrança e tempo para ler o cartão.</p>
+          <p data-lang="en">Reducing time to complete — time to set up the charge and time to read the card.</p>
+        </div>
+
+        <div class="case-topics">
+          <div class="case-topic">
+            <span class="case-topic-label" data-lang="pt">Métricas de performance</span>
+            <span class="case-topic-label" data-lang="en">Performance metrics</span>
+            <p data-lang="pt">Menos contatos de “como funciona”, <strong>menos erro</strong>, mais transações.</p>
+            <p data-lang="en">Fewer “how does it work” contacts, <strong>fewer errors</strong>, more transactions.</p>
+          </div>
+          <div class="case-topic">
+            <span class="case-topic-label" data-lang="pt">Plano de pesquisa</span>
+            <span class="case-topic-label" data-lang="en">Research plan</span>
+            <p data-lang="pt">Três fases — survey quantitativo, entrevistas em profundidade e um laboratório de casos de uso.</p>
+            <p data-lang="en">Three phases — a quantitative survey, in-depth interviews and a use-case lab.</p>
+          </div>
+        </div>
+
+        <p data-lang="pt">O plano declarava também os <strong>não-objetivos</strong>: definir ou testar soluções novas não fazia parte daquela etapa.</p>
+        <p data-lang="en">The plan also declared its <strong>non-goals</strong>: defining or testing new solutions wasn't part of that stage.</p>
       </div>
 
-      <div class="case-section" id="pj-ttp">
-        <p class="case-section-label">Tap to Pay</p>
-        <p>O Tap to Pay transforma o celular do vendedor em maquininha: basta encostar o cartão na traseira do aparelho para cobrar. Produto com NPS 80 e proposta de valor forte — as melhores condições sem precisar comprar ou alugar máquina.</p>
-        <p style="margin-top:12px;">Mas performance, nesse tipo de produto, é o mínimo. Se a cobrança falha na frente do comprador, não existe copy que console.</p>
+      <div class="case-phase-item">
+        <h3 class="case-phase-title" data-lang="pt">Frente 1 — Encontrar o ponto de toque</h3>
+        <h3 class="case-phase-title" data-lang="en">Front 1 — Finding the tap point</h3>
+        <p data-lang="pt">A posição da antena NFC muda conforme o modelo e a marca do aparelho, e o Nubank não ensinava isso em lugar nenhum. Sem orientação, a pessoa encostava o cartão em pontos aleatórios do próprio celular até funcionar — ou desistia no meio, na frente do cliente.</p>
+        <p data-lang="en">The NFC antenna sits in a different place depending on the phone model and brand, and Nubank taught that nowhere. With no guidance, people tapped the card on random spots of their own phone until it worked — or gave up halfway, in front of the customer.</p>
+        <p data-lang="pt" style="margin-top:12px;">Estruturei a narrativa do onboarding em início, meio e fim, e co-desenhei o fluxo guiado de detecção, com os dois caminhos:</p>
+        <p data-lang="en" style="margin-top:12px;">I structured the onboarding narrative into beginning, middle and end, and co-designed the guided detection flow, with both paths:</p>
 
-        <div class="case-phase-item">
-          <h3 class="case-phase-title">As métricas do time</h3>
-          <p>O discovery de otimização de fluxo declarou as metas antes de começar, e são elas que orientam as três frentes abaixo:</p>
-
-          <div class="case-callout">
-            <span class="case-callout-label">Métrica-alvo</span>
-            <p>Redução do tempo até concluir — tempo para configurar a cobrança e tempo para ler o cartão.</p>
+        <div class="case-topics">
+          <div class="case-topic">
+            <span class="case-topic-label" data-lang="pt">Caminho feliz</span>
+            <span class="case-topic-label" data-lang="en">Happy path</span>
+            <p data-lang="pt">A pessoa é guiada passo a passo até encontrar e confirmar a posição ideal no próprio aparelho.</p>
+            <p data-lang="en">The person is guided step by step until they find and confirm the ideal position on their own device.</p>
           </div>
-
-          <div class="case-topics">
-            <div class="case-topic">
-              <span class="case-topic-label">Métricas de performance</span>
-              <p>Menos contatos de “como funciona”, <strong>menos erro</strong>, mais transações.</p>
-            </div>
-            <div class="case-topic">
-              <span class="case-topic-label">Plano de pesquisa</span>
-              <p>Três fases — survey quantitativo, entrevistas em profundidade e um laboratório de casos de uso.</p>
-            </div>
-          </div>
-
-          <p>O plano declarava também os <strong>não-objetivos</strong>: definir ou testar soluções novas não fazia parte daquela etapa.</p>
-        </div>
-
-        <div class="case-phase-item">
-          <h3 class="case-phase-title">Frente 1 — Encontrar o ponto de toque</h3>
-          <p>A posição da antena NFC muda conforme o modelo e a marca do aparelho, e o Nubank não ensinava isso em lugar nenhum. Sem orientação, a pessoa encostava o cartão em pontos aleatórios do próprio celular até funcionar — ou desistia no meio, na frente do cliente.</p>
-          <p style="margin-top:12px;">Estruturei a narrativa do onboarding em início, meio e fim, e co-desenhei o fluxo guiado de detecção, com os dois caminhos:</p>
-
-          <div class="case-topics">
-            <div class="case-topic">
-              <span class="case-topic-label">Caminho feliz</span>
-              <p>A pessoa é guiada passo a passo até encontrar e confirmar a posição ideal no próprio aparelho.</p>
-            </div>
-            <div class="case-topic">
-              <span class="case-topic-label">Caminho infeliz</span>
-              <p>Se a detecção falha nas três posições possíveis, o fluxo não termina em erro. Ele oferece o que fazer — tirar a capa, encostar na traseira, testar na vertical, manter o cartão por pelo menos cinco segundos — e recomeça.</p>
-            </div>
-          </div>
-
-          <figure class="case-figure">
-            <img src="ttp-onboarding-hero.png" alt="Caminho feliz do tutorial de NFC: da instrução inicial à confirmação da posição ideal" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-            <figcaption>Caminho feliz: a pessoa é guiada até confirmar a posição ideal no próprio aparelho.</figcaption>
-          </figure>
-
-          <figure class="case-figure">
-            <img src="ttp-nfc-detection-flow.png" alt="Caminho infeliz do tutorial de NFC: posição ideal não encontrada, dicas de solução e recomeço do fluxo" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
-            <figcaption>Caminho infeliz: “posição ideal não encontrada” termina em dicas acionáveis e recomeço, não em erro.</figcaption>
-          </figure>
-
-          <div class="case-callout">
-            <span class="case-callout-label">A regra</span>
-            <p>As decisões de linguagem e visual seguiram uma regra: <strong>falar do resultado, não do mecanismo.</strong> “Mantenha a posição” e “o topo é o lugar ideal”, em vez de “antena NFC”. A ilustração usa o ponto de vista do aparelho e do cartão para ancorar cada passo, e o motion sinaliza a mudança de status — porque a pessoa está olhando para o celular, não lendo.</p>
+          <div class="case-topic">
+            <span class="case-topic-label" data-lang="pt">Caminho infeliz</span>
+            <span class="case-topic-label" data-lang="en">Unhappy path</span>
+            <p data-lang="pt">Se a detecção falha nas três posições possíveis, o fluxo não termina em erro. Ele oferece o que fazer — tirar a capa, encostar na traseira, testar na vertical, manter o cartão por pelo menos cinco segundos — e recomeça.</p>
+            <p data-lang="en">If detection fails in all three possible positions, the flow doesn't end in an error. It offers what to do — remove the case, tap the back, try vertically, hold the card for at least five seconds — and starts over.</p>
           </div>
         </div>
 
-        <div class="case-phase-item">
-          <h3 class="case-phase-title">Frente 2 — Reduzir a carga da tela de entrada</h3>
-          <p>A primeira tela do produto carregava informação demais logo no primeiro contato, competindo com a orientação de uso que o cliente mais precisava naquele momento.</p>
-          <p style="margin-top:12px;">O trabalho foi de subtração, em três versões: da tela como estava, para uma primeira proposta, para a proposta final — título e descrição revistos, lista de taxas visualmente mais leve e aderente ao design system.</p>
-          <p style="margin-top:12px;">Exploramos também uma <strong>visão de futuro</strong> para a tela, mais ambiciosa. Ela ficou marcada explicitamente como fora daquela entrega. Registrar o que não vai agora, e por quê, é o que impede a exploração de virar promessa.</p>
-        </div>
+        <figure class="case-figure">
+          <img src="ttp-onboarding-hero.png" alt="Caminho feliz do tutorial de NFC: da instrução inicial à confirmação da posição ideal" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Caminho feliz: a pessoa é guiada até confirmar a posição ideal no próprio aparelho.</figcaption>
+          <figcaption data-lang="en">Happy path: the person is guided until they confirm the ideal position on their own device.</figcaption>
+        </figure>
 
-        <div class="case-phase-item">
-          <h3 class="case-phase-title">Frente 3 — O fluxo de erro</h3>
-          <p><strong>Quem liderou esta frente foi a product designer.</strong> Dei suporte à pesquisa e contribuí no desenho. E havia uma segunda camada no meu papel: ela estava em nível pleno e eu, sênior — então acompanhá-la e apoiar o desenvolvimento dela ao longo do projeto fazia parte do trabalho, tanto quanto o resultado.</p>
-          <p style="margin-top:12px;">Registro isso porque é uma parte da senioridade que raramente aparece em portfólio. Nem todo projeto de um designer sênior é um projeto que ele lidera. Em time saudável, parte do que se faz é criar as condições para outra pessoa liderar bem — e depois não reivindicar o crédito por isso.</p>
+        <figure class="case-figure">
+          <img src="ttp-nfc-detection-flow.png" alt="Caminho infeliz do tutorial de NFC: posição ideal não encontrada, dicas de solução e recomeço do fluxo" loading="lazy" decoding="async" onload="this.classList.add('loaded')" />
+          <figcaption data-lang="pt">Caminho infeliz: “posição ideal não encontrada” termina em dicas acionáveis e recomeço, não em erro.</figcaption>
+          <figcaption data-lang="en">Unhappy path: “ideal position not found” ends in actionable tips and a restart, not in an error.</figcaption>
+        </figure>
 
-          <div class="case-quote">
-            <blockquote lang="en">She helped deepen my understanding of content design, fostered cross-product conversations around consistency, and contributed to meaningful improvements across the user journeys we worked on.</blockquote>
-            <cite>Giulia Chagas, Product Designer · recomendação no LinkedIn, junho de 2026</cite>
-          </div>
-
-          <p>A frente seguiu quatro passos:</p>
-
-          <ol class="case-steps">
-            <li class="case-step">
-              <span class="case-step-num">1</span>
-              <div>
-                <p class="case-step-title">Analisar a situação</p>
-                <p class="case-step-desc">Uma matriz de todos os erros por tipo, cruzada com o que o cliente conseguia fazer em cada um.</p>
-              </div>
-            </li>
-            <li class="case-step">
-              <span class="case-step-num">2</span>
-              <div>
-                <p class="case-step-title">Criar hipóteses e princípios</p>
-                <p class="case-step-desc">A comunicação de erro precisava ser <strong>clara, simples e coerente</strong>.</p>
-              </div>
-            </li>
-            <li class="case-step">
-              <span class="case-step-num">3</span>
-              <div>
-                <p class="case-step-title">Explorar e definir a proposta</p>
-                <p class="case-step-desc">Só então, a reescrita das mensagens.</p>
-              </div>
-            </li>
-            <li class="case-step">
-              <span class="case-step-num">4</span>
-              <div>
-                <p class="case-step-title">Medir</p>
-                <p class="case-step-desc">Duas iterações, contra a experiência original.</p>
-              </div>
-            </li>
-          </ol>
-
-          <p>A mudança central foi parar de descrever o problema e passar a oferecer a saída. Uma mensagem que diz “o cartão usado não permite esse tipo de pagamento” está tecnicamente correta e deixa a pessoa parada na frente do comprador. A versão nova nomeia a alternativa que existe naquele momento.</p>
-
-          <div class="case-callout">
-            <span class="case-callout-label">Onde deixa de ser sobre texto</span>
-            <p><strong>E é aí que essa mudança deixa de ser sobre texto.</strong> Para dizer qual é a saída, o sistema precisa saber qual saída existe — para aquele vendedor, aquele cartão, aquela transação, naquele instante. Cada mensagem virou uma condição a ser validada contra um cenário real.</p>
-          </div>
-
-          <p>Isso só foi viável porque engenharia e operações estiveram próximas o tempo todo, com troca constante para validar cada cenário. Sem essa proximidade, o resultado teria sido o de sempre: mensagens mais gentis dizendo a mesma coisa inútil.</p>
-
-          <p style="margin-top:12px;"><strong>O resultado, em duas iterações:</strong></p>
-
-          <div class="case-stats" style="--cols:3;">
-            <div class="case-stat">
-              <p class="case-stat-value">11%</p>
-              <p class="case-stat-label">de taxa de sucesso na experiência original</p>
-            </div>
-            <div class="case-stat">
-              <p class="case-stat-value">14%</p>
-              <p class="case-stat-label">na primeira iteração — +27% sobre a original</p>
-            </div>
-            <div class="case-stat">
-              <p class="case-stat-value is-accent">17%</p>
-              <p class="case-stat-label">na segunda iteração — <strong>+55% sobre a original</strong></p>
-            </div>
-          </div>
-
-          <p>Por componente: o botão primário saiu de 12% para 17%, o secundário de 22% para 27%.</p>
-
-          <div class="case-callout">
-            <span class="case-callout-label">Uma nota sobre atribuição</span>
-            <p>No mesmo período, o Tap to Pay bateu NPS recorde de 83 e ultrapassou R$ 1 bilhão de TPV mensal. Esses números são do produto inteiro e do pacote de evoluções de UX daquele semestre — atalhos para Android e iOS, melhorias na captura de cartão, atualização de comunicações e FAQ. Contribuí para esse pacote, mas <strong>o número que é do fluxo de erro é o 11% para 17%.</strong></p>
-          </div>
+        <div class="case-callout">
+          <span class="case-callout-label" data-lang="pt">A regra</span>
+          <span class="case-callout-label" data-lang="en">The rule</span>
+          <p data-lang="pt">As decisões de linguagem e visual seguiram uma regra: <strong>falar do resultado, não do mecanismo.</strong> “Mantenha a posição” e “o topo é o lugar ideal”, em vez de “antena NFC”. A ilustração usa o ponto de vista do aparelho e do cartão para ancorar cada passo, e o motion sinaliza a mudança de status — porque a pessoa está olhando para o celular, não lendo.</p>
+          <p data-lang="en">Language and visual decisions followed one rule: <strong>talk about the outcome, not the mechanism.</strong> “Hold the position” and “the top is the ideal spot”, instead of “NFC antenna”. The illustration uses the point of view of the device and the card to anchor each step, and motion signals the change of status — because the person is looking at the phone, not reading.</p>
         </div>
       </div>
 
-      <div class="case-section" id="pj-boleto">
-        <p class="case-section-label">Boleto</p>
-
-        <div class="case-phase-item">
-          <h3 class="case-phase-title">O discovery</h3>
-          <p>A pesquisa com o ICP mapeou a jornada inteira de cobrança por boleto, e o desenho que saiu dela diz quase tudo: <strong>metade do trabalho acontece fora do nosso app.</strong></p>
-
-          <ol class="case-steps">
-            <li class="case-step">
-              <span class="case-step-num">1</span>
-              <div>
-                <p class="case-step-title">Fechar o negócio</p>
-                <p class="case-step-desc">Salvar os dados do comprador em planilha, bloco de notas ou no sistema de nota fiscal · <strong>fora do app</strong></p>
-              </div>
-            </li>
-            <li class="case-step">
-              <span class="case-step-num">2</span>
-              <div>
-                <p class="case-step-title">Cobrar</p>
-                <p class="case-step-desc">Configurar o boleto, criar a cobrança, baixar o PDF, emitir a nota · <strong>metade fora</strong></p>
-              </div>
-            </li>
-            <li class="case-step">
-              <span class="case-step-num">3</span>
-              <div>
-                <p class="case-step-title">Enviar</p>
-                <p class="case-step-desc">Juntar boleto e nota e mandar por e-mail ou WhatsApp · <strong>fora do app</strong></p>
-              </div>
-            </li>
-            <li class="case-step">
-              <span class="case-step-num">4</span>
-              <div>
-                <p class="case-step-title">Gerir</p>
-                <p class="case-step-desc">Acompanhar no app, controlar em planilha, cobrar quem atrasou · <strong>quase todo fora</strong></p>
-              </div>
-            </li>
-          </ol>
-
-          <p>As dores que sustentaram as três frentes seguintes:</p>
-          <ul style="margin-top:12px; padding-left:20px; display:flex; flex-direction:column; gap:10px;">
-            <li>O app não guardava os dados do comprador. Mesmo com lista de clientes, o vendedor teria que cadastrar cada cliente duas vezes — no banco e na plataforma do governo.</li>
-            <li>A troca constante de aplicativo para copiar e colar dados, com erro de digitação e autocorreção no caminho. <em>“Toda vez você tá repetindo os dados que poderiam ser salvos. E se sai alguma coisa errada no CNPJ, não aparece no buscador de boleto dele.”</em></li>
-            <li>O app não tinha juros nem multa — e o vendedor precisava disso para lidar com atraso.</li>
-            <li>A cobrança gerava link ou código de barras, não PDF. <em>“Quando concluo, não gera o boleto em PDF. Tenho que enviar o link para o meu WhatsApp, clicar lá e baixar.”</em></li>
-          </ul>
-
-          <div class="case-callout">
-            <span class="case-callout-label">O dado</span>
-            <p>Um dado do quantitativo explica por que boleto ainda importa tanto em B2B: <strong>quem decide a forma de pagamento não é quem vende, é quem compra.</strong></p>
-          </div>
-        </div>
-
-        <div class="case-phase-item">
-          <h3 class="case-phase-title">Frente 1 — Juros e multa</h3>
-          <p>Trabalhei a régua de comunicação, os templates e as <strong>FAQs integradas ao fluxo</strong> — a informação no ponto da dúvida, e não numa central de ajuda a três cliques de distância.</p>
-
-          <div class="case-stats" style="--cols:3;">
-            <div class="case-stat">
-              <p class="case-stat-value is-accent">~90%</p>
-              <p class="case-stat-label">de deflexão de atendimento nas cobranças de boleto, em novembro</p>
-            </div>
-            <div class="case-stat">
-              <p class="case-stat-value">0,01%</p>
-              <p class="case-stat-label">de tickets: indicadores de atendimento estáveis</p>
-            </div>
-            <div class="case-stat">
-              <p class="case-stat-value">3,0 dias</p>
-              <p class="case-stat-label">de mediana de pagamento, contra 4,8 — um sinal inicial</p>
-            </div>
-          </div>
-
-          <p>E aqui vale ser exato sobre o que o teste mostrou e o que não mostrou. Comparando tratamento e controle: conclusão de pagamento +2,79%, taxa de atividade −0,94%, TPV +2,27% — <strong>nenhum dos três estatisticamente significativo.</strong> Houve um sinal inicial de pagamento mais rápido, com mediana de 3,0 dias contra 4,8.</p>
-          <p style="margin-top:12px;">A leitura de negócio que levamos foi essa: paridade com o mercado, potencial de receita por tarifa, e redução do tempo médio de recebimento sem aumentar fricção. A deflexão de atendimento é o resultado sólido; o resto era sinal, e apresentei como sinal.</p>
-        </div>
-
-        <div class="case-phase-item">
-          <h3 class="case-phase-title">Frente 2 — Novos limites de pagamento</h3>
-          <p>Explorei e propus a régua de comunicação, e defini o conteúdo e os templates.</p>
-
-          <div class="case-stats" style="--cols:3;">
-            <div class="case-stat">
-              <p class="case-stat-value">R$ 2.136</p>
-              <p class="case-stat-label">de TPV por cliente ativo, antes das comunicações</p>
-            </div>
-            <div class="case-stat">
-              <p class="case-stat-value">R$ 2.207</p>
-              <p class="case-stat-label">depois do anúncio no app</p>
-            </div>
-            <div class="case-stat">
-              <p class="case-stat-value is-accent">R$ 2.251</p>
-              <p class="case-stat-label">depois do e-mail — recorde histórico no período</p>
-            </div>
-          </div>
-
-          <p>O TPV total foi de R$ 54,0 milhões para R$ 57,6 milhões. O anúncio teve 85% de taxa de exibição e 12,43% de cliques.</p>
-
-          <div class="case-callout">
-            <span class="case-callout-label">O que não aconteceu</span>
-            <p>O número de clientes ativos não avançou de forma relevante. As comunicações elevaram o quanto quem já usava passou a transacionar, e não quantas pessoas passaram a usar. <strong>São coisas diferentes, e a segunda não era efeito que comunicação sozinha fosse produzir.</strong></p>
-          </div>
-        </div>
-
-        <div class="case-phase-item">
-          <h3 class="case-phase-title">Frente 3 — Lista de clientes</h3>
-          <p>Ataca diretamente a dor mapeada no discovery: uma tela no início do fluxo para selecionar clientes recorrentes, com carga automática dos que já existiam. Menos digitação repetida, menos erro de CNPJ, menos cobrança que não aparece na busca do comprador.</p>
-          <p style="margin-top:12px;">O tema “lista de clientes” havia se tornado a principal dor no NPS de boletos, que estava em 69.</p>
-        </div>
+      <div class="case-phase-item">
+        <h3 class="case-phase-title" data-lang="pt">Frente 2 — Reduzir a carga da tela de entrada</h3>
+        <h3 class="case-phase-title" data-lang="en">Front 2 — Reducing the load on the entry screen</h3>
+        <p data-lang="pt">A primeira tela do produto carregava informação demais logo no primeiro contato, competindo com a orientação de uso que o cliente mais precisava naquele momento.</p>
+        <p data-lang="en">The product's first screen carried too much information at the very first contact, competing with the usage guidance the customer needed most at that moment.</p>
+        <p data-lang="pt" style="margin-top:12px;">O trabalho foi de subtração, em três versões: da tela como estava, para uma primeira proposta, para a proposta final — título e descrição revistos, lista de taxas visualmente mais leve e aderente ao design system.</p>
+        <p data-lang="en" style="margin-top:12px;">The work was subtraction, in three versions: from the screen as it was, to a first proposal, to the final one — revised title and description, and a visually lighter fee list, aligned with the design system.</p>
+        <p data-lang="pt" style="margin-top:12px;">Exploramos também uma <strong>visão de futuro</strong> para a tela, mais ambiciosa. Ela ficou marcada explicitamente como fora daquela entrega. Registrar o que não vai agora, e por quê, é o que impede a exploração de virar promessa.</p>
+        <p data-lang="en" style="margin-top:12px;">We also explored a more ambitious <strong>future vision</strong> for the screen. It was explicitly marked as out of that delivery. Recording what isn't shipping now, and why, is what keeps an exploration from turning into a promise.</p>
       </div>
 
-      <div class="case-section" id="pj-escala">
-        <p class="case-section-label">O trabalho que dá escala</p>
-        <p>Além dos projetos, mantive a base que faz o conteúdo funcionar sem depender de mim:</p>
+      <div class="case-phase-item">
+        <h3 class="case-phase-title" data-lang="pt">Frente 3 — O fluxo de erro</h3>
+        <h3 class="case-phase-title" data-lang="en">Front 3 — The error flow</h3>
+        <p data-lang="pt"><strong>Quem liderou esta frente foi a product designer.</strong> Dei suporte à pesquisa e contribuí no desenho. E havia uma segunda camada no meu papel: ela estava em nível pleno e eu, sênior — então acompanhá-la e apoiar o desenvolvimento dela ao longo do projeto fazia parte do trabalho, tanto quanto o resultado.</p>
+        <p data-lang="en"><strong>This front was led by the product designer.</strong> I supported the research and contributed to the design. And there was a second layer to my role: she was at mid level and I was senior — so mentoring her and supporting her development throughout the project was part of the work, as much as the outcome.</p>
+        <p data-lang="pt" style="margin-top:12px;">Registro isso porque é uma parte da senioridade que raramente aparece em portfólio. Nem todo projeto de um designer sênior é um projeto que ele lidera. Em time saudável, parte do que se faz é criar as condições para outra pessoa liderar bem — e depois não reivindicar o crédito por isso.</p>
+        <p data-lang="en" style="margin-top:12px;">I note this because it's a part of seniority that rarely shows up in a portfolio. Not every project of a senior designer is a project they lead. In a healthy team, part of the job is creating the conditions for someone else to lead well — and then not claiming credit for it.</p>
+
+        <div class="case-quote">
+          <blockquote lang="en">She helped deepen my understanding of content design, fostered cross-product conversations around consistency, and contributed to meaningful improvements across the user journeys we worked on.</blockquote>
+          <cite data-lang="pt">Giulia Chagas, Product Designer · recomendação no LinkedIn, junho de 2026</cite>
+          <cite data-lang="en">Giulia Chagas, Product Designer · LinkedIn recommendation, June 2026</cite>
+        </div>
+
+        <p data-lang="pt">A frente seguiu quatro passos:</p>
+        <p data-lang="en">The front followed four steps:</p>
 
         <ol class="case-steps">
           <li class="case-step">
             <span class="case-step-num">1</span>
             <div>
-              <p class="case-step-title">Glossário de PJ Payments</p>
-              <p class="case-step-desc">Mapeamento de conceitos e documentação, para que squads diferentes chamassem a mesma coisa pelo mesmo nome.</p>
+              <p class="case-step-title" data-lang="pt">Analisar a situação</p>
+              <p class="case-step-title" data-lang="en">Analyze the situation</p>
+              <p class="case-step-desc" data-lang="pt">Uma matriz de todos os erros por tipo, cruzada com o que o cliente conseguia fazer em cada um.</p>
+              <p class="case-step-desc" data-lang="en">A matrix of every error by type, crossed with what the customer could actually do in each one.</p>
             </div>
           </li>
           <li class="case-step">
             <span class="case-step-num">2</span>
             <div>
-              <p class="case-step-title">Alinhamento de terminologia entre Payments e Enterprise</p>
-              <p class="case-step-desc">Liderei um mapeamento de inconsistências reunindo designers e content designers dos dois domínios, para definirmos prioridades juntos e acordarmos como registrar decisões de conteúdo.</p>
+              <p class="case-step-title" data-lang="pt">Criar hipóteses e princípios</p>
+              <p class="case-step-title" data-lang="en">Create hypotheses and principles</p>
+              <p class="case-step-desc" data-lang="pt">A comunicação de erro precisava ser <strong>clara, simples e coerente</strong>.</p>
+              <p class="case-step-desc" data-lang="en">Error communication had to be <strong>clear, simple and coherent</strong>.</p>
             </div>
           </li>
           <li class="case-step">
             <span class="case-step-num">3</span>
             <div>
-              <p class="case-step-title">Princípios de cenário de erro</p>
-              <p class="case-step-desc">A definição do que a comunicação de falha precisa fazer, e de como tangibilizar isso em tela. É a fundação conceitual da terceira frente do Tap to Pay.</p>
+              <p class="case-step-title" data-lang="pt">Explorar e definir a proposta</p>
+              <p class="case-step-title" data-lang="en">Explore and define the proposal</p>
+              <p class="case-step-desc" data-lang="pt">Só então, a reescrita das mensagens.</p>
+              <p class="case-step-desc" data-lang="en">Only then, rewriting the messages.</p>
             </div>
           </li>
           <li class="case-step">
             <span class="case-step-num">4</span>
             <div>
-              <p class="case-step-title">Content Guide com IA</p>
-              <p class="case-step-desc">Liderei um pack dentro da workstream de excelência em design para criar um guia de conteúdo assistido por IA: estruturei a POC, defini os parâmetros de avaliação, gravei demonstrações e conduzi o período de testes. Chegou a <strong>84% de adesão entre os designers nos primeiros 30 dias.</strong></p>
+              <p class="case-step-title" data-lang="pt">Medir</p>
+              <p class="case-step-title" data-lang="en">Measure</p>
+              <p class="case-step-desc" data-lang="pt">Duas iterações, contra a experiência original.</p>
+              <p class="case-step-desc" data-lang="en">Two iterations, against the original experience.</p>
             </div>
           </li>
         </ol>
+
+        <p data-lang="pt">A mudança central foi parar de descrever o problema e passar a oferecer a saída. Uma mensagem que diz “o cartão usado não permite esse tipo de pagamento” está tecnicamente correta e deixa a pessoa parada na frente do comprador. A versão nova nomeia a alternativa que existe naquele momento.</p>
+        <p data-lang="en">The central change was to stop describing the problem and start offering the way out. A message saying “the card used doesn't allow this type of payment” is technically correct and leaves the person stuck in front of the buyer. The new version names the alternative that exists at that moment.</p>
+
+        <div class="case-callout">
+          <span class="case-callout-label" data-lang="pt">Onde deixa de ser sobre texto</span>
+          <span class="case-callout-label" data-lang="en">Where it stops being about text</span>
+          <p data-lang="pt"><strong>E é aí que essa mudança deixa de ser sobre texto.</strong> Para dizer qual é a saída, o sistema precisa saber qual saída existe — para aquele vendedor, aquele cartão, aquela transação, naquele instante. Cada mensagem virou uma condição a ser validada contra um cenário real.</p>
+          <p data-lang="en"><strong>And that's where this change stops being about text.</strong> To say what the way out is, the system needs to know which way out exists — for that seller, that card, that transaction, at that instant. Every message became a condition to be validated against a real scenario.</p>
+        </div>
+
+        <p data-lang="pt">Isso só foi viável porque engenharia e operações estiveram próximas o tempo todo, com troca constante para validar cada cenário. Sem essa proximidade, o resultado teria sido o de sempre: mensagens mais gentis dizendo a mesma coisa inútil.</p>
+        <p data-lang="en">This was only feasible because engineering and operations stayed close the whole time, with constant exchange to validate each scenario. Without that closeness, the result would have been the usual one: kinder messages saying the same useless thing.</p>
+
+        <p data-lang="pt" style="margin-top:12px;"><strong>O resultado, em duas iterações:</strong></p>
+        <p data-lang="en" style="margin-top:12px;"><strong>The result, over two iterations:</strong></p>
+
+        <div class="case-stats" style="--cols:3;">
+          <div class="case-stat">
+            <p class="case-stat-value">11%</p>
+            <p class="case-stat-label" data-lang="pt">de taxa de sucesso na experiência original</p>
+            <p class="case-stat-label" data-lang="en">success rate in the original experience</p>
+          </div>
+          <div class="case-stat">
+            <p class="case-stat-value">14%</p>
+            <p class="case-stat-label" data-lang="pt">na primeira iteração — +27% sobre a original</p>
+            <p class="case-stat-label" data-lang="en">in the first iteration — +27% over the original</p>
+          </div>
+          <div class="case-stat">
+            <p class="case-stat-value is-accent">17%</p>
+            <p class="case-stat-label" data-lang="pt">na segunda iteração — <strong>+55% sobre a original</strong></p>
+            <p class="case-stat-label" data-lang="en">in the second iteration — <strong>+55% over the original</strong></p>
+          </div>
+        </div>
+
+        <p data-lang="pt">Por componente: o botão primário saiu de 12% para 17%, o secundário de 22% para 27%.</p>
+        <p data-lang="en">By component: the primary button went from 12% to 17%, the secondary from 22% to 27%.</p>
+
+        <div class="case-callout">
+          <span class="case-callout-label" data-lang="pt">Uma nota sobre atribuição</span>
+          <span class="case-callout-label" data-lang="en">A note on attribution</span>
+          <p data-lang="pt">No mesmo período, o Tap to Pay bateu NPS recorde de 83 e ultrapassou R$ 1 bilhão de TPV mensal. Esses números são do produto inteiro e do pacote de evoluções de UX daquele semestre — atalhos para Android e iOS, melhorias na captura de cartão, atualização de comunicações e FAQ. Contribuí para esse pacote, mas <strong>o número que é do fluxo de erro é o 11% para 17%.</strong></p>
+          <p data-lang="en">In the same period, Tap to Pay hit a record NPS of 83 and passed R$ 1 billion in monthly TPV. Those numbers belong to the whole product and to that semester's package of UX improvements — Android and iOS shortcuts, card capture improvements, updated communications and FAQ. I contributed to that package, but <strong>the number that belongs to the error flow is 11% to 17%.</strong></p>
+        </div>
       </div>
-
-      <div class="case-section" id="pj-diferente">
-        <p class="case-section-label">O que eu faria diferente</p>
-        <p><strong>Definir a métrica de cada frente junto com a frente.</strong> A separação entre o que era resultado do fluxo de erro e o que era resultado do pacote de UX só ficou nítida depois. Enquanto não estava, o número grande do produto tendia a absorver o crédito do trabalho específico — o que atrapalha a leitura de impacto de todo mundo, não só a minha.</p>
-        <p style="margin-top:12px;"><strong>Aprofundar arquitetura de informação em contexto multiplataforma.</strong> Recebi esse feedback formalmente, no projeto de lista de clientes, e ele estava certo: eu tratava app e web com o mesmo desenho de informação, quando os dois contextos de uso pedem recortes diferentes. Foi um dos pontos que passei a trabalhar depois, e o guia de conteúdo com IA nasceu em parte desse esforço de fechar lacunas apontadas.</p>
-        <p style="margin-top:12px;"><strong>Acordar prioridade com cada squad, explicitamente.</strong> Atender três squads ao mesmo tempo, num semestre em que o projeto de POS também entrava, custou consistência. Aprendi que em atuação transversal o acordo de prioridade não é overhead administrativo — é parte do trabalho de design, e precisa ser feito antes de o conflito aparecer.</p>
-      </div>
-
-      <p class="case-footnote">Projeto desenvolvido no Nubank PJ. Telas e artefatos exibidos com fins de portfólio, mantendo confidencialidade sobre informações estratégicas e comerciais.</p>
-
     </div>
 
+    <div class="case-section" id="pj-boleto">
+      <p class="case-section-label" data-lang="pt">Boleto</p>
+      <p class="case-section-label" data-lang="en">Boleto</p>
+
+      <div class="case-phase-item">
+        <h3 class="case-phase-title" data-lang="pt">O discovery</h3>
+        <h3 class="case-phase-title" data-lang="en">The discovery</h3>
+        <p data-lang="pt">A pesquisa com o ICP mapeou a jornada inteira de cobrança por boleto, e o desenho que saiu dela diz quase tudo: <strong>metade do trabalho acontece fora do nosso app.</strong></p>
+        <p data-lang="en">Research with the ICP mapped the entire boleto invoicing journey, and the diagram that came out of it says almost everything: <strong>half of the work happens outside our app.</strong></p>
+
+        <ol class="case-steps">
+          <li class="case-step">
+            <span class="case-step-num">1</span>
+            <div>
+              <p class="case-step-title" data-lang="pt">Fechar o negócio</p>
+              <p class="case-step-title" data-lang="en">Close the deal</p>
+              <p class="case-step-desc" data-lang="pt">Salvar os dados do comprador em planilha, bloco de notas ou no sistema de nota fiscal · <strong>fora do app</strong></p>
+              <p class="case-step-desc" data-lang="en">Save the buyer's details in a spreadsheet, a notes app or the invoicing system · <strong>outside the app</strong></p>
+            </div>
+          </li>
+          <li class="case-step">
+            <span class="case-step-num">2</span>
+            <div>
+              <p class="case-step-title" data-lang="pt">Cobrar</p>
+              <p class="case-step-title" data-lang="en">Charge</p>
+              <p class="case-step-desc" data-lang="pt">Configurar o boleto, criar a cobrança, baixar o PDF, emitir a nota · <strong>metade fora</strong></p>
+              <p class="case-step-desc" data-lang="en">Set up the boleto, create the charge, download the PDF, issue the invoice · <strong>half outside</strong></p>
+            </div>
+          </li>
+          <li class="case-step">
+            <span class="case-step-num">3</span>
+            <div>
+              <p class="case-step-title" data-lang="pt">Enviar</p>
+              <p class="case-step-title" data-lang="en">Send</p>
+              <p class="case-step-desc" data-lang="pt">Juntar boleto e nota e mandar por e-mail ou WhatsApp · <strong>fora do app</strong></p>
+              <p class="case-step-desc" data-lang="en">Put boleto and invoice together and send by email or WhatsApp · <strong>outside the app</strong></p>
+            </div>
+          </li>
+          <li class="case-step">
+            <span class="case-step-num">4</span>
+            <div>
+              <p class="case-step-title" data-lang="pt">Gerir</p>
+              <p class="case-step-title" data-lang="en">Manage</p>
+              <p class="case-step-desc" data-lang="pt">Acompanhar no app, controlar em planilha, cobrar quem atrasou · <strong>quase todo fora</strong></p>
+              <p class="case-step-desc" data-lang="en">Track in the app, control in a spreadsheet, chase whoever is late · <strong>almost entirely outside</strong></p>
+            </div>
+          </li>
+        </ol>
+
+        <p data-lang="pt">As dores que sustentaram as três frentes seguintes:</p>
+        <p data-lang="en">The pain points that supported the three fronts below:</p>
+        <ul data-lang="pt" style="margin-top:12px; padding-left:20px; display:flex; flex-direction:column; gap:10px;">
+          <li>O app não guardava os dados do comprador. Mesmo com lista de clientes, o vendedor teria que cadastrar cada cliente duas vezes — no banco e na plataforma do governo.</li>
+          <li>A troca constante de aplicativo para copiar e colar dados, com erro de digitação e autocorreção no caminho. <em>“Toda vez você tá repetindo os dados que poderiam ser salvos. E se sai alguma coisa errada no CNPJ, não aparece no buscador de boleto dele.”</em></li>
+          <li>O app não tinha juros nem multa — e o vendedor precisava disso para lidar com atraso.</li>
+          <li>A cobrança gerava link ou código de barras, não PDF. <em>“Quando concluo, não gera o boleto em PDF. Tenho que enviar o link para o meu WhatsApp, clicar lá e baixar.”</em></li>
+        </ul>
+        <ul data-lang="en" style="margin-top:12px; padding-left:20px; display:flex; flex-direction:column; gap:10px;">
+          <li>The app didn't store the buyer's details. Even with a client list, the seller would have to register each client twice — in the bank and on the government platform.</li>
+          <li>Constant app switching to copy and paste data, with typos and autocorrect along the way. <em>“Every time you're repeating data that could be saved. And if something comes out wrong in the tax ID, it doesn't show up in their boleto search.”</em></li>
+          <li>The app had no interest or late fees — and the seller needed those to handle overdue payments.</li>
+          <li>The charge generated a link or a barcode, not a PDF. <em>“When I finish, it doesn't generate the boleto as a PDF. I have to send the link to my own WhatsApp, click it there and download.”</em></li>
+        </ul>
+
+        <div class="case-callout">
+          <span class="case-callout-label" data-lang="pt">O dado</span>
+          <span class="case-callout-label" data-lang="en">The data point</span>
+          <p data-lang="pt">Um dado do quantitativo explica por que boleto ainda importa tanto em B2B: <strong>quem decide a forma de pagamento não é quem vende, é quem compra.</strong></p>
+          <p data-lang="en">One finding from the quantitative study explains why boleto still matters so much in B2B: <strong>the payment method is decided by the buyer, not the seller.</strong></p>
+        </div>
+      </div>
+
+      <div class="case-phase-item">
+        <h3 class="case-phase-title" data-lang="pt">Frente 1 — Juros e multa</h3>
+        <h3 class="case-phase-title" data-lang="en">Front 1 — Interest and late fees</h3>
+        <p data-lang="pt">Trabalhei a régua de comunicação, os templates e as <strong>FAQs integradas ao fluxo</strong> — a informação no ponto da dúvida, e não numa central de ajuda a três cliques de distância.</p>
+        <p data-lang="en">I worked on the communication ruler, the templates and the <strong>FAQs embedded in the flow</strong> — information at the point of doubt, not in a help center three clicks away.</p>
+
+        <div class="case-stats" style="--cols:3;">
+          <div class="case-stat">
+            <p class="case-stat-value is-accent">~90%</p>
+            <p class="case-stat-label" data-lang="pt">de deflexão de atendimento nas cobranças de boleto, em novembro</p>
+            <p class="case-stat-label" data-lang="en">support deflection on boleto charges, in November</p>
+          </div>
+          <div class="case-stat">
+            <p class="case-stat-value">0,01%</p>
+            <p class="case-stat-label" data-lang="pt">de tickets: indicadores de atendimento estáveis</p>
+            <p class="case-stat-label" data-lang="en">ticket rate: support indicators held steady</p>
+          </div>
+          <div class="case-stat">
+            <p class="case-stat-value">3,0</p>
+            <p class="case-stat-label" data-lang="pt">dias de mediana de pagamento, contra 4,8 — um sinal inicial</p>
+            <p class="case-stat-label" data-lang="en">days median time to payment, against 4.8 — an early signal</p>
+          </div>
+        </div>
+
+        <p data-lang="pt">E aqui vale ser exato sobre o que o teste mostrou e o que não mostrou. Comparando tratamento e controle: conclusão de pagamento +2,79%, taxa de atividade −0,94%, TPV +2,27% — <strong>nenhum dos três estatisticamente significativo.</strong> Houve um sinal inicial de pagamento mais rápido, com mediana de 3,0 dias contra 4,8.</p>
+        <p data-lang="en">And here it's worth being exact about what the test showed and what it didn't. Comparing treatment and control: payment completion +2.79%, activity rate −0.94%, TPV +2.27% — <strong>none of the three statistically significant.</strong> There was an early signal of faster payment, with a median of 3.0 days against 4.8.</p>
+        <p data-lang="pt" style="margin-top:12px;">A leitura de negócio que levamos foi essa: paridade com o mercado, potencial de receita por tarifa, e redução do tempo médio de recebimento sem aumentar fricção. A deflexão de atendimento é o resultado sólido; o resto era sinal, e apresentei como sinal.</p>
+        <p data-lang="en" style="margin-top:12px;">The business reading we took forward was this: parity with the market, revenue potential from fees, and a shorter average time to receive without added friction. Support deflection is the solid result; the rest was signal, and I presented it as signal.</p>
+      </div>
+
+      <div class="case-phase-item">
+        <h3 class="case-phase-title" data-lang="pt">Frente 2 — Novos limites de pagamento</h3>
+        <h3 class="case-phase-title" data-lang="en">Front 2 — New payment limits</h3>
+        <p data-lang="pt">Explorei e propus a régua de comunicação, e defini o conteúdo e os templates.</p>
+        <p data-lang="en">I explored and proposed the communication ruler, and defined the content and the templates.</p>
+
+        <div class="case-stats" style="--cols:3;">
+          <div class="case-stat">
+            <p class="case-stat-value">R$ 2.136</p>
+            <p class="case-stat-label" data-lang="pt">de TPV por cliente ativo, antes das comunicações</p>
+            <p class="case-stat-label" data-lang="en">TPV per active customer, before the communications</p>
+          </div>
+          <div class="case-stat">
+            <p class="case-stat-value">R$ 2.207</p>
+            <p class="case-stat-label" data-lang="pt">depois do anúncio no app</p>
+            <p class="case-stat-label" data-lang="en">after the in-app announcement</p>
+          </div>
+          <div class="case-stat">
+            <p class="case-stat-value is-accent">R$ 2.251</p>
+            <p class="case-stat-label" data-lang="pt">depois do e-mail — recorde histórico no período</p>
+            <p class="case-stat-label" data-lang="en">after the email — an all-time high for the period</p>
+          </div>
+        </div>
+
+        <p data-lang="pt">O TPV total foi de R$ 54,0 milhões para R$ 57,6 milhões. O anúncio teve 85% de taxa de exibição e 12,43% de cliques.</p>
+        <p data-lang="en">Total TPV went from R$ 54.0 million to R$ 57.6 million. The announcement had an 85% display rate and a 12.43% click rate.</p>
+
+        <div class="case-callout">
+          <span class="case-callout-label" data-lang="pt">O que não aconteceu</span>
+          <span class="case-callout-label" data-lang="en">What didn't happen</span>
+          <p data-lang="pt">O número de clientes ativos não avançou de forma relevante. As comunicações elevaram o quanto quem já usava passou a transacionar, e não quantas pessoas passaram a usar. <strong>São coisas diferentes, e a segunda não era efeito que comunicação sozinha fosse produzir.</strong></p>
+          <p data-lang="en">The number of active customers didn't move meaningfully. The communications raised how much existing users transacted, not how many people started using it. <strong>Those are different things, and the second isn't an effect communication alone would produce.</strong></p>
+        </div>
+      </div>
+
+      <div class="case-phase-item">
+        <h3 class="case-phase-title" data-lang="pt">Frente 3 — Lista de clientes</h3>
+        <h3 class="case-phase-title" data-lang="en">Front 3 — Client list</h3>
+        <p data-lang="pt">Ataca diretamente a dor mapeada no discovery: uma tela no início do fluxo para selecionar clientes recorrentes, com carga automática dos que já existiam. Menos digitação repetida, menos erro de CNPJ, menos cobrança que não aparece na busca do comprador.</p>
+        <p data-lang="en">It attacks the pain mapped in discovery head-on: a screen at the start of the flow to select recurring clients, auto-loading the ones that already existed. Less repeated typing, fewer tax ID errors, fewer charges that don't show up in the buyer's search.</p>
+        <p data-lang="pt" style="margin-top:12px;">O tema “lista de clientes” havia se tornado a principal dor no NPS de boletos, que estava em 69.</p>
+        <p data-lang="en" style="margin-top:12px;">“Client list” had become the top pain point in the boleto NPS, which stood at 69.</p>
+      </div>
+    </div>
+
+    <div class="case-section" id="pj-escala">
+      <p class="case-section-label" data-lang="pt">O trabalho que dá escala</p>
+      <p class="case-section-label" data-lang="en">The work that scales</p>
+      <p data-lang="pt">Além dos projetos, mantive a base que faz o conteúdo funcionar sem depender de mim:</p>
+      <p data-lang="en">Beyond the projects, I maintained the foundation that makes content work without depending on me:</p>
+
+      <ol class="case-steps">
+        <li class="case-step">
+          <span class="case-step-num">1</span>
+          <div>
+            <p class="case-step-title" data-lang="pt">Glossário de PJ Payments</p>
+            <p class="case-step-title" data-lang="en">PJ Payments glossary</p>
+            <p class="case-step-desc" data-lang="pt">Mapeamento de conceitos e documentação, para que squads diferentes chamassem a mesma coisa pelo mesmo nome.</p>
+            <p class="case-step-desc" data-lang="en">Concept mapping and documentation, so different squads would call the same thing by the same name.</p>
+          </div>
+        </li>
+        <li class="case-step">
+          <span class="case-step-num">2</span>
+          <div>
+            <p class="case-step-title" data-lang="pt">Alinhamento de terminologia entre Payments e Enterprise</p>
+            <p class="case-step-title" data-lang="en">Terminology alignment between Payments and Enterprise</p>
+            <p class="case-step-desc" data-lang="pt">Liderei um mapeamento de inconsistências reunindo designers e content designers dos dois domínios, para definirmos prioridades juntos e acordarmos como registrar decisões de conteúdo.</p>
+            <p class="case-step-desc" data-lang="en">I led a mapping of inconsistencies bringing together designers and content designers from both domains, to set priorities together and agree on how to record content decisions.</p>
+          </div>
+        </li>
+        <li class="case-step">
+          <span class="case-step-num">3</span>
+          <div>
+            <p class="case-step-title" data-lang="pt">Princípios de cenário de erro</p>
+            <p class="case-step-title" data-lang="en">Error scenario principles</p>
+            <p class="case-step-desc" data-lang="pt">A definição do que a comunicação de falha precisa fazer, e de como tangibilizar isso em tela. É a fundação conceitual da terceira frente do Tap to Pay.</p>
+            <p class="case-step-desc" data-lang="en">The definition of what failure communication has to do, and how to make that tangible on screen. It's the conceptual foundation of Tap to Pay's third front.</p>
+          </div>
+        </li>
+        <li class="case-step">
+          <span class="case-step-num">4</span>
+          <div>
+            <p class="case-step-title" data-lang="pt">Content Guide com IA</p>
+            <p class="case-step-title" data-lang="en">AI-assisted Content Guide</p>
+            <p class="case-step-desc" data-lang="pt">Liderei um pack dentro da workstream de excelência em design para criar um guia de conteúdo assistido por IA: estruturei a POC, defini os parâmetros de avaliação, gravei demonstrações e conduzi o período de testes. Chegou a <strong>84% de adesão entre os designers nos primeiros 30 dias.</strong></p>
+            <p class="case-step-desc" data-lang="en">I led a pack inside the design excellence workstream to create an AI-assisted content guide: I structured the POC, defined the evaluation parameters, recorded demos and ran the testing period. It reached <strong>84% adoption among designers in the first 30 days.</strong></p>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <div class="case-section" id="pj-diferente">
+      <p class="case-section-label" data-lang="pt">O que eu faria diferente</p>
+      <p class="case-section-label" data-lang="en">What I'd do differently</p>
+      <p data-lang="pt"><strong>Definir a métrica de cada frente junto com a frente.</strong> A separação entre o que era resultado do fluxo de erro e o que era resultado do pacote de UX só ficou nítida depois. Enquanto não estava, o número grande do produto tendia a absorver o crédito do trabalho específico — o que atrapalha a leitura de impacto de todo mundo, não só a minha.</p>
+      <p data-lang="en"><strong>Define each front's metric together with the front.</strong> The separation between what came from the error flow and what came from the UX package only became clear later. Until it did, the product's big number tended to absorb the credit for specific work — which muddies everyone's read on impact, not just mine.</p>
+      <p data-lang="pt" style="margin-top:12px;"><strong>Aprofundar arquitetura de informação em contexto multiplataforma.</strong> Recebi esse feedback formalmente, no projeto de lista de clientes, e ele estava certo: eu tratava app e web com o mesmo desenho de informação, quando os dois contextos de uso pedem recortes diferentes. Foi um dos pontos que passei a trabalhar depois, e o guia de conteúdo com IA nasceu em parte desse esforço de fechar lacunas apontadas.</p>
+      <p data-lang="en" style="margin-top:12px;"><strong>Go deeper on information architecture in multi-platform contexts.</strong> I got that feedback formally, on the client list project, and it was right: I treated app and web with the same information design, when the two contexts of use call for different framings. It was one of the points I worked on afterwards, and the AI content guide came in part from that effort to close the gaps I'd been shown.</p>
+      <p data-lang="pt" style="margin-top:12px;"><strong>Acordar prioridade com cada squad, explicitamente.</strong> Atender três squads ao mesmo tempo, num semestre em que o projeto de POS também entrava, custou consistência. Aprendi que em atuação transversal o acordo de prioridade não é overhead administrativo — é parte do trabalho de design, e precisa ser feito antes de o conflito aparecer.</p>
+      <p data-lang="en" style="margin-top:12px;"><strong>Agree on priority with each squad, explicitly.</strong> Serving three squads at once, in a semester when the POS project was also starting, cost consistency. I learned that in cross-cutting work a priority agreement isn't administrative overhead — it's part of the design work, and it has to happen before the conflict shows up.</p>
+    </div>
+
+    <p class="case-footnote" data-lang="pt">Projeto desenvolvido no Nubank PJ. Telas e artefatos exibidos com fins de portfólio, mantendo confidencialidade sobre informações estratégicas e comerciais.</p>
+    <p class="case-footnote" data-lang="en">Project developed at Nubank PJ. Screens and artifacts shown for portfolio purposes, maintaining confidentiality over strategic and commercial information.</p>
     <!-- Veja também -->
     <div class="case-next">
       <span class="case-next-label" data-lang="pt">Veja também</span>
