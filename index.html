@@ -27,6 +27,15 @@
       --shadow-card-hover: 0 6px 24px rgba(17,17,17,0.08), 0 2px 6px rgba(17,17,17,0.04);
       --transition-base: 0.22s cubic-bezier(0.16, 1, 0.3, 1);
       --transition-slow: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+      /* DS annalisecmaia — tema claro e banda escura (home nova) */
+      --ds-ink: #2a0c40;
+      --ds-ink-raised: #392a58;
+      --ds-surface-strong: #ebe4f2;
+      --ds-text-secondary: #5d4a75;
+      --ds-on-ink: #ffffff;
+      --ds-motion-base: 300ms;
+      --ds-ease: cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     /* ══════════════════════════════════════════
@@ -149,12 +158,101 @@
       border-bottom-color: rgba(226,224,216,0.9);
     }
 
-    .nav-logo { text-decoration: none; color: var(--text); }
-    .nav-logo .first { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 500; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; }
-    .nav-logo .last  { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 300; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; }
-    .nav-logo .role  { display: block; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-top: 2px; }
+    /* Nome empilhado — menu e rodapé da home */
+    .site-name {
+      display: flex;
+      flex-direction: column;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 40px;
+      line-height: 30px;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--ds-on-ink);
+    }
 
-    .nav-right { display: flex; align-items: center; gap: 32px; }
+    /* Menu da home: sobre o hero no topo; a barra escura entra ao rolar */
+    .site-nav {
+      padding: 32px 96px;
+      background: linear-gradient(180deg, rgba(42, 12, 64, 0.6) 0%, rgba(42, 12, 64, 0) 100%);
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      border-bottom: none;
+      isolation: isolate;
+    }
+    .site-nav::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: var(--ds-ink-raised);
+      opacity: 0;
+      transform: translateY(-100%);
+      transition: opacity var(--ds-motion-base) var(--ds-ease), transform var(--ds-motion-base) var(--ds-ease);
+    }
+    .site-nav.scrolled { box-shadow: none; }
+    .site-nav.scrolled::before { opacity: 1; transform: none; }
+
+    .site-nav-right { display: flex; align-items: center; gap: 12px; }
+
+    .site-nav :focus-visible { outline-color: var(--ds-on-ink); }
+
+    /* Pílula PT/EN: o indicador branco desliza para o idioma ativo */
+    .site-nav .lang-toggle {
+      position: relative;
+      gap: 0;
+      padding: 2px;
+      background: var(--ds-surface-strong);
+      border-radius: 9999px;
+    }
+    .site-nav .lang-toggle::before {
+      content: '';
+      position: absolute;
+      top: 2px; bottom: 2px; left: 2px;
+      width: calc(50% - 2px);
+      background: #ffffff;
+      border-radius: 9999px;
+      box-shadow: 0 1px 3px rgba(42, 12, 64, 0.16);
+      transition: transform 200ms var(--ds-ease);
+    }
+    .lang-en .site-nav .lang-toggle::before { transform: translateX(100%); }
+    .site-nav .lang-btn,
+    .site-nav .lang-btn.active {
+      position: relative;
+      min-width: 52px;
+      min-height: 40px;
+      padding: 0 12px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      background: transparent;
+      box-shadow: none;
+      color: var(--ds-text-secondary);
+    }
+    .site-nav .lang-btn.active { color: var(--ds-ink); }
+
+    .site-nav-icon {
+      display: flex;
+      padding: 8px;
+      border-radius: 6px;
+      transition: opacity 150ms var(--ds-ease);
+    }
+    .site-nav-icon:hover { opacity: 0.8; }
+
+    @media (max-width: 900px) {
+      .site-nav { padding: 32px 48px; }
+    }
+
+    @media (max-width: 600px) {
+      .site-nav, .site-nav.scrolled { padding: 24px; }
+      .site-nav .site-name { font-size: 24px; line-height: 18px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .site-nav::before { transform: none; transition: opacity 150ms linear; }
+      .site-nav .lang-toggle::before { transition: none; }
+    }
 
     .lang-toggle {
       display: flex;
@@ -186,16 +284,6 @@
       box-shadow: 0 1px 3px rgba(0,0,0,0.08);
     }
 
-    .nav-link {
-      text-decoration: none;
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      transition: color var(--transition-base);
-      padding: 8px 0;
-    }
-    .nav-link:hover { color: var(--text); }
 
     /* ══════════════════════════════════════════
        HERO
@@ -488,21 +576,34 @@
       justify-content: space-between;
     }
 
-    .footer-name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; color: var(--text-muted); }
-    .footer-links { display: flex; gap: 24px; }
-    .footer-link {
-      text-decoration: none;
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      transition: color var(--transition-base);
-      padding: 8px 0;
-      min-height: 44px;
-      display: flex;
+    /* Rodapé da home: banda escura, nome + LinkedIn */
+    .site-footer {
+      max-width: none;
+      margin: 0;
+      padding: 64px 96px;
+      border-top: none;
+      background: var(--ds-ink);
+      flex-direction: row;
       align-items: center;
     }
-    .footer-link:hover { color: var(--text); }
+    .site-footer-icon {
+      display: flex;
+      padding: 8px;
+      border-radius: 6px;
+      transition: opacity 150ms var(--ds-ease);
+    }
+    .site-footer-icon:hover { opacity: 0.8; }
+    .site-footer :focus-visible { outline-color: var(--ds-on-ink); }
+
+    @media (max-width: 900px) {
+      .site-footer { padding: 48px; }
+    }
+
+    @media (max-width: 600px) {
+      .site-footer { padding: 32px 24px; }
+      .site-footer .site-name { font-size: 24px; line-height: 18px; }
+      .site-footer-icon img { width: 40px; height: 40px; }
+    }
 
     /* ══════════════════════════════════════════
        NOVAS SEÇÕES HOME
@@ -523,10 +624,6 @@
       text-align: center;
     }
 
-    /* NAV — sem role */
-    .nav-logo .role { display: none; }
-    .nav-logo .first { font-weight: 500; }
-    .nav-logo .last  { font-weight: 300; }
 
     /* HERO — sem label, sem desc */
     .hero-label { display: none; }
@@ -848,10 +945,6 @@
     .ref-name { font-size: 13px; font-weight: 500; color: var(--text); display: block; }
     .ref-role { font-size: 11px; color: var(--text-muted); margin-top: 2px; display: block; }
 
-    /* FOOTER — mesmo layout do nav */
-    .footer-name { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
-    .footer-name strong { font-weight: 500; color: var(--text); }
-    .footer-name-light { font-weight: 300; }
 
     @media (max-width: 768px) {
       .home-section { padding: 0 24px 60px; }
@@ -1746,10 +1839,8 @@
       .grid-section { padding: 0 20px 80px; }
 
       nav, .case-nav { padding: 16px 20px; }
-      .nav-logo .role { display: none; }
 
       .lang-btn { min-height: 44px; padding: 8px 14px; }
-      .nav-link { min-height: 44px; display: flex; align-items: center; }
 
       footer { padding: 32px 20px; }
 
@@ -2283,16 +2374,18 @@
 <!-- ══════════════ HOME ══════════════ -->
 <div id="home-page">
 
-  <nav aria-label="Navegação principal">
-    <a href="#" class="nav-logo" onclick="showHome(); return false;" aria-label="Ana Bianchi — página inicial">
-      <span class="first">Ana Clara&nbsp;</span><span class="last">Bianchi</span>
+  <nav class="site-nav" aria-label="Navegação principal">
+    <a href="#" class="site-name" onclick="showHome(); return false;" aria-label="Ana Clara Bianchi — página inicial">
+      <span>Ana</span><span>Clara</span><span>Bianchi</span>
     </a>
-    <div class="nav-right">
+    <div class="site-nav-right">
       <div class="lang-toggle" role="group" aria-label="Selecionar idioma">
         <button class="lang-btn active" onclick="setLang('pt')" aria-pressed="true" lang="pt">PT</button>
         <button class="lang-btn" onclick="setLang('en')" aria-pressed="false" lang="en">EN</button>
       </div>
-      <a href="https://www.linkedin.com/in/aclarabianchi/" class="nav-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/aclarabianchi/" class="site-nav-icon" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (abre em nova aba)">
+        <img src="icon-linkedin.svg" width="40" height="40" alt="" />
+      </a>
     </div>
   </nav>
 
@@ -2556,11 +2649,11 @@
 
   </main>
 
-  <footer>
-    <span class="footer-name"><strong>Ana Clara</strong> <span class="footer-name-light">Bianchi</span></span>
-    <div class="footer-links">
-      <a href="https://www.linkedin.com/in/aclarabianchi/" class="footer-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-    </div>
+  <footer class="site-footer">
+    <p class="site-name"><span>Ana</span><span>Clara</span><span>Bianchi</span></p>
+    <a href="https://www.linkedin.com/in/aclarabianchi/" class="site-footer-icon" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (abre em nova aba)">
+      <img src="icon-linkedin-footer.svg" width="44" height="44" alt="" />
+    </a>
   </footer>
 
 </div>
