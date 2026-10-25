@@ -4412,10 +4412,22 @@
     if (btt) btt.classList.toggle('visible', scrollTop > 300);
 
     // Nav scroll state
-    document.querySelectorAll('nav').forEach(nav => {
+    document.querySelectorAll('nav:not(.site-nav)').forEach(nav => {
       nav.classList.toggle('scrolled', scrollTop > 20);
     });
+    atualizarMenuDaHome();
   }, { passive: true });
+
+  // Menu da home: enquanto há hero embaixo, o degradê basta; a barra entra quando o menu chegaria ao conteúdo claro
+  function atualizarMenuDaHome() {
+    const nav = document.querySelector('.site-nav');
+    const hero = document.querySelector('.home-hero');
+    if (!nav || !hero) return;
+    const limite = hero.offsetHeight - nav.offsetHeight;
+    nav.classList.toggle('scrolled', window.scrollY > limite);
+  }
+  window.addEventListener('resize', atualizarMenuDaHome, { passive: true });
+  atualizarMenuDaHome();
 
   window.addEventListener('DOMContentLoaded', () => {
     const rawHash = window.location.hash.replace('#', '');
