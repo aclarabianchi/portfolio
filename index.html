@@ -626,170 +626,98 @@
     .home-section {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 0 48px 80px;
+      padding: 80px 48px 0;
     }
+    .home-section:last-of-type { padding-bottom: 80px; }
 
     .home-section-label {
-      font-size: 11px;
-      letter-spacing: 0.16em;
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 1.1;
       text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 40px;
+      color: var(--ds-ink);
+      margin-bottom: 32px;
       display: block;
       text-align: center;
     }
 
 
 
-    /* FEATURED */
-    .featured-card {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      background: var(--bg-card);
-      /* reset button */
-      display: block;
-      width: 100%;
-      padding: 0;
-      font: inherit;
-      color: inherit;
-      text-align: left;
-      cursor: pointer;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-    .featured-card:hover {
-      border-color: var(--accent);
-      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
-    }
+    /* CASES — grade 2×2, card simplificado: imagem do hero do post + faixa com nome e tags */
+    .home-section--cases { max-width: 1296px; }
 
-    .featured-visual {
-      aspect-ratio: 16 / 7;
-      min-height: 280px;
-      background: #E4EAF2;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .featured-badge {
-      position: absolute;
-      top: 16px;
-      left: 20px;
-      font-size: 10px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      padding: 4px 10px;
-      border-radius: 20px;
-      z-index: 1;
-    }
-
-    .featured-body {
-      padding: 32px 40px 36px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 32px;
-      align-items: end;
-    }
-
-    .featured-left { display: flex; flex-direction: column; gap: 10px; }
-    .featured-company { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
-    .featured-title { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 400; color: var(--text); line-height: 1.2; }
-    .featured-sub { font-size: 13px; color: var(--text-muted); line-height: 1.6; max-width: 520px; }
-
-    .featured-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-    .ftag {
-      font-size: 11px;
-      padding: 3px 10px;
-      border-radius: 20px;
-      background: var(--tag-bg);
-      color: var(--text-muted);
-      border: 1px solid var(--border);
-    }
-
-    .featured-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--accent);
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-family: inherit;
-      padding: 0;
-      margin-top: 8px;
-    }
-
-    .featured-metric {
-      text-align: right;
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-    .featured-metric-value {
-      font-family: 'Playfair Display', serif;
-      font-size: 32px;
-      font-weight: 400;
-      color: var(--text);
-      line-height: 1;
-    }
-    .featured-metric-label { font-size: 11px; color: var(--text-muted); }
-
-    /* CASES GRID 2x2 */
     .cases-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      background: transparent;
+      gap: 32px;
     }
 
     .case-card {
-      background: var(--bg);
+      position: relative;
+      display: block;
+      width: 100%;
+      aspect-ratio: 584 / 513;
       padding: 0;
-      display: flex;
-      flex-direction: column;
-      cursor: pointer;
-      border: 1px solid var(--border);
-      text-align: left;
-      font-family: inherit;
-      border-radius: 12px;
       overflow: hidden;
-      transition: background var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
-    }
-    .case-card:hover {
-      background: var(--accent-light);
-      box-shadow: var(--shadow-card-hover);
-      transform: translateY(-2px);
+      border: 1px solid rgba(42, 12, 64, 0.12);
+      border-radius: 2px;
+      background: var(--ds-ink);
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
     }
     .case-card:focus-visible {
       outline: 2px solid var(--accent);
-      outline-offset: -2px;
-      border-radius: 12px;
+      outline-offset: 3px;
+    }
+    .case-card-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
-    .case-thumb {
-      aspect-ratio: 16 / 9;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-
-    .case-body {
-      padding: 24px 28px 28px;
+    /* Faixa sólida em tinta: o contraste não depende da imagem embaixo */
+    .case-card-bar {
+      position: absolute;
+      left: 0; right: 0; bottom: 32px;
       display: flex;
-      flex-direction: column;
-      flex: 1;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px 24px;
+      padding: 12px 40px;
+      background: rgba(42, 12, 64, 0.88);
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--ds-on-ink);
+    }
+    .case-card-title {
+      font-size: 24px;
+      font-weight: 300;
+      line-height: 1.3;
+      letter-spacing: 0.04em;
+    }
+    .case-card-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .case-card-tags span {
+      padding: 4px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.5;
     }
 
-    .case-card .case-company {
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 8px;
-      display: block;
+    @media (max-width: 900px) {
+      .cases-grid { gap: 24px; }
+      .case-card-bar { padding: 12px 24px; bottom: 24px; }
+      .case-card-title { font-size: 20px; }
+    }
+
+    @media (max-width: 600px) {
+      .cases-grid { grid-template-columns: 1fr; }
+      .case-card { aspect-ratio: 390 / 420; }
     }
 
     .case-tags {
@@ -798,46 +726,6 @@
       gap: 4px;
       margin-top: 12px;
     }
-
-    .ctag {
-      font-size: 10px;
-      padding: 2px 8px;
-      border-radius: 20px;
-      background: var(--tag-bg);
-      color: var(--text-muted);
-    }
-
-    .case-name { font-size: 18px; font-weight: 600; color: var(--text); line-height: 1.25; margin-bottom: 6px; }
-    .case-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
-
-    .case-footer {
-      margin-top: auto;
-      padding-top: 16px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin-top: 20px;
-    }
-
-    .case-metric-value {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--accent);
-      line-height: 1.4;
-    }
-
-    .case-metric-label { display: none; }
-
-    .case-arrow {
-      font-size: 15px;
-      color: var(--border);
-      flex-shrink: 0;
-      transition: color var(--transition-base), transform var(--transition-base);
-    }
-    .case-card:hover .case-arrow { color: var(--accent); transform: translateX(3px); }
 
     /* SOBRE MIM */
     .about-layout {
@@ -956,10 +844,9 @@
 
 
     @media (max-width: 768px) {
-      .home-section { padding: 0 24px 60px; }
-      .featured-body { grid-template-columns: 1fr; }
+      .home-section { padding: 48px 24px 0; }
+      .home-section:last-of-type { padding-bottom: 48px; }
       .about-layout { grid-template-columns: 1fr; gap: 32px; }
-      .cases-grid { grid-template-columns: 1fr; }
       .refs-grid { grid-template-columns: 1fr; }
     }
 
@@ -2425,122 +2312,38 @@
       </div>
     </section>
 
-    <!-- FEATURED -->
-    <section class="home-section" aria-label="Case em destaque">
-      <p class="home-section-label" data-lang="pt">Destaque</p>
-      <p class="home-section-label" data-lang="en">Featured</p>
-      <button class="featured-card" onclick="showCase('pos')" aria-label="Ver case: POS Nubank">
-        <div class="featured-visual" aria-hidden="true">
-          <img src="pos-ai-mockup.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;" />
-        </div>
-        <div class="featured-body">
-          <div class="featured-left">
-            <span class="featured-company">PJ Payments &amp; Platforms</span>
-            <h2 class="featured-title">POS Nubank</h2>
-            <p class="featured-sub" data-lang="pt">Desenho das jornadas do primeiro hardware do Nubank.</p>
-            <p class="featured-sub" data-lang="en">Journey design for Nubank's first hardware product.</p>
-            <div class="featured-tags">
-              <span class="ftag">Estratégia de conteúdo</span>
-              <span class="ftag">Arquitetura de informação</span>
-              <span class="ftag">Narrativa</span>
-              <span class="ftag">Protótipo</span>
-              <span class="ftag">Guidelines</span>
-            </div>
-            <span class="featured-cta" aria-hidden="true">
-              <span data-lang="pt">Ver case</span><span data-lang="en">View case</span>
-              <i class="ti ti-arrow-right" aria-hidden="true"></i>
-            </span>
-          </div>
-          <div class="featured-metric">
-            <span class="featured-metric-value">3</span>
-            <span class="featured-metric-label" data-lang="pt">jornadas completas</span>
-            <span class="featured-metric-label" data-lang="en">complete journeys</span>
-          </div>
-        </div>
-      </button>
-    </section>
-
-    <!-- GRID 2x2 -->
-    <section class="home-section" aria-label="Cases">
-      <p class="home-section-label" data-lang="pt">O que mais venho projetando</p>
-      <p class="home-section-label" data-lang="en">More of my work</p>
+    <!-- CASES 2x2 -->
+    <section class="home-section home-section--cases" aria-labelledby="cases-heading">
+      <h2 id="cases-heading" class="home-section-label"><span data-lang="pt" class="inline">O que mais venho projetando</span><span data-lang="en" class="inline">More of my work</span></h2>
       <div class="cases-grid">
-
+        <button class="case-card" onclick="showCase('pos')" aria-label="Ver case: POS Nubank">
+          <img class="case-card-img" src="thumbs/pos-1168.jpg" srcset="thumbs/pos-600.jpg 600w, thumbs/pos-1168.jpg 1168w" sizes="(max-width: 600px) 100vw, 600px" alt="" loading="lazy" decoding="async" />
+          <span class="case-card-bar">
+            <span class="case-card-title">POS Nubank</span>
+            <span class="case-card-tags"><span>Estratégia de conteúdo</span><span>Arquitetura de informação</span><span>Narrativa</span></span>
+          </span>
+        </button>
         <button class="case-card" onclick="showCase('chargeback')" aria-label="Ver case: Chargeback Revamp">
-          <div class="case-thumb" style="background:#E4EAF2;">
-            <img src="hero-chargeback.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" />
-          </div>
-          <div class="case-body">
-            <span class="case-company">Nubank PJ</span>
-            <h2 class="case-name">Chargeback Revamp</h2>
-            <p class="case-desc" data-lang="pt">Redesign da jornada de contestação de vendas — do discovery à entrega da UX do agente interno e cliente final.</p>
-            <p class="case-desc" data-lang="en">Redesign of the sales dispute journey — from discovery to delivering the UX for both the internal agent and the end customer.</p>
-            <div class="case-tags">
-              <span class="ctag">Arquitetura de informação</span>
-              <span class="ctag">E2E Design</span>
-              <span class="ctag">B2B</span>
-              <span class="ctag">Desktop</span>
-              <span class="ctag">Mobile</span>
-              <span class="ctag">Sistemas complexos</span>
-            </div>
-            <div class="case-footer">
-              <span class="case-metric-value" data-lang="pt">Taxa de resposta: 13,55% → 26,07%</span>
-              <span class="case-metric-value" data-lang="en">Response rate: 13.55% → 26.07%</span>
-              <i class="ti ti-arrow-right case-arrow" aria-hidden="true"></i>
-            </div>
-          </div>
+          <img class="case-card-img" src="thumbs/chargeback-1168.jpg" srcset="thumbs/chargeback-600.jpg 600w, thumbs/chargeback-1168.jpg 1168w" sizes="(max-width: 600px) 100vw, 600px" alt="" loading="lazy" decoding="async" />
+          <span class="case-card-bar">
+            <span class="case-card-title">Chargeback</span>
+            <span class="case-card-tags"><span>Arquitetura de informação</span><span>E2E Design</span><span>B2B</span></span>
+          </span>
         </button>
-
         <button class="case-card" onclick="showCase('insurance')" aria-label="Ver case: Claims">
-          <div class="case-thumb" style="background:#E4EEE8;">
-            <img src="hero-insurance.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" />
-          </div>
-          <div class="case-body">
-            <span class="case-company">Nubank Seguros</span>
-            <h2 class="case-name" data-lang="pt">Claims: a experiência que faltava em cinco produtos</h2>
-            <h2 class="case-name" data-lang="en">Claims: the experience missing from five products</h2>
-            <p class="case-desc" data-lang="pt">Status do acionamento no app, desenhado para escalar de um produto de seguro para todos os outros.</p>
-            <p class="case-desc" data-lang="en">In-app claim status, designed to scale from one insurance product to all the others.</p>
-            <div class="case-tags">
-              <span class="ctag">Arquitetura de informação</span>
-              <span class="ctag">Sistemas complexos</span>
-              <span class="ctag">Integração com parceiros</span>
-              <span class="ctag">Escala multi-produto</span>
-            </div>
-            <div class="case-footer">
-              <span class="case-metric-value" data-lang="pt">NPS de sinistro 83 · −10 h por acionamento</span>
-              <span class="case-metric-value" data-lang="en">Claim NPS 83 · −10 h per claim</span>
-              <i class="ti ti-arrow-right case-arrow" aria-hidden="true"></i>
-            </div>
-          </div>
+          <img class="case-card-img" src="thumbs/claims-1168.jpg" srcset="thumbs/claims-600.jpg 600w, thumbs/claims-1168.jpg 1168w" sizes="(max-width: 600px) 100vw, 600px" alt="" loading="lazy" decoding="async" />
+          <span class="case-card-bar">
+            <span class="case-card-title">Claims</span>
+            <span class="case-card-tags"><span>Arquitetura de informação</span><span>Sistemas complexos</span><span>Integração com parceiros</span></span>
+          </span>
         </button>
-
         <button class="case-card" onclick="showCase('pj')" aria-label="Ver case: PJ Payments">
-          <div class="case-thumb" style="background:#EAE4EE;">
-            <img src="hero-pj-payments.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" />
-          </div>
-          <div class="case-body">
-            <span class="case-company">Nubank PJ</span>
-            <h2 class="case-name" data-lang="pt">PJ Payments: desenhar o que acontece quando dá errado</h2>
-            <h2 class="case-name" data-lang="en">PJ Payments: designing what happens when it fails</h2>
-            <p class="case-desc" data-lang="pt">Tap to Pay e boleto, sempre na mesma região do produto: o erro de leitura, o pagamento que atrasa, a tarefa repetida.</p>
-            <p class="case-desc" data-lang="en">Tap to Pay and boleto, always in the same region of the product: the failed card read, the late payment, the repeated task.</p>
-            <div class="case-tags">
-              <span class="ctag">Fluxo</span>
-              <span class="ctag">Estados de erro</span>
-              <span class="ctag">Sistemas transacionais</span>
-              <span class="ctag">Experimentação</span>
-              <span class="ctag">UX copy</span>
-            </div>
-            <div class="case-footer">
-              <span class="case-metric-value" data-lang="pt">Fluxo de erro: 11% → 17% de sucesso</span>
-              <span class="case-metric-value" data-lang="en">Error flow: 11% → 17% success rate</span>
-              <i class="ti ti-arrow-right case-arrow" aria-hidden="true"></i>
-            </div>
-          </div>
+          <img class="case-card-img" src="thumbs/pj-1168.jpg" srcset="thumbs/pj-600.jpg 600w, thumbs/pj-1168.jpg 1168w" sizes="(max-width: 600px) 100vw, 600px" alt="" loading="lazy" decoding="async" />
+          <span class="case-card-bar">
+            <span class="case-card-title">PJ Payments</span>
+            <span class="case-card-tags"><span>Fluxo</span><span>Estados de erro</span><span>Sistemas transacionais</span></span>
+          </span>
         </button>
-
-
       </div>
     </section>
 
