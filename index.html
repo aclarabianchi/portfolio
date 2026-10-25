@@ -3,7 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ana Bianchi — Content Designer</title>
+  <title>Ana Clara Bianchi — UX Designer | Senior Content Designer</title>
+  <script>
+    // Hero sorteado a cada visita, antes da primeira pintura: sem troca visível
+    (function () {
+      var HEROS = {
+        colagem: 'hero/colagem-800.jpg 800w, hero/colagem-1459.jpg 1459w',
+        gato:    'hero/gato-480.jpg 480w, hero/gato-724.jpg 724w'
+      };
+      var key = Math.random() < 0.5 ? 'colagem' : 'gato';
+      window.HERO_SRCSET = HEROS[key];
+      document.documentElement.dataset.hero = key;
+      var link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.setAttribute('imagesrcset', HEROS[key]);
+      link.setAttribute('imagesizes', '100vw');
+      link.setAttribute('fetchpriority', 'high');
+      document.head.appendChild(link);
+    })();
+  </script>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F5F4F0'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-size='20' fill='%23C8A96E'%3EA%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -104,20 +123,8 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes wordExit {
-      from { opacity: 1; transform: translateY(0); }
-      to   { opacity: 0; transform: translateY(-10px); }
-    }
 
-    @keyframes wordEnter {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
 
-    @keyframes blink {
-      0%, 100% { opacity: 0.6; }
-      50% { opacity: 0; }
-    }
 
     .fade-up { animation: fadeUp 0.5s ease both; }
 
@@ -129,9 +136,6 @@
       .fade-up { animation: none !important; }
       .card { opacity: 1 !important; transform: none !important; transition: none !important; }
       html { scroll-behavior: auto; }
-      .hero-word.exiting,
-      .hero-word.entering { animation: none !important; opacity: 1; transform: none; }
-      .hero-word::after { animation: none; }
       .page-entering { animation: none !important; }
     }
 
@@ -288,68 +292,79 @@
     /* ══════════════════════════════════════════
        HERO
     ══════════════════════════════════════════ */
-    .hero {
-      padding: 260px 48px 180px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .hero-label {
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 20px;
-      animation: fadeUp 0.5s ease 0.1s both;
-    }
-
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-weight: 400;
-      font-size: clamp(48px, 6vw, 80px);
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      color: var(--text);
-      margin-bottom: 0;
-      animation: fadeUp 0.5s ease 0.2s both;
-    }
-
-    .hero h1 em { font-style: italic; color: var(--text-muted); }
-
-    .hero-desc {
-      display: none;
-    }
-
-    /* ══════════════════════════════════════════
-       WORD CYCLING
-    ══════════════════════════════════════════ */
-    .hero-word-wrap {
-      display: inline-block;
+    /* Imagem sorteada no <head>: colagem (cobre) ou gato (recorte sobre lilás) */
+    .home-hero {
       position: relative;
-      min-width: 4ch;
+      height: 100vh;
+      height: 100svh;
+      min-height: 560px;
+      max-height: 1024px;
+      overflow: hidden;
+      background: var(--ds-ink);
+    }
+    .home-hero-media img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    [data-hero="gato"] .home-hero { background: #b5abbf; }
+    [data-hero="gato"] .home-hero-media img {
+      object-fit: contain;
+      object-position: center bottom;
     }
 
-    .hero-word {
-      display: inline-block;
-      font-style: italic;
-      color: var(--accent);
+    .visually-hidden {
+      position: absolute;
+      width: 1px; height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
     }
 
-    .hero-word::after {
-      content: '|';
-      display: inline-block;
-      margin-left: 1px;
-      color: var(--accent);
-      animation: blink 1s step-end infinite;
-      opacity: 0.6;
+    /* Faixa de logos: onde trabalhou e onde estudou */
+    .logo-strip {
+      display: flex;
+      justify-content: center;
+      gap: 96px;
+      padding: 16px 48px 24px;
+      background: var(--ds-ink-raised);
+      color: var(--ds-on-ink);
+    }
+    .logo-group { display: flex; flex-direction: column; align-items: center; }
+    .logo-group-label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #d3c8e3;
+    }
+    .logo-group ul { display: flex; gap: 40px; list-style: none; }
+    .logo-group li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 169px;
+      height: 120px;
+    }
+    .logo-group img { display: block; max-width: none; }
+    .logo-usp { transform: scaleY(-1); }
+
+    @media (max-width: 900px) {
+      .logo-strip { gap: 48px; }
+      .logo-group ul { gap: 16px; }
+      .logo-group li { width: 120px; height: 96px; }
+      .logo-group img { transform: scale(0.75); }
+      .logo-group .logo-usp { transform: scale(0.75) scaleY(-1); }
     }
 
-    .hero-word.exiting {
-      animation: wordExit 0.25s ease-in forwards;
-    }
-
-    .hero-word.entering {
-      animation: wordEnter 0.35s ease-out forwards;
+    @media (max-width: 600px) {
+      .logo-strip { padding: 12px 24px 16px; }
+      .logo-group--formacao { display: none; }
+      .logo-group li { width: 90px; height: 64px; }
+      .logo-group img { transform: scale(0.53); }
     }
 
     /* ══════════════════════════════════════════
@@ -625,12 +640,6 @@
     }
 
 
-    /* HERO — sem label, sem desc */
-    .hero-label { display: none; }
-    .hero-desc  { display: none; }
-    .hero { text-align: center; }
-    .hero h1 { font-family: 'Playfair Display', serif; }
-    .hero-word { color: var(--accent); font-style: italic; }
 
     /* FEATURED */
     .featured-card {
@@ -1806,7 +1815,7 @@
     ══════════════════════════════════════════ */
     @media (max-width: 900px) {
       nav, .case-nav { padding: 20px 24px; }
-      .hero, .grid-section, footer { padding-left: 24px; padding-right: 24px; }
+      .grid-section, footer { padding-left: 24px; padding-right: 24px; }
       .case-content { padding: 120px 24px 80px; }
       .grid { grid-template-columns: repeat(2, 1fr); }
       .result-block { grid-template-columns: 1fr; gap: 16px; padding: 44px 36px; }
@@ -1832,9 +1841,6 @@
     @media (max-width: 600px) {
       .grid { grid-template-columns: 1fr; }
 
-      .hero { padding: 120px 20px 60px; }
-      .hero h1 { font-size: 36px; letter-spacing: -0.01em; line-height: 1.15; }
-      .hero-desc { font-size: 15px; max-width: 100%; }
 
       .grid-section { padding: 0 20px 80px; }
 
@@ -2392,13 +2398,31 @@
   <main id="main-content">
 
     <!-- HERO -->
-    <section class="hero" aria-labelledby="hero-heading">
-      <h1 id="hero-heading" data-lang="pt" aria-label="Design que move negócios, experiências e pessoas.">
-        Design que<br>move <span class="hero-word-wrap" aria-hidden="true"><span class="hero-word" id="cycling-word-pt">negócios.</span></span>
-      </h1>
-      <h1 data-lang="en" aria-label="Design that moves business, experiences and people.">
-        Design that<br>moves <span class="hero-word-wrap" aria-hidden="true"><span class="hero-word" id="cycling-word-en">business.</span></span>
-      </h1>
+    <section class="home-hero" aria-labelledby="hero-heading">
+      <h1 id="hero-heading" class="visually-hidden">Ana Clara Bianchi — UX Designer | Senior Content Designer</h1>
+      <div class="home-hero-media">
+        <img id="hero-img" alt="" sizes="100vw" fetchpriority="high" />
+      </div>
+      <script>document.getElementById('hero-img').srcset = window.HERO_SRCSET;</script>
+      <noscript><img src="hero/colagem-1459.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></noscript>
+    </section>
+
+    <!-- LOGOS -->
+    <section class="logo-strip" aria-label="Experiência e formação">
+      <div class="logo-group">
+        <p class="logo-group-label"><span data-lang="pt" class="inline">Trabalhei em</span><span data-lang="en" class="inline">Worked at</span></p>
+        <ul>
+          <li><img src="logos/nubank.svg" width="100" height="55" alt="Nubank" /></li>
+          <li><img src="logos/picpay.svg" width="169" height="150" alt="PicPay" /></li>
+        </ul>
+      </div>
+      <div class="logo-group logo-group--formacao">
+        <p class="logo-group-label"><span data-lang="pt" class="inline">Formação</span><span data-lang="en" class="inline">Education</span></p>
+        <ul>
+          <li><img class="logo-usp" src="logos/usp.svg" width="130" height="53" alt="USP — Universidade de São Paulo" /></li>
+          <li><img src="logos/ufes.svg" width="150" height="113" alt="Ufes — Universidade Federal do Espírito Santo" /></li>
+        </ul>
+      </div>
     </section>
 
     <!-- FEATURED -->
@@ -4729,59 +4753,6 @@
       }, { threshold: 0.1 });
       cards.forEach(c => observer.observe(c));
     }
-
-    // ── WORD CYCLING ──────────────────────────────────────────
-    const words = {
-      pt: ['negócios.', 'experiências.', 'pessoas.'],
-      en: ['business.', 'experiences.', 'people.']
-    };
-
-    let cycleIndex = 0;
-
-    function measureAndSetWidth(el, wordList) {
-      const testSpan = document.createElement('span');
-      testSpan.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;font:inherit;font-style:italic;';
-      document.body.appendChild(testSpan);
-      let maxW = 0;
-      wordList.forEach(w => {
-        testSpan.textContent = w;
-        maxW = Math.max(maxW, testSpan.offsetWidth);
-      });
-      document.body.removeChild(testSpan);
-      el.style.minWidth = maxW + 'px';
-    }
-
-    function cycleWord() {
-      cycleIndex = (cycleIndex + 1) % words.pt.length;
-
-      ['pt', 'en'].forEach(lang => {
-        const el = document.getElementById('cycling-word-' + lang);
-        if (!el) return;
-        const nextWord = words[lang][cycleIndex];
-
-        if (reducedMotion) {
-          el.textContent = nextWord;
-          return;
-        }
-
-        el.classList.remove('entering');
-        el.classList.add('exiting');
-
-        setTimeout(() => {
-          el.textContent = nextWord;
-          el.classList.remove('exiting');
-          el.classList.add('entering');
-          setTimeout(() => el.classList.remove('entering'), 400);
-        }, 260);
-      });
-    }
-
-    const ptEl = document.getElementById('cycling-word-pt');
-    const enEl = document.getElementById('cycling-word-en');
-    if (ptEl) measureAndSetWidth(ptEl.parentElement, words.pt);
-    if (enEl) measureAndSetWidth(enEl.parentElement, words.en);
-
-    setInterval(cycleWord, 2800);
 
     // ── Password gate — imagem de fundo aleatória ──
     // Adicione os caminhos das suas fotos aqui (até 5):
