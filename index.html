@@ -727,195 +727,92 @@
       margin-top: 12px;
     }
 
-    /* SOBRE MIM */
-    .about-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-    }
+    /* REFERÊNCIAS — card na altura do conteúdo, borda no lugar de sombra */
+    .home-section--wide { max-width: 1296px; }
 
-    .strengths-list { display: flex; flex-direction: column; }
-    .strength-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      padding: 18px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .strength-row:last-child { border-bottom: none; }
-    .strength-icon { font-size: 18px; color: var(--accent); margin-top: 2px; flex-shrink: 0; }
-    .strength-title { font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 3px; display: block; }
-    .strength-desc { font-size: 11px; color: var(--text-muted); line-height: 1.65; display: block; }
-
-    /* LIVROS */
-    .about-left {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .books-block {
-      margin-top: 40px;
-      padding-top: 0;
-    }
-
-    .books-label {
-      font-size: 10px;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 16px;
-      display: block;
-      opacity: 0.7;
-    }
-
-    .books-grid {
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-    }
-
-    .book-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 7px;
-      flex: 1;
-      max-width: 72px;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .book-cover {
-      width: 100%;
-      aspect-ratio: 2/3;
-      object-fit: cover;
-      border-radius: 3px;
-      box-shadow: 0 2px 8px rgba(17,17,17,0.10);
-      transition: transform var(--transition-base), box-shadow var(--transition-base);
-    }
-
-    .book-cover:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 5px 14px rgba(17,17,17,0.14);
-    }
-
-    .book-title {
-      font-size: 10px;
-      color: var(--text-muted);
-      text-align: center;
-      line-height: 1.3;
-      opacity: 0.8;
-    }
-
-    /* REFERÊNCIAS */
     .refs-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      background: transparent;
+      gap: 32px;
     }
 
     .ref-card {
-      background: var(--bg-card);
-      padding: 40px;
       display: flex;
       flex-direction: column;
-      min-height: 240px;
-      border-radius: 12px;
+      margin: 0;
+      padding: 48px 40px 40px;
+      background: #ffffff;
+      border: 1px solid #ded5e8;
     }
-
+    .ref-card::before {
+      content: '\201C';
+      display: block;
+      height: 48px;
+      font-size: 96px;
+      font-weight: 800;
+      line-height: 1;
+      color: #cfc4dc;
+    }
     .ref-quote {
-      font-size: 14px;
-      line-height: 1.85;
-      color: var(--text);
-      opacity: 0.75;
-      font-style: italic;
       flex: 1;
+      margin-top: 16px;
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--ds-ink);
     }
+    .ref-author { margin-top: 32px; }
+    .ref-name { display: block; font-size: 20px; font-weight: 600; line-height: 1.4; color: var(--ds-ink); }
+    .ref-role { display: block; margin-top: 4px; font-size: 15px; line-height: 1.6; color: var(--ds-text-secondary); }
 
-    .ref-author {
-      margin-top: 28px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
+    /* PUBLICAÇÕES — uma linha por texto, a linha inteira é o link */
+    .articles-list { display: flex; flex-direction: column; gap: 16px; }
+
+    .article-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 32px 40px;
+      background: #ffffff;
+      border: 1px solid #ded5e8;
+      color: inherit;
+      text-decoration: none;
     }
-
-    .ref-name { font-size: 13px; font-weight: 500; color: var(--text); display: block; }
-    .ref-role { font-size: 11px; color: var(--text-muted); margin-top: 2px; display: block; }
-
+    .article-type {
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ds-ink);
+    }
+    .article-title {
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 1.3;
+      color: var(--ds-ink);
+    }
+    .article-cta {
+      display: inline-flex;
+      flex-shrink: 0;
+      align-items: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 12px 24px;
+      border-radius: 9999px;
+      background: #ebe4f2;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--ds-ink);
+    }
 
     @media (max-width: 768px) {
       .home-section { padding: 48px 24px 0; }
       .home-section:last-of-type { padding-bottom: 48px; }
-      .about-layout { grid-template-columns: 1fr; gap: 32px; }
-      .refs-grid { grid-template-columns: 1fr; }
-    }
-
-    .about-text {
-      font-size: 15px;
-      line-height: 1.9;
-      color: var(--text);
-      opacity: 0.8;
-    }
-
-    .articles-list {
-      display: flex;
-      flex-direction: column;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    .article-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 24px;
-      padding: 28px 32px;
-      border-bottom: 1px solid var(--border);
-      text-decoration: none;
-      color: inherit;
-      transition: background var(--transition-base);
-    }
-
-    .article-item:last-child { border-bottom: none; }
-    .article-item:hover { background: var(--accent-light); }
-
-    .article-type {
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 6px;
-    }
-
-    .article-title {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text);
-      line-height: 1.4;
-      margin-bottom: 5px;
-    }
-
-    .article-venue {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .article-arrow {
-      color: var(--text-muted);
-      font-size: 13px;
-      margin-top: 2px;
-      flex-shrink: 0;
-      transition: color var(--transition-base), transform var(--transition-base);
-    }
-
-    .article-item:hover .article-arrow { color: var(--accent); transform: translate(2px,-2px); }
-
-    @media (max-width: 768px) {
-      .about-grid { grid-template-columns: 1fr; gap: 32px; }
-      .testimonials-grid { grid-template-columns: 1fr; }
-      .strengths-grid { grid-template-columns: 1fr; }
-      .home-section { padding: 0 24px 60px; }
+      .refs-grid { grid-template-columns: 1fr; gap: 16px; }
+      .ref-card { padding: 40px 24px 32px; }
+      .article-item { flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px; }
+      .article-title { font-size: 20px; }
     }
 
     /* ══════════════════════════════════════════
@@ -2347,129 +2244,53 @@
       </div>
     </section>
 
-    <!-- SOBRE MIM -->
-    <section class="home-section" aria-label="Sobre mim">
-      <p class="home-section-label" data-lang="pt">Sobre mim</p>
-      <p class="home-section-label" data-lang="en">About me</p>
-      <div class="about-layout">
-        <div class="about-left">
-          <p class="about-text" data-lang="pt">Tenho 8+ anos moldando experiências em fintechs de alto crescimento como Nubank e PicPay. Começo pelo conteúdo, mas minha atuação atravessa arquitetura de informação, estratégia de produto e design de interação.<br><br>Acredito que linguagem bem desenhada é infraestrutura: reduz fricção, constrói confiança e move comportamento. Quando não estou desenhando, estou escrevendo ficção científica ou mentorando designers em início de carreira.</p>
-          <p class="about-text" data-lang="en">I have 8+ years shaping experiences at high-growth fintechs like Nubank and PicPay. I start with content, but my work spans information architecture, product strategy, and interaction design.<br><br>I believe well-designed language is infrastructure: it reduces friction, builds trust, and moves behavior. When I'm not designing, I'm writing science fiction or mentoring early-career designers.</p>
-
-          <!-- LIVROS -->
-          <div class="books-block">
-            <p class="books-label" data-lang="pt">O que eu leria se estivesse começando hoje</p>
-            <p class="books-label" data-lang="en">What I'd read if I were starting out today</p>
-            <div class="books-grid">
-              <a class="book-item" href="https://www.amazon.com.br/N%C3%A3o-fa%C3%A7a-pensar-Steve-Krug/dp/8576088509" target="_blank" rel="noopener noreferrer" aria-label="Não Me Faça Pensar na Amazon">
-                <img src="nao me faça pensar.jpg" alt="Não Me Faça Pensar" class="book-cover" />
-                <span class="book-title">Não Me Faça Pensar</span>
-              </a>
-              <a class="book-item" href="https://www.amazon.com.br/Teste-M%C3%A3e-conversar-clientes-descobrir-ebook/dp/B07QM7ZS7Q" target="_blank" rel="noopener noreferrer" aria-label="The Mom's Test na Amazon">
-                <img src="the-moms-test.jpg" alt="The Mom's Test" class="book-cover" />
-                <span class="book-title">The Mom's Test</span>
-              </a>
-              <a class="book-item" href="https://www.amazon.com.br/design-como-storytelling-Ellen-Lupton/dp/6588280343" target="_blank" rel="noopener noreferrer" aria-label="Design Is Storytelling na Amazon">
-                <img src="Design Is Storytelling.jpg" alt="Design Is Storytelling" class="book-cover" />
-                <span class="book-title">Design Is Storytelling</span>
-              </a>
-              <a class="book-item" href="https://www.amazon.com.br/Leis-Psicologia-Aplicadas-UX-psicologia/dp/857522915X" target="_blank" rel="noopener noreferrer" aria-label="Leis da Psicologia na Amazon">
-                <img src="leis-psicologia.webp" alt="Leis da Psicologia" class="book-cover" />
-                <span class="book-title">Leis da Psicologia</span>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="strengths-list">
-          <div class="strength-row">
-            <i class="ti ti-route strength-icon" aria-hidden="true"></i>
-            <div>
-              <p class="strength-title" data-lang="pt">Do discovery até a entrega (e além)</p>
-              <p class="strength-title" data-lang="en">From discovery to delivery (and beyond)</p>
-              <p class="strength-desc" data-lang="pt">Trabalho com ownership end-to-end desde o problema até o impacto, transitando entre decisões de design desde UI até focadas em content design — a depender do projeto.</p>
-              <p class="strength-desc" data-lang="en">I work with end-to-end ownership from the problem to impact, moving between design decisions from UI to content design — depending on the project.</p>
-            </div>
-          </div>
-          <div class="strength-row">
-            <i class="ti ti-layout-grid strength-icon" aria-hidden="true"></i>
-            <div>
-              <p class="strength-title" data-lang="pt">Sistemas de conteúdo</p>
-              <p class="strength-title" data-lang="en">Content systems</p>
-              <p class="strength-desc" data-lang="pt">Crio guidelines e governança que escalam com o produto e contribuem para o design system.</p>
-              <p class="strength-desc" data-lang="en">I create guidelines and governance that scale with the product and contribute to the design system.</p>
-            </div>
-          </div>
-          <div class="strength-row">
-            <i class="ti ti-cpu strength-icon" aria-hidden="true"></i>
-            <div>
-              <p class="strength-title" data-lang="pt">AI + processo de design</p>
-              <p class="strength-title" data-lang="en">AI + design process</p>
-              <p class="strength-desc" data-lang="pt">Uso ferramentas de IA para acelerar ideação e validação, contribuir para sistemas de design e ajudar times a tomarem decisões mais rápidas e fundamentadas.</p>
-              <p class="strength-desc" data-lang="en">I use AI tools to accelerate ideation and validation, contribute to design systems, and help teams make faster, better-grounded decisions.</p>
-            </div>
-          </div>
-          <div class="strength-row">
-            <i class="ti ti-users-group strength-icon" aria-hidden="true"></i>
-            <div>
-              <p class="strength-title" data-lang="pt">Cross-funcional</p>
-              <p class="strength-title" data-lang="en">Cross-functional</p>
-              <p class="strength-desc" data-lang="pt">Colaboro de perto com Produto, outros Designers e Operações para explorar o espaço do problema e alinhar decisões de design.</p>
-              <p class="strength-desc" data-lang="en">I collaborate closely with Product, other Designers, and Operations to explore the problem space and align design decisions.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </section>
-
     <!-- REFERÊNCIAS -->
-    <section class="home-section" aria-label="Referências">
-      <p class="home-section-label" data-lang="pt">Referências</p>
-      <p class="home-section-label" data-lang="en">References</p>
+    <section class="home-section home-section--wide" aria-labelledby="refs-heading">
+      <h2 id="refs-heading" class="home-section-label"><span data-lang="pt" class="inline">Referências</span><span data-lang="en" class="inline">References</span></h2>
       <div class="refs-grid">
-        <div class="ref-card">
-          <p class="ref-quote" data-lang="pt">"Ana é uma Content Designer genuinamente apaixonada por seus clientes. Em Insurance, mais de uma vez desafiou decisões de negócio mostrando a perspectiva do cliente — e conseguiu mudar aspectos críticos do produto."</p>
-          <p class="ref-quote" data-lang="en">"Ana is a Content Designer who is genuinely passionate about her customers. In Insurance, more than once, she challenged business decisions by showing the customer perspective — and was able to change critical product aspects."</p>
-          <div class="ref-author">
+        <figure class="ref-card">
+          <blockquote>
+            <p class="ref-quote" data-lang="pt">"Ana é uma Content Designer genuinamente apaixonada por seus clientes. Em Insurance, mais de uma vez desafiou decisões de negócio mostrando a perspectiva do cliente — e conseguiu mudar aspectos críticos do produto."</p>
+            <p class="ref-quote" data-lang="en">"Ana is a Content Designer who is genuinely passionate about her customers. In Insurance, more than once, she challenged business decisions by showing the customer perspective — and was able to change critical product aspects."</p>
+          </blockquote>
+          <figcaption class="ref-author">
             <span class="ref-name">Ivan Toledo</span>
             <span class="ref-role" data-lang="pt">Design Manager II · iFood (ex-Nubank)</span>
             <span class="ref-role" data-lang="en">Design Manager II · iFood (formerly Nubank)</span>
-          </div>
-        </div>
-        <div class="ref-card">
-          <p class="ref-quote" data-lang="pt">"A Ana além de uma pessoa incrível, é uma profissional exemplar. Ela trata assuntos que demandam atenção com muita leveza e determinação. Os processos que ela constrói são super completos."</p>
-          <p class="ref-quote" data-lang="en">"Ana is not only an incredible person but an exemplary professional. She handles demanding topics with ease and determination. The processes she builds are very thorough."</p>
-          <div class="ref-author">
+          </figcaption>
+        </figure>
+        <figure class="ref-card">
+          <blockquote>
+            <p class="ref-quote" data-lang="pt">"A Ana além de uma pessoa incrível, é uma profissional exemplar. Ela trata assuntos que demandam atenção com muita leveza e determinação. Os processos que ela constrói são super completos."</p>
+            <p class="ref-quote" data-lang="en">"Ana is not only an incredible person but an exemplary professional. She handles demanding topics with ease and determination. The processes she builds are very thorough."</p>
+          </blockquote>
+          <figcaption class="ref-author">
             <span class="ref-name">Patrícia Gonçalves</span>
             <span class="ref-role">Content Designer · Itaú (ex-PicPay)</span>
-          </div>
-        </div>
+          </figcaption>
+        </figure>
       </div>
     </section>
 
     <!-- PUBLICAÇÕES -->
-    <section class="home-section" aria-label="Publicações">
-      <p class="home-section-label" data-lang="pt">Publicações</p>
-      <p class="home-section-label" data-lang="en">Writing</p>
+    <section class="home-section home-section--wide" aria-labelledby="writing-heading">
+      <h2 id="writing-heading" class="home-section-label"><span data-lang="pt" class="inline">Publicações</span><span data-lang="en" class="inline">Writing</span></h2>
       <div class="articles-list">
         <a href="https://aclarabianchi.medium.com/de-delivery-de-textinho-%C3%A0-experi%C3%AAncia-educacional-do-usu%C3%A1rio-cc2c5f98c192" class="article-item" target="_blank" rel="noopener noreferrer">
           <div>
             <p class="article-type">Medium</p>
             <p class="article-title" data-lang="pt">De delivery de textinho à experiência educacional do usuário</p>
             <p class="article-title" data-lang="en">From microcopy delivery to user educational experience</p>
-            <p class="article-venue">aclarabianchi.medium.com</p>
           </div>
-          <span class="article-arrow">↗</span>
+          <span class="article-cta"><span data-lang="pt" class="inline">Ler mais</span><span data-lang="en" class="inline">Read more</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span><span class="visually-hidden" data-lang="pt">(abre em nova aba)</span><span class="visually-hidden" data-lang="en">(opens in a new tab)</span>
         </a>
         <a href="https://portalintercom.org.br/anais/nacional2015/lista_area_DT8-PC.htm" class="article-item" target="_blank" rel="noopener noreferrer">
           <div>
             <p class="article-type">Paper · Intercom 2015</p>
             <p class="article-title" data-lang="pt">Esfera pública e tecnologia: narrativas visuais em territórios informacionais digitais</p>
             <p class="article-title" data-lang="en">Public sphere and technology: visual narratives in digital informational territories</p>
-            <p class="article-venue" data-lang="pt">XXXVIII Congresso Brasileiro de Ciências da Comunicação · UFES</p>
-            <p class="article-venue" data-lang="en">XXXVIII Brazilian Congress of Communication Sciences · UFES</p>
           </div>
-          <span class="article-arrow">↗</span>
+          <span class="article-cta"><span data-lang="pt" class="inline">Ler mais</span><span data-lang="en" class="inline">Read more</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span><span class="visually-hidden" data-lang="pt">(abre em nova aba)</span><span class="visually-hidden" data-lang="en">(opens in a new tab)</span>
         </a>
       </div>
     </section>
