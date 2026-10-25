@@ -4501,7 +4501,10 @@
 
     // Back to top button
     const btt = document.getElementById('back-to-top');
-    if (btt) btt.classList.toggle('visible', scrollTop > 300);
+    // some quando o rodapé da home entra na tela, para não cobrir o LinkedIn
+    const rodape = document.querySelector('.site-footer');
+    const rodapeNaTela = rodape && rodape.offsetParent && rodape.getBoundingClientRect().top < window.innerHeight;
+    if (btt) btt.classList.toggle('visible', scrollTop > 300 && !rodapeNaTela);
 
     // Nav scroll state
     document.querySelectorAll('nav:not(.site-nav)').forEach(nav => {
