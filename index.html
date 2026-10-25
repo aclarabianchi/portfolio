@@ -1086,6 +1086,21 @@
       display: block;
     }
 
+    /* Transição card → case: a imagem do card cresce até virar o hero do post */
+    ::view-transition-group(case-hero) {
+      animation-duration: 420ms;
+      animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    ::view-transition-old(case-hero),
+    ::view-transition-new(case-hero) {
+      height: 100%;
+      object-fit: cover;
+    }
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation-duration: 240ms;
+    }
+
     /* Two-column intro: context + metadata */
     .case-intro-grid {
       display: grid;
@@ -4268,17 +4283,67 @@
     document.body.scrollTop = 0;
   }
 
+  // ── Transição card → case (View Transitions) ──
+  // Sem suporte ou com movimento reduzido, a troca acontece como antes.
+  const podeTransicionar = 'startViewTransition' in document
+    && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let rolagemDaHome = 0;
+
+  function imagemDoCard(id) {
+    return document.querySelector(`.case-card[onclick="showCase('${id}')"] .case-card-img`);
+  }
+  function heroDoCase(id) {
+    return document.querySelector('#case-' + id + ' .case-hero');
+  }
+  function caseAberto() {
+    const page = [...document.querySelectorAll('.case-page')].find(p => p.style.display === 'block');
+    return page ? page.id.replace('case-', '') : null;
+  }
+  function estaNaTela(el) {
+    const r = el.getBoundingClientRect();
+    return r.bottom > 0 && r.top < window.innerHeight;
+  }
+  function rolarPara(y) {
+    window.scrollTo({ top: y, behavior: 'instant' });
+  }
+
+  // Dá o mesmo nome à imagem de origem e à de destino, e deixa o navegador interpolar
+  function transicionar(origem, destino, trocar) {
+    if (!podeTransicionar || document.visibilityState !== 'visible') { trocar(true); return; }
+    const morfa = origem && estaNaTela(origem);
+    if (morfa) origem.style.viewTransitionName = 'case-hero';
+    const t = document.startViewTransition(() => {
+      if (morfa) {
+        origem.style.viewTransitionName = '';
+        const alvo = destino();
+        if (alvo) alvo.style.viewTransitionName = 'case-hero';
+      }
+      trocar(false);
+    });
+    t.finished.finally(() => {
+      const alvo = destino();
+      if (alvo) alvo.style.viewTransitionName = '';
+    });
+  }
+
   function showCase(id) {
+    if (document.getElementById('home-page').style.display !== 'none') rolagemDaHome = window.scrollY;
+    transicionar(imagemDoCard(id), () => heroDoCase(id), (animar) => abrirCase(id, animar));
+  }
+
+  function abrirCase(id, animar) {
     document.getElementById('home-page').style.display = 'none';
     document.querySelectorAll('.case-page').forEach(p => p.style.display = 'none');
     const page = document.getElementById('case-' + id);
     if (page) {
       page.style.display = 'block';
-      page.classList.remove('page-entering');
-      void page.offsetWidth;
-      page.classList.add('page-entering');
-      setTimeout(() => page.classList.remove('page-entering'), 360);
-      scrollToTop();
+      if (animar) {
+        page.classList.remove('page-entering');
+        void page.offsetWidth;
+        page.classList.add('page-entering');
+        setTimeout(() => page.classList.remove('page-entering'), 360);
+      }
+      rolarPara(0);
       document.getElementById('scroll-progress').style.display = 'block';
       history.pushState({ view: 'case', id }, '', '#' + id);
       const h1 = page.querySelector('h1');
@@ -4288,15 +4353,24 @@
     }
   }
 
+  // Voltando de um case, a home reabre onde a pessoa estava, com a imagem voltando para o card
   function showHome() {
+    const id = caseAberto();
+    if (!id) { rolarPara(0); return; }
+    transicionar(heroDoCase(id), () => imagemDoCard(id), (animar) => abrirHome(animar, rolagemDaHome));
+  }
+
+  function abrirHome(animar, y) {
     document.querySelectorAll('.case-page').forEach(p => p.style.display = 'none');
     const homePage = document.getElementById('home-page');
     homePage.style.display = 'block';
-    homePage.classList.remove('page-entering');
-    void homePage.offsetWidth;
-    homePage.classList.add('page-entering');
-    setTimeout(() => homePage.classList.remove('page-entering'), 360);
-    scrollToTop();
+    if (animar) {
+      homePage.classList.remove('page-entering');
+      void homePage.offsetWidth;
+      homePage.classList.add('page-entering');
+      setTimeout(() => homePage.classList.remove('page-entering'), 360);
+    }
+    rolarPara(y);
     document.getElementById('scroll-progress').style.display = 'none';
     document.getElementById('scroll-progress').style.width = '0%';
     history.pushState({ view: 'home' }, '', window.location.pathname);
@@ -4304,18 +4378,19 @@
 
   window.addEventListener('popstate', (e) => {
     if (e.state && e.state.view === 'case') {
+      if (document.getElementById('home-page').style.display !== 'none') rolagemDaHome = window.scrollY;
       document.getElementById('home-page').style.display = 'none';
       document.querySelectorAll('.case-page').forEach(p => p.style.display = 'none');
       const page = document.getElementById('case-' + e.state.id);
       if (page) {
         page.style.display = 'block';
-        scrollToTop();
+        rolarPara(0);
         document.getElementById('scroll-progress').style.display = 'block';
       }
     } else {
       document.querySelectorAll('.case-page').forEach(p => p.style.display = 'none');
       document.getElementById('home-page').style.display = 'block';
-      scrollToTop();
+      rolarPara(rolagemDaHome);
       document.getElementById('scroll-progress').style.display = 'none';
       document.getElementById('scroll-progress').style.width = '0%';
     }
