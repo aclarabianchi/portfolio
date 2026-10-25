@@ -854,6 +854,18 @@
       color: var(--ds-ink);
     }
 
+    /* A seta anda 4px no hover e no foco: diz que a linha inteira leva para fora */
+    .article-cta svg { transition: transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+    @media (hover: hover) {
+      .article-item:hover .article-cta svg { transform: translateX(4px); }
+    }
+    .article-item:focus-visible .article-cta svg { transform: translateX(4px); }
+    @media (prefers-reduced-motion: reduce) {
+      .article-cta svg { transition: none; }
+      .article-item:hover .article-cta svg,
+      .article-item:focus-visible .article-cta svg { transform: none; }
+    }
+
     @media (max-width: 768px) {
       .home-section { padding: 48px 24px 0; }
       .home-section:last-of-type { padding-bottom: 48px; }
