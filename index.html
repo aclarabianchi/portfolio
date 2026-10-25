@@ -904,12 +904,16 @@
       width: 160px;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.35s ease;
+      /* visibility tira os links ocultos da ordem do Tab; só muda depois do fade */
+      visibility: hidden;
+      transition: opacity 0.35s ease, visibility 0s linear 0.35s;
       z-index: 20;
     }
     .case-toc.toc-visible {
       opacity: 1;
       pointer-events: auto;
+      visibility: visible;
+      transition: opacity 0.35s ease, visibility 0s;
     }
     @media (max-width: 1200px) {
       .case-toc { display: none; }
