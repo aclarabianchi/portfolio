@@ -58,6 +58,7 @@
       --ds-surface-strong: #ebe4f2;
       --ds-text-secondary: #5d4a75;
       --ds-on-ink: #ffffff;
+      --ds-focus: #7c3aed;
       --ds-motion-base: 300ms;
       --ds-ease: cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -98,20 +99,20 @@
     .skip-link:focus { top: 0; }
 
     :focus-visible {
-      outline: 2px solid var(--accent);
+      outline: 2px solid var(--ds-focus);
       outline-offset: 3px;
       border-radius: 2px;
     }
 
     .card:focus-visible {
-      outline: 2px solid var(--accent);
+      outline: 2px solid var(--ds-focus);
       outline-offset: -2px;
       z-index: 2;
     }
 
     .back-btn:focus-visible,
     .lang-btn:focus-visible {
-      outline: 2px solid var(--accent);
+      outline: 2px solid var(--ds-focus);
       outline-offset: 2px;
     }
 
@@ -687,7 +688,7 @@
       cursor: pointer;
     }
     .case-card:focus-visible {
-      outline: 2px solid var(--accent);
+      outline: 2px solid var(--ds-focus);
       outline-offset: 3px;
     }
     .case-card-img {
