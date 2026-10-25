@@ -4357,7 +4357,32 @@
       .finally(() => document.documentElement.classList.remove('trocando-idioma'));
   }
 
+  // Rótulos lidos pelo leitor de tela, que não estão em data-lang: o PT fica no HTML, o EN vem daqui
+  const ROTULOS_EN = {
+    'Navegação principal': 'Main navigation',
+    'Ana Clara Bianchi — página inicial': 'Ana Clara Bianchi — home',
+    'Selecionar idioma': 'Select language',
+    'LinkedIn (abre em nova aba)': 'LinkedIn (opens in a new tab)',
+    'Experiência e formação': 'Experience and education',
+    'Voltar para a página inicial': 'Back to home',
+    'Navegação do case': 'Case navigation',
+    'Navegação da página': 'On this page',
+    'Voltar ao topo': 'Back to top',
+    'Imagem em destaque': 'Enlarged image',
+    'Fechar': 'Close'
+  };
+
+  function traduzirRotulos(lang) {
+    document.querySelectorAll('[aria-label]').forEach(el => {
+      if (!el.dataset.rotuloPt) el.dataset.rotuloPt = el.getAttribute('aria-label');
+      const pt = el.dataset.rotuloPt;
+      const en = ROTULOS_EN[pt] || pt.replace(/^Ver case:? /, 'View case: ');
+      el.setAttribute('aria-label', lang === 'en' ? en : pt);
+    });
+  }
+
   function aplicarIdioma(lang) {
+    traduzirRotulos(lang);
     currentLang = lang;
     document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
     document.body.className = document.body.className.replace(/lang-\w+/g, '').trim() + ' lang-' + lang;
