@@ -1148,6 +1148,11 @@
     ::view-transition-new(root) {
       animation-duration: 240ms;
     }
+    /* Troca de idioma: crossfade mais curto que a troca de página */
+    .trocando-idioma::view-transition-old(root),
+    .trocando-idioma::view-transition-new(root) {
+      animation-duration: 150ms;
+    }
 
     /* Two-column intro: context + metadata */
     .case-intro-grid {
@@ -4321,7 +4326,20 @@
 <script>
   let currentLang = 'pt';
 
+  // Troca de idioma em crossfade curto (150ms): o texto em PT dissolve no EN, sem salto.
+  // Mesmo idioma, sem suporte, movimento reduzido ou aba oculta: troca direta.
   function setLang(lang) {
+    const anima = lang !== currentLang
+      && 'startViewTransition' in document
+      && document.visibilityState === 'visible'
+      && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!anima) { aplicarIdioma(lang); return; }
+    document.documentElement.classList.add('trocando-idioma');
+    document.startViewTransition(() => aplicarIdioma(lang)).finished
+      .finally(() => document.documentElement.classList.remove('trocando-idioma'));
+  }
+
+  function aplicarIdioma(lang) {
     currentLang = lang;
     document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
     document.body.className = document.body.className.replace(/lang-\w+/g, '').trim() + ' lang-' + lang;
