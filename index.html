@@ -715,6 +715,23 @@
       letter-spacing: 0.04em;
     }
     .case-card-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    /* Hover e foco: a imagem aproxima dentro da moldura e a faixa sobe 4px. No toque, nada. */
+    .case-card-img,
+    .case-card-bar {
+      transition: transform var(--ds-motion-base) cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    @media (hover: hover) {
+      .case-card:hover .case-card-img { transform: scale(1.03); }
+      .case-card:hover .case-card-bar { transform: translateY(-4px); }
+    }
+    .case-card:focus-visible .case-card-img { transform: scale(1.03); }
+    .case-card:focus-visible .case-card-bar { transform: translateY(-4px); }
+    @media (prefers-reduced-motion: reduce) {
+      .case-card-img, .case-card-bar { transition: none; }
+      .case-card:hover .case-card-img, .case-card:focus-visible .case-card-img,
+      .case-card:hover .case-card-bar, .case-card:focus-visible .case-card-bar { transform: none; }
+    }
     .case-card-tags span {
       padding: 4px 12px;
       border: 1px solid rgba(255, 255, 255, 0.4);
