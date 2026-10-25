@@ -2415,7 +2415,7 @@
   <main class="case-content fade-up">
 
     <div class="case-hero">
-      <img src="hero-chargeback.png" alt="Chargeback Revamp — o painel de contestação na plataforma interna" loading="eager" decoding="async" />
+      <img src="hero/case-chargeback.jpg" alt="Chargeback Revamp — o painel de contestação na plataforma interna" loading="lazy" decoding="async" />
     </div>
 
     <div class="case-header">
@@ -2852,7 +2852,7 @@
   <main class="case-content fade-up">
 
     <div class="case-hero">
-      <img src="hero-insurance.png" alt="Claims — o acompanhamento do acionamento do seguro no app" loading="eager" decoding="async" />
+      <img src="hero/case-claims.jpg" alt="Claims — o acompanhamento do acionamento do seguro no app" loading="lazy" decoding="async" />
     </div>
 
     <div class="case-header">
@@ -3194,7 +3194,7 @@
   <main class="case-content fade-up">
 
     <div class="case-hero">
-      <img src="hero-pj-payments.png" alt="Tap to Pay — a maquininha no celular, na tela de entrada do produto" loading="eager" decoding="async" />
+      <img src="hero/case-pj.jpg" alt="Tap to Pay — a maquininha no celular, na tela de entrada do produto" loading="lazy" decoding="async" />
     </div>
 
     <div class="case-header">
@@ -3729,7 +3729,7 @@
   <main class="case-content fade-up">
 
     <div class="case-hero">
-      <img src="pos-ai-mockup.png" alt="POS Nubank — o primeiro hardware da empresa" loading="eager" decoding="async" />
+      <img src="hero/case-pos.jpg" alt="POS Nubank — o primeiro hardware da empresa" loading="lazy" decoding="async" />
     </div>
 
     <div class="case-header">
@@ -4445,9 +4445,26 @@
     });
   }
 
+  // Os heros dos cases são lazy (a home não baixa os quatro); a intenção de clicar já começa o download
+  function carregarHero(id) {
+    const img = document.querySelector('#case-' + id + ' .case-hero img');
+    if (!img) return Promise.resolve();
+    img.loading = 'eager';
+    return img.decode().catch(() => {});
+  }
+  document.querySelectorAll('.case-card').forEach(card => {
+    const id = (card.getAttribute('onclick').match(/showCase\('(\w+)'\)/) || [])[1];
+    if (!id) return;
+    ['pointerenter', 'focus', 'touchstart'].forEach(evento =>
+      card.addEventListener(evento, () => carregarHero(id), { once: true, passive: true }));
+  });
+
   function showCase(id) {
     if (document.getElementById('home-page').style.display !== 'none') rolagemDaHome = window.scrollY;
-    transicionar(imagemDoCard(id), () => heroDoCase(id), (animar) => abrirCase(id, animar));
+    // espera o hero decodificar (no máximo 400ms) para a imagem do card não crescer até um quadro vazio
+    const espera = new Promise(pronto => setTimeout(pronto, 400));
+    Promise.race([carregarHero(id), espera]).then(() =>
+      transicionar(imagemDoCard(id), () => heroDoCase(id), (animar) => abrirCase(id, animar)));
   }
 
   function abrirCase(id, animar) {
