@@ -13,3 +13,9 @@ contestacao-mapa.png
 chargeback-comms-before-after.png
 cotnent-metrics-presentation.png
 contestacao.png
+
+# Fonte com os cases em texto claro: nunca publicar
+index.fonte.html
+
+# Laboratórios temporários de design: nunca publicar
+_lab-*.html
