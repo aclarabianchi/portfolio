@@ -859,15 +859,28 @@
     ══════════════════════════════════════════ */
     .scroll-progress {
       position: fixed;
-      top: 65px;
+      top: 89px; /* altura do menu do case no desktop; o script cola a barra na borda real do menu */
       left: 0;
-      width: 0%;
+      width: 100%;
       height: 2px;
       background: var(--caneta);
       z-index: 99;
-      transition: width 0.1s linear;
+      /* escala em vez de largura: anda no compositor, sem recalcular layout a cada quadro */
+      transform: scaleX(0);
+      transform-origin: left center;
       display: none;
       pointer-events: none;
+    }
+    /* Onde o navegador amarra animação à rolagem, a barra segue o scroll sem script */
+    @supports (animation-timeline: scroll()) {
+      .scroll-progress {
+        animation: progresso-leitura linear both;
+        animation-timeline: scroll(root block);
+      }
+    }
+    @keyframes progresso-leitura {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
     }
 
     /* ══════════════════════════════════════════
@@ -1924,20 +1937,6 @@
       z-index: 0;
     }
 
-    /* terceiro tempo: a sala escurece em volta do card */
-    #password-gate::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      background: radial-gradient(ellipse at center, rgba(23, 5, 36, 0.20) 0%, rgba(16, 3, 26, 0.90) 100%);
-      opacity: 0;
-      transition: opacity 600ms ease-out 100ms;
-    }
-
-    #password-gate.is-ready::after { opacity: 1; }
-
     #password-gate .gate-header {
       position: absolute;
       top: 0; left: 0; right: 0;
@@ -2121,6 +2120,8 @@
       color: #ffffff;
       text-decoration: underline;
       text-underline-offset: 3px;
+      /* o espaço da Plus Jakarta a 12px tem 2px e o sublinhado colado no "F" o engole: respiro antes do link */
+      margin-inline-start: 0.2em;
       transition: color var(--transition-base);
     }
 
@@ -2229,7 +2230,6 @@
 
       #password-gate .gate-card.is-recentering { transition-duration: 1ms; }
       #password-gate .gate-card.is-entering { transition-duration: 1ms; }
-      #password-gate::after { transition-duration: 1ms; transition-delay: 0ms; }
     }
 
     @media (max-width: 480px) {
@@ -2607,7 +2607,7 @@
         setTimeout(() => page.classList.remove('page-entering'), 360);
       }
       rolarPara(0);
-      document.getElementById('scroll-progress').style.display = 'block';
+      mostrarBarra();
       history.pushState({ view: 'case', id }, '', '#' + id);
       const h1 = page.querySelector('h1');
       if (h1) { h1.setAttribute('tabindex', '-1'); h1.focus(); }
@@ -2635,7 +2635,7 @@
     }
     rolarPara(y);
     document.getElementById('scroll-progress').style.display = 'none';
-    document.getElementById('scroll-progress').style.width = '0%';
+    document.getElementById('scroll-progress').style.transform = 'scaleX(0)';
     history.pushState({ view: 'home' }, '', window.location.pathname);
   }
 
@@ -2648,26 +2648,39 @@
       if (page) {
         page.style.display = 'block';
         rolarPara(0);
-        document.getElementById('scroll-progress').style.display = 'block';
+        mostrarBarra();
       }
     } else {
       document.querySelectorAll('.case-page').forEach(p => p.style.display = 'none');
       document.getElementById('home-page').style.display = 'block';
       rolarPara(rolagemDaHome);
       document.getElementById('scroll-progress').style.display = 'none';
-      document.getElementById('scroll-progress').style.width = '0%';
+      document.getElementById('scroll-progress').style.transform = 'scaleX(0)';
     }
   });
 
   // Scroll listeners: progress bar, back-to-top, nav scroll state
+  // A barra fica colada na borda de baixo do menu do case, qualquer que seja a altura dele
+  // (o padding do menu muda por largura de tela, e os botões PT/EN definem a altura do conteúdo)
+  function encostarBarraNoMenu() {
+    const menu = [...document.querySelectorAll('.case-nav')].find(m => m.getBoundingClientRect().height > 0);
+    if (menu) document.getElementById('scroll-progress').style.top = menu.getBoundingClientRect().bottom + 'px';
+  }
+  function mostrarBarra() {
+    document.getElementById('scroll-progress').style.display = 'block';
+    encostarBarraNoMenu();
+  }
+  window.addEventListener('resize', encostarBarraNoMenu, { passive: true });
+
+  const BARRA_NO_CSS = window.CSS && CSS.supports('animation-timeline: scroll()');
   window.addEventListener('scroll', () => {
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
 
-    // Scroll progress bar
+    // Barra de progresso: só pelo script onde o CSS não amarra a animação à rolagem
     const progressEl = document.getElementById('scroll-progress');
-    if (progressEl && progressEl.style.display !== 'none') {
+    if (!BARRA_NO_CSS && progressEl && progressEl.style.display !== 'none') {
       const total = document.documentElement.scrollHeight - window.innerHeight;
-      progressEl.style.width = total > 0 ? (scrollTop / total * 100) + '%' : '0%';
+      progressEl.style.transform = 'scaleX(' + (total > 0 ? Math.min(scrollTop / total, 1) : 0) + ')';
     }
 
     // Back to top button
@@ -2703,7 +2716,7 @@
       if (page) {
         document.getElementById('home-page').style.display = 'none';
         page.style.display = 'block';
-        document.getElementById('scroll-progress').style.display = 'block';
+        mostrarBarra();
       }
     }
   }
@@ -2927,7 +2940,7 @@
       });
     }
 
-    // ── Entrada em três tempos: o card sobe e a sala escurece junto ──
+    // ── Entrada: o card sobe da base até o lugar dele ──
     const SUBIDA = 440, ESPIADA = 118;
 
     function focarSenha() {
@@ -2938,7 +2951,6 @@
     function tocarEntrada() {
       const card = gate.querySelector('.gate-card');
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        gate.classList.add('is-ready');
         focarSenha();
         return;
       }
@@ -2948,7 +2960,6 @@
       card.classList.add('is-entering');
       requestAnimationFrame(() => requestAnimationFrame(() => {
         card.style.transform = '';
-        gate.classList.add('is-ready');
         // o relógio conta a partir da subida, não de quando o script rodou
         setTimeout(() => {
           card.classList.remove('is-entering');
