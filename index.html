@@ -11,6 +11,9 @@
     }
   </script>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F5F4F0'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-size='20' fill='%23C8A96E'%3EA%3C/text%3E%3C/svg%3E" />
+  <!-- capa do hero: a primeira coisa a aparecer, então pede antes das fontes; uma versão por largura, como o <picture> -->
+  <link rel="preload" as="image" href="video/gate-colagem-desktop-capa.jpg" media="(min-width: 735px)" fetchpriority="high" />
+  <link rel="preload" as="image" href="video/gate-colagem-mobile-capa.jpg" media="(max-width: 734px)" fetchpriority="high" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;800&family=Caveat:wght@500&display=swap" rel="stylesheet" />
@@ -2009,6 +2012,9 @@
       overflow: hidden;
     }
 
+    /* a capa (o primeiro quadro do vídeo, em jpg) fica atrás; o vídeo cobre quando tem imagem */
+    #password-gate .gate-imagem,
+    #password-gate .gate-capa,
     #password-gate .gate-video {
       position: absolute;
       inset: 0;
@@ -2039,10 +2045,10 @@
     }
 
     /* Entrada, só com motion: a imagem sai do preto; aos 1,2s o degradê sobe da base
-       junto com o título e o botão; o rabisco fecha a cena (o script marca .gate-entrou).
+       junto com o título e o botão; o rabisco fecha a cena (o script logo abaixo do hero marca .gate-entrou).
        O estado escondido pende do .reveal-on, que o <head> liga antes da primeira pintura:
        pendurado numa classe que o script liga depois, o título já nascia visível */
-    .reveal-on #password-gate .gate-video {
+    .reveal-on #password-gate .gate-imagem {
       opacity: 0;
       transform: scale(1.04);
       transition: opacity 1600ms var(--gate-saida), transform 1600ms var(--gate-saida);
@@ -2061,7 +2067,7 @@
       transition: opacity 1200ms var(--gate-saida) 1200ms, transform 1200ms var(--gate-saida) 1200ms;
     }
 
-    #password-gate.gate-entrou .gate-video,
+    #password-gate.gate-entrou .gate-imagem,
     #password-gate.gate-entrou .gate-degrade,
     #password-gate.gate-entrou .gate-titulo,
     #password-gate.gate-entrou .gate-cta {
@@ -2512,8 +2518,12 @@
   <!-- Hero: vídeo preso ao fundo, título e frases rolando por cima -->
   <section class="gate-hero" aria-labelledby="gate-titulo-hero">
     <div class="gate-palco">
-      <!-- versão vertical abaixo de 734px; o script troca a capa para a mesma versão -->
-      <video class="gate-video" id="gate-video" autoplay muted loop playsinline preload="auto" poster="video/gate-colagem-desktop-capa.jpg" aria-hidden="true"><source src="video/gate-colagem-mobile.mp4" type="video/mp4" media="(max-width: 734px)" /><source src="video/gate-colagem-desktop.mp4" type="video/mp4" /></video>
+      <!-- versão vertical abaixo de 734px, na capa e no vídeo. O vídeo só baixa depois da capa (script abaixo),
+           para não dividir a banda com ela; sem motion fica na capa até a pessoa apertar reproduzir -->
+      <div class="gate-imagem" aria-hidden="true">
+        <picture><source srcset="video/gate-colagem-mobile-capa.jpg" media="(max-width: 734px)" /><img class="gate-capa" id="gate-capa" src="video/gate-colagem-desktop-capa.jpg" alt="" fetchpriority="high" /></picture>
+        <video class="gate-video" id="gate-video" muted loop playsinline preload="none"><source src="video/gate-colagem-mobile.mp4" type="video/mp4" media="(max-width: 734px)" /><source src="video/gate-colagem-desktop.mp4" type="video/mp4" /></video>
+      </div>
       <div class="gate-scrim" id="gate-scrim"></div>
       <div class="gate-degrade" aria-hidden="true"></div>
       <div class="gate-conteudo">
@@ -2533,6 +2543,42 @@
       <button class="gate-pausa" id="gate-pausa-video" type="button" data-label-pt-pausar="Pausar vídeo de fundo" data-label-pt-tocar="Reproduzir vídeo de fundo" data-label-en-pausar="Pause background video" data-label-en-tocar="Play background video" aria-label="Pausar vídeo de fundo"><svg class="icone-pausar" viewBox="0 0 14 14" aria-hidden="true"><rect x="2.5" y="1.5" width="3" height="11" rx="1" fill="currentColor"/><rect x="8.5" y="1.5" width="3" height="11" rx="1" fill="currentColor"/></svg><svg class="icone-tocar" viewBox="0 0 14 14" aria-hidden="true"><path d="M3.5 1.8v10.4a.6.6 0 0 0 .9.5l8.3-5.2a.6.6 0 0 0 0-1L4.4 1.3a.6.6 0 0 0-.9.5z" fill="currentColor"/></svg></button>
     </div>
   </section>
+  <script>
+    // Entrada do hero. Roda aqui, logo depois do hero, para não esperar os ~400 KB de página abaixo:
+    // a imagem sai do preto assim que a capa está decodificada (no máximo 1,5s) e o vídeo começa
+    // a baixar por trás dela (o primeiro quadro é a própria capa); aos 1,2s o degradê sobe
+    // com o título e o botão (CSS), aos 2,6s o rabisco desenha.
+    // Com sessão guardada quem decide é o script do fim, que pode nem abrir o gate.
+    var gateEntrada = (function () {
+      var gate = document.getElementById('password-gate');
+      var capa = document.getElementById('gate-capa');
+      var video = document.getElementById('gate-video');
+      var comecou = false;
+      function tocar() {
+        if (comecou) return;
+        comecou = true;
+        video.play().catch(function () {});
+        // aba em segundo plano não roda requestAnimationFrame: a entrada espera a pessoa olhar
+        requestAnimationFrame(function () { requestAnimationFrame(function () {
+          gate.classList.add('gate-entrou');
+          setTimeout(function () { gate.classList.add('gate-assentou'); }, 2400);
+          setTimeout(function () {
+            document.querySelectorAll('#gate-titulo-hero .gate-caneta').forEach(function (c) { c.classList.add('desenhada'); });
+          }, 2600);
+        }); });
+      }
+      // carregada não basta: sem decodificar, o fade corre no preto e a capa surge pronta no meio dele
+      return function () {
+        capa.decode().then(tocar, tocar);
+        setTimeout(tocar, 1500);
+      };
+    })();
+    (function () {
+      if (!document.documentElement.classList.contains('reveal-on')) return;
+      try { if (sessionStorage.getItem('portfolio_chave') || sessionStorage.getItem('portfolio_auth') === '1') return; } catch (e) {}
+      gateEntrada();
+    })();
+  </script>
 
   <!-- Galeria: duas linhas de projetos passando devagar -->
   <section class="gate-galeria" aria-labelledby="gate-titulo-galeria">
@@ -3460,31 +3506,6 @@
       gate.querySelectorAll('.gate-card-proj img').forEach(img => img.addEventListener('load', medirLinhas, { once: true }));
     }
 
-    // a capa acompanha a versão do vídeo que o <source media> escolheu
-    if (window.matchMedia('(max-width: 734px)').matches) gateVideo.poster = 'video/gate-colagem-mobile-capa.jpg';
-
-    // Entrada: a imagem sai do preto, aos 1,2s o degradê sobe com o título e o botão (CSS),
-    // aos 2,6s o rabisco desenha. Espera o primeiro quadro do vídeo, no máximo 1,2s.
-    const RABISCO_ENTRA = 2600;
-    const ENTRADA_ASSENTA = 2400;
-    function entrarGate() {
-      let entrou = false;
-      const entrar = () => {
-        if (entrou) return;
-        entrou = true;
-        requestAnimationFrame(() => requestAnimationFrame(() => {
-          gate.classList.add('gate-entrou');
-          setTimeout(() => desenharCaneta(document.getElementById('gate-titulo-hero')), RABISCO_ENTRA);
-          setTimeout(() => gate.classList.add('gate-assentou'), ENTRADA_ASSENTA);
-        }));
-      };
-      if (gateVideo.readyState >= 2) entrar();
-      else {
-        gateVideo.addEventListener('loadeddata', entrar, { once: true });
-        setTimeout(entrar, 1200);
-      }
-    }
-
     function prepararGate() {
       if (semMovimento.matches) {
         // sem motion: frases visíveis, galeria parada, vídeo parado e com o botão em "reproduzir"
@@ -3494,7 +3515,8 @@
         desenharCaneta(gate);
       } else {
         heroGate.style.setProperty('--hero-rolagem', FIM_HERO * 100 + 'svh');
-        entrarGate();
+        // a entrada já começou no script logo abaixo do hero, salvo com sessão guardada; repetir não faz nada
+        gateEntrada();
       }
       iniciarGaleria();
       aoRolarGate();
