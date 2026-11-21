@@ -2041,7 +2041,7 @@
     /* Entrada, só com motion: a imagem sai do preto; aos 1,2s o degradê sobe da base
        junto com o título e o botão; o rabisco fecha a cena (o script marca .gate-entrou).
        O estado escondido pende do .reveal-on, que o <head> liga antes da primeira pintura:
-       pendurado no .gate-anima, que o script liga depois, o título já nascia visível */
+       pendurado numa classe que o script liga depois, o título já nascia visível */
     .reveal-on #password-gate .gate-video {
       opacity: 0;
       transform: scale(1.04);
@@ -2080,26 +2080,29 @@
       padding-top: calc(68svh - var(--gate-barra));
     }
 
-    /* com motion: o palco congela na tela pelo tempo do hero, e o título e as frases dividem o mesmo quadro */
-    #password-gate.gate-anima .gate-hero {
-      height: calc(100vh - var(--gate-barra) + var(--hero-rolagem, 310vh));
-      height: calc(100svh - var(--gate-barra) + var(--hero-rolagem, 310svh));
+    /* com motion: o palco congela na tela pelo tempo do hero, e o título e as frases dividem o mesmo quadro.
+       Pende do .reveal-on, ligado no <head>: o layout final e as frases escondidas valem desde a primeira pintura.
+       Pendurado numa classe que o script liga no fim da página, as frases piscavam no preto antes da entrada.
+       Os 270 de reserva são o FIM_HERO do script (2,7 telas): mudar um, mudar o outro */
+    .reveal-on #password-gate .gate-hero {
+      height: calc(100vh - var(--gate-barra) + var(--hero-rolagem, 270vh));
+      height: calc(100svh - var(--gate-barra) + var(--hero-rolagem, 270svh));
     }
 
-    #password-gate.gate-anima .gate-palco {
+    .reveal-on #password-gate .gate-palco {
       position: sticky;
       top: var(--gate-barra);
       height: calc(100vh - var(--gate-barra));
       height: calc(100svh - var(--gate-barra));
     }
 
-    #password-gate.gate-anima .gate-conteudo {
+    .reveal-on #password-gate .gate-conteudo {
       position: absolute;
       inset: 0;
       padding: 0;
     }
 
-    #password-gate.gate-anima .gate-hero-topo {
+    .reveal-on #password-gate .gate-hero-topo {
       position: absolute;
       left: var(--gate-margem);
       right: var(--gate-margem);
@@ -2110,7 +2113,7 @@
     }
 
     /* as frases ocupam o meio do quadro, empilhando conforme entram */
-    #password-gate.gate-anima .gate-frases {
+    .reveal-on #password-gate .gate-frases {
       position: absolute;
       left: var(--gate-margem);
       right: var(--gate-margem);
@@ -2201,13 +2204,13 @@
 
     /* com motion: cada frase sobe 50px e aparece em 0,9s, mais devagar que a referência (0,6s),
        quando a rolagem chega no trecho dela */
-    #password-gate.gate-anima .gate-frases li {
+    .reveal-on #password-gate .gate-frases li {
       opacity: 0;
       transform: translateY(50px);
       transition: opacity 0.9s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.9s cubic-bezier(0.25, 0.1, 0.25, 1);
     }
 
-    #password-gate.gate-anima .gate-frases li.is-visible {
+    .reveal-on #password-gate .gate-frases li.is-visible {
       opacity: 1;
       transform: none;
     }
@@ -3275,7 +3278,7 @@
         quadroAgendado = false;
         const a = Math.max(0, gate.scrollTop - heroGate.offsetTop) / window.innerHeight;
         gateScrim.style.setProperty('--scrim', escurecimento(a).toFixed(3));
-        if (gate.classList.contains('gate-anima')) {
+        if (document.documentElement.classList.contains('reveal-on')) {
           // o título sobe 60px enquanto some; invisível, sai do foco e do clique
           const t = Math.min(1, Math.max(0, (a - TITULO_SAI[0]) / (TITULO_SAI[1] - TITULO_SAI[0])));
           topoHero.style.setProperty('--topo-op', (1 - t).toFixed(3));
@@ -3490,7 +3493,6 @@
         rotularPausa(pausaVideo, true);
         desenharCaneta(gate);
       } else {
-        gate.classList.add('gate-anima');
         heroGate.style.setProperty('--hero-rolagem', FIM_HERO * 100 + 'svh');
         entrarGate();
       }
