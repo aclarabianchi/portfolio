@@ -16,8 +16,10 @@
   <link rel="preload" as="image" href="video/gate-colagem-mobile-capa.jpg" media="(max-width: 734px)" fetchpriority="high" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;800&family=Caveat:wght@500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <!-- fontes sem travar a primeira pintura: o gate usa a fonte do sistema e o texto troca quando elas chegam (display=swap).
+       Só os pesos em uso: 400, 500, 600 e 800 da Jakarta, 500 da Caveat -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;800&family=Caveat:wght@500&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;800&family=Caveat:wght@500&display=swap" /></noscript>
   <style>
 
     /* ══════════════════════════════════════════
@@ -678,6 +680,10 @@
       background: var(--ds-ink);
     }
     .case-card-img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    /* atrás do gate a home está "na tela" para o navegador, e o lazy baixava as miniaturas de saída.
+       Sem caixa, elas esperam: voltam quando a senha entra (o gate ganha .saindo) ou a sessão o remove.
+       A moldura tem proporção fixa, então o layout não muda */
+    :root:has(#password-gate:not(.saindo)) .case-card-img { display: none; }
 
     /* Hover e foco de teclado: a seta anda 4px e a imagem aproxima dentro da moldura */
     .case-card-cta svg,
@@ -1424,6 +1430,18 @@
     ══════════════════════════════════════════ */
 
     /* Tempo de leitura, acima do título de abertura */
+    /* relógio do tempo de leitura: o traço do "clock" do Tabler desenhado em CSS. Era o único ícone
+       da fonte do Tabler, que travava a primeira pintura; a marcação dos cases (cifrada) segue com a classe */
+    .ti-clock {
+      display: inline-block;
+      flex: none;
+      width: 1em;
+      height: 1em;
+      background: currentColor;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0'/%3E%3Cpath d='M12 7v5l3 3'/%3E%3C/svg%3E") center / contain no-repeat;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0'/%3E%3Cpath d='M12 7v5l3 3'/%3E%3C/svg%3E") center / contain no-repeat;
+    }
+
     .case-readtime {
       display: flex;
       align-items: center;
@@ -3170,6 +3188,7 @@
     }
 
     function unlockPortfolio() {
+      gate.classList.add('saindo'); // libera as miniaturas da home para carregar durante a saída
       liberarPagina();
       focarDepoisDoGate();
       gate.style.opacity = '0';
