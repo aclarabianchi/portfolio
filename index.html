@@ -99,12 +99,6 @@
        não são clicáveis, então não levam anel. Links e botões continuam com o deles. */
     [tabindex="-1"]:focus-visible { outline: none; }
 
-    .card:focus-visible {
-      outline: 2px solid var(--ds-focus);
-      outline-offset: -2px;
-      z-index: 2;
-    }
-
     .back-btn:focus-visible,
     .lang-btn:focus-visible {
       outline: 2px solid var(--ds-focus);
@@ -124,9 +118,6 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-
-
-
     .fade-up { animation: fadeUp 0.5s ease both; }
 
     .page-entering {
@@ -135,7 +126,7 @@
 
     @media (prefers-reduced-motion: reduce) {
       .fade-up { animation: none !important; }
-      .card { opacity: 1 !important; transform: none !important; transition: none !important; }
+
       html { scroll-behavior: auto; }
       .page-entering { animation: none !important; }
     }
@@ -277,7 +268,6 @@
       box-shadow: 0 1px 3px rgba(0,0,0,0.08);
     }
 
-
     /* ══════════════════════════════════════════
        HERO
     ══════════════════════════════════════════ */
@@ -349,217 +339,6 @@
     }
 
     /* ══════════════════════════════════════════
-       PORTFOLIO GRID
-    ══════════════════════════════════════════ */
-    .grid-section {
-      padding: 0 48px 120px;
-      max-width: 1100px;
-      margin: 0 auto;
-      animation: fadeUp 0.5s ease 0.5s both;
-    }
-
-    .grid-label {
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 32px;
-      padding-top: 16px;
-      border-top: 1px solid var(--border);
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-    }
-
-    /* ══════════════════════════════════════════
-       CARDS
-    ══════════════════════════════════════════ */
-    .card {
-      background: var(--bg-card);
-      color: var(--text);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      position: relative;
-      cursor: pointer;
-      border: none;
-      text-align: left;
-      font-family: inherit;
-      width: 100%;
-      border-radius: 2px;
-      opacity: 0;
-      transform: translateY(16px);
-      transition:
-        background var(--transition-base),
-        box-shadow var(--transition-base),
-        transform var(--transition-base),
-        opacity var(--transition-slow);
-    }
-
-    .card.revealed {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .card:hover {
-      background: var(--accent-light);
-      box-shadow: var(--shadow-card-hover);
-      transform: translateY(-2px);
-      z-index: 1;
-    }
-
-    .card-arrow {
-      position: absolute;
-      bottom: 28px;
-      right: 28px;
-      color: var(--accent);
-      opacity: 0;
-      transform: translateX(-6px);
-      transition: opacity var(--transition-base), transform var(--transition-base);
-      pointer-events: none;
-      display: flex;
-      align-items: center;
-    }
-    .card:hover .card-arrow { opacity: 1; transform: translateX(0); }
-
-    .card-visual {
-      aspect-ratio: 4/3;
-      background: var(--tag-bg);
-      overflow: hidden;
-      position: relative;
-    }
-
-    .card-visual-inner {
-      width: 100%;
-      height: 100%;
-      position: relative;
-    }
-
-    .card:nth-child(1) .card-visual { background: #EAE6DF; }
-    .card:nth-child(2) .card-visual { background: #E8EAE6; }
-    .card:nth-child(3) .card-visual { background: #E6E8EA; }
-    .card:nth-child(4) .card-visual { background: #EDE6EA; }
-    .card:nth-child(5) .card-visual { background: #E6EAED; }
-    .card:nth-child(6) .card-visual { background: #EAEAE6; }
-
-    .card-ordinal {
-      font-family: 'Playfair Display', serif;
-      font-weight: 300;
-      font-size: 56px;
-      line-height: 1;
-      color: var(--text);
-      opacity: 0.10;
-      letter-spacing: -0.02em;
-      user-select: none;
-      position: absolute;
-      top: 16px;
-      left: 20px;
-    }
-
-    .card-metric-bg {
-      font-family: 'Playfair Display', serif;
-      font-weight: 300;
-      font-style: italic;
-      font-size: 48px;
-      line-height: 1;
-      color: var(--text);
-      opacity: 0.07;
-      position: absolute;
-      bottom: 12px;
-      right: 16px;
-      letter-spacing: -0.03em;
-      user-select: none;
-      pointer-events: none;
-    }
-
-    .card-body {
-      padding: 24px 28px 40px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      position: relative;
-    }
-
-    .card-company {
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    .card-title {
-      font-family: 'Playfair Display', serif;
-      font-weight: 400;
-      font-size: 22px;
-      line-height: 1.25;
-      color: var(--text);
-    }
-
-    .card-subtitle {
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    .card-metric {
-      margin-top: auto;
-      padding-top: 16px;
-      font-size: 11px;
-      letter-spacing: 0.06em;
-      color: var(--text-muted);
-      border-top: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .card-metric strong {
-      font-weight: 500;
-      color: var(--text);
-      font-size: 13px;
-    }
-
-    .card-placeholder {
-      opacity: 1;
-      cursor: default;
-      pointer-events: none;
-    }
-
-    .card-placeholder .card-visual {
-      background-image: repeating-linear-gradient(
-        -45deg,
-        transparent,
-        transparent 6px,
-        rgba(26,26,26,0.03) 6px,
-        rgba(26,26,26,0.03) 7px
-      );
-    }
-
-    .card-placeholder .card-title,
-    .card-placeholder .card-subtitle,
-    .card-placeholder .card-company { opacity: 0.45; }
-
-    .coming-soon-badge {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background: transparent;
-      color: var(--text-muted);
-      border: 1px solid var(--border);
-      font-size: 9px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: 20px;
-    }
-
-    /* ══════════════════════════════════════════
        FOOTER
     ══════════════════════════════════════════ */
     footer {
@@ -622,8 +401,6 @@
       margin-bottom: 16px;
       display: block;
     }
-
-
 
     /* CASES — uma linha por case: texto à esquerda, imagem limpa à direita.
        O que decide o clique (frase do case, resultado, área) fica fora da imagem. */
@@ -758,7 +535,6 @@
       gap: 4px;
       margin-top: 12px;
     }
-
 
     /* REFERÊNCIAS — card na altura do conteúdo, borda no lugar de sombra */
     .home-section--wide { max-width: 1296px; }
@@ -1108,14 +884,6 @@
     ══════════════════════════════════════════ */
     .case-header { margin-bottom: 64px; }
 
-    .case-company {
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 16px;
-    }
-
     .case-title {
       font-weight: 500;
       font-size: clamp(40px, 5vw, 64px);
@@ -1220,16 +988,6 @@
       flex: 1;
     }
 
-    /* Numbered delivery phases (chargeback + other cases) */
-    .case-phase-block { margin-top: 48px; }
-    .case-phase-block + .case-phase-block { margin-top: 52px; }
-    .case-phase-header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
-    .case-phase-num { font-size: 11px; letter-spacing: 0.12em; color: var(--text-muted); flex-shrink: 0; font-variant-numeric: tabular-nums; }
-    .case-phase-rule { flex: 1; height: 1px; background: var(--border); }
-    .case-phase-name { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 20px; }
-    .case-phase-block .case-figure { margin-top: 24px; }
-    .case-phase-block .case-figures-row { margin-top: 24px; }
-
     /* Insight / strategic callout */
     .case-callout { margin-top: 48px; padding: 32px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; }
     .case-callout-label { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 16px; }
@@ -1248,84 +1006,6 @@
 
     /* Phase items */
     .case-phase-item { margin-bottom: 52px; }
-
-    /* Annotation notes */
-    .case-note {
-      display: flex;
-      gap: 10px;
-      margin-top: 16px;
-      padding-left: 4px;
-    }
-    .case-note-marker {
-      color: var(--accent);
-      flex-shrink: 0;
-      font-size: 15px;
-      line-height: 1.75;
-      opacity: 0.7;
-    }
-    .case-note-body p {
-      font-size: 14px !important;
-      font-style: italic;
-      line-height: 1.65 !important;
-    }
-
-    /* Design decision callout */
-    .case-decision {
-      margin-top: 24px;
-      padding: 22px 26px;
-      background: var(--tag-bg);
-      border-radius: 8px;
-      border: 1px solid var(--border);
-    }
-    .case-decision + .case-decision { margin-top: 12px; }
-    .case-decision-label {
-      font-size: 9px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 12px;
-      display: block;
-    }
-    .case-decision p {
-      font-size: 14px !important;
-      line-height: 1.7 !important;
-      color: var(--text) !important;
-    }
-    .case-decision p + p { margin-top: 10px; }
-
-    /* Deliverables block */
-    .case-deliverables {
-      margin: 8px 0 56px;
-      padding: 36px 40px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-    }
-    .case-deliverables-label {
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 28px;
-    }
-    .case-deliverables-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px 48px;
-    }
-    .case-deliverable { display: flex; gap: 14px; align-items: start; }
-    .case-deliverable-num {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--accent);
-      flex-shrink: 0;
-      padding-top: 2px;
-      letter-spacing: 0.05em;
-    }
-    .case-deliverable-text {
-      font-size: 14px;
-      color: var(--text);
-      line-height: 1.55;
-    }
 
     .case-section { margin-bottom: 48px; }
 
@@ -1381,48 +1061,6 @@
       height: 1px;
       background: var(--accent);
     }
-
-    .result-block {
-      background: var(--text);
-      color: var(--bg);
-      padding: 56px 48px;
-      margin: 64px 0;
-      display: grid;
-      grid-template-columns: auto 1fr;
-      align-items: start;
-      gap: 0 48px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .result-block::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: var(--accent);
-    }
-
-    .result-number {
-      font-family: 'Playfair Display', serif;
-      font-weight: 300;
-      font-size: clamp(56px, 7vw, 80px);
-      line-height: 1;
-      color: var(--accent);
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    .result-text {
-      font-size: 16px;
-      line-height: 1.75;
-      color: rgba(245, 244, 240, 0.75);
-      padding-top: 10px;
-    }
-
-    .divider { display: none; }
 
     /* ══════════════════════════════════════════
        CASE PAGE — BLOCOS DE POST (2026)
@@ -1581,45 +1219,11 @@
       color: var(--text-muted);
     }
 
-    /* Par evite / prefira das guidelines */
-    .case-compare {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 24px;
-      margin: 32px 0;
-    }
-    .case-compare-col { padding-top: 14px; border-top: 3px solid var(--border); }
-    .case-compare-col.is-avoid { border-top-color: #9B2C2C; }
-    .case-compare-col.is-prefer { border-top-color: #1F6F43; }
-    .case-compare-label {
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      display: block;
-      margin-bottom: 12px;
-    }
-    .case-compare-col.is-avoid .case-compare-label { color: #9B2C2C; }
-    .case-compare-col.is-prefer .case-compare-label { color: #1F6F43; }
-    .case-compare p { margin-top: 0; font-size: 14px; line-height: 1.6; }
-    .case-compare p + p { margin-top: 10px; }
-
     /* Nota de rodapé do case */
     .case-footnote {
       margin-top: 56px;
       padding-top: 20px;
       border-top: 1px solid var(--border);
-      font-size: 14px;
-      line-height: 1.6;
-      color: var(--text-muted);
-    }
-
-    /* Aviso de tradução pendente */
-    .case-translation-note {
-      margin: 32px 0 0;
-      padding: 20px 22px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
       font-size: 14px;
       line-height: 1.6;
       color: var(--text-muted);
@@ -1631,30 +1235,18 @@
     @media (max-width: 720px) {
       .case-stats { grid-template-columns: 1fr; }
       .case-topics { grid-template-columns: 1fr; }
-      .case-compare { grid-template-columns: 1fr; }
+
       .case-statement { margin: 40px 0; }
     }
+
     /* ══════════════════════════════════════════
        CASE PAGE — IMAGES
     ══════════════════════════════════════════ */
-    .case-images {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      margin: 48px 0;
-    }
-
     .case-figures-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 24px;
     }
-    .case-figures-row-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-    .case-phase-block .case-figures-row-3 { margin-top: 24px; }
 
     .case-figure {
       margin: 0;
@@ -1752,17 +1344,13 @@
     ══════════════════════════════════════════ */
     @media (max-width: 900px) {
       nav, .case-nav { padding: 20px 24px; }
-      .grid-section, footer { padding-left: 24px; padding-right: 24px; }
+      footer { padding-left: 24px; padding-right: 24px; }
       .case-content { padding: 120px 24px 80px; }
-      .grid { grid-template-columns: repeat(2, 1fr); }
-      .result-block { grid-template-columns: 1fr; gap: 16px; padding: 44px 36px; }
-      .result-number { font-size: 56px; }
+
       footer { flex-direction: column; gap: 20px; align-items: flex-start; }
       .case-intro-grid { grid-template-columns: 1fr; gap: 40px; }
       .case-hero { aspect-ratio: 16 / 9; }
-      .case-deliverables-grid { grid-template-columns: 1fr; }
-      .case-deliverables { padding: 28px 24px; }
-      .case-figures-row-3 { grid-template-columns: 1fr; }
+
     }
 
     /* ══════════════════════════════════════════
@@ -1776,10 +1364,6 @@
        RESPONSIVE — MOBILE (≤600px)
     ══════════════════════════════════════════ */
     @media (max-width: 600px) {
-      .grid { grid-template-columns: 1fr; }
-
-
-      .grid-section { padding: 0 20px 80px; }
 
       nav, .case-nav { padding: 16px 20px; }
 
@@ -1789,15 +1373,10 @@
 
       .case-content { padding: 100px 20px 64px; }
 
-      .result-block { padding: 36px 24px; }
-      .result-number { font-size: 48px; }
-
       .case-title { font-size: clamp(30px, 8vw, 42px); }
 
       .back-to-top { bottom: 20px; right: 20px; }
 
-      .card-visual { aspect-ratio: 3/2; }
-      .card-body { padding: 20px 20px 32px; }
     }
 
     /* ══════════════════════════════════════════
@@ -1907,27 +1486,6 @@
       min-width: 46px;
       text-align: center;
       font-variant-numeric: tabular-nums;
-      letter-spacing: 0.02em;
-    }
-
-    /* ══════════════════════════════════════════
-       CASE VIDEO
-    ══════════════════════════════════════════ */
-    .case-video-wrap {
-      margin: 48px 0;
-    }
-
-    .case-video-wrap video {
-      width: 100%;
-      border-radius: 4px;
-      display: block;
-      box-shadow: var(--shadow-card);
-    }
-
-    .case-video-wrap figcaption {
-      margin-top: 12px;
-      font-size: 13px;
-      color: var(--text-muted);
       letter-spacing: 0.02em;
     }
 
@@ -2371,7 +1929,6 @@
       align-items: center;
       padding: 89px var(--gate-margem) 89px;
     }
-
 
     #password-gate .gate-galeria-acoes .gate-pausa { position: static; }
 
