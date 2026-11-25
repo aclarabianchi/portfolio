@@ -1503,7 +1503,7 @@
       --gate-caneta: #d93f7c;
       /* coluna de 980 centrada, como na referência: 230px de margem em 1440 */
       --gate-margem: max(20px, calc((100vw - 980px) / 2));
-      --gate-barra: 52px;
+      --gate-barra: 100px;
       --gate-saida: cubic-bezier(0.16, 1, 0.3, 1);
       position: fixed;
       inset: 0;
@@ -1529,7 +1529,8 @@
       align-items: center;
       justify-content: flex-end;
       gap: 14px;
-      padding: 0 24px;
+      /* a borda da área de toque do LinkedIn fica a 60px, alinhada com os botões de pausa */
+      padding: 0 60px 0 24px;
       background: #000;
     }
 
@@ -1570,7 +1571,6 @@
       justify-content: center;
       width: 44px;
       height: 44px;
-      margin-right: -6px;
       color: #fff;
       text-decoration: none;
       transition: opacity var(--transition-base);
@@ -1710,7 +1710,7 @@
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      gap: 24px 90px;
+      gap: 24px 150px;
     }
 
     #password-gate .gate-titulo {
@@ -1802,7 +1802,7 @@
     /* pausar o vídeo (vídeo que toca sozinho por mais de 5s precisa de controle) */
     #password-gate .gate-pausa {
       position: absolute;
-      right: 24px;
+      right: 60px;
       bottom: 24px;
       z-index: 2;
       width: 36px;
@@ -1927,9 +1927,9 @@
     #password-gate .gate-galeria-acoes {
       position: relative;
       display: flex;
-      justify-content: center;
+      justify-content: flex-end;
       align-items: center;
-      padding: 89px var(--gate-margem) 89px;
+      padding: 89px 60px;
     }
 
     #password-gate .gate-galeria-acoes .gate-pausa { position: static; }
@@ -1940,6 +1940,8 @@
       z-index: 1;
       min-height: calc(100vh - var(--gate-barra));
       min-height: calc(100svh - var(--gate-barra));
+      /* o botão Continuar rola até aqui: para logo abaixo da barra, não por baixo dela */
+      scroll-margin-top: var(--gate-barra);
       display: flex;
       align-items: center;
       padding: 96px var(--gate-margem);
@@ -2058,14 +2060,17 @@
     }
 
     @media (max-width: 734px) {
+      #password-gate { --gate-barra: 80px; }
       #password-gate .gate-barra { padding: 0 16px; }
+      #password-gate .gate-linkedin { margin-right: -6px; }
+      #password-gate .gate-palco .gate-pausa { right: 24px; }
       #password-gate .gate-hero-topo { gap: 24px; }
       #password-gate .gate-frases { margin-top: 96px; gap: 36px; }
       #password-gate .gate-galeria { padding-top: 96px; }
       #password-gate .gate-galeria-titulo { margin-bottom: 64px; }
       #password-gate .gate-card-proj { width: 200px; height: 150px; margin-right: 12px; border-radius: 8px; }
       #password-gate .gate-linhas { gap: 12px; }
-      #password-gate .gate-galeria-acoes { flex-direction: column; gap: 16px; padding: 56px var(--gate-margem); }
+      #password-gate .gate-galeria-acoes { flex-direction: column; align-items: flex-end; gap: 16px; padding: 56px var(--gate-margem); }
       #password-gate .gate-senha { padding: 72px var(--gate-margem); }
       #password-gate .gate-form { margin-top: 0; }
       /* 16px ou mais: o iOS não dá zoom ao focar */
